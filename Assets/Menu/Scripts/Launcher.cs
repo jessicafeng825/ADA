@@ -107,12 +107,17 @@ public class Launcher : MonoBehaviourPunCallbacks {
     foreach (Transform trans in roomListContent) {
       Destroy(trans.gameObject);
     }
+    
     for (int i = 0; i < roomList.Count; i++) {
-      if (roomList[i].RemovedFromList) {
-        // Don't instantiate stale rooms
-        continue;
-      }
-      Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(roomList[i]);
+            //if (roomList[i].RemovedFromList) {
+            // Don't instantiate stale rooms
+            //  continue;
+            // }
+            if (roomList[i].PlayerCount == 0)
+            {
+                continue;
+            }
+            Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(roomList[i]);
     }
   }
 
