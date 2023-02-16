@@ -17,4 +17,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
         tempClue = (GameObject)Instantiate(newClue);
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true); 
     }
+
+    public void AddInterestPoint(string ipName, Vector2 location)
+    {
+
+    }
 }
