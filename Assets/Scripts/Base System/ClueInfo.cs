@@ -22,7 +22,7 @@ public class ClueInfo : MonoBehaviour
     {
         if (hasPicture)
         {
-            BaseUIManager.Instance.ShowClueInfoWithPicture(clueName, clueDescrip);
+            BaseUIManager.Instance.ShowClueInfoWithPicture(clueID, clueName, clueDescrip);
         }
         else
             BaseUIManager.Instance.ShowClueInfoNoPicture(clueName, clueDescrip);

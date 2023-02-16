@@ -16,11 +16,13 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private TMP_Text clueDescripText, clueDescripPicText;
 
     [SerializeField]
-    private Image cluePic;
+    private Image cluePicHolder;
+
+    private Sprite[] cluePics;
 
     private void Start()
     {
-        
+        cluePics = Resources.LoadAll<Sprite>("CluePics/");
     }
 
     public void ShowClueInfoNoPicture(string clueName, string clueDescrip)
@@ -30,11 +32,21 @@ public class BaseUIManager : Singleton<BaseUIManager>
         clueDescripText.text = clueDescrip;
     }
 
-    public void ShowClueInfoWithPicture(string clueName, string clueDescrip)
+    public void ShowClueInfoWithPicture(int clueID, string clueName, string clueDescrip)
     {
         clueInfoPicPanel.SetActive(true);
         clueNamePicText.text = clueName;
         clueDescripPicText.text = clueDescrip;
-        cluePic = Resources.Load<Image>("CluePics/" + clueName);
+        cluePicHolder.sprite = cluePics[clueID];
+    }
+
+    public void HideCLueInfoNoPicture()
+    {
+        clueInfoNoPicPanel.SetActive(false);
+    }
+
+    public void HideClueInfoWithPicture()
+    {
+        clueInfoPicPanel.SetActive(false);
     }
 }
