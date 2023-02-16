@@ -7,7 +7,7 @@ using UnityEngine;
 public class InterestPointInfo : MonoBehaviour
 {
     [SerializeField]
-    private List<string> clueList;
+    private List<int> clueIDList;
     private int cnt_currentClue = 0;
     public PhotonView pv;
 
@@ -21,9 +21,9 @@ public class InterestPointInfo : MonoBehaviour
     
     private void AddClue()
     {
-        if (cnt_currentClue < clueList.Count)
+        if (cnt_currentClue < clueIDList.Count)
         {
-            InvestigationManager.Instance.AddCluePrefab(clueList[cnt_currentClue]);
+            InvestigationManager.Instance.AddCluePrefab(clueIDList[cnt_currentClue]);
             pv.RPC(nameof(clueStatusUpdate), RpcTarget.All);
         }
         else

@@ -7,6 +7,8 @@ public class ClueInfo : MonoBehaviour
 {
     // Clue Information that would be shown in UI
     [SerializeField]
+    private int clueID;
+    [SerializeField]
     private string clueName, clueDescrip;
     [SerializeField]
     private bool hasPicture;

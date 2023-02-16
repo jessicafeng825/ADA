@@ -10,11 +10,21 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private GameObject ClueBase;
     private GameObject newClue;
     private GameObject tempClue;
+    private Object[] cluePrefabs;
 
-    public void AddCluePrefab(string clueName)
+    private void Start()
     {
-        newClue = Resources.Load<GameObject>("CluePrefabs/" + clueName);
-        tempClue = (GameObject)Instantiate(newClue);
+        LoadAllCluePrefabs();
+    }
+
+    public void LoadAllCluePrefabs()
+    {
+        cluePrefabs = Resources.LoadAll("CluePrefabs/");
+    }
+
+    public void AddCluePrefab(int clueID)
+    {
+        tempClue = (GameObject)Instantiate(cluePrefabs[clueID]);
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true); 
     }
 
