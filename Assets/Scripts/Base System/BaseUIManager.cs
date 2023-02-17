@@ -17,12 +17,20 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
     [SerializeField]
     private Image cluePicHolder;
+    private Dictionary<string, Sprite> cluePicsDic = new Dictionary<string, Sprite>();
 
-    private Sprite[] cluePics;
 
     private void Start()
     {
-        cluePics = Resources.LoadAll<Sprite>("CluePics/");
+        LoadAllPics();
+    }
+
+    private void LoadAllPics()
+    {
+        foreach(Sprite cluePic in Resources.LoadAll<Sprite>("CluePics/"))
+        {
+            cluePicsDic.Add(cluePic.name, cluePic);
+        }
     }
 
     public void ShowClueInfoNoPicture(string clueName, string clueDescrip)
@@ -32,12 +40,12 @@ public class BaseUIManager : Singleton<BaseUIManager>
         clueDescripText.text = clueDescrip;
     }
 
-    public void ShowClueInfoWithPicture(int clueID, string clueName, string clueDescrip)
+    public void ShowClueInfoWithPicture(string clueName, string clueDescrip)
     {
         clueInfoPicPanel.SetActive(true);
         clueNamePicText.text = clueName;
         clueDescripPicText.text = clueDescrip;
-        cluePicHolder.sprite = cluePics[clueID];
+        cluePicHolder.sprite = cluePicsDic[clueName];
     }
 
     public void HideCLueInfoNoPicture()

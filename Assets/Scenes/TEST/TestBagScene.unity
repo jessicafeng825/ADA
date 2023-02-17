@@ -256,8 +256,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1376220350}
-  - {fileID: 531261108}
   - {fileID: 475582850}
+  - {fileID: 531261108}
   - {fileID: 497557695}
   m_Father: {fileID: 1935414332}
   m_RootOrder: -1
@@ -1246,7 +1246,7 @@ MonoBehaviour:
   clueNamePicText: {fileID: 1376220351}
   clueDescripText: {fileID: 385633817}
   clueDescripPicText: {fileID: 475582851}
-  cluePic: {fileID: 531261109}
+  cluePicHolder: {fileID: 531261109}
 --- !u!4 &711609659
 Transform:
   m_ObjectHideFlags: 0
@@ -2118,7 +2118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1c909e505ddd0498c6b0f7e981eda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueIDList: 0000000001000000
+  clueList:
+  - clue1
+  - clue2
   pv: {fileID: 0}
 --- !u!114 &1951367343
 MonoBehaviour:
