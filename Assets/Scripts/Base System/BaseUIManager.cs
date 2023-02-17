@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class BaseUIManager : Singleton<BaseUIManager>
 {
+    // use this for a while, till Hui finish the MenuManager part
     [SerializeField]
     private GameObject clueInfoNoPicPanel, clueInfoPicPanel;
 
@@ -22,9 +23,11 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
     private void Start()
     {
+        // load all pictures at start
         LoadAllPics();
     }
 
+    // function: load all clue picture resources and add to dictionary for use
     private void LoadAllPics()
     {
         foreach(Sprite cluePic in Resources.LoadAll<Sprite>("CluePics/"))
@@ -33,6 +36,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
         }
     }
 
+    // function: show clue information panel with no picture 
     public void ShowClueInfoNoPicture(string clueName, string clueDescrip)
     {
         clueInfoNoPicPanel.SetActive(true);
@@ -40,6 +44,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
         clueDescripText.text = clueDescrip;
     }
 
+    // function: show clue information panel with picture 
     public void ShowClueInfoWithPicture(string clueName, string clueDescrip)
     {
         clueInfoPicPanel.SetActive(true);
@@ -48,11 +53,13 @@ public class BaseUIManager : Singleton<BaseUIManager>
         cluePicHolder.sprite = cluePicsDic[clueName];
     }
 
+    // function: hide clue information panel with no picture 
     public void HideCLueInfoNoPicture()
     {
         clueInfoNoPicPanel.SetActive(false);
     }
 
+    // function: hide clue information panel with picture 
     public void HideClueInfoWithPicture()
     {
         clueInfoPicPanel.SetActive(false);
