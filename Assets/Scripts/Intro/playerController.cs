@@ -43,4 +43,12 @@ public class playerController : MonoBehaviour
     {
         stageNow = PlayerManagerForAll.gamestage.Dissussion;
     }
+    public void discusstoInvest()
+    {
+        stageNow = PlayerManagerForAll.gamestage.Investigate;
+    }
+    public void discusstoAccuse()
+    {
+        
+    }
 }
