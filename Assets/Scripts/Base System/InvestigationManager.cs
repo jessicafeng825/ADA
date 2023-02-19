@@ -6,11 +6,14 @@ using UnityEngine;
 
 public class InvestigationManager : Singleton<InvestigationManager>
 {
+
+    // Player Clue Base Part
     [SerializeField]
     private GameObject ClueBase;
-    private GameObject newClue;
     private GameObject tempClue;
-    private Object[] cluePrefabs;
+    private Dictionary<string, GameObject> cluePrefabs = new Dictionary<string, GameObject>();
+
+    // Player Puzzle Base Part
 
     private void Start()
     {
@@ -19,12 +22,16 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void LoadAllCluePrefabs()
     {
-        cluePrefabs = Resources.LoadAll("CluePrefabs/");
+        foreach(GameObject cluePrefab in Resources.LoadAll("CluePrefabs/"))
+        {
+            cluePrefabs.Add(cluePrefab.name, cluePrefab);
+        }
     }
 
-    public void AddCluePrefab(int clueID)
+    // function: when player click on interest point, add a clue to their clue base
+    public void AddCluePrefab(string clueName)
     {
-        tempClue = (GameObject)Instantiate(cluePrefabs[clueID]);
+        tempClue = (GameObject)Instantiate(cluePrefabs[clueName]);
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true); 
     }
 

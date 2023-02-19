@@ -15,7 +15,7 @@ public class ClueInfo : MonoBehaviour
 
     private void Start()
     {
-        this.GetComponent<Button>().onClick.AddListener(OpenClue);
+        GetComponent<Button>().onClick.AddListener(OpenClue);
     }
 
     private void OpenClue()
