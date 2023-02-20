@@ -35,6 +35,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true); 
     }
 
+    public void AddPuzzlePrefab(string puzzleName)
+    {
+
+    }
+
     public void AddInterestPoint(string ipName, Vector2 location)
     {
 

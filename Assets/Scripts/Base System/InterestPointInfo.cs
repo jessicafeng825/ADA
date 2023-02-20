@@ -7,31 +7,43 @@ using UnityEngine;
 public class InterestPointInfo : MonoBehaviour
 {
     [SerializeField]
-    private List<string> clueList;
-    private int cnt_currentClue = 0;
+    private List<InterestPoint> collectableList;
+    private int cnt_current = 0;
     public PhotonView pv;
+
+    [System.Serializable]
+    public class InterestPoint
+    {
+        public string name;
+        public bool isClue;
+    }
 
     private void Start()
     {
         
         pv = GetComponent<PhotonView>();
-        this.GetComponent<Button>().onClick.AddListener(AddClue);
+        this.GetComponent<Button>().onClick.AddListener(AddCollectable);
     }
 
-    
-    private void AddClue()
+    private void AddCollectable()
     {
-        if (cnt_currentClue < clueList.Count)
+        if (cnt_current < collectableList.Count)
         {
-            InvestigationManager.Instance.AddCluePrefab(clueList[cnt_currentClue]);
+            if (collectableList[cnt_current].isClue)
+                InvestigationManager.Instance.AddCluePrefab(collectableList[cnt_current].name);
+
+
             pv.RPC(nameof(clueStatusUpdate), RpcTarget.All);
         }
         else
-            Debug.Log("there's no clues");
+        {
+            Debug.Log("No other collectable");
+            // show alert message
+        }
     }
 
     [PunRPC] private void clueStatusUpdate()
     {
-        cnt_currentClue++;
+        cnt_current++;
     }
 }
