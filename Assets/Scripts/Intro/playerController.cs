@@ -43,11 +43,11 @@ public class playerController : MonoBehaviour
     {
         stageNow = PlayerManagerForAll.gamestage.Dissussion;
     }
-<<<<<<< HEAD
     public void jobSelect(string job)
     {
         playerJob = job;
-=======
+    }
+
     public void discusstoInvest()
     {
         stageNow = PlayerManagerForAll.gamestage.Investigate;
@@ -55,6 +55,5 @@ public class playerController : MonoBehaviour
     public void discusstoAccuse()
     {
         
->>>>>>> d46b325907bc7564f69b53fe15aafcfa93c317ab
     }
 }
