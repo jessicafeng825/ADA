@@ -43,4 +43,8 @@ public class playerController : MonoBehaviour
     {
         stageNow = PlayerManagerForAll.gamestage.Dissussion;
     }
+    public void jobSelect(string job)
+    {
+        playerJob = job;
+    }
 }

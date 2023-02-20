@@ -252,6 +252,10 @@ PrefabInstance:
       value: http://localhost/result/video/TestVideo.mp4
       objectReference: {fileID: 0}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playerJob
+      value: 
+      objectReference: {fileID: 1097005401}
+    - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: pcPanelList.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -261,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 1170032044}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: playerPanelList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: playerPanelList.Array.data[0]
@@ -275,6 +279,10 @@ PrefabInstance:
       propertyPath: playerPanelList.Array.data[2]
       value: 
       objectReference: {fileID: 633790024}
+    - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playerPanelList.Array.data[3]
+      value: 
+      objectReference: {fileID: 1103573873}
     - target: {fileID: 5463670810130283422, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Name
       value: VerticalLayoutGroup
@@ -617,31 +625,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1170032039 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1541313068192166362, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+--- !u!114 &1097005401 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5990341204539557531, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
   m_PrefabInstance: {fileID: 246252544}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1170032043
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1103573873 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1842993326187454074, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170032039}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0dd20cd4b02a58468d7b8ae200b59fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuName: IntroBackGroundPc
-  open: 1
 --- !u!114 &1170032044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4597270424043159016, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
   m_PrefabInstance: {fileID: 246252544}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170032039}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0dd20cd4b02a58468d7b8ae200b59fb, type: 3}

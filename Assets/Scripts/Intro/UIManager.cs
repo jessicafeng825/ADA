@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     //=====Launcher Objects=====//
     public string url;
     [SerializeField] public TMP_Text playerName;//player job
+    [SerializeField] public TMP_Text playerJob;//player job
     [SerializeField] public VideoPlayer video;
     public bool ifintroend = false;
     private void Awake()
@@ -148,6 +149,7 @@ public class UIManager : MonoBehaviour
         menu.Close();
     }
 
+
     //===Laucher Functions===//
     public void onclick()//click test
     {
@@ -158,6 +160,14 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.OpenMenu("TestMenu");
     }
 
+    public void jobSelect(string name)
+    {
+        playerController.Instance.jobSelect(name);
+        playerJob.text = name;
+        UIManager.Instance.OpenMenu("Info");
+        UIManager.Instance.CloseMenu("CharacterSelect");
+
+    }
     //===movescene====//
     public void changenextSceneTest()
     {
@@ -173,27 +183,27 @@ public class UIManager : MonoBehaviour
         
     }
 
-
+    //====Panel stage change====//
     private void introToSelect()
     {
         if(video.isPaused && !ifintroend)
         {
-            UIManager.Instance.CloseMenu("PlayerBackground");
-            UIManager.Instance.CloseMenu("PcBackground");
-            UIManager.Instance.OpenMenu("Info");
+            
             ifintroend = true;
-            pv.RPC(nameof(closeintro), RpcTarget.Others, ifintroend);
+            pv.RPC(nameof(closeintro), RpcTarget.All);
            
         }
         
     }
 
     [PunRPC]
-    private void closeintro(bool ifend)
+    private void closeintro()
     {
         UIManager.Instance.CloseMenu("PlayerBackground");
         UIManager.Instance.CloseMenu("PcBackground");
-        UIManager.Instance.OpenMenu("Info");
-        ifintroend = ifend;
+        UIManager.Instance.OpenMenu("CharacterSelect");
+        
     }
+
+
 }
