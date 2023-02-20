@@ -5,13 +5,9 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-public class InvestigationManagerTest : Singleton<InvestigationManagerTest>
+public class TimerManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject ClueBase;
-    private GameObject newClue;
-    private GameObject tempClue;
-    private Object[] cluePrefabs;
+    public static TimerManager Instance;
     
     [SerializeField]
     private GameObject timerPanel;
@@ -24,39 +20,27 @@ public class InvestigationManagerTest : Singleton<InvestigationManagerTest>
     private float gamePhaseTimer;
     private PlayerManagerForAll.gamestage publicStageNow;
     private bool timeout;
-    private int clueLeft;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
-        LoadAllCluePrefabs();
-        clueLeft = cluePrefabs.Length;
-        Debug.Log(clueLeft);
         publicStageNow = PlayerManagerForAll.gamestage.Investigate;
         gamePhaseTimer = investigateTime;
     }
 
-    public void LoadAllCluePrefabs()
-    {
-        cluePrefabs = Resources.LoadAll("CluePrefabs/");
-    }
-
-    public void AddCluePrefab(int clueID)
-    {
-        tempClue = (GameObject)Instantiate(cluePrefabs[clueID]);
-        clueLeft--;
-        tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true); 
-    }
     private void Update() 
     {
-        if(clueLeft == 0 && !timeout)
-        {
-            timeout = true;
-            StartCoroutine(TimerPause(1));
-        }
+        // if(clueLeft == 0 && !timeout)
+        // {
+        //     timeout = true;
+        //     StartCoroutine(TimerPause(1));
+        // }
         
         if(gamePhaseTimer <= 0 && !timeout)
         {
-            timeout = true;
             StartCoroutine(TimerPause(1));
         }
         else if(gamePhaseTimer > 0 && !timeout)
@@ -94,6 +78,7 @@ public class InvestigationManagerTest : Singleton<InvestigationManagerTest>
     }
     IEnumerator TimerPause(float sec)
     {
+        timeout = true;
         switch(publicStageNow)
         {
             case PlayerManagerForAll.gamestage.Investigate:
