@@ -10,7 +10,8 @@ public class PlayerManagerForAll : MonoBehaviour
     {
         Intro,
         Investigate,
-        Dissussion
+        Dissussion,
+        Accusation
     };
     
     private PhotonView pv;
