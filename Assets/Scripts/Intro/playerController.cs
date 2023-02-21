@@ -70,4 +70,9 @@ public class playerController : MonoBehaviour
         stageNow = stage;
         //jump to discussion stage
     }
+
+    public void Cost_currentAP(int costAP)
+    {
+        currentAP -= costAP;
+    }
 }

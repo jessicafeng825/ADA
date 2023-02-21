@@ -330,8 +330,6 @@ GameObject:
   m_Component:
   - component: {fileID: 143681505}
   - component: {fileID: 143681508}
-  - component: {fileID: 143681507}
-  - component: {fileID: 143681506}
   m_Layer: 0
   m_Name: PuzzleMenu
   m_TagString: Untagged
@@ -360,50 +358,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &143681506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143681504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0dd20cd4b02a58468d7b8ae200b59fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuName: ClueMenu
-  open: 1
---- !u!114 &143681507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143681504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &143681508
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1504,6 +1458,7 @@ MonoBehaviour:
   clueDescripText: {fileID: 385633817}
   clueDescripPicText: {fileID: 475582851}
   cluePicHolder: {fileID: 531261109}
+  puzzleMenu: {fileID: 143681504}
 --- !u!4 &711609659
 Transform:
   m_ObjectHideFlags: 0
@@ -1603,8 +1558,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1770,6 +1725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClueBase: {fileID: 132481217}
+  PuzzleBase: {fileID: 723910815}
 --- !u!4 &1278040466
 Transform:
   m_ObjectHideFlags: 0
@@ -2224,7 +2180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1c909e505ddd0498c6b0f7e981eda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableList: []
+  collectableList:
+  - name: puzzle1
+    isClue: 0
   pv: {fileID: 0}
 --- !u!114 &1744921697
 MonoBehaviour:
@@ -2459,7 +2417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1935414332
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2570,10 +2528,10 @@ RectTransform:
   m_Father: {fileID: 132481218}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 125, y: -125}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1951367339
 MonoBehaviour:
