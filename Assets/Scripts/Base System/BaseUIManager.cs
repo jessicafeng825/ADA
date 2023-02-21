@@ -20,22 +20,36 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private Image cluePicHolder;
     private Dictionary<string, Sprite> cluePicsDic = new Dictionary<string, Sprite>();
 
+    [SerializeField]
+    private GameObject puzzleMenu;
+    private Dictionary<string, GameObject> puzzleInteractionDic = new Dictionary<string, GameObject>();
+    private GameObject tempPuzzle;
 
     private void Start()
     {
         // load all pictures at start
         LoadAllPics();
+        LoadAllPuzzleInteractions();
     }
 
     // function: load all clue picture resources and add to dictionary for use
     private void LoadAllPics()
     {
-        foreach(Sprite cluePic in Resources.LoadAll<Sprite>("CluePics/"))
+        foreach(Sprite cluePic in Resources.LoadAll<Sprite>("CluesRelated/CluePics/"))
         {
             cluePicsDic.Add(cluePic.name, cluePic);
         }
     }
 
+    private void LoadAllPuzzleInteractions()
+    {
+        foreach(GameObject puzzleInteraction in Resources.LoadAll("PuzzlesRelated/PuzzleInteractions/"))
+        {
+            puzzleInteractionDic.Add(puzzleInteraction.name, puzzleInteraction);
+        }
+    }
+
+    #region Clue UI Related Functions
     // function: show clue information panel with no picture 
     public void ShowClueInfoNoPicture(string clueName, string clueDescrip)
     {
@@ -63,5 +77,12 @@ public class BaseUIManager : Singleton<BaseUIManager>
     public void HideClueInfoWithPicture()
     {
         clueInfoPicPanel.SetActive(false);
+    }
+    #endregion
+
+    public void ShowPuzzleUI(string puzzleName)
+    {
+        tempPuzzle = (GameObject)Instantiate(puzzleInteractionDic[puzzleName]);
+        tempPuzzle.GetComponent<Transform>().SetParent(puzzleMenu.GetComponent<Transform>(), true);
     }
 }

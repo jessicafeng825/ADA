@@ -27,27 +27,27 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void Start()
     {
         LoadAllCluePrefabs();
-        //LoadAllPuzzlePrefabs();
+        LoadAllPuzzlePrefabs();
         //playerController.Instance.playerJob
     }
 
     private void Update()
     {
-        if (playerController.Instance.currentAP == 0)
+        /*if (playerController.Instance.currentAP == 0)
         {
             playerController.Instance.stageNow = PlayerManagerForAll.gamestage.Dissussion;
             if (CheckAllPlayer())
             {
                 playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Dissussion);
             }
-        }
+        }*/
         
     }
 
     #region Clue Related Functions
     public void LoadAllCluePrefabs()
     {
-        foreach(GameObject cluePrefab in Resources.LoadAll("CluePrefabs/"))
+        foreach(GameObject cluePrefab in Resources.LoadAll("CluesRelated/ClueBtns/"))
         {
             cluePrefabs.Add(cluePrefab.name, cluePrefab);
         }
@@ -58,7 +58,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         tempClue = (GameObject)Instantiate(cluePrefabs[clueName]);
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true);
-        currentAP--;
+        //playerController.Instance.Cost_currentAP(1);
     }
 
     #endregion
@@ -66,7 +66,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #region Puzzle Related Functions
     public void LoadAllPuzzlePrefabs()
     {
-        foreach(GameObject puzzlePrefab in Resources.LoadAll("PuzzlePrefabs/"))
+        foreach(GameObject puzzlePrefab in Resources.LoadAll("PuzzlesRelated/PuzzleBtns/"))
         {
             puzzlePrefabs.Add(puzzlePrefab.name, puzzlePrefab);
         }
@@ -74,9 +74,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void AddPuzzlePrefab(string puzzleName)
     {
-        tempPuzzle = (GameObject)Instantiate(puzzlePrefabs[puzzleName]);
+        tempPuzzle = (GameObject)Instantiate(puzzlePrefabs[puzzleName + "Btn"]);
         tempPuzzle.GetComponent<Transform>().SetParent(PuzzleBase.GetComponent<Transform>(), true);
-        currentAP--;
+        //playerController.Instance.Cost_currentAP(1);
     }
 
     public void RemovePuzzlePrefab(string puzzleName)
