@@ -21,7 +21,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private Dictionary<string, Sprite> cluePicsDic = new Dictionary<string, Sprite>();
 
     [SerializeField]
-    private GameObject puzzleMenu;
+    private GameObject puzzleInfoMenu;
     private Dictionary<string, GameObject> puzzleInteractionDic = new Dictionary<string, GameObject>();
     private GameObject tempPuzzle;
 
@@ -83,6 +83,8 @@ public class BaseUIManager : Singleton<BaseUIManager>
     public void ShowPuzzleUI(string puzzleName)
     {
         tempPuzzle = (GameObject)Instantiate(puzzleInteractionDic[puzzleName]);
-        tempPuzzle.GetComponent<Transform>().SetParent(puzzleMenu.GetComponent<Transform>(), true);
+        //tempPuzzle.transform.position = Camera.main.WorldToScreenPoint(0f,0f,0f);
+        tempPuzzle.GetComponent<Transform>().SetParent(puzzleInfoMenu.GetComponent<Transform>(), false);
+        puzzleInfoMenu.SetActive(true);
     }
 }
