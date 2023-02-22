@@ -18,6 +18,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private GameObject PuzzleBase;
     private GameObject tempPuzzle;
     private Dictionary<string, GameObject> puzzlePrefabs = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
 
     // Player Action Point Part
     [SerializeField]
@@ -76,12 +77,21 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         tempPuzzle = (GameObject)Instantiate(puzzlePrefabs[puzzleName + "Btn"]);
         tempPuzzle.GetComponent<Transform>().SetParent(PuzzleBase.GetComponent<Transform>(), true);
+        inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
+        
         //playerController.Instance.Cost_currentAP(1);
     }
 
     public void RemovePuzzlePrefab(string puzzleName)
     {
         PuzzleBase.transform.Find(puzzleName);
+    }
+
+    // Call when puzzle solved, update sprite
+    public void UpdatePuzzleBtnSolved(string puzzleName)
+    {
+        Debug.Log(puzzleName);
+        inBasePuzzleBtns[puzzleName].GetComponent<PuzzleBtn>().ShowSolvedMark();
     }
     #endregion
 

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class PuzzleInfo : MonoBehaviour
+public class PuzzleBtn : MonoBehaviour
 {
     [SerializeField]
     private string puzzleName;
+
     [SerializeField]
-    private bool isCompleted, provideClue, unlockArea;
-    [SerializeField]
-    private string clueProvided, areaUnlocked;
+    private GameObject solvedMark;
 
     private void Start()
     {
@@ -22,8 +21,8 @@ public class PuzzleInfo : MonoBehaviour
         BaseUIManager.Instance.ShowPuzzleUI(puzzleName);
     }
 
-    public void SetCompleted()
+    public void ShowSolvedMark()
     {
-        isCompleted = true;
+        solvedMark.SetActive(true);
     }
 }

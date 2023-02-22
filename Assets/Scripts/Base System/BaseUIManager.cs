@@ -25,6 +25,8 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private Dictionary<string, GameObject> puzzleInteractionDic = new Dictionary<string, GameObject>();
     private GameObject tempPuzzle;
 
+    private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();
+
     private void Start()
     {
         // load all pictures at start
@@ -82,9 +84,22 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
     public void ShowPuzzleUI(string puzzleName)
     {
-        tempPuzzle = (GameObject)Instantiate(puzzleInteractionDic[puzzleName]);
-        //tempPuzzle.transform.position = Camera.main.WorldToScreenPoint(0f,0f,0f);
-        tempPuzzle.GetComponent<Transform>().SetParent(puzzleInfoMenu.GetComponent<Transform>(), false);
+        if (inScenePuzzles.ContainsKey(puzzleName))
+        {
+            inScenePuzzles[puzzleName].SetActive(true);
+        }
+        else
+        {
+            tempPuzzle = (GameObject)Instantiate(puzzleInteractionDic[puzzleName]);
+            tempPuzzle.GetComponent<Transform>().SetParent(puzzleInfoMenu.GetComponent<Transform>(), false);
+            inScenePuzzles.Add(puzzleName, tempPuzzle);
+        }
+        
         puzzleInfoMenu.SetActive(true);
+    }
+
+    public void HidePuzzleUI()
+    {
+        puzzleInfoMenu.SetActive(false);
     }
 }
