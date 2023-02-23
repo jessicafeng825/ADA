@@ -15,7 +15,10 @@ public class playerController : MonoBehaviour
     [SerializeField] public float playerSpeed = 2.0f;//player icon
     [SerializeField] public string playerJob = "None";//player job
 
-    
+    public int maxAP;
+    public int currentAP;
+    private PhotonView pv;
+
     private void Awake()
     {
         Instance = this;
@@ -23,19 +26,21 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pv = GetComponent<PhotonView>();
         DontDestroyOnLoad(this);
-        
+
+        maxAP = InvestigationManager.Instance.GetPlayerInitialAP();
+        currentAP = maxAP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(stageNow);
         
-
-
     }
-    
+
+
+    #region Change Phase
     public void introtoInvest()
     {
         stageNow = PlayerManagerForAll.gamestage.Investigate;
@@ -51,11 +56,24 @@ public class playerController : MonoBehaviour
 
     public void discusstoInvest()
     {
-        stageNow = PlayerManagerForAll.gamestage.Investigate;
-    }
-    public void discusstoAccuse()
-    {
         
     }
+    public void ChangeStage(PlayerManagerForAll.gamestage stage)
+    {
+        stageNow = stage;
+        pv.RPC("SynchronizeStageNow", RpcTarget.All, stageNow);
+    }
+    #endregion
 
+    [PunRPC]
+    public void SynchronizeStageNow(PlayerManagerForAll.gamestage stage)
+    {
+        stageNow = stage;
+        //jump to discussion stage
+    }
+
+    public void Cost_currentAP(int costAP)
+    {
+        currentAP -= costAP;
+    }
 }

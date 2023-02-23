@@ -31,7 +31,8 @@ public class InterestPointInfo : MonoBehaviour
         {
             if (collectableList[cnt_current].isClue)
                 InvestigationManager.Instance.AddCluePrefab(collectableList[cnt_current].name);
-
+            else
+                InvestigationManager.Instance.AddPuzzlePrefab(collectableList[cnt_current].name);
 
             pv.RPC(nameof(clueStatusUpdate), RpcTarget.All);
         }
