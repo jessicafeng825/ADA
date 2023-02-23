@@ -20,9 +20,8 @@ public class InterestPointInfo : MonoBehaviour
 
     private void Start()
     {
-        
         pv = GetComponent<PhotonView>();
-        this.GetComponent<Button>().onClick.AddListener(AddCollectable);
+        GetComponent<Button>().onClick.AddListener(AddCollectable);
     }
 
     private void AddCollectable()

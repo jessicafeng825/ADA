@@ -11,24 +11,15 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [SerializeField]
     private GameObject ClueBase;
     private GameObject tempClue;
-    private Dictionary<string, GameObject> cluePrefabs = new Dictionary<string, GameObject>();
 
     // Player Puzzle Base Part
     [SerializeField]
     private GameObject PuzzleBase;
     private GameObject tempPuzzle;
-    private Dictionary<string, GameObject> puzzlePrefabs = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
-
-    // Player Action Point Part
-    [SerializeField]
-    //private GameObject APUI;
-
 
     private void Start()
     {
-        LoadAllCluePrefabs();
-        LoadAllPuzzlePrefabs();
         //playerController.Instance.playerJob
     }
 
@@ -42,49 +33,28 @@ public class InvestigationManager : Singleton<InvestigationManager>
                 playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Dissussion);
             }
         }*/
-        
     }
 
     #region Clue Related Functions
-    public void LoadAllCluePrefabs()
-    {
-        foreach(GameObject cluePrefab in Resources.LoadAll("CluesRelated/ClueBtns/"))
-        {
-            cluePrefabs.Add(cluePrefab.name, cluePrefab);
-        }
-    }
-
     // function: when player click on interest point, add a clue to their clue base
     public void AddCluePrefab(string clueName)
     {
-        tempClue = (GameObject)Instantiate(cluePrefabs[clueName]);
+        tempClue = (GameObject)Instantiate(ResourceManager.Instance.GetClueBtn(clueName));
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true);
         //playerController.Instance.Cost_currentAP(1);
     }
 
     #endregion
 
-    #region Puzzle Related Functions
-    public void LoadAllPuzzlePrefabs()
-    {
-        foreach(GameObject puzzlePrefab in Resources.LoadAll("PuzzlesRelated/PuzzleBtns/"))
-        {
-            puzzlePrefabs.Add(puzzlePrefab.name, puzzlePrefab);
-        }
-    }
 
+    #region Puzzle Related Functions
     public void AddPuzzlePrefab(string puzzleName)
     {
-        tempPuzzle = (GameObject)Instantiate(puzzlePrefabs[puzzleName + "Btn"]);
+        tempPuzzle = (GameObject)Instantiate(ResourceManager.Instance.GetPuzzleBtn(puzzleName));
         tempPuzzle.GetComponent<Transform>().SetParent(PuzzleBase.GetComponent<Transform>(), true);
         inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
         
         //playerController.Instance.Cost_currentAP(1);
-    }
-
-    public void RemovePuzzlePrefab(string puzzleName)
-    {
-        PuzzleBase.transform.Find(puzzleName);
     }
 
     // Call when puzzle solved, update sprite

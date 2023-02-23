@@ -18,55 +18,32 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
     [SerializeField]
     private Image cluePicHolder;
-    private Dictionary<string, Sprite> cluePicsDic = new Dictionary<string, Sprite>();
+    
 
     [SerializeField]
     private GameObject puzzleInfoMenu;
-    private Dictionary<string, GameObject> puzzleInteractionDic = new Dictionary<string, GameObject>();
     private GameObject tempPuzzle;
-
     private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();
 
-    private void Start()
-    {
-        // load all pictures at start
-        LoadAllPics();
-        LoadAllPuzzleInteractions();
-    }
-
     // function: load all clue picture resources and add to dictionary for use
-    private void LoadAllPics()
-    {
-        foreach(Sprite cluePic in Resources.LoadAll<Sprite>("CluesRelated/CluePics/"))
-        {
-            cluePicsDic.Add(cluePic.name, cluePic);
-        }
-    }
 
-    private void LoadAllPuzzleInteractions()
-    {
-        foreach(GameObject puzzleInteraction in Resources.LoadAll("PuzzlesRelated/PuzzleInteractions/"))
-        {
-            puzzleInteractionDic.Add(puzzleInteraction.name, puzzleInteraction);
-        }
-    }
 
     #region Clue UI Related Functions
     // function: show clue information panel with no picture 
     public void ShowClueInfoNoPicture(string clueName, string clueDescrip)
     {
-        clueInfoNoPicPanel.SetActive(true);
         clueNameText.text = clueName;
         clueDescripText.text = clueDescrip;
+        clueInfoNoPicPanel.SetActive(true);
     }
 
     // function: show clue information panel with picture 
     public void ShowClueInfoWithPicture(string clueName, string clueDescrip)
     {
-        clueInfoPicPanel.SetActive(true);
         clueNamePicText.text = clueName;
         clueDescripPicText.text = clueDescrip;
-        cluePicHolder.sprite = cluePicsDic[clueName];
+        cluePicHolder.sprite = ResourceManager.Instance.GetCluePic(clueName);
+        StartCoroutine(showshowway());
     }
 
     // function: hide clue information panel with no picture 
@@ -90,7 +67,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
         }
         else
         {
-            tempPuzzle = (GameObject)Instantiate(puzzleInteractionDic[puzzleName]);
+            tempPuzzle = Instantiate(ResourceManager.Instance.GetPuzzleInteraction(puzzleName));
             tempPuzzle.GetComponent<Transform>().SetParent(puzzleInfoMenu.GetComponent<Transform>(), false);
             inScenePuzzles.Add(puzzleName, tempPuzzle);
         }
@@ -101,5 +78,12 @@ public class BaseUIManager : Singleton<BaseUIManager>
     public void HidePuzzleUI()
     {
         puzzleInfoMenu.SetActive(false);
+    }
+
+    IEnumerator showshowway()
+    {
+        clueInfoPicPanel.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        clueInfoPicPanel.SetActive(true);
     }
 }
