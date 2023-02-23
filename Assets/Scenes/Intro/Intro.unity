@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 510810220398892567, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 982054274004937312, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Url
       value: file://C:/Users/huif/Documents/Project/ADAbuild2/StreamingAssets/TestVideo.mp4
@@ -199,6 +203,10 @@ PrefabInstance:
       propertyPath: m_TargetAudioSources.Array.data[0]
       value: 
       objectReference: {fileID: 246252545}
+    - target: {fileID: 1268793775573028755, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1650780971675340688, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: sceneViewId
       value: 1
@@ -226,6 +234,10 @@ PrefabInstance:
     - target: {fileID: 3034881135003119623, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561862800385590174, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -111
       objectReference: {fileID: 0}
     - target: {fileID: 3766623304140048338, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchorMax.y
@@ -277,7 +289,7 @@ PrefabInstance:
       objectReference: {fileID: 1097005401}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: pcPanelList.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: pcPanelList.Array.data[0]
@@ -287,6 +299,10 @@ PrefabInstance:
       propertyPath: pcPanelList.Array.data[1]
       value: 
       objectReference: {fileID: 246252546}
+    - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: pcPanelList.Array.data[2]
+      value: 
+      objectReference: {fileID: 246252547}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: playerPanelList.Array.size
       value: 4
@@ -314,6 +330,10 @@ PrefabInstance:
     - target: {fileID: 5471000206449134221, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: TestMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5559218959957255989, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5787503280009645317, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_SizeDelta.x
@@ -435,6 +455,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8313319283481988508, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8441919859316734106, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: open
       value: 0
@@ -447,6 +471,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 84
       objectReference: {fileID: 0}
+    - target: {fileID: 8750206433142006537, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
@@ -458,6 +486,17 @@ AudioSource:
 --- !u!114 &246252546 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1584363241364186498, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0dd20cd4b02a58468d7b8ae200b59fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &246252547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4749905537225617094, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
   m_PrefabInstance: {fileID: 246252544}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

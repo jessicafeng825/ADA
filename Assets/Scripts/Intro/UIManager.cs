@@ -211,6 +211,7 @@ public class UIManager : MonoBehaviour
     private void jobSelecttobackgroundintro()
     {
         UIManager.Instance.OpenMenu("Info");
+        UIManager.Instance.OpenMenu("InfoPC");
         UIManager.Instance.CloseMenu("CharacterSelect");
         UIManager.Instance.CloseMenu("CharacterSelectPC");
 
@@ -230,6 +231,7 @@ public class UIManager : MonoBehaviour
     [PunRPC]
     private void changenextScene()
     {
+        UIManager.Instance.CloseMenu("InfoPC");
         PhotonNetwork.LoadLevel(2);
         playerController.Instance.introtoInvest();
         
