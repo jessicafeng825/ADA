@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 37297830418704863, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: jobName
+      value: Lawyer
+      objectReference: {fileID: 0}
     - target: {fileID: 114702378377165960, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Name
       value: ChangeName
@@ -173,8 +177,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 982054274004937312, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Url
-      value: file://C:/Users/huif/Documents/Project/ADA/Builds/TestBuildWeb/StreamingAssets/TestVideo.mp4
+      value: file://C:/Users/huif/Documents/Project/ADAbuild2/StreamingAssets/TestVideo.mp4
       objectReference: {fileID: 0}
+    - target: {fileID: 982054274004937312, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 980b4e217f728b546b585921d902ce10, type: 3}
     - target: {fileID: 982054274004937312, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_DataSource
       value: 1
@@ -194,6 +202,18 @@ PrefabInstance:
     - target: {fileID: 1650780971675340688, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: sceneViewId
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924501353259511029, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924501353259511029, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924501353259511029, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2644860583031809527, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: open
@@ -249,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: url
-      value: http://localhost/result/video/TestVideo.mp4
+      value: http://localhost/result/StreamingAssets/TestVideo.mp4
       objectReference: {fileID: 0}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: playerJob
@@ -257,12 +277,16 @@ PrefabInstance:
       objectReference: {fileID: 1097005401}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: pcPanelList.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: pcPanelList.Array.data[0]
       value: 
       objectReference: {fileID: 1170032044}
+    - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: pcPanelList.Array.data[1]
+      value: 
+      objectReference: {fileID: 246252546}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: playerPanelList.Array.size
       value: 4
@@ -431,6 +455,17 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 6246491052896156228, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
   m_PrefabInstance: {fileID: 246252544}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &246252546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1584363241364186498, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0dd20cd4b02a58468d7b8ae200b59fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &246252548 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
@@ -763,3 +798,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0dd20cd4b02a58468d7b8ae200b59fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2065086213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3556292733687573584, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!328 &2065086214 stripped
+VideoPlayer:
+  m_CorrespondingSourceObject: {fileID: 982054274004937312, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2065086216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065086213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d156f29f61a7cf47bded67d2e0e6cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myVideoPlayer: {fileID: 2065086214}
+  videoname: TestVideo1

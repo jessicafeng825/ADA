@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject playerPanel;
     public Menu[] pcPanelList;
     public Menu[] playerPanelList;
+    public JOb[] jobList;
     public PhotonView pv;
     //=====Launcher Objects=====//
     public string url;
@@ -22,9 +23,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMP_Text playerJob;//player job
     [SerializeField] public VideoPlayer video;
     public bool ifintroend = false;
+    private GameObject[] listofgameObjectwithtag;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
+        video.prepareCompleted += OnPrepareVideo;
         Instance = this;
     }
     // Start is called before the first frame update
@@ -34,10 +37,8 @@ public class UIManager : MonoBehaviour
         //===set up pc and player depend on whether it is master or not===//
         pcPanel.SetActive(PhotonNetwork.IsMasterClient);
         playerPanel.SetActive(!PhotonNetwork.IsMasterClient);
-        video.url = url;
-        video.Play();
-
-
+        //video.url = url;
+        listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
 
         playerName.text = PhotonNetwork.NickName;
     }
@@ -46,6 +47,10 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         introToSelect();
+    }
+    void OnPrepareVideo(VideoPlayer vp)
+    {
+        video.Play();
     }
     //====Panel Functions====//
     public void OpenMenu(string menuName)
@@ -148,7 +153,20 @@ public class UIManager : MonoBehaviour
     {
         menu.Close();
     }
+    //===Check Overall Functions===//
+    private bool checkIfAllhaveSelectJob()
+    {
+        
+        for (int i = 0; i < jobList.Length; i++) 
+        {
+            if(jobList[i].isselected == false)//have not yet select a job
+            {
+                return false;
+            }
 
+        }
+        return true;
+    }
 
     //===Laucher Functions===//
     public void onclick()//click test
@@ -164,12 +182,46 @@ public class UIManager : MonoBehaviour
     {
         playerController.Instance.jobSelect(name);
         playerJob.text = name;
-        UIManager.Instance.OpenMenu("Info");
-        UIManager.Instance.CloseMenu("CharacterSelect");
+        //make all the player button inactive
+        pv.RPC(nameof(setbuttonInactive), RpcTarget.All,name);
+        if (checkIfAllhaveSelectJob())//if all the player have select job
+        {
+           
+            pv.RPC(nameof(jobSelecttobackgroundintro), RpcTarget.All);
+        }
+        
 
     }
-    //===movescene====//
-    public void changenextSceneTest()
+    public void jobselectForname(string name)
+    {
+        for (int i = 0; i < jobList.Length; i++)
+        {
+            if (jobList[i].jobName == name)
+            {
+                if (!jobList[i].isselected)
+                {
+                    jobList[i].select();//set this to be inactive
+                }
+                
+            }
+
+        }
+    }
+    [PunRPC]
+    private void jobSelecttobackgroundintro()
+    {
+        UIManager.Instance.OpenMenu("Info");
+        UIManager.Instance.CloseMenu("CharacterSelect");
+        UIManager.Instance.CloseMenu("CharacterSelectPC");
+
+    }
+    [PunRPC]
+    private void setbuttonInactive(string name)
+    {
+        UIManager.Instance.jobselectForname(name);
+    }
+        //===movescene====//
+        public void changenextSceneTest()
     {
 
         pv.RPC(nameof(changenextScene), RpcTarget.All);
@@ -202,7 +254,8 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.CloseMenu("PlayerBackground");
         UIManager.Instance.CloseMenu("PcBackground");
         UIManager.Instance.OpenMenu("CharacterSelect");
-        
+        UIManager.Instance.OpenMenu("CharacterSelectPC");
+
     }
 
 

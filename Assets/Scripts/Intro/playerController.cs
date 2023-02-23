@@ -35,6 +35,7 @@ public class playerController : MonoBehaviour
 
 
     }
+    
     public void introtoInvest()
     {
         stageNow = PlayerManagerForAll.gamestage.Investigate;
