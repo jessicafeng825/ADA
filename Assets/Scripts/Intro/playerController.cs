@@ -39,6 +39,7 @@ public class playerController : MonoBehaviour
         
     }
 
+
     #region Change Phase
     public void introtoInvest()
     {
