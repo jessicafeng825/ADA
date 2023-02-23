@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
+using Photon.Pun;
 
 public class BaseUIManager : Singleton<BaseUIManager>
 {
+    [SerializeField]
+    private GameObject pcPanel, playerPanel;
     // use this for a while, till Hui finish the MenuManager part
     [SerializeField]
     private GameObject clueInfoNoPicPanel, clueInfoPicPanel;
@@ -23,11 +26,14 @@ public class BaseUIManager : Singleton<BaseUIManager>
     [SerializeField]
     private GameObject puzzleInfoMenu;
     private GameObject tempPuzzle;
-    private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();
-
+    private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();    
     // function: load all clue picture resources and add to dictionary for use
 
-
+    public void Start()
+    {
+        pcPanel.SetActive(PhotonNetwork.IsMasterClient);
+        playerPanel.SetActive(!PhotonNetwork.IsMasterClient);
+    }
     #region Clue UI Related Functions
     // function: show clue information panel with no picture 
     public void ShowClueInfoNoPicture(string clueName, string clueDescrip)
