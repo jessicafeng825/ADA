@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class InvestigationManager : Singleton<InvestigationManager>
@@ -18,9 +19,18 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private GameObject tempPuzzle;
     private Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
 
+    [SerializeField]
+    private PhotonView pv;
+    [SerializeField]
+    private List<GameObject> interestPointList;
+    private Dictionary<string, GameObject> interestPoints = new Dictionary<string, GameObject>();
+
     private void Start()
     {
+        pv = GetComponent<PhotonView>();
+        PreloadInterestPoints();
         //playerController.Instance.playerJob
+
     }
 
     private void Update()
@@ -95,6 +105,27 @@ public class InvestigationManager : Singleton<InvestigationManager>
     }
 
     #endregion
+
+    private void PreloadInterestPoints()
+    {
+        foreach (GameObject interestPoint in interestPointList)
+        {
+            interestPoints.Add(interestPoint.name, interestPoint);
+        }
+    }
+
+    public void SynchronizeInterestPoint(string ipName)
+    {
+        
+        pv.RPC("UpdateGivenIPCNT", RpcTarget.All, ipName);
+    }
+
+    [PunRPC]
+    private void UpdateGivenIPCNT(string ipName)
+    {
+        Debug.Log(interestPoints[ipName].name);
+        interestPoints[ipName].GetComponent<InterestPointInfo>().changeIP_Current(1);
+    }
 
     public void AddInterestPoint(string ipName, Vector2 location)
     {
