@@ -41,6 +41,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
         clueNameText.text = clueName;
         clueDescripText.text = clueDescrip;
         clueInfoNoPicPanel.SetActive(true);
+        StartCoroutine(showshowway(clueInfoNoPicPanel));
     }
 
     // function: show clue information panel with picture 
@@ -49,7 +50,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
         clueNamePicText.text = clueName;
         clueDescripPicText.text = clueDescrip;
         cluePicHolder.sprite = ResourceManager.Instance.GetCluePic(clueName);
-        StartCoroutine(showshowway());
+        StartCoroutine(showshowway(clueInfoPicPanel));
     }
 
     // function: hide clue information panel with no picture 
@@ -86,10 +87,11 @@ public class BaseUIManager : Singleton<BaseUIManager>
         puzzleInfoMenu.SetActive(false);
     }
 
-    IEnumerator showshowway()
+    // Just for temporary use to solve the UI bug
+    IEnumerator showshowway(GameObject panel)
     {
-        clueInfoPicPanel.SetActive(true);
+        panel.SetActive(true);
         yield return new WaitForSeconds(0.05f);
-        clueInfoPicPanel.SetActive(true);
+        panel.SetActive(true);
     }
 }

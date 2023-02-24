@@ -63,7 +63,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #region Puzzle Related Functions
     public void AddPuzzlePrefab(string puzzleName)
     {
-        tempPuzzle = (GameObject)Instantiate(ResourceManager.Instance.GetPuzzleBtn(puzzleName));
+        tempPuzzle = Instantiate(ResourceManager.Instance.GetPuzzleBtn(puzzleName));
         tempPuzzle.GetComponent<Transform>().SetParent(PuzzleBase.GetComponent<Transform>(), true);
         inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
         
@@ -112,6 +112,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     #endregion
 
+    #region Interest Points Related Functions
     private void PreloadInterestPoints()
     {
         foreach (GameObject interestPoint in interestPointList)
@@ -120,7 +121,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
     }
 
-    public void SynchronizeInterestPoint(string ipName)
+    public void SynchroniSeInterestPoint(string ipName)
     {
         
         pv.RPC("UpdateGivenIPCNT", RpcTarget.All, ipName);
@@ -133,8 +134,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
         interestPoints[ipName].GetComponent<InterestPointInfo>().changeIP_Current(1);
     }
 
-    public void AddInterestPoint(string ipName, Vector2 location)
+    // Activate the interest point based on name, when some puzzles solved
+    public void ActiveInterestPoint(string ipName)
     {
 
     }
+
+    #endregion
 }

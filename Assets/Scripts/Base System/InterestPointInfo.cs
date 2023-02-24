@@ -32,19 +32,25 @@ public class InterestPointInfo : MonoBehaviour
             else
                 InvestigationManager.Instance.AddPuzzlePrefab(collectableList[cnt_current].name);
 
-            // Tell im to synchronize
-            InvestigationManager.Instance.SynchronizeInterestPoint(name);
+            // If the current clue is the last one, inactivate the interest point
+            if (cnt_current == collectableList.Count - 1)
+            {
+                Debug.Log("disappear!");
+                InactiveIPAllCollected();
+            }
 
-        }
-        else
-        {
-            Debug.Log("No other collectable");
-            // show alert message
+            // Tell im to synchronize
+            InvestigationManager.Instance.SynchroniSeInterestPoint(name);
         }
     }
 
     public void changeIP_Current(int change)
     {
         cnt_current += change;
+    }
+
+    private void InactiveIPAllCollected()
+    {
+        gameObject.SetActive(false);
     }
 }
