@@ -8,8 +8,8 @@ public class InterestPointInfo : MonoBehaviour
 {
     [SerializeField]
     private List<InterestPoint> collectableList;
+    [SerializeField]
     private int cnt_current = 0;
-    public PhotonView pv;
 
     [System.Serializable]
     public class InterestPoint
@@ -20,7 +20,6 @@ public class InterestPointInfo : MonoBehaviour
 
     private void Start()
     {
-        pv = GetComponent<PhotonView>();
         GetComponent<Button>().onClick.AddListener(AddCollectable);
     }
 
@@ -33,7 +32,9 @@ public class InterestPointInfo : MonoBehaviour
             else
                 InvestigationManager.Instance.AddPuzzlePrefab(collectableList[cnt_current].name);
 
-            pv.RPC(nameof(clueStatusUpdate), RpcTarget.All);
+            // Tell im to synchronize
+            InvestigationManager.Instance.SynchronizeInterestPoint(name);
+
         }
         else
         {
@@ -42,8 +43,8 @@ public class InterestPointInfo : MonoBehaviour
         }
     }
 
-    [PunRPC] private void clueStatusUpdate()
+    public void changeIP_Current(int change)
     {
-        cnt_current++;
+        cnt_current += change;
     }
 }

@@ -3620,7 +3620,6 @@ GameObject:
   - component: {fileID: 1099486494}
   - component: {fileID: 1099486493}
   - component: {fileID: 1099486497}
-  - component: {fileID: 1099486496}
   m_Layer: 0
   m_Name: InterestPoint
   m_TagString: Untagged
@@ -3731,28 +3730,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099486491}
   m_CullTransparentMesh: 1
---- !u!114 &1099486496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099486491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 3
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &1099486497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3768,7 +3745,9 @@ MonoBehaviour:
   collectableList:
   - name: clue2
     isClue: 1
-  pv: {fileID: 1099486496}
+  - name: clue1
+    isClue: 1
+  cnt_current: 0
 --- !u!1 &1278040464
 GameObject:
   m_ObjectHideFlags: 0
@@ -3779,6 +3758,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278040466}
   - component: {fileID: 1278040465}
+  - component: {fileID: 1278040467}
   m_Layer: 0
   m_Name: InvestigationManager
   m_TagString: Untagged
@@ -3800,6 +3780,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClueBase: {fileID: 132481217}
   PuzzleBase: {fileID: 723910815}
+  pv: {fileID: 1278040467}
+  interestPointList:
+  - {fileID: 1099486491}
+  - {fileID: 1744921693}
 --- !u!4 &1278040466
 Transform:
   m_ObjectHideFlags: 0
@@ -3815,6 +3799,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1278040467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278040464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 100
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1335382521
 GameObject:
   m_ObjectHideFlags: 0
@@ -4930,7 +4936,6 @@ GameObject:
   - component: {fileID: 1744921698}
   - component: {fileID: 1744921697}
   - component: {fileID: 1744921696}
-  - component: {fileID: 1744921695}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -4959,28 +4964,6 @@ RectTransform:
   m_AnchoredPosition: {x: 125, y: -125}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1744921695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744921693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 2
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &1744921696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4996,7 +4979,7 @@ MonoBehaviour:
   collectableList:
   - name: puzzle1
     isClue: 0
-  pv: {fileID: 0}
+  cnt_current: 0
 --- !u!114 &1744921697
 MonoBehaviour:
   m_ObjectHideFlags: 0
