@@ -29,20 +29,23 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         pv = GetComponent<PhotonView>();
         PreloadInterestPoints();
-        //playerController.Instance.playerJob
+        playerController.Instance.maxAP = GetPlayerInitialAP();
+        playerController.Instance.currentAP = playerController.Instance.maxAP;
 
     }
 
     private void Update()
     {
-        /*if (playerController.Instance.currentAP == 0)
+        if (playerController.Instance.currentAP == 0)
         {
+            Debug.Log("No AP");
             playerController.Instance.stageNow = PlayerManagerForAll.gamestage.Dissussion;
             if (CheckAllPlayer())
             {
+                Debug.Log("Change Stage to Disscussion");
                 playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Dissussion);
             }
-        }*/
+        }
     }
 
     #region Clue Related Functions
@@ -51,7 +54,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         tempClue = (GameObject)Instantiate(ResourceManager.Instance.GetClueBtn(clueName));
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true);
-        //playerController.Instance.Cost_currentAP(1);
+        playerController.Instance.Cost_currentAP(1);
     }
 
     #endregion
@@ -64,7 +67,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         tempPuzzle.GetComponent<Transform>().SetParent(PuzzleBase.GetComponent<Transform>(), true);
         inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
         
-        //playerController.Instance.Cost_currentAP(1);
+        playerController.Instance.Cost_currentAP(1);
     }
 
     // Call when puzzle solved, update sprite
@@ -78,19 +81,22 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #region AP (Action Points) Related Functions
     public int GetPlayerInitialAP()
     {
-        if (playerController.Instance.playerJob == "")
+        if(PhotonNetwork.IsMasterClient)
+        {
+            return 0;
+        }
+        else if (playerController.Instance.playerJob == "")
         {
             return 4;
         }
         else
         {
-            return 3;
+            return 1;
         }
     }
 
     private bool CheckAllPlayer()
     {
-        var photonViews = FindObjectsOfType<PhotonView>();
         GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
 
         foreach(var player in playerList)

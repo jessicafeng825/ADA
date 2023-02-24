@@ -35,7 +35,7 @@ public class TimerManager : MonoBehaviour
     {        
         if(gamePhaseTimer <= 0 && !timeout)
         {
-            StartCoroutine(TimerPause(2));
+            SwitchStage();
         }
         else if(gamePhaseTimer > 0 && !timeout)
         {
@@ -67,9 +67,13 @@ public class TimerManager : MonoBehaviour
     {
         timeout = true;
         timerPanel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
-        StartCoroutine(TimerPause(2));
+        SwitchStage();
     }
-    IEnumerator TimerPause(float sec)
+    public void SwitchStage()
+    {
+        StartCoroutine(TimerPauseCoroutine(2));
+    }
+    IEnumerator TimerPauseCoroutine(float sec)
     {
         bool activeButton = false;
         timeout = true;
