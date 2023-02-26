@@ -139,6 +139,21 @@ PrefabInstance:
       propertyPath: jobName
       value: Lawyer
       objectReference: {fileID: 0}
+    - target: {fileID: 37297830418704863, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playername
+      value: Max Orion
+      objectReference: {fileID: 0}
+    - target: {fileID: 37297830418704863, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: backgroundstory
+      value: 'Backstory:  You were raised in a wealthy family with access to the
+        best education and tech. Despite living in luxury, childhood was lonely.
+        Your parents loved you in their own way, but never encouraging. When you
+        got to college you met Bishop Kaine and quickly became friends. Bishop supported
+        your lawyerial dreams and even introduced you to your soon-to-be ex-wife.
+        Bishop was always larger than life, but his means of rising to the top were...
+        questionable. You still remained loyal and won every case on behalf of the
+        Kaine Corporation.'
+      objectReference: {fileID: 0}
     - target: {fileID: 114702378377165960, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Name
       value: ChangeName
@@ -307,10 +322,68 @@ PrefabInstance:
       propertyPath: buttonText
       value: TestOpen
       objectReference: {fileID: 0}
+    - target: {fileID: 4488233943432342552, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488233943432342552, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 246252551}
+    - target: {fileID: 4488233943432342552, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: JOb, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666448167448340517, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playername
+      value: Caden Slate
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666448167448340517, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: backgroundstory
+      value: 'Backstory:  Cyber augments saved your life at six months old. Your
+        parents thought you''d grow up grateful for it and join the techie workforce.
+        They were fools. You can''t help but see the exploitation, the corporate
+        overreach, and the lies behind the corps. And you can''t help but imagine
+        augmented life outside of their control. When you first hacked your augment
+        as a kid, the rush of it overwhelmed you. Now, you might be more machine
+        than man. The Void recruited you right out of school. You fit right in with
+        the rebels and the anarchists and the utopia-minded. You''ll get to that
+        world you imagine, no matter the cost. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5142027412979420862, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_margin.w
+      value: -734.6818
+      objectReference: {fileID: 0}
+    - target: {fileID: 5142027412979420862, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_margin.z
+      value: -422.5805
+      objectReference: {fileID: 0}
+    - target: {fileID: 5167294019253908526, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playername
+      value: Mutts
+      objectReference: {fileID: 0}
+    - target: {fileID: 5167294019253908526, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: backgroundstory
+      value: "Backstory:  You never knew your parents and found your family amongst
+        a pack of wild street dogs. You didn\u2019t have a name until you heard people
+        call your dogs \u201Cmutts\u201D and liked the sound of it.  Having to scavenge
+        to survive, you\u2019ve grown to have a certain affinity for shiny objects.
+        Sometimes you go to crowded streets so that you can \u201Cborrow\u201D from
+        passers-by. These people never seem to care too much about these \u201Cborrowed\u201D
+        objects, they never come looking for them! Mutts takes care of the shiny
+        objects and keeps them in safe places.  Lately, you\u2019ve discovered the
+        big houses in the city have the best food and objects, so you\u2019ve been
+        breaking in.  The big houses have lots of puzzles and security but Mutts
+        gets past them with ease. "
+      objectReference: {fileID: 0}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: url
       value: http://localhost/result/StreamingAssets/TestVideo.mp4
       objectReference: {fileID: 0}
+    - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playerbk
+      value: 
+      objectReference: {fileID: 1573356796}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: playerJob
       value: 
@@ -475,9 +548,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6221572734545698314, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221572734545698314, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 246252549}
+    - target: {fileID: 6221572734545698314, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: JOb, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6246491052896156228, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: Mute
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6379703965321924874, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6379703965321924874, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 246252550}
+    - target: {fileID: 6379703965321924874, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: JOb, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6734217674933535096, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -490,6 +587,14 @@ PrefabInstance:
     - target: {fileID: 7293992346724970356, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666469293732249860, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -213
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666469293732249860, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 373
       objectReference: {fileID: 0}
     - target: {fileID: 8081343518673398514, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_IsActive
@@ -568,6 +673,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20eeff40513691148b0c106fd1236e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &246252549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5167294019253908526, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fa703f8dc7b92439f320cd13db7f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &246252550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4666448167448340517, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fa703f8dc7b92439f320cd13db7f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &246252551 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 37297830418704863, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fa703f8dc7b92439f320cd13db7f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &342164207
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +742,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.011764706, g: 0.09803922, b: 0.15294118, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -782,6 +920,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0dd20cd4b02a58468d7b8ae200b59fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1573356796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5142027412979420862, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1721707277

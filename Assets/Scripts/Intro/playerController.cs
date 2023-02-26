@@ -14,7 +14,8 @@ public class playerController : MonoBehaviour
     public PlayerManagerForAll.gamestage stageNow = PlayerManagerForAll.gamestage.Intro;//playerstage now
     [SerializeField] public float playerSpeed = 2.0f;//player icon
     [SerializeField] public string playerJob = "None";//player job
-
+    [SerializeField] public string playerName = "None";//player job
+    [SerializeField] public string playerBackground = "None";//player job
     public int maxAP;
     public int currentAP;
     private PhotonView pv;
@@ -49,9 +50,11 @@ public class playerController : MonoBehaviour
     {
         stageNow = PlayerManagerForAll.gamestage.Dissussion;
     }
-    public void jobSelect(string job)
+    public void jobSelect(string job,string playername,string playerbackground)
     {
         playerJob = job;
+        playerName = playername;
+        playerBackground = playerbackground;
     }
 
     public void discusstoInvest()

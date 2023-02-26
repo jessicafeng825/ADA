@@ -19,8 +19,9 @@ public class UIManager : MonoBehaviour
     public PhotonView pv;
     //=====Launcher Objects=====//
     public string url;
-    [SerializeField] public TMP_Text playerName;//player job
-    [SerializeField] public TMP_Text playerJob;//player job
+    [SerializeField] public TMP_Text playerName;//player Name
+    [SerializeField] public TMP_Text playerJob;//player Job
+    [SerializeField] public TMP_Text playerbk;//player background
     [SerializeField] public VideoPlayer video;
     public bool ifintroend = false;
     private GameObject[] listofgameObjectwithtag;
@@ -178,12 +179,26 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.OpenMenu("TestMenu");
     }
 
-    public void jobSelect(string name)
+    public void jobSelect(JOb job)
     {
-        playerController.Instance.jobSelect(name);
-        playerJob.text = name;
+        //listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
+        /*
+        for(int i = 0;i < listofgameObjectwithtag.Length; i++)
+        {
+            if (listofgameObjectwithtag[i].GetComponent<PhotonView>().IsMine)
+            {
+                //pv.RPC(nameof(updateallplayerName), RpcTarget.All, listofgameObjectwithtag[i],name);
+            }
+        }
+        */
+        pv.RPC(nameof(updateallplayerName), RpcTarget.All, PhotonNetwork.NickName,job.jobName, job.playername,job.backgroundstory);
+        //playerController.Instance.jobSelect(name);
+        Debug.Log(playerController.Instance.playerJob);
+        playerJob.text = job.jobName;
+        playerName.text = job.playername;
+        playerbk.text = job.backgroundstory;
         //make all the player button inactive
-        pv.RPC(nameof(setbuttonInactive), RpcTarget.All,name);
+        pv.RPC(nameof(setbuttonInactive), RpcTarget.All, job.jobName);
         if (checkIfAllhaveSelectJob())//if all the player have select job
         {
            
@@ -221,8 +236,21 @@ public class UIManager : MonoBehaviour
     {
         UIManager.Instance.jobselectForname(name);
     }
-        //===movescene====//
-        public void changenextSceneTest()
+    [PunRPC]
+    private void updateallplayerName(string name,string jobname,string playername,string playerbackground)
+    {
+        //gb.GetComponent<playerController>().jobSelect(name);
+        listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < listofgameObjectwithtag.Length; i++)
+        {
+            if (listofgameObjectwithtag[i].GetComponent<PhotonView>().Owner.NickName == name)
+            {
+                listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname,playername,playerbackground);
+           }
+        }
+    }
+    //===movescene====//
+    public void changenextSceneTest()
     {
 
         pv.RPC(nameof(changenextScene), RpcTarget.All);

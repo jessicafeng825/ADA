@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class JOb : MonoBehaviour
 {
     public string jobName;
+    public string playername;
+    public string backgroundstory;
     public bool isselected = false;
     private Button button;
     // Start is called before the first frame update
