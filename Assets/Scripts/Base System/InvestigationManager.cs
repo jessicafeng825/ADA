@@ -130,7 +130,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
     }
 
-    public void SynchroniSeInterestPoint(string ipName)
+    public void SynchronizeInterestPoint(string ipName)
     {
         pv.RPC("UpdateGivenIPCNT", RpcTarget.All, ipName);
     }
@@ -138,8 +138,19 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [PunRPC]
     private void UpdateGivenIPCNT(string ipName)
     {
-        Debug.Log(interestPoints[ipName].name);
         interestPoints[ipName].GetComponent<InterestPointInfo>().changeIP_Current(1);
+    }
+
+    // functions to synchronize whether interest points are active or not
+    public void SynchronizeInterestPointStatus(string ipName)
+    {
+        pv.RPC("UpdateIPFullyCollected", RpcTarget.All, ipName);
+    }
+
+    [PunRPC]
+    private void UpdateIPFullyCollected(string ipName)
+    {
+        interestPoints[ipName].SetActive(false);
     }
 
     // Activate the interest point based on name, when some puzzles solved

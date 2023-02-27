@@ -48,21 +48,16 @@ public class InterestPointInfo : MonoBehaviour
             if (cnt_current == collectableList.Count - 1)
             {
                 Debug.Log("disappear!");
-                InactiveIPAllCollected();
+                InvestigationManager.Instance.SynchronizeInterestPointStatus(name);
             }
 
             // Tell im to synchronize
-            InvestigationManager.Instance.SynchroniSeInterestPoint(name);
+            InvestigationManager.Instance.SynchronizeInterestPoint(name);
         }
     }
 
     public void changeIP_Current(int change)
     {
         cnt_current += change;
-    }
-
-    private void InactiveIPAllCollected()
-    {
-        gameObject.SetActive(false);
     }
 }
