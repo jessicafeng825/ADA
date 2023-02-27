@@ -62,12 +62,14 @@ public class TimerManager : MonoBehaviour
         {
             case PlayerManagerForAll.gamestage.Investigate:
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, false);
+                pv.RPC(nameof(ChangeAllPlayerStage), RpcTarget.All, PlayerManagerForAll.gamestage.Dissussion);
                 timerPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
                 publicStageNow = PlayerManagerForAll.gamestage.Dissussion;
                 currentStageTimer = discussTime;
                 break;
             case PlayerManagerForAll.gamestage.Dissussion:
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, true);
+                pv.RPC(nameof(ChangeAllPlayerStage), RpcTarget.All, PlayerManagerForAll.gamestage.Investigate);
                 timerPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
                 publicStageNow = PlayerManagerForAll.gamestage.Investigate;
                 currentStageTimer = investigateTime;
@@ -86,23 +88,41 @@ public class TimerManager : MonoBehaviour
     {
         StartCoroutine(TimerPauseCoroutine(2));
     }
+
+    #region RPC
     [PunRPC]
     public void InvestigationManagerSwitch(bool active)
     {
         InvestigationManager.Instance.gameObject.SetActive(active);
+        
     }
+
     [PunRPC]
     public void SyncTimer(string stage, string time)
     {
         playerTimerPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = stage;
         playerTimerPanel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = time;
     }
+
     [PunRPC]
     public void TimeupDialog(string title, string description)
     {
         Debug.Log("Time up Dialog");
         BaseUIManager.Instance.SpawnNotificationPanel(title, description, 1, 3f);
     }
+
+    [PunRPC]
+    private void ChangeAllPlayerStage(PlayerManagerForAll.gamestage stage)
+    {
+        GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach(var player in playerList)
+        {
+            player.GetComponent<playerController>().stageNow = stage;
+        }
+    }
+    #endregion
+
     IEnumerator TimerPauseCoroutine(float sec)
     {
         bool activeButton = false;

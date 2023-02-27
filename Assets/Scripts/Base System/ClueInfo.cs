@@ -7,9 +7,7 @@ public class ClueInfo : MonoBehaviour
 {
     // Clue Information that would be shown in UI
     [SerializeField]
-    private int clueID;
-    [SerializeField]
-    private string clueName, clueDescrip;
+    private string clueName, clueTitle, clueDescrip;
     [SerializeField]
     private bool hasPicture;
 
@@ -22,9 +20,9 @@ public class ClueInfo : MonoBehaviour
     {
         if (hasPicture)
         {
-            BaseUIManager.Instance.ShowClueInfoWithPicture(clueName, clueDescrip);
+            BaseUIManager.Instance.ShowClueInfoWithPicture(clueName, clueTitle, clueDescrip);
         }
         else
-            BaseUIManager.Instance.ShowClueInfoNoPicture(clueName, clueDescrip);
+            BaseUIManager.Instance.ShowClueInfoNoPicture(clueName, clueTitle, clueDescrip);
     }
 }
