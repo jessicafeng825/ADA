@@ -38,7 +38,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void OnEnable() 
     {
         playerController.Instance.currentAP = playerController.Instance.maxAP;
-        playerController.Instance.Change_currentAP(0);        
+        playerController.Instance.Change_currentAP(0);
     }
 
     private void Update()
@@ -47,6 +47,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         {
             Debug.Log("No AP");
             playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Dissussion);
+            if(PhotonNetwork.IsMasterClient)
+                return;
             BaseUIManager.Instance.SpawnNotificationPanel("0AP Remained", "Waiting for others to finish investigation...", 0, -1f);
             if (CheckAllPlayer())
             {

@@ -9,6 +9,8 @@ public class BaseUIManager : Singleton<BaseUIManager>
 {
     [SerializeField]
     private GameObject pcPanel, playerPanel;
+    [SerializeField]
+    private GameObject charaterPanel;
     // use this for a while, till Hui finish the MenuManager part
     [SerializeField]
     private GameObject clueInfoNoPicPanel, clueInfoPicPanel;
@@ -33,6 +35,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     {
         pcPanel.SetActive(PhotonNetwork.IsMasterClient);
         playerPanel.SetActive(!PhotonNetwork.IsMasterClient);
+        InitializeCharacterUI();
     }
     #region Clue UI Related Functions
     // function: show clue information panel with no picture 
@@ -116,6 +119,14 @@ public class BaseUIManager : Singleton<BaseUIManager>
                 tempNotification.transform.GetChild(4).gameObject.SetActive(false);
                 break;
         }
+    }
+    public void InitializeCharacterUI()
+    {
+        playerPanel.transform.Find("MainMenu").Find("CharacterButton").GetChild(0).GetComponent<TMP_Text>().text = playerController.Instance.playerJob;
+        charaterPanel.transform.Find("CharacterButton").GetChild(0).GetComponent<TMP_Text>().text = playerController.Instance.playerJob;
+        charaterPanel.transform.Find("Description").GetChild(1).GetComponent<TMP_Text>().text = playerController.Instance.playerBackground;
+        charaterPanel.transform.Find("Relationship").GetChild(1).GetComponent<TMP_Text>().text = "Relationship";
+        charaterPanel.transform.Find("Skill").GetChild(1).GetComponent<TMP_Text>().text = "Skill";
     }
     public void UpdateAPUI(int num)
     {
