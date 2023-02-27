@@ -20,7 +20,12 @@ public class InterestPointInfo : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(AddCollectable);
+        GetComponent<Button>().onClick.AddListener(SpawnPopup);
+    }
+    public void SpawnPopup()
+    {
+        BaseUIManager.Instance.SpawnNotificationPanel("Use Action Points?", "Use the action point for investigate the interest point?", 2, -1f);
+        NotificationScript.yesButtonEvent.AddListener(AddCollectable);
     }
 
     private void AddCollectable()
@@ -28,9 +33,16 @@ public class InterestPointInfo : MonoBehaviour
         if (cnt_current < collectableList.Count)
         {
             if (collectableList[cnt_current].isClue)
+            {
+                BaseUIManager.Instance.SpawnNotificationPanel("Clue Found!", "You have found a clue!", 1, 3f);
                 InvestigationManager.Instance.AddCluePrefab(collectableList[cnt_current].name);
+            }
             else
+            {
+                BaseUIManager.Instance.SpawnNotificationPanel("Puzzle Found!", "You have found a puzzle!", 1, 3f);
                 InvestigationManager.Instance.AddPuzzlePrefab(collectableList[cnt_current].name);
+            }
+                
 
             // If the current clue is the last one, inactivate the interest point
             if (cnt_current == collectableList.Count - 1)

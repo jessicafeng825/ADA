@@ -260,8 +260,9 @@ public class UIManager : MonoBehaviour
     private void changenextScene()
     {
         UIManager.Instance.CloseMenu("InfoPC");
+        //Synchronize stage between players
+        playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Investigate);
         PhotonNetwork.LoadLevel(2);
-        playerController.Instance.introtoInvest();
         
     }
 

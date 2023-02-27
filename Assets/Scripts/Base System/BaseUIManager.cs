@@ -87,6 +87,37 @@ public class BaseUIManager : Singleton<BaseUIManager>
         puzzleInfoMenu.SetActive(false);
     }
 
+    //Spawn notification panel
+    public void SpawnNotificationPanel(string title, string discription, int btnNum, float time)
+    {
+        
+        GameObject tempNotification = Instantiate(ResourceManager.Instance.GetUIElement("NotificationPanel"));
+        if(PhotonNetwork.IsMasterClient)
+            tempNotification.transform.SetParent(pcPanel.transform);
+        else
+            tempNotification.transform.SetParent(playerPanel.transform);
+        tempNotification.transform.localScale = new Vector3(1, 1, 1);
+        tempNotification.transform.localPosition = new Vector3(0, 0, 0);
+        tempNotification.transform.GetChild(1).GetChild(1).GetComponent<TMP_Text>().text = title;
+        tempNotification.transform.GetChild(2).GetChild(1).GetComponent<TMP_Text>().text = discription;
+        tempNotification.GetComponent<NotificationScript>().despawnTime = time;
+        switch(btnNum)
+        {
+            case 2:
+                tempNotification.transform.GetChild(3).gameObject.SetActive(true);
+                tempNotification.transform.GetChild(4).gameObject.SetActive(false);
+                break;
+            case 1:
+                tempNotification.transform.GetChild(3).gameObject.SetActive(false);
+                tempNotification.transform.GetChild(4).gameObject.SetActive(true);
+                break;
+            case 0:
+                tempNotification.transform.GetChild(3).gameObject.SetActive(false);
+                tempNotification.transform.GetChild(4).gameObject.SetActive(false);
+                break;
+        }
+    }
+
     // Just for temporary use to solve the UI bug
     IEnumerator showshowway(GameObject panel)
     {

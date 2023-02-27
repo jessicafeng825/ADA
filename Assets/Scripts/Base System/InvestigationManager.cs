@@ -31,19 +31,28 @@ public class InvestigationManager : Singleton<InvestigationManager>
         PreloadInterestPoints();
         playerController.Instance.maxAP = GetPlayerInitialAP();
         playerController.Instance.currentAP = playerController.Instance.maxAP;
+        playerController.Instance.Change_currentAP(0);
+        playerController.Instance.Change_maxAP(playerController.Instance.maxAP);
 
+    }
+    private void OnEnable() 
+    {
+        playerController.Instance.currentAP = playerController.Instance.maxAP;
+        playerController.Instance.Change_currentAP(0);        
     }
 
     private void Update()
     {
-        if (playerController.Instance.currentAP == 0)
+        if (playerController.Instance.currentAP == 0 && playerController.Instance.stageNow == PlayerManagerForAll.gamestage.Investigate)
         {
             Debug.Log("No AP");
-            playerController.Instance.stageNow = PlayerManagerForAll.gamestage.Dissussion;
+            playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Dissussion);
+            BaseUIManager.Instance.SpawnNotificationPanel("0AP Remained", "Waiting for others to finish investigation...", 0, -1f);
             if (CheckAllPlayer())
             {
                 Debug.Log("Change Stage to Disscussion");
-                playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Dissussion);
+                pv.RPC(nameof(MasterChangeStage), RpcTarget.MasterClient);
+                pv.RPC(nameof(ChangeStageDialog), RpcTarget.All, "0AP Remained", "Investigation has ended!");
             }
         }
     }
@@ -54,7 +63,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         tempClue = (GameObject)Instantiate(ResourceManager.Instance.GetClueBtn(clueName));
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true);
-        playerController.Instance.Cost_currentAP(1);
+        playerController.Instance.Change_currentAP(-1);
     }
 
     #endregion
@@ -67,7 +76,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         tempPuzzle.GetComponent<Transform>().SetParent(PuzzleBase.GetComponent<Transform>(), true);
         inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
         
-        playerController.Instance.Cost_currentAP(1);
+        playerController.Instance.Change_currentAP(-1);
     }
 
     // Call when puzzle solved, update sprite
@@ -123,7 +132,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void SynchroniSeInterestPoint(string ipName)
     {
-        
         pv.RPC("UpdateGivenIPCNT", RpcTarget.All, ipName);
     }
 
@@ -139,6 +147,23 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
 
     }
+    
 
+    #endregion
+
+
+    #region Interest Stage Change Related Functions
+    [PunRPC]
+    public void ChangeStageDialog(string title, string description)
+    {
+        Debug.Log("Change Stage Dialog");
+        BaseUIManager.Instance.SpawnNotificationPanel(title, description, 1, 3f);
+    }
+
+    [PunRPC]
+    public void MasterChangeStage()
+    {
+        TimerManager.Instance.SwitchStage();
+    }
     #endregion
 }

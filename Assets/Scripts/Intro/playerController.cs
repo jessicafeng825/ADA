@@ -7,7 +7,7 @@ using Photon.Realtime;
 using System.Linq;
 using UnityEngine.UI;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour /*, IPunObservable*/
 {
     public static playerController Instance;
 
@@ -22,7 +22,9 @@ public class playerController : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        //Only the local player will be the instance instead of the last player entering the scene
+        if(this.GetComponent<PhotonView>().IsMine)
+            Instance = this;
     }
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,7 @@ public class playerController : MonoBehaviour
     public void introtoInvest()
     {
         stageNow = PlayerManagerForAll.gamestage.Investigate;
+        Debug.Log("Investigate");
     }
     public void investtoDicuss()
     {
@@ -63,20 +66,59 @@ public class playerController : MonoBehaviour
     }
     public void ChangeStage(PlayerManagerForAll.gamestage stage)
     {
-        stageNow = stage;
-        pv.RPC("SynchronizeStageNow", RpcTarget.All, stageNow);
+        pv.RPC("SynchronizeStageNow", RpcTarget.All, stage);
     }
-    #endregion
-
+    public void ChangeAllStage(PlayerManagerForAll.gamestage stage)
+    {
+        pv.RPC("SyncAllStageNow", RpcTarget.All, stage);
+    }
     [PunRPC]
     public void SynchronizeStageNow(PlayerManagerForAll.gamestage stage)
     {
         stageNow = stage;
-        //jump to discussion stage
     }
-
-    public void Cost_currentAP(int costAP)
+    [PunRPC]
+    public void SyncAllStageNow(PlayerManagerForAll.gamestage stage)
     {
-        currentAP -= costAP;
+        Instance.stageNow = stage;
     }
+    #endregion
+
+    
+
+    public void Change_currentAP(int costAP)
+    {
+        currentAP += costAP;
+        pv.RPC(nameof(SynchronizeCurrentAP), RpcTarget.All, currentAP);
+    }
+    public void Change_maxAP(int maxAP)
+    {
+        pv.RPC(nameof(SynchronizeMaxAP), RpcTarget.All, maxAP);
+    }
+    [PunRPC]
+    public void SynchronizeCurrentAP(int currentAP)
+    {
+        this.currentAP = currentAP;
+    }
+    [PunRPC]
+    public void SynchronizeMaxAP(int maxAP)
+    {
+        this.maxAP = maxAP;
+    }
+    //This commented part is a way of synchronizing the stageNow variable across all players, but I have decided to use RPC instead
+
+    // public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    // {
+    //     Debug.Log("OnPhotonSerializeView");
+    //     if (stream.IsWriting)
+    //     {
+    //         Debug.Log("IsWriting");
+    //         stream.SendNext(stageNow);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("IsRecieving");
+    //         stageNow = (PlayerManagerForAll.gamestage)stream.ReceiveNext();
+    //     }
+    // }
 }

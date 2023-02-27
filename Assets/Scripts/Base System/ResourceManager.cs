@@ -8,6 +8,7 @@ public class ResourceManager : Singleton<ResourceManager>
     private Dictionary<string, GameObject> puzzleInBagDic = new Dictionary<string, GameObject>();
     private Dictionary<string, Sprite> cluePicsDic = new Dictionary<string, Sprite>();
     private Dictionary<string, GameObject> puzzleInteractionDic = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> uiElements = new Dictionary<string, GameObject>();
 
     void Start()
     {
@@ -16,6 +17,8 @@ public class ResourceManager : Singleton<ResourceManager>
 
         LoadAllPuzzleBtns();
         LoadAllPuzzleInteractions();
+
+        LoadUIElements();
     }
 
     private void LoadAllClueBtns()
@@ -68,5 +71,17 @@ public class ResourceManager : Singleton<ResourceManager>
     public GameObject GetPuzzleInteraction(string puzzleName)
     {
         return puzzleInteractionDic[puzzleName];
+    }
+    //For instantiating UI elements
+    private void LoadUIElements()
+    {
+        foreach (GameObject ui in Resources.LoadAll("UI/"))
+        {
+            uiElements.Add(ui.name, ui);
+        }
+    }
+    public GameObject GetUIElement(string uiName)
+    {
+        return uiElements[uiName];
     }
 }

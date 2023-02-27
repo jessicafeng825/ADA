@@ -13,6 +13,9 @@ public class TimerManager : MonoBehaviour
     private GameObject timerPanel;
     
     [SerializeField]
+    private GameObject playerTimerPanel;
+    
+    [SerializeField]
     private float investigateTime;
     [SerializeField]
     private float discussTime;
@@ -20,6 +23,7 @@ public class TimerManager : MonoBehaviour
     private float gamePhaseTimer;
     private PlayerManagerForAll.gamestage publicStageNow;
     private bool timeout;
+    private PhotonView pv;
 
     private void Awake()
     {
@@ -27,20 +31,29 @@ public class TimerManager : MonoBehaviour
     }
     private void Start()
     {
+        pv = GetComponent<PhotonView>();
         publicStageNow = PlayerManagerForAll.gamestage.Investigate;
         gamePhaseTimer = investigateTime;
     }
+    
 
-    private void Update() 
-    {        
+    private void Update()
+    { 
+        if(!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         if(gamePhaseTimer <= 0 && !timeout)
         {
             SwitchStage();
         }
         else if(gamePhaseTimer > 0 && !timeout)
         {
-            timerPanel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = (gamePhaseTimer/60).ToString("00") + ":" + Mathf.Floor(gamePhaseTimer%60).ToString("00");
+            string time = (gamePhaseTimer/60).ToString("00") + ":" + Mathf.Floor(gamePhaseTimer%60).ToString("00");
+            timerPanel.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = time;
             gamePhaseTimer -= Time.deltaTime;
+            pv.RPC(nameof(SyncTimer), RpcTarget.Others, publicStageNow.ToString(), time);
+            
         }
     }
     private void PublicStageChange()
@@ -48,14 +61,14 @@ public class TimerManager : MonoBehaviour
         switch(publicStageNow)
         {
             case PlayerManagerForAll.gamestage.Investigate:
-                //playerController.Instance.investtoDicuss();
-                timerPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Discussion";
+                pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, false);
+                timerPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
                 publicStageNow = PlayerManagerForAll.gamestage.Dissussion;
                 currentStageTimer = discussTime;
                 break;
             case PlayerManagerForAll.gamestage.Dissussion:
-                //playerController.Instance.discusstoInvest();
-                timerPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Investigation";
+                pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, true);
+                timerPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
                 publicStageNow = PlayerManagerForAll.gamestage.Investigate;
                 currentStageTimer = investigateTime;
                 break;
@@ -66,12 +79,29 @@ public class TimerManager : MonoBehaviour
     public void SkipStageButton()
     {
         timeout = true;
-        timerPanel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
+        timerPanel.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
         SwitchStage();
     }
     public void SwitchStage()
     {
         StartCoroutine(TimerPauseCoroutine(2));
+    }
+    [PunRPC]
+    public void InvestigationManagerSwitch(bool active)
+    {
+        InvestigationManager.Instance.gameObject.SetActive(active);
+    }
+    [PunRPC]
+    public void SyncTimer(string stage, string time)
+    {
+        playerTimerPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = stage;
+        playerTimerPanel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = time;
+    }
+    [PunRPC]
+    public void TimeupDialog(string title, string description)
+    {
+        Debug.Log("Time up Dialog");
+        BaseUIManager.Instance.SpawnNotificationPanel(title, description, 1, 3f);
     }
     IEnumerator TimerPauseCoroutine(float sec)
     {
@@ -80,25 +110,22 @@ public class TimerManager : MonoBehaviour
         switch(publicStageNow)
         {
             case PlayerManagerForAll.gamestage.Investigate:
-                timerPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation Ended";
+                pv.RPC(nameof(TimeupDialog), RpcTarget.All, "Time is up!", "Investigation has ended");
                 activeButton = true;
-                timerPanel.transform.GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Discussion";
+                timerPanel.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Discussion";
                 break;
             case PlayerManagerForAll.gamestage.Dissussion:
-                timerPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion Ended";
+                pv.RPC(nameof(TimeupDialog), RpcTarget.All, "Time is up!", "Discussion has ended");
                 activeButton = false;
-                timerPanel.transform.GetChild(3).gameObject.SetActive(false);
-                timerPanel.transform.GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Investigation";
                 break;
             default:
                 activeButton = false;
                 break;
         }
-        timerPanel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
-        timerPanel.transform.GetChild(3).gameObject.SetActive(false);
+        timerPanel.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
+        timerPanel.transform.GetChild(1).gameObject.SetActive(false);
         yield return new WaitForSeconds(sec);
-        timerPanel.transform.GetChild(3).gameObject.SetActive(activeButton);
-        timerPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
+        timerPanel.transform.GetChild(1).gameObject.SetActive(activeButton);
         PublicStageChange();
         timeout = false;
     }
