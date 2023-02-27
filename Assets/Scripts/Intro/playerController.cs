@@ -33,8 +33,6 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
         pv = GetComponent<PhotonView>();
         DontDestroyOnLoad(this);
 
-        maxAP = InvestigationManager.Instance.GetPlayerInitialAP();
-        currentAP = maxAP;
     }
 
     // Update is called once per frame
