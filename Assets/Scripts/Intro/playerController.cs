@@ -58,7 +58,7 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
         playerJob = job;
         playerName = playername;
         playerBackground = playerbackground;
-        playerImage = Resources.Load<Sprite>("CharacterUI/" + playerimage);
+        playerImage = Resources.Load<Sprite>("CharacterUI/Round/" + "Round-" + playerimage);
     }
 
     public void discusstoInvest()

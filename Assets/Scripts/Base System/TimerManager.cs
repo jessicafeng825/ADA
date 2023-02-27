@@ -16,6 +16,9 @@ public class TimerManager : MonoBehaviour
     private GameObject playerTimerPanel;
     
     [SerializeField]
+    private GameObject playerPanel;
+    
+    [SerializeField]
     private float investigateTime;
     [SerializeField]
     private float discussTime;
@@ -24,6 +27,8 @@ public class TimerManager : MonoBehaviour
     private PlayerManagerForAll.gamestage publicStageNow;
     private bool timeout;
     private PhotonView pv;
+    private string time;
+    private string lastUpdateTime;
 
     private void Awake()
     {
@@ -45,15 +50,19 @@ public class TimerManager : MonoBehaviour
         }
         if(gamePhaseTimer <= 0 && !timeout)
         {
-            SwitchStage();
+            SwitchStage("Time is up!");
         }
         else if(gamePhaseTimer > 0 && !timeout)
         {
-            string time = (gamePhaseTimer/60).ToString("00") + ":" + Mathf.Floor(gamePhaseTimer%60).ToString("00");
+            time = (gamePhaseTimer/60).ToString("00") + ":" + Mathf.Floor(gamePhaseTimer%60).ToString("00");
             timerPanel.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = time;
             gamePhaseTimer -= Time.deltaTime;
-            pv.RPC(nameof(SyncTimer), RpcTarget.Others, publicStageNow.ToString(), time);
-            
+            if(time != lastUpdateTime)
+            {
+                Debug.Log(time);
+                pv.RPC(nameof(SyncTimer), RpcTarget.Others, publicStageNow.ToString(), time);
+                lastUpdateTime = time;
+            }
         }
     }
     private void PublicStageChange()
@@ -82,11 +91,11 @@ public class TimerManager : MonoBehaviour
     {
         timeout = true;
         timerPanel.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
-        SwitchStage();
+        SwitchStage("Skip Stage");
     }
-    public void SwitchStage()
+    public void SwitchStage(string reason)
     {
-        StartCoroutine(TimerPauseCoroutine(2));
+        StartCoroutine(TimerPauseCoroutine(1, reason));
     }
 
     #region RPC
@@ -94,7 +103,17 @@ public class TimerManager : MonoBehaviour
     public void InvestigationManagerSwitch(bool active)
     {
         InvestigationManager.Instance.gameObject.SetActive(active);
-        
+        switch(active)
+        {
+            case true:
+                playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").gameObject.SetActive(true);
+                playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").gameObject.SetActive(false);
+                break;
+            case false:
+                playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").gameObject.SetActive(false);
+                playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").gameObject.SetActive(true);
+                break;
+        }
     }
 
     [PunRPC]
@@ -123,19 +142,19 @@ public class TimerManager : MonoBehaviour
     }
     #endregion
 
-    IEnumerator TimerPauseCoroutine(float sec)
+    IEnumerator TimerPauseCoroutine(float sec, string reason)
     {
         bool activeButton = false;
         timeout = true;
         switch(publicStageNow)
         {
             case PlayerManagerForAll.gamestage.Investigate:
-                pv.RPC(nameof(TimeupDialog), RpcTarget.All, "Time is up!", "Investigation has ended");
+                pv.RPC(nameof(TimeupDialog), RpcTarget.All, reason, "Investigation has ended");
                 activeButton = true;
                 timerPanel.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Discussion";
                 break;
             case PlayerManagerForAll.gamestage.Dissussion:
-                pv.RPC(nameof(TimeupDialog), RpcTarget.All, "Time is up!", "Discussion has ended");
+                pv.RPC(nameof(TimeupDialog), RpcTarget.All, reason, "Discussion has ended");
                 activeButton = false;
                 break;
             default:

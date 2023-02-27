@@ -5,6 +5,7 @@ using UnityEngine;
 public class ResourceManager : Singleton<ResourceManager>
 {
     private Dictionary<string, GameObject> clueInBagDic = new Dictionary<string, GameObject>();
+    public int allClueCount;
     private Dictionary<string, GameObject> puzzleInBagDic = new Dictionary<string, GameObject>();
     private Dictionary<string, Sprite> cluePicsDic = new Dictionary<string, Sprite>();
     private Dictionary<string, GameObject> puzzleInteractionDic = new Dictionary<string, GameObject>();
@@ -25,8 +26,10 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         foreach (GameObject cluePrefab in Resources.LoadAll("CluesRelated/ClueBtns/"))
         {
+            allClueCount++;
             clueInBagDic.Add(cluePrefab.name, cluePrefab);
         }
+        Debug.Log("All clue count: " + allClueCount);
     }
 
     public GameObject GetClueBtn(string clueName)

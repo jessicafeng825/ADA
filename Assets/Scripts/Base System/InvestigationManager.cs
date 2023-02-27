@@ -66,6 +66,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
         tempClue = (GameObject)Instantiate(ResourceManager.Instance.GetClueBtn(clueName));
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true);
         playerController.Instance.Change_currentAP(-1);
+        ResourceManager.Instance.allClueCount --;
+        pv.RPC(nameof(SyncClueCount), RpcTarget.All, ResourceManager.Instance.allClueCount);
+    }
+    [PunRPC]
+    public void SyncClueCount(int n)
+    {
+        ResourceManager.Instance.allClueCount = n;
     }
 
     #endregion
@@ -176,7 +183,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [PunRPC]
     public void MasterChangeStage()
     {
-        TimerManager.Instance.SwitchStage();
+        TimerManager.Instance.SwitchStage("0AP Remained");
     }
     #endregion
 }
