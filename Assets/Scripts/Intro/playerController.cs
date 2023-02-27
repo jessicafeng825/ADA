@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     [SerializeField] public string playerJob = "None";//player job
     [SerializeField] public string playerName = "None";//player job
     [SerializeField] public string playerBackground = "None";//player job
+    [SerializeField] public Image playerImage;//player Image
     public int maxAP;
     public int currentAP;
     private PhotonView pv;
@@ -53,11 +54,12 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     {
         stageNow = PlayerManagerForAll.gamestage.Dissussion;
     }
-    public void jobSelect(string job,string playername,string playerbackground)
+    public void jobSelect(string job,string playername,string playerbackground,Sprite playerimage)
     {
         playerJob = job;
         playerName = playername;
         playerBackground = playerbackground;
+        playerImage.sprite = playerimage;
     }
 
     public void discusstoInvest()
