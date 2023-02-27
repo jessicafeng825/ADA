@@ -122,7 +122,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     public void InitializeCharacterUI()
     {
-        playerPanel.transform.Find("MainMenu").Find("CharacterButton").GetChild(0).GetComponent<TMP_Text>().text = playerController.Instance.playerJob;
+        playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("CharacterButton").GetChild(0).GetComponent<TMP_Text>().text = playerController.Instance.playerJob;
         charaterPanel.transform.Find("CharacterButton").GetChild(0).GetComponent<TMP_Text>().text = playerController.Instance.playerJob;
         charaterPanel.transform.Find("Description").GetChild(1).GetComponent<TMP_Text>().text = playerController.Instance.playerBackground;
         charaterPanel.transform.Find("Relationship").GetChild(1).GetComponent<TMP_Text>().text = "Relationship";
@@ -130,7 +130,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     public void UpdateAPUI(int num)
     {
-        playerPanel.transform.Find("MainMenu").Find("APpoints").GetChild(1).GetComponent<TMP_Text>().text = num.ToString() + "AP";
+        playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("APpoints").GetChild(1).GetComponent<TMP_Text>().text = num.ToString() + "AP";
     }
 
     // Just for temporary use to solve the UI bug

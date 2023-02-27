@@ -23,16 +23,21 @@ public class CaesarCipher : PuzzleInfo
     {
         if (answer == enteredAnswer.text)
         {
+            enteredAnswer.text = "correct";
+            isSolved = true;
             return true;
         }
-        else return false;
+        else
+        {
+            enteredAnswer.text = "incorrect";
+            return false;
+        }
     }
 
     private void ClickSubmit()
     {
         if (!isSolved)
         {
-            isSolved = true;
             if (CheckAnswer())
             {
                 // entered answer correct
