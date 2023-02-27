@@ -89,6 +89,7 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     public void Change_currentAP(int costAP)
     {
         currentAP += costAP;
+        BaseUIManager.Instance.UpdateAPUI(currentAP);
         pv.RPC(nameof(SynchronizeCurrentAP), RpcTarget.All, currentAP);
     }
     public void Change_maxAP(int maxAP)

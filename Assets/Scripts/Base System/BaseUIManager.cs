@@ -117,6 +117,10 @@ public class BaseUIManager : Singleton<BaseUIManager>
                 break;
         }
     }
+    public void UpdateAPUI(int num)
+    {
+        playerPanel.transform.Find("MainMenu").Find("APpoints").GetChild(1).GetComponent<TMP_Text>().text = num.ToString() + "AP";
+    }
 
     // Just for temporary use to solve the UI bug
     IEnumerator showshowway(GameObject panel)
