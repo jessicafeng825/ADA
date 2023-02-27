@@ -140,9 +140,18 @@ PrefabInstance:
       value: Lawyer
       objectReference: {fileID: 0}
     - target: {fileID: 37297830418704863, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: skilltext
+      value: 'Special Ability:  TechGlass       With TechGlass you are able to notice
+        small details that others may have overlooked. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 37297830418704863, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: playername
       value: Max Orion
       objectReference: {fileID: 0}
+    - target: {fileID: 37297830418704863, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playerImage
+      value: 
+      objectReference: {fileID: 21300000, guid: ab2068e8bd19fae468f4c443e12e3c3a, type: 3}
     - target: {fileID: 37297830418704863, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: backgroundstory
       value: 'Backstory:  You were raised in a wealthy family with access to the
@@ -154,9 +163,37 @@ PrefabInstance:
         questionable. You still remained loyal and won every case on behalf of the
         Kaine Corporation.'
       objectReference: {fileID: 0}
+    - target: {fileID: 37297830418704863, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: relationshiptext
+      value: 'Relationship to Ava Kaine:  You had suspicions that your wife had been
+        cheating. You hired a P.I. who uncovered the truth. Your wife had been seeing
+        someone -- Bishop Kaine. Fueled with rage you went to confront Bishop, who
+        stayed flippant and coolly admitted that it was true. Bishop then continued
+        to fire you as his attorney. You! After years of covering up Bishop''s dirty
+        business. You''d been waiting for an apology but none came. Instead, Ava
+        Kaine showed up one day. As the previous Kaine family lawyer, you''ve known
+        Ava since she was born. That day, she requested any info you had on MemTech,
+        her father''s new risky product. You obliged. '
+      objectReference: {fileID: 0}
     - target: {fileID: 114702378377165960, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Name
       value: ChangeName
+      objectReference: {fileID: 0}
+    - target: {fileID: 114702378377165960, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 288341740163254388, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Name
+      value: OpenBackgroundStory
+      objectReference: {fileID: 0}
+    - target: {fileID: 302530914775130400, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 756
+      objectReference: {fileID: 0}
+    - target: {fileID: 302530914775130400, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -518
       objectReference: {fileID: 0}
     - target: {fileID: 302643719043771594, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.size
@@ -185,6 +222,10 @@ PrefabInstance:
     - target: {fileID: 302643719043771594, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: Menu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 407201884856909035, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Name
+      value: RelationshipPanel
       objectReference: {fileID: 0}
     - target: {fileID: 493014211879669593, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_IsActive
@@ -244,19 +285,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1946856929808571539, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 156.4792
+      value: 208.6522
       objectReference: {fileID: 0}
     - target: {fileID: 1946856929808571539, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 511.17004
+      value: 541
       objectReference: {fileID: 0}
     - target: {fileID: 1946856929808571539, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 2644860583031809527, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: open
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2926814432941280247, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Name
+      value: RelationshipText
       objectReference: {fileID: 0}
     - target: {fileID: 3034881135003119623, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Name
@@ -265,6 +310,10 @@ PrefabInstance:
     - target: {fileID: 3034881135003119623, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186420612977308616, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Name
+      value: SkillPanel
       objectReference: {fileID: 0}
     - target: {fileID: 3561862800385590174, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_SizeDelta.x
@@ -281,6 +330,22 @@ PrefabInstance:
     - target: {fileID: 3561862800385590174, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729668063357454720, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 305.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729668063357454720, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 207.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729668063357454720, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 537.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729668063357454720, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 26.575
       objectReference: {fileID: 0}
     - target: {fileID: 3766623304140048338, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchorMax.y
@@ -318,6 +383,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4047231344025636895, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 451
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047231344025636895, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -518
+      objectReference: {fileID: 0}
     - target: {fileID: 4402239044058469087, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: buttonText
       value: TestOpen
@@ -335,9 +408,20 @@ PrefabInstance:
       value: JOb, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4666448167448340517, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: skilltext
+      value: ' Special Ability:  Cryptography     If you wanted to rock all the cybernetic
+        implants and upgrades, you had to be a DIY pro. That meant getting savvy
+        with cryptography, and now you''ve totally nailed it. You can now hack through
+        firewalls and handle any cybersecurity hurdles like a boss. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666448167448340517, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: playername
       value: Caden Slate
       objectReference: {fileID: 0}
+    - target: {fileID: 4666448167448340517, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playerImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 89c12ca9567cff24badc6d5aa93e8965, type: 3}
     - target: {fileID: 4666448167448340517, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: backgroundstory
       value: 'Backstory:  Cyber augments saved your life at six months old. Your
@@ -350,6 +434,35 @@ PrefabInstance:
         the rebels and the anarchists and the utopia-minded. You''ll get to that
         world you imagine, no matter the cost. '
       objectReference: {fileID: 0}
+    - target: {fileID: 4666448167448340517, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: relationshiptext
+      value: 'Relationship to Ava Kaine: Ava was always in your corner. You met in
+        Engineering class at 14, two outcasts in a sea of aspiring capitalist pigs.
+        She taught you to hotwire a hovercar, you took out her parental tracking
+        implant. She loved you, for a while. You didn''t stop loving her. When she
+        finally went no contact with her dad, you welcomed her into the Void. Most
+        of them still don''t trust her with the big stuff, five years on. That''s
+        why you started fighting. She figured out that the next big action wasn''t
+        just sabotaging, wasn''t just an expose. She won''t endorse violence, and
+        she won''t forgive you for not telling her. It was a huge, blowout fight,
+        and she left crying. Why can''t she see that the mission is what matters? '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976114289714621405, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 312.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976114289714621405, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 207.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976114289714621405, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 541
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976114289714621405, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 26.576
+      objectReference: {fileID: 0}
     - target: {fileID: 5142027412979420862, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_margin.w
       value: -734.6818
@@ -359,9 +472,19 @@ PrefabInstance:
       value: -422.5805
       objectReference: {fileID: 0}
     - target: {fileID: 5167294019253908526, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: skilltext
+      value: 'Special Ability:  Picking Locks    One time you saw this dude picking
+        a lock to get into a house, and you were like, whoa, that''s so cool! So
+        you decided to try it yourself, and guess what? It was a breeze. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5167294019253908526, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: playername
       value: Mutts
       objectReference: {fileID: 0}
+    - target: {fileID: 5167294019253908526, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playerImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ed6a3d4a5a10ec41805f11946feb6f8, type: 3}
     - target: {fileID: 5167294019253908526, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: backgroundstory
       value: "Backstory:  You never knew your parents and found your family amongst
@@ -376,6 +499,12 @@ PrefabInstance:
         breaking in.  The big houses have lots of puzzles and security but Mutts
         gets past them with ease. "
       objectReference: {fileID: 0}
+    - target: {fileID: 5167294019253908526, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: relationshiptext
+      value: 'Relationship to Ava Kaine:  You would often see Ava walking from the
+        nightclub, The Smoke and Chrome, which was on the main drag. She would always
+        give you a smile and wave. She was kind... for a human. '
+      objectReference: {fileID: 0}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: url
       value: http://localhost/result/StreamingAssets/TestVideo.mp4
@@ -385,9 +514,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1573356796}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playerrl
+      value: 
+      objectReference: {fileID: 249815260}
+    - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playersk
+      value: 
+      objectReference: {fileID: 249815261}
+    - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: playerJob
       value: 
       objectReference: {fileID: 1097005401}
+    - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: playerImage
+      value: 
+      objectReference: {fileID: 478415684}
     - target: {fileID: 5239909336595713810, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: pcPanelList.Array.size
       value: 3
@@ -424,17 +565,37 @@ PrefabInstance:
       propertyPath: playerPanelList.Array.data[3]
       value: 
       objectReference: {fileID: 1103573873}
+    - target: {fileID: 5309291626269542791, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Name
+      value: SkillText
+      objectReference: {fileID: 0}
     - target: {fileID: 5463670810130283422, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Name
       value: VerticalLayoutGroup
       objectReference: {fileID: 0}
     - target: {fileID: 5471000206449134221, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: buttonText
+      value: BackgroundStory
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471000206449134221, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: TestMenu
+      value: BackGroundPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480079168419707301, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: menuName
+      value: RelationshipPanel
       objectReference: {fileID: 0}
     - target: {fileID: 5559218959957255989, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729173879453551101, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -209
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729173879453551101, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 371
       objectReference: {fileID: 0}
     - target: {fileID: 5787503280009645317, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_SizeDelta.x
@@ -458,11 +619,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981938491865042456, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -37.999954
+      value: 54.000023
       objectReference: {fileID: 0}
     - target: {fileID: 5981938491865042456, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 227.00005
+      value: 168.00008
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987142336184521006, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: buttonText
+      value: Skills
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987142336184521006, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: SkillPanel
       objectReference: {fileID: 0}
     - target: {fileID: 6220551369224968413, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Pivot.x
@@ -584,17 +753,61 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -35.669857
       objectReference: {fileID: 0}
+    - target: {fileID: 6772512189998232038, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7164205799355888494, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -204
+      objectReference: {fileID: 0}
+    - target: {fileID: 7164205799355888494, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 374
+      objectReference: {fileID: 0}
     - target: {fileID: 7293992346724970356, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7403660904525062444, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 242.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7403660904525062444, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 242.3979
+      objectReference: {fileID: 0}
+    - target: {fileID: 7403660904525062444, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 73
+      objectReference: {fileID: 0}
+    - target: {fileID: 7403660904525062444, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 332
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423675223437376361, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: buttonText
+      value: Relationship
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423675223437376361, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: RelationshipPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 7666469293732249860, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -213
+      value: -211
       objectReference: {fileID: 0}
     - target: {fileID: 7666469293732249860, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 373
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782914951422925735, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: menuName
+      value: SkillPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909044745198938147, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: m_Name
+      value: BackGroundPanel
       objectReference: {fileID: 0}
     - target: {fileID: 8081343518673398514, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_IsActive
@@ -612,13 +825,17 @@ PrefabInstance:
       propertyPath: open
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8441919859316734106, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+      propertyPath: menuName
+      value: BackGroundPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 8496429583988360000, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -59
+      value: 146
       objectReference: {fileID: 0}
     - target: {fileID: 8496429583988360000, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 64
+      value: -518
       objectReference: {fileID: 0}
     - target: {fileID: 8750206433142006537, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_Color.a
@@ -626,11 +843,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8908892959902143900, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -37.999954
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 8908892959902143900, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 158.00005
+      value: 99.00008
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -704,6 +921,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8fa703f8dc7b92439f320cd13db7f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &249815260 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 743720534366356997, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &249815261 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2664371584255513557, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &342164207
@@ -790,6 +1029,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &478415684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6772512189998232038, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}
+  m_PrefabInstance: {fileID: 246252544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &508084746 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4764115953952555508, guid: dd1a618bbecc96e4fb77469f62dae7cc, type: 3}

@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMP_Text playerName;//player Name
     [SerializeField] public TMP_Text playerJob;//player Job
     [SerializeField] public TMP_Text playerbk;//player background
+    [SerializeField] public TMP_Text playersk;//player skills
+    [SerializeField] public TMP_Text playerrl;//player relationship
+    [SerializeField] public Image playerImage;//player Image
     [SerializeField] public VideoPlayer video;
     public bool ifintroend = false;
     private GameObject[] listofgameObjectwithtag;
@@ -34,7 +37,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         //===set up pc and player depend on whether it is master or not===//
         pcPanel.SetActive(PhotonNetwork.IsMasterClient);
         playerPanel.SetActive(!PhotonNetwork.IsMasterClient);
@@ -191,12 +194,15 @@ public class UIManager : MonoBehaviour
             }
         }
         */
-        pv.RPC(nameof(updateallplayerName), RpcTarget.All, PhotonNetwork.NickName,job.jobName, job.playername,job.backgroundstory);
+        pv.RPC(nameof(updateallplayerName), RpcTarget.All, PhotonNetwork.NickName,job.jobName, job.playername,job.backgroundstory, job.playerImage);
         //playerController.Instance.jobSelect(name);
         Debug.Log(playerController.Instance.playerJob);
         playerJob.text = job.jobName;
         playerName.text = job.playername;
         playerbk.text = job.backgroundstory;
+        playerrl.text = job.relationshiptext;
+        playersk.text = job.skilltext;
+        playerImage.sprite = job.playerImage;
         //make all the player button inactive
         pv.RPC(nameof(setbuttonInactive), RpcTarget.All, job.jobName);
         if (checkIfAllhaveSelectJob())//if all the player have select job
@@ -237,7 +243,7 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.jobselectForname(name);
     }
     [PunRPC]
-    private void updateallplayerName(string name,string jobname,string playername,string playerbackground)
+    private void updateallplayerName(string name,string jobname,string playername,string playerbackground, Sprite playerImage)
     {
         //gb.GetComponent<playerController>().jobSelect(name);
         listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
@@ -245,7 +251,7 @@ public class UIManager : MonoBehaviour
         {
             if (listofgameObjectwithtag[i].GetComponent<PhotonView>().Owner.NickName == name)
             {
-                listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname,playername,playerbackground);
+                listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname,playername,playerbackground,playerImage);
            }
         }
     }
