@@ -39,18 +39,18 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     #region Clue UI Related Functions
     // function: show clue information panel with no picture 
-    public void ShowClueInfoNoPicture(string clueName, string clueDescrip)
+    public void ShowClueInfoNoPicture(string clueName, string clueTitle, string clueDescrip)
     {
-        clueNameText.text = clueName;
+        clueNameText.text = clueTitle;
         clueDescripText.text = clueDescrip;
         clueInfoNoPicPanel.SetActive(true);
         StartCoroutine(showshowway(clueInfoNoPicPanel));
     }
 
     // function: show clue information panel with picture 
-    public void ShowClueInfoWithPicture(string clueName, string clueDescrip)
+    public void ShowClueInfoWithPicture(string clueName, string clueTitle, string clueDescrip)
     {
-        clueNamePicText.text = clueName;
+        clueNamePicText.text = clueTitle;
         clueDescripPicText.text = clueDescrip;
         cluePicHolder.sprite = ResourceManager.Instance.GetCluePic(clueName);
         StartCoroutine(showshowway(clueInfoPicPanel));
