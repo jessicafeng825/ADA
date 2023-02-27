@@ -202,7 +202,7 @@ public class UIManager : MonoBehaviour
         playerbk.text = job.backgroundstory;
         playerrl.text = job.relationshiptext;
         playersk.text = job.skilltext;
-        playerImage.sprite = job.playerImage;
+        playerImage.sprite = Resources.Load<Sprite>("CharacterUI/" + job.playerImage);
         //make all the player button inactive
         pv.RPC(nameof(setbuttonInactive), RpcTarget.All, job.jobName);
         if (checkIfAllhaveSelectJob())//if all the player have select job
@@ -243,7 +243,7 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.jobselectForname(name);
     }
     [PunRPC]
-    private void updateallplayerName(string name,string jobname,string playername,string playerbackground, Sprite playerImage)
+    private void updateallplayerName(string name,string jobname,string playername,string playerbackground, string playerImage)
     {
         //gb.GetComponent<playerController>().jobSelect(name);
         listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");

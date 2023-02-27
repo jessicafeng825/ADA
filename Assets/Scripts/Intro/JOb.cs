@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class JOb : MonoBehaviour
 {
-    public Sprite playerImage;
+    public string playerImage;
     public string jobName;
     public string playername;
     public string backgroundstory;

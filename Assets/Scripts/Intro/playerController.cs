@@ -7,6 +7,7 @@ using Photon.Realtime;
 using System.Linq;
 using UnityEngine.UI;
 
+
 public class playerController : MonoBehaviour /*, IPunObservable*/
 {
     public static playerController Instance;
@@ -54,12 +55,12 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     {
         stageNow = PlayerManagerForAll.gamestage.Dissussion;
     }
-    public void jobSelect(string job,string playername,string playerbackground,Sprite playerimage)
+    public void jobSelect(string job,string playername,string playerbackground,string playerimage)
     {
         playerJob = job;
         playerName = playername;
         playerBackground = playerbackground;
-        playerImage = playerimage;
+        playerImage = Resources.Load<Sprite>("CharacterUI/" + playerimage);
     }
 
     public void discusstoInvest()
