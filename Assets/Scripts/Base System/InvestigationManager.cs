@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class InvestigationManager : Singleton<InvestigationManager>
 {
+    [SerializeField]
+    private GameObject fullMap;
+    private float mapGap;
 
     // Player Clue Base Part
     [SerializeField]
@@ -27,6 +30,10 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     private void Start()
     {
+        //The distance every two area
+        mapGap = Vector2.Distance(fullMap.transform.Find("Area01").transform.position, fullMap.transform.Find("Area02").transform.position);
+        Debug.Log(mapGap);
+
         pv = GetComponent<PhotonView>();
         PreloadInterestPoints();
         playerController.Instance.maxAP = GetPlayerInitialAP();
@@ -58,6 +65,47 @@ public class InvestigationManager : Singleton<InvestigationManager>
             }
         }
     }
+
+    //Move related functions
+    #region Movement Related Functions
+
+    public void MoveDialog(string direction)
+    {
+        BaseUIManager.Instance.SpawnNotificationPanel("Move Area?", "Use 1AP to move area?", 2, -1f);
+        NotificationScript.yesButtonEvent.AddListener(() => MoveMap(direction));
+        NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
+    }
+    private void MoveMap(string direction)
+    {
+        switch(direction)
+        {
+            case "L":
+                StartCoroutine(MapCoroutine(new Vector2(fullMap.transform.position.x + mapGap, fullMap.transform.position.y), 0.5f));
+                break;
+            case "R":
+                StartCoroutine(MapCoroutine(new Vector2(fullMap.transform.position.x - mapGap, fullMap.transform.position.y), 0.5f));
+                break;
+            case "U":
+                StartCoroutine(MapCoroutine(new Vector2(fullMap.transform.position.x, fullMap.transform.position.y - mapGap), 0.5f));
+                break;
+            case "D":
+                StartCoroutine(MapCoroutine(new Vector2(fullMap.transform.position.x, fullMap.transform.position.y + mapGap), 0.5f));
+                break;
+        }
+    }
+    IEnumerator MapCoroutine(Vector2 targetPos, float sec)
+    {
+        float time = 0f;
+        Vector2 startPos = fullMap.transform.position;
+        while(time <= sec)
+        {
+            fullMap.transform.position = Vector2.Lerp(startPos, targetPos, time/sec);
+            time +=Time.deltaTime;
+            yield return null;
+        }
+        fullMap.transform.position = targetPos;
+    }
+    #endregion
 
     #region Clue Related Functions
     // function: when player click on interest point, add a clue to their clue base
@@ -109,7 +157,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
         else
         {
-            return 1;
+            return 3;
         }
     }
 
