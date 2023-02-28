@@ -28,11 +28,13 @@ public class NotificationScript : MonoBehaviour
     {
         yesButtonEvent.Invoke();
         yesButtonEvent.RemoveAllListeners();
+        noButtonEvent.RemoveAllListeners();
         Destroy(this.gameObject);
     }
     public void ButtonNo()
     {
         noButtonEvent.Invoke();
+        yesButtonEvent.RemoveAllListeners();
         noButtonEvent.RemoveAllListeners();
         Destroy(this.gameObject);
     }
