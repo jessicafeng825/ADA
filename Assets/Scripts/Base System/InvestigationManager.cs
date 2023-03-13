@@ -32,7 +32,16 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private Dictionary<string, GameObject> interestPoints = new Dictionary<string, GameObject>();
 
     [SerializeField]
-    private List<Button> teleportList, unlockedMemoryInOverview;
+    private List<Button> unlockedMemoryInOverview;
+    [SerializeField]
+    private List<teleportList> teleportLists;
+
+    [System.Serializable]
+    private class teleportList
+    {
+        public string teleportListName;
+        public List<Button> listContent;
+    }
 
     private void Start()
     {
@@ -131,7 +140,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     #endregion
 
-
     #region Puzzle Related Functions
     public void AddPuzzlePrefab(string puzzleName)
     {
@@ -149,16 +157,48 @@ public class InvestigationManager : Singleton<InvestigationManager>
         inBasePuzzleBtns[puzzleName].GetComponent<PuzzleBtn>().ShowSolvedMark();
     }
 
-    public void UnlockMemory(int memoryID)
+    #endregion
+
+    #region Unlock Memory & Teleport Related Functions
+    public void UnlockMemoryInOverview(int memoryID)
     {
-        pv.RPC(nameof(UnlockTeleport), RpcTarget.All, memoryID);
+        pv.RPC(nameof(UnlockMemorySynchronize), RpcTarget.All, memoryID);
     }
 
     [PunRPC]
-    private void UnlockTeleport(int memoryID)
+    private void UnlockMemorySynchronize(int memoryID)
     {
-        teleportList[memoryID - 1].gameObject.SetActive(true);
         unlockedMemoryInOverview[memoryID - 1].gameObject.SetActive(true);
+    }
+
+    public void UnlockTeleport(int fromMemory, int toMemory)
+    {
+        pv.RPC(nameof(UnlockTeleportSynchronize), RpcTarget.All, fromMemory, toMemory);
+    }
+
+    [PunRPC]
+    private void UnlockTeleportSynchronize(int fromMemory, int toMemory)
+    {
+        MemoryUpdate(teleportLists[fromMemory - 1].listContent, teleportLists[toMemory - 1].listContent, fromMemory, toMemory);
+    }
+
+    private void MemoryUpdate(List<Button> TeleportFromList, List<Button> TeleportToList, int fromMemoryID, int toMemoryID)
+    {
+        foreach (Button teleport in TeleportFromList)
+        {
+            if (teleport.GetComponent<TeleportInfo>().teleportToMemory.name == "Memory" + toMemoryID)
+            {
+                teleport.gameObject.SetActive(true);
+            }
+        }
+
+        foreach (Button teleport in TeleportToList)
+        {
+            if (teleport.GetComponent<TeleportInfo>().teleportToMemory.name == "Memory" + fromMemoryID)
+            {
+                teleport.gameObject.SetActive(true);
+            }
+        }
     }
     #endregion
 
@@ -236,7 +276,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
     
 
     #endregion
-
 
     #region Interest Stage Change Related Functions
     [PunRPC]

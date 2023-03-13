@@ -70,7 +70,9 @@ public class CaesarCipher : PuzzleInfo
 
             case PuzzleEffect.unlockMemory:
                 // unlock memory, teleport player
-                InvestigationManager.Instance.UnlockMemory(memoryUnlocked);
+                InvestigationManager.Instance.UnlockMemoryInOverview(memoryUnlocked);
+                // TODO: A small bug to fix: right now the teleport is from 1 -> unlocked memory
+                InvestigationManager.Instance.UnlockTeleport(1, memoryUnlocked);
                 break;
         }
     }
