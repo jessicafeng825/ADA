@@ -31,6 +31,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private List<GameObject> interestPointList;
     private Dictionary<string, GameObject> interestPoints = new Dictionary<string, GameObject>();
 
+    [SerializeField]
+    private List<Button> teleportList, unlockedMemoryInOverview;
+
     private void Start()
     {
         //The distance every two area
@@ -144,6 +147,18 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         Debug.Log(puzzleName);
         inBasePuzzleBtns[puzzleName].GetComponent<PuzzleBtn>().ShowSolvedMark();
+    }
+
+    public void UnlockMemory(int memoryID)
+    {
+        pv.RPC(nameof(UnlockTeleport), RpcTarget.All, memoryID);
+    }
+
+    [PunRPC]
+    private void UnlockTeleport(int memoryID)
+    {
+        teleportList[memoryID - 1].gameObject.SetActive(true);
+        unlockedMemoryInOverview[memoryID - 1].gameObject.SetActive(true);
     }
     #endregion
 

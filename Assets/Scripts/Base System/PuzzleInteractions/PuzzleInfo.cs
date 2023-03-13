@@ -11,7 +11,9 @@ public class PuzzleInfo : MonoBehaviour
     [SerializeField]
     protected PuzzleEffect puzzleEffect;
     [SerializeField]
-    protected string clueProvided, areaUnlocked, memoryUnlocked;
+    protected string clueProvided;
+    [SerializeField] 
+    protected int areaUnlocked, memoryUnlocked;
 
     public enum PuzzleEffect
     {

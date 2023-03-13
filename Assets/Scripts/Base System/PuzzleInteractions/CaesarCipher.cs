@@ -70,6 +70,7 @@ public class CaesarCipher : PuzzleInfo
 
             case PuzzleEffect.unlockMemory:
                 // unlock memory, teleport player
+                InvestigationManager.Instance.UnlockMemory(memoryUnlocked);
                 break;
         }
     }
