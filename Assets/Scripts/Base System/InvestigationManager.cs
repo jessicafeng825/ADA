@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using UnityEngine;
+
+public enum Memory
+{
+    None, Mansion, StreetCorner, LawyerOffice, NightClub, VoidBase
+}
 
 public class InvestigationManager : Singleton<InvestigationManager>
 {
@@ -33,6 +37,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     [SerializeField]
     private List<Button> unlockedMemoryInOverview;
+    private Dictionary<string, Button> unlockedMemoryInOverviewDic = new Dictionary<string, Button>();
+
     [SerializeField]
     private List<teleportList> teleportLists;
 
@@ -55,6 +61,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
         playerController.Instance.currentAP = playerController.Instance.maxAP;
         playerController.Instance.Change_currentAP(0);
         playerController.Instance.Change_maxAP(playerController.Instance.maxAP);
+
+        foreach(Button memoryOverview in unlockedMemoryInOverview)
+        {
+            unlockedMemoryInOverviewDic.Add(memoryOverview.name, memoryOverview);
+        }
 
     }
     private void OnEnable() 
@@ -160,15 +171,15 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #endregion
 
     #region Unlock Memory & Teleport Related Functions
-    public void UnlockMemoryInOverview(int memoryID)
+    public void UnlockMemoryInOverview(Memory memory)
     {
-        pv.RPC(nameof(UnlockMemorySynchronize), RpcTarget.All, memoryID);
+        pv.RPC(nameof(UnlockMemorySynchronize), RpcTarget.All, memory);
     }
 
     [PunRPC]
-    private void UnlockMemorySynchronize(int memoryID)
+    private void UnlockMemorySynchronize(Memory memory)
     {
-        unlockedMemoryInOverview[memoryID - 1].gameObject.SetActive(true);
+        unlockedMemoryInOverviewDic[memory.ToString()].gameObject.SetActive(true);
     }
 
     public void UnlockTeleport(int fromMemory, int toMemory)
