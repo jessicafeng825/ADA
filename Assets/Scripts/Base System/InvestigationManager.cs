@@ -16,6 +16,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private GameObject fullMap;
     private float mapGap;
     private string currentMemoryMap;
+    //New map movement
+    [SerializeField]
+    private Transform activeMemory;
+    private string currentRoomName;
+
 
     // Player Clue Base Part
     [SerializeField]
@@ -95,6 +100,26 @@ public class InvestigationManager : Singleton<InvestigationManager>
     //Move related functions
     #region Movement Related Functions
 
+    public void MoveRoomDialog(Rooms room)
+    {
+        BaseUIManager.Instance.SpawnNotificationPanel("Move Area?", "Use 1AP to move area?", 2, -1f);
+        NotificationScript.yesButtonEvent.AddListener(() => MoveRoom(room));
+        //NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
+    }
+    private void MoveRoom(Rooms room)
+    {
+        Debug.Log("Attempt move to " + room.roomName);
+        if(currentRoomName == room.roomName)
+        {
+            Debug.Log("Failed to move to " + room.roomName + " because it is already in this room");
+            return;
+        }
+        else
+        {
+            StartCoroutine(RoomCoroutine(room, 0.5f));
+        }
+        
+    }
     public void MoveDialog(string direction)
     {
         BaseUIManager.Instance.SpawnNotificationPanel("Move Area?", "Use 1AP to move area?", 2, -1f);
@@ -118,6 +143,19 @@ public class InvestigationManager : Singleton<InvestigationManager>
                 StartCoroutine(MapCoroutine(new Vector2(fullMap.transform.position.x, fullMap.transform.position.y + mapGap), 0.5f));
                 break;
         }
+    }
+    IEnumerator RoomCoroutine(Rooms room, float sec)
+    {
+        float time = 0f;
+        Vector2 startPos = activeMemory.localPosition;
+        while(time <= sec)
+        {
+            activeMemory.localPosition = Vector2.Lerp(startPos, -room.transform.localPosition, time/sec);
+            time +=Time.deltaTime;
+            yield return null;
+        }
+        activeMemory.localPosition = -room.transform.localPosition;
+        currentRoomName = room.roomName;
     }
     IEnumerator MapCoroutine(Vector2 targetPos, float sec)
     {
