@@ -57,14 +57,20 @@ public class CaesarCipher : PuzzleInfo
 
     private void PuzzleSolveEffect()
     {
-        if (provideClue)
+        switch (puzzleEffect)
         {
-            // give clue
-            InvestigationManager.Instance.AddCluePrefab(clueProvided);
-        }
-        else if (unlockArea)
-        {
-            // unlock area
+            case PuzzleEffect.provideClue:
+                // give clue
+                InvestigationManager.Instance.AddCluePrefab(clueProvided);
+                break;
+
+            case PuzzleEffect.unlockArea:
+                // unlock area
+                break;
+
+            case PuzzleEffect.unlockMemory:
+                // unlock memory, teleport player
+                break;
         }
     }
 

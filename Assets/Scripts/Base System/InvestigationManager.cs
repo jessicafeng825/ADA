@@ -7,9 +7,11 @@ using UnityEngine;
 
 public class InvestigationManager : Singleton<InvestigationManager>
 {
+    // Player Movement Part
     [SerializeField]
     private GameObject fullMap;
     private float mapGap;
+    private string currentMemoryMap;
 
     // Player Clue Base Part
     [SerializeField]
@@ -22,6 +24,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private GameObject tempPuzzle;
     private Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
 
+    // Synchronize Interest Point Status Part
     [SerializeField]
     private PhotonView pv;
     [SerializeField]

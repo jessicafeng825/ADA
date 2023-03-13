@@ -7,7 +7,14 @@ public class PuzzleInfo : MonoBehaviour
     [SerializeField]
     protected string puzzleName;
     [SerializeField]
-    protected bool isSolved, provideClue, unlockArea;
+    protected bool isSolved;
     [SerializeField]
-    protected string clueProvided, areaUnlocked;
+    protected PuzzleEffect puzzleEffect;
+    [SerializeField]
+    protected string clueProvided, areaUnlocked, memoryUnlocked;
+
+    public enum PuzzleEffect
+    {
+        provideClue, unlockArea, unlockMemory
+    }
 }

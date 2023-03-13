@@ -28,8 +28,10 @@ public class BaseUIManager : Singleton<BaseUIManager>
     [SerializeField]
     private GameObject puzzleInfoMenu;
     private GameObject tempPuzzle;
-    private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();    
-    // function: load all clue picture resources and add to dictionary for use
+    private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();
+
+    [SerializeField]
+    private GameObject MapOverview;
 
     public void Start()
     {
@@ -69,6 +71,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     #endregion
 
+    #region Puzzle UI Related Functions
     public void ShowPuzzleUI(string puzzleName)
     {
         if (inScenePuzzles.ContainsKey(puzzleName))
@@ -89,6 +92,8 @@ public class BaseUIManager : Singleton<BaseUIManager>
     {
         puzzleInfoMenu.SetActive(false);
     }
+    #endregion
+
 
     //Spawn notification panel
     public void SpawnNotificationPanel(string title, string discription, int btnNum, float time)
@@ -131,6 +136,15 @@ public class BaseUIManager : Singleton<BaseUIManager>
     public void UpdateAPUI(int num)
     {
         playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("APpoints").GetChild(1).GetComponent<TMP_Text>().text = num.ToString() + "AP";
+    }
+
+    public void ClickMapOverview()
+    {
+        if (MapOverview.activeSelf)
+        {
+            MapOverview.SetActive(false);
+        }
+        else MapOverview.SetActive(true);
     }
 
     // Just for temporary use to solve the UI bug
