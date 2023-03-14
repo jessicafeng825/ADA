@@ -5,12 +5,11 @@ using UnityEngine;
 public class TeleportInfo : MonoBehaviour
 {
     [SerializeField]
-    public GameObject teleportFromMemory, teleportToMemory;
+    public Memory teleportFromMemory, teleportToMemory;
 
     public void TeleportTriggered()
     {
-        teleportFromMemory.SetActive(false);
-        teleportToMemory.SetActive(true);
+        InvestigationManager.Instance.TeleportToFrom(teleportFromMemory, teleportToMemory);
         Debug.Log("teleport succeed");
     }
 }

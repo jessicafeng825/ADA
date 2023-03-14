@@ -11,6 +11,7 @@ public enum Memory
 
 public class InvestigationManager : Singleton<InvestigationManager>
 {
+    #region Parameters: Movement
     // Player Movement Part
     [SerializeField]
     private GameObject fullMap;
@@ -20,7 +21,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [SerializeField]
     private Transform activeMemory;
     private string currentRoomName;
+    #endregion
 
+    #region Parameters: Clue & Puzzle Base
 
     // Player Clue Base Part
     [SerializeField]
@@ -32,6 +35,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private GameObject PuzzleBase;
     private GameObject tempPuzzle;
     private Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
+    #endregion
 
     // Synchronize Interest Point Status Part
     [SerializeField]
@@ -40,19 +44,19 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private List<GameObject> interestPointList;
     private Dictionary<string, GameObject> interestPoints = new Dictionary<string, GameObject>();
 
+    #region Parameters: Teleport & Memory Unlock
+    [SerializeField]
+    private List<GameObject> MemoryUI_List;
+    private Dictionary<string, GameObject> MemoryUI_Dic = new Dictionary<string, GameObject>();
+
     [SerializeField]
     private List<Button> unlockedMemoryInOverview;
     private Dictionary<string, Button> unlockedMemoryInOverviewDic = new Dictionary<string, Button>();
 
     [SerializeField]
-    private List<teleportList> teleportLists;
+    private List<Button> teleportBtnList;
 
-    [System.Serializable]
-    private class teleportList
-    {
-        public string teleportListName;
-        public List<Button> listContent;
-    }
+    #endregion
 
     private void Start()
     {
@@ -67,11 +71,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         playerController.Instance.Change_currentAP(0);
         playerController.Instance.Change_maxAP(playerController.Instance.maxAP);
 
-        foreach(Button memoryOverview in unlockedMemoryInOverview)
-        {
-            unlockedMemoryInOverviewDic.Add(memoryOverview.name, memoryOverview);
-        }
-
+        InitializeMemoryUIDic();
+        InitializeMemoryInOverviewDic();
     }
     private void OnEnable() 
     {
@@ -209,6 +210,23 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #endregion
 
     #region Unlock Memory & Teleport Related Functions
+
+    private void InitializeMemoryUIDic()
+    {
+        foreach (GameObject memoryUI in MemoryUI_List)
+        {
+            MemoryUI_Dic.Add(memoryUI.name, memoryUI);
+        }
+    }
+
+    private void InitializeMemoryInOverviewDic()
+    {
+        foreach (Button memoryOverview in unlockedMemoryInOverview)
+        {
+            unlockedMemoryInOverviewDic.Add(memoryOverview.name, memoryOverview);
+        }
+    }
+
     public void UnlockMemoryInOverview(Memory memory)
     {
         pv.RPC(nameof(UnlockMemorySynchronize), RpcTarget.All, memory);
@@ -220,22 +238,40 @@ public class InvestigationManager : Singleton<InvestigationManager>
         unlockedMemoryInOverviewDic[memory.ToString()].gameObject.SetActive(true);
     }
 
-    public void UnlockTeleport(int fromMemory, int toMemory)
+    public void UnlockTeleport(Memory fromMemory, Memory toMemory)
     {
-        pv.RPC(nameof(UnlockTeleportSynchronize), RpcTarget.All, fromMemory, toMemory);
+        pv.RPC(nameof(UnlockRelatedTeleport), RpcTarget.All, fromMemory, toMemory);
     }
 
     [PunRPC]
-    private void UnlockTeleportSynchronize(int fromMemory, int toMemory)
+    private void UnlockRelatedTeleport(Memory fromMemory, Memory toMemory)
     {
-        MemoryUpdate(teleportLists[fromMemory - 1].listContent, teleportLists[toMemory - 1].listContent, fromMemory, toMemory);
+        TeleportInfo info;
+        foreach (Button teleportBtn in teleportBtnList)
+        {
+            info = teleportBtn.GetComponent<TeleportInfo>();
+            if ((info.teleportFromMemory == fromMemory && info.teleportToMemory == toMemory) ||
+                (info.teleportFromMemory == toMemory && info.teleportToMemory == fromMemory))
+            {
+                teleportBtn.gameObject.SetActive(true);
+            }
+        }
+
+    }
+/*    [PunRPC]
+    private void UnlockTeleportSynchronize(Memory fromMemory, Memory toMemory)
+    {
+        MemoryUpdate(teleportDic[fromMemory].listContent, teleportDic[toMemory].listContent, fromMemory, toMemory);
     }
 
-    private void MemoryUpdate(List<Button> TeleportFromList, List<Button> TeleportToList, int fromMemoryID, int toMemoryID)
+    private void MemoryUpdate(List<Button> TeleportFromList, List<Button> TeleportToList, Memory fromMemory, Memory toMemory)
     {
         foreach (Button teleport in TeleportFromList)
         {
-            if (teleport.GetComponent<TeleportInfo>().teleportToMemory.name == "Memory" + toMemoryID)
+            Debug.Log("name: " + teleport.name);
+            Debug.Log(teleport.GetComponent<TeleportInfo>().teleportFromMemory);
+            Debug.Log("tom " + toMemory);
+            if (teleport.GetComponent<TeleportInfo>().teleportFromMemory == toMemory)
             {
                 teleport.gameObject.SetActive(true);
             }
@@ -243,12 +279,19 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
         foreach (Button teleport in TeleportToList)
         {
-            if (teleport.GetComponent<TeleportInfo>().teleportToMemory.name == "Memory" + fromMemoryID)
+            if (teleport.GetComponent<TeleportInfo>().teleportToMemory == fromMemory)
             {
                 teleport.gameObject.SetActive(true);
             }
         }
+    }*/
+
+    public void TeleportToFrom(Memory fromMemory, Memory toMemory)
+    {
+        MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
+        MemoryUI_Dic[toMemory.ToString()].SetActive(true);
     }
+
     #endregion
 
     #region AP (Action Points) Related Functions

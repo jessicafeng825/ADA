@@ -72,7 +72,7 @@ public class CaesarCipher : PuzzleInfo
                 // unlock memory, teleport player
                 InvestigationManager.Instance.UnlockMemoryInOverview(unlockedMemory);
                 // TODO: A small bug to fix: right now the teleport is from 1 -> unlocked memory
-                //InvestigationManager.Instance.UnlockTeleport(1, unlockedMemoryID);
+                InvestigationManager.Instance.UnlockTeleport(collectedAt, unlockedMemory);
                 break;
         }
     }
