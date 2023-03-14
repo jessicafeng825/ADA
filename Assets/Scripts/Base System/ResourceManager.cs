@@ -27,14 +27,14 @@ public class ResourceManager : Singleton<ResourceManager>
         foreach (GameObject cluePrefab in Resources.LoadAll("CluesRelated/ClueBtns/"))
         {
             allClueCount++;
-            clueInBagDic.Add(cluePrefab.name, cluePrefab);
+            clueInBagDic.Add(cluePrefab.GetComponent<ClueInfo>().GetClueID(), cluePrefab);
         }
         Debug.Log("All clue count: " + allClueCount);
     }
 
-    public GameObject GetClueBtn(string clueName)
+    public GameObject GetClueBtn(string clueID)
     {
-        return clueInBagDic[clueName];
+        return clueInBagDic[clueID];
     }
 
     private void LoadAllPuzzleBtns()
@@ -47,7 +47,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
     public GameObject GetPuzzleBtn(string puzzleName)
     {
-        return puzzleInBagDic[puzzleName + "Btn"];
+        return puzzleInBagDic[puzzleName];
     }
 
     private void LoadAllPics()

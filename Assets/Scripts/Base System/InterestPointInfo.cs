@@ -14,7 +14,7 @@ public class InterestPointInfo : MonoBehaviour
     [System.Serializable]
     public class InterestPoint
     {
-        public string name;
+        public string id;
         public bool isClue;
     }
 
@@ -35,12 +35,12 @@ public class InterestPointInfo : MonoBehaviour
             if (collectableList[cnt_current].isClue)
             {
                 BaseUIManager.Instance.SpawnNotificationPanel("Clue Found!", "You have found a clue!", 1, 3f);
-                InvestigationManager.Instance.AddCluePrefab(collectableList[cnt_current].name);
+                InvestigationManager.Instance.AddCluePrefab(collectableList[cnt_current].id);
             }
             else
             {
                 BaseUIManager.Instance.SpawnNotificationPanel("Puzzle Found!", "You have found a puzzle!", 1, 3f);
-                InvestigationManager.Instance.AddPuzzlePrefab(collectableList[cnt_current].name);
+                InvestigationManager.Instance.AddPuzzlePrefab(collectableList[cnt_current].id);
             }
                 
 
