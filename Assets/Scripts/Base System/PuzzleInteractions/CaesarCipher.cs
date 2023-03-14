@@ -43,7 +43,7 @@ public class CaesarCipher : PuzzleInfo
                 // entered answer correct
                 Debug.Log("correct");
                 // TODO: Hide UI, Mark this puzzle with "solved";
-                InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleName);
+                InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
                 // Trigger puzzle effect (unlock or clue)
                 PuzzleSolveEffect();
             }

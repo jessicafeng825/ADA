@@ -5,7 +5,7 @@ using UnityEngine;
 public class PuzzleInfo : MonoBehaviour
 {
     [SerializeField]
-    protected string puzzleName;
+    protected string puzzleID;
     [SerializeField]
     protected bool isSolved;
     [SerializeField]

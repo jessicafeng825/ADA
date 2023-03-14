@@ -6,7 +6,7 @@ using UnityEngine;
 public class PuzzleBtn : MonoBehaviour
 {
     [SerializeField]
-    private string puzzleName;
+    private string puzzleID;
 
     [SerializeField]
     private GameObject solvedMark;
@@ -18,11 +18,15 @@ public class PuzzleBtn : MonoBehaviour
 
     private void ShowPuzzle()
     {
-        BaseUIManager.Instance.ShowPuzzleUI(puzzleName);
+        BaseUIManager.Instance.ShowPuzzleUI(puzzleID);
     }
 
     public void ShowSolvedMark()
     {
         solvedMark.SetActive(true);
+    }
+    public string GetPuzzleID()
+    {
+        return puzzleID;
     }
 }

@@ -41,13 +41,13 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         foreach (GameObject puzzlePrefab in Resources.LoadAll("PuzzlesRelated/PuzzleBtns/"))
         {
-            puzzleInBagDic.Add(puzzlePrefab.name, puzzlePrefab);
+            puzzleInBagDic.Add(puzzlePrefab.GetComponent<PuzzleBtn>().GetPuzzleID(), puzzlePrefab);
         }
     }
 
-    public GameObject GetPuzzleBtn(string puzzleName)
+    public GameObject GetPuzzleBtn(string puzzleID)
     {
-        return puzzleInBagDic[puzzleName];
+        return puzzleInBagDic[puzzleID];
     }
 
     private void LoadAllPics()
