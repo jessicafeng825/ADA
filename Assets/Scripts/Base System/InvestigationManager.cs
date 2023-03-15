@@ -12,15 +12,12 @@ public enum Memory
 public class InvestigationManager : Singleton<InvestigationManager>
 {
     #region Parameters: Movement
-    // Player Movement Part
-    [SerializeField]
-    private GameObject fullMap;
-    private float mapGap;
-    private string currentMemoryMap;
     //New map movement
     [SerializeField]
-    private Transform activeMemory;
-    private string currentRoomName;
+    private Transform startMemory;
+
+    [SerializeField]
+    private Rooms startRoom;
     #endregion
 
     #region Parameters: Clue & Puzzle Base
@@ -61,8 +58,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void Start()
     {
         //The distance every two area
-        mapGap = Vector2.Distance(fullMap.transform.Find("Area01").transform.position, fullMap.transform.Find("Area02").transform.position);
-        Debug.Log(mapGap);
 
         pv = GetComponent<PhotonView>();
         PreloadInterestPoints();
@@ -73,6 +68,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
         InitializeMemoryUIDic();
         InitializeMemoryInOverviewDic();
+
+        playerController.Instance.currentRoom = startRoom;
+        playerController.Instance.currentMemory = startMemory;
     }
     private void OnEnable() 
     {
@@ -103,72 +101,40 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void MoveRoomDialog(Rooms room)
     {
-        BaseUIManager.Instance.SpawnNotificationPanel("Move Area?", "Use 1AP to move area?", 2, -1f);
-        NotificationScript.yesButtonEvent.AddListener(() => MoveRoom(room));
-        //NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
-    }
-    private void MoveRoom(Rooms room)
-    {
         Debug.Log("Attempt move to " + room.roomName);
-        if(currentRoomName == room.roomName)
+        if(playerController.Instance.currentRoom.roomName == room.roomName)
         {
             Debug.Log("Failed to move to " + room.roomName + " because it is already in this room");
             return;
         }
-        else
-        {
-            StartCoroutine(RoomCoroutine(room, 0.5f));
-        }
-        
-    }
-    public void MoveDialog(string direction)
-    {
         BaseUIManager.Instance.SpawnNotificationPanel("Move Area?", "Use 1AP to move area?", 2, -1f);
-        NotificationScript.yesButtonEvent.AddListener(() => MoveMap(direction));
+        NotificationScript.yesButtonEvent.AddListener(() => MoveRoom(room));
         NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
     }
-    private void MoveMap(string direction)
+    private void MoveRoom(Rooms room)
     {
-        switch(direction)
+        foreach (Transform child in playerController.Instance.currentRoom.transform)
         {
-            case "L":
-                StartCoroutine(MapCoroutine(new Vector2(fullMap.transform.position.x + mapGap, fullMap.transform.position.y), 0.5f));
-                break;
-            case "R":
-                StartCoroutine(MapCoroutine(new Vector2(fullMap.transform.position.x - mapGap, fullMap.transform.position.y), 0.5f));
-                break;
-            case "U":
-                StartCoroutine(MapCoroutine(new Vector2(fullMap.transform.position.x, fullMap.transform.position.y - mapGap), 0.5f));
-                break;
-            case "D":
-                StartCoroutine(MapCoroutine(new Vector2(fullMap.transform.position.x, fullMap.transform.position.y + mapGap), 0.5f));
-                break;
+            child.gameObject.SetActive(false);
         }
+        playerController.Instance.currentRoom = room;
+        foreach (Transform child in playerController.Instance.currentRoom.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+        StartCoroutine(RoomCoroutine(room, 0.5f));
     }
     IEnumerator RoomCoroutine(Rooms room, float sec)
     {
         float time = 0f;
-        Vector2 startPos = activeMemory.localPosition;
+        Vector2 startPos = playerController.Instance.currentMemory.localPosition;
         while(time <= sec)
         {
-            activeMemory.localPosition = Vector2.Lerp(startPos, -room.transform.localPosition, time/sec);
+            playerController.Instance.currentMemory.localPosition = Vector2.Lerp(startPos, -room.transform.localPosition, time/sec);
             time +=Time.deltaTime;
             yield return null;
         }
-        activeMemory.localPosition = -room.transform.localPosition;
-        currentRoomName = room.roomName;
-    }
-    IEnumerator MapCoroutine(Vector2 targetPos, float sec)
-    {
-        float time = 0f;
-        Vector2 startPos = fullMap.transform.position;
-        while(time <= sec)
-        {
-            fullMap.transform.position = Vector2.Lerp(startPos, targetPos, time/sec);
-            time +=Time.deltaTime;
-            yield return null;
-        }
-        fullMap.transform.position = targetPos;
+        playerController.Instance.currentMemory.localPosition = -room.transform.localPosition;
     }
     #endregion
 
@@ -285,11 +251,17 @@ public class InvestigationManager : Singleton<InvestigationManager>
             }
         }
     }*/
-
+    public void SpawnTelepoetDialog(string title, string content, Memory fromMemory, Memory toMemory)
+    {
+        BaseUIManager.Instance.SpawnNotificationPanel(title, content, 2, -1f);
+        NotificationScript.yesButtonEvent.AddListener(() => TeleportToFrom(fromMemory, toMemory));
+        NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
+    }
     public void TeleportToFrom(Memory fromMemory, Memory toMemory)
     {
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
         MemoryUI_Dic[toMemory.ToString()].SetActive(true);
+        playerController.Instance.currentMemory = MemoryUI_Dic[toMemory.ToString()].GetComponent<Transform>();
     }
 
     #endregion

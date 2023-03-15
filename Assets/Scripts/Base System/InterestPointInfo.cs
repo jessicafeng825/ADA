@@ -47,7 +47,6 @@ public class InterestPointInfo : MonoBehaviour
             // If the current clue is the last one, inactivate the interest point
             if (cnt_current == collectableList.Count - 1)
             {
-                Debug.Log("disappear!");
                 InvestigationManager.Instance.SynchronizeInterestPointStatus(name);
             }
 
