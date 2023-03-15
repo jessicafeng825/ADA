@@ -101,27 +101,16 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void MoveRoomDialog(Rooms room)
     {
-        Debug.Log("Attempt move to " + room.roomName);
-        if(playerController.Instance.currentRoom.roomName == room.roomName)
-        {
-            Debug.Log("Failed to move to " + room.roomName + " because it is already in this room");
-            return;
-        }
+        
         BaseUIManager.Instance.SpawnNotificationPanel("Move Area?", "Use 1AP to move area?", 2, -1f);
         NotificationScript.yesButtonEvent.AddListener(() => MoveRoom(room));
         NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
     }
     private void MoveRoom(Rooms room)
     {
-        foreach (Transform child in playerController.Instance.currentRoom.transform)
-        {
-            child.gameObject.SetActive(false);
-        }
+        playerController.Instance.currentRoom.gameObject.SetActive(false);
         playerController.Instance.currentRoom = room;
-        foreach (Transform child in playerController.Instance.currentRoom.transform)
-        {
-            child.gameObject.SetActive(true);
-        }
+        playerController.Instance.currentRoom.gameObject.SetActive(true);
         StartCoroutine(RoomCoroutine(room, 0.5f));
     }
     IEnumerator RoomCoroutine(Rooms room, float sec)
