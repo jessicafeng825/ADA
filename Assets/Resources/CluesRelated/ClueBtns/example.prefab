@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2846890130690350172}
   - component: {fileID: 2846890130690350173}
   - component: {fileID: 2846890130690350170}
-  - component: {fileID: 6863227541121468844}
+  - component: {fileID: -3608763731040706016}
   m_Layer: 0
   m_Name: example
   m_TagString: Untagged
@@ -135,7 +135,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6863227541121468844
+--- !u!114 &-3608763731040706016
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,13 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2846890130690350168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0423d607eeda4146b67198195241382, type: 3}
+  m_Script: {fileID: 11500000, guid: 246d7a1d4da18bb45aa3ceff88a63a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueID: 3
-  clueTitle: Conversation Fragment
-  clueDescrip: You've uncovered data about a conversation that was had in this location
-  hasPicture: 1
+  clueID: test
 --- !u!1 &2846890132187743832
 GameObject:
   m_ObjectHideFlags: 0

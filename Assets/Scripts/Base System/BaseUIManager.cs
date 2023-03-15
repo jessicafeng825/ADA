@@ -12,7 +12,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     [SerializeField]
     private GameObject charaterPanel;
     // use this for a while, till Hui finish the MenuManager part
-    [SerializeField]
+/*    [SerializeField]
     private GameObject clueInfoNoPicPanel, clueInfoPicPanel;
 
     [SerializeField]
@@ -22,8 +22,12 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private TMP_Text clueDescripText, clueDescripPicText;
 
     [SerializeField]
-    private Image cluePicHolder;
-    
+    private Image cluePicHolder;*/
+
+    [SerializeField]
+    private GameObject clueInfoMenu;
+    private GameObject tempClue;
+    private Dictionary<string, GameObject> inSceneClues = new Dictionary<string, GameObject>();
 
     [SerializeField]
     private GameObject puzzleInfoMenu;
@@ -40,34 +44,25 @@ public class BaseUIManager : Singleton<BaseUIManager>
         InitializeCharacterUI();
     }
     #region Clue UI Related Functions
-    // function: show clue information panel with no picture 
-    public void ShowClueInfoNoPicture(string clueName, string clueTitle, string clueDescrip)
+    public void ShowClueUI(string clueID)
     {
-        clueNameText.text = clueTitle;
-        clueDescripText.text = clueDescrip;
-        clueInfoNoPicPanel.SetActive(true);
-        StartCoroutine(showshowway(clueInfoNoPicPanel));
+        if (inSceneClues.ContainsKey(clueID))
+        {
+            inSceneClues[clueID].SetActive(true);
+        }
+        else
+        {
+            tempClue = Instantiate(ResourceManager.Instance.GetClueInfo(clueID));
+            tempClue.GetComponent<Transform>().SetParent(clueInfoMenu.GetComponent<Transform>(), false);
+            inSceneClues.Add(clueID, tempPuzzle);
+        }
+
+        clueInfoMenu.SetActive(true);
     }
 
-    // function: show clue information panel with picture 
-    public void ShowClueInfoWithPicture(string clueName, string clueTitle, string clueDescrip)
+    public void HideClueUI()
     {
-        clueNamePicText.text = clueTitle;
-        clueDescripPicText.text = clueDescrip;
-        cluePicHolder.sprite = ResourceManager.Instance.GetCluePic(clueName);
-        StartCoroutine(showshowway(clueInfoPicPanel));
-    }
-
-    // function: hide clue information panel with no picture 
-    public void HideCLueInfoNoPicture()
-    {
-        clueInfoNoPicPanel.SetActive(false);
-    }
-
-    // function: hide clue information panel with picture 
-    public void HideClueInfoWithPicture()
-    {
-        clueInfoPicPanel.SetActive(false);
+        clueInfoMenu.SetActive(false);
     }
     #endregion
 
