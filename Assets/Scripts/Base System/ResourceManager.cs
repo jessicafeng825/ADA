@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
-    private Dictionary<string, GameObject> clueBtnDic = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> clueInfoDic = new Dictionary<string, GameObject>();
+    private Dictionary<string, Sprite> clueBtnPicsDic = new Dictionary<string, Sprite>();
+    private GameObject tempClueBtn;
 
     public int allClueCount;
     private Dictionary<string, GameObject> puzzleBtnDic = new Dictionary<string, GameObject>();
@@ -15,8 +17,9 @@ public class ResourceManager : Singleton<ResourceManager>
 
     void Start()
     {
-        LoadAllClueBtns();
+        LoadClueBtnTemplate();
         LoadAllClueInfos();
+        LoadAllClueBtnPics();
 
         LoadAllPuzzleBtns();
         LoadAllPuzzleInteractions();
@@ -24,19 +27,24 @@ public class ResourceManager : Singleton<ResourceManager>
         LoadUIElements();
     }
 
-    private void LoadAllClueBtns()
+    private void LoadClueBtnTemplate()
     {
-        foreach (GameObject cluePrefab in Resources.LoadAll("CluesRelated/ClueBtns/"))
+        tempClueBtn = Resources.Load<GameObject>("CluesRelated/clueBtnTemplate");
+    }
+
+    private void LoadAllClueBtnPics()
+    {
+        foreach (Sprite clueBtnPic in Resources.LoadAll<Sprite>("CluesRelated/CluePics/"))
         {
-            allClueCount++;
-            clueBtnDic.Add(cluePrefab.GetComponent<ClueBtn>().GetClueID(), cluePrefab);
+            clueBtnPicsDic.Add(clueBtnPic.name, clueBtnPic);
         }
-        Debug.Log("All clue count: " + allClueCount);
     }
 
     public GameObject GetClueBtn(string clueID)
     {
-        return clueBtnDic[clueID];
+        tempClueBtn.GetComponent<Image>().sprite = clueBtnPicsDic[clueID];
+        tempClueBtn.GetComponent<ClueBtn>().SetClueID(clueID);
+        return tempClueBtn;
     }
 
     private void LoadAllClueInfos()

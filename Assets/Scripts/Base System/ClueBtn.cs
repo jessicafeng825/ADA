@@ -23,4 +23,9 @@ public class ClueBtn : MonoBehaviour
     {
         return clueID;
     }
+
+    public void SetClueID(string givenClueID)
+    {
+        clueID = givenClueID;
+    }
 }
