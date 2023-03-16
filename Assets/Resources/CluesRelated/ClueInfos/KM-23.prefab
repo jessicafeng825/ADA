@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000030518, y: -188}
-  m_SizeDelta: {x: 641.0477, y: 100}
+  m_AnchoredPosition: {x: 1.7085, y: -167.49731}
+  m_SizeDelta: {x: 822.1555, y: 168.3423}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &863724857679009283
 CanvasRenderer:
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ava's Data Chips
+  m_text: Filing Cabinet
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -152,7 +152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &863724858524877943
 RectTransform:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -602.5198}
+  m_AnchoredPosition: {x: 0, y: 336}
   m_SizeDelta: {x: -100, y: -1482.9395}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &863724858591048519
@@ -399,7 +399,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ava's data chip collection from childhood remains untouched.
+  m_text: "\"DOSSIERS\nAva Kaine, born 07/16/2063\nFamily: Daughter of Bishop Kaine.
+    \nOccupation: Joined the Void, 2082.\nRemoved from Kaine Industries estate plans
+    2083.\n\nEvie Havoc, born 10/01/56, died 08/17/2084\nFamily: Kian Havoc, brother
+    \nOccupation: Former Kaine Industries chip tester. Resigned after work-related
+    neural injury, 07/12/2083.\nProsecution witness in State of Washington v. Kaine
+    Industries, set for trial 08/18/2084 (declared mistrial, 09/13/2084)\nOffered
+    27b credits, 07/24/2084. Refused.\n\nLeila Orion, born 01/07/2030\nFamily: Max
+    Orion, husband. Emmy Orion, daughter. Barrett Orion, son, both age 6.\nOccupation:
+    Model, homemaker\nFriendship began, 2048. Relationship began, 2076.\n\nMaxwell
+    Orion, born 12/12/2029\nFamily: Leila Orion, wife. Emmy Orion, daughter, Barrett
+    Orion, son, both age 6. \nOccupation: Head of Legal Affairs, Kaine Industries\nFriendship
+    began, 2048. Employment began, 2057. Employment terminated, 02/10/2085.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -426,8 +437,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -616,7 +627,7 @@ GameObject:
   - component: {fileID: 863724858921435492}
   - component: {fileID: 863724858921435498}
   m_Layer: 0
-  m_Name: KM-2
+  m_Name: KM-23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -696,5 +707,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0423d607eeda4146b67198195241382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clueID: KM-2
+  clueID: KM-23
   closeBtn: {fileID: 863724858558546435}
