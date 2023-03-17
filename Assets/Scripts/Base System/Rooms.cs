@@ -17,31 +17,21 @@ public class Rooms : MonoBehaviour
     public string roomName 
     { get; private set;}
 
-    public int teleportPointCount 
-    { get; private set;}
-
     public int interestPointCount 
     { get; private set;}
 
-    public int doorCount 
-    { get; private set;}
+    public bool allInterestPointsCollected 
+    { get; private set; }
+
 
 
     void Awake()
     {
-        foreach(Transform child in this.transform.GetChild(0))
-        {
-            teleportPointCount++;
-        }
         foreach(Transform child in this.transform.GetChild(1))
         {
             interestPointCount++;
         }
-        foreach(Transform child in this.transform.GetChild(2))
-        {
-            doorCount++;
-        }
-        Debug.Log(roomName + ":\r\n " + "Teleport points: " + teleportPointCount + "   Interest points: " + interestPointCount + "   Doors: " + doorCount);
+        Debug.Log(roomName + ": " + interestPointCount + " interest points");
         if(!firstRoominMemory)
         {            
             this.gameObject.SetActive(false);
