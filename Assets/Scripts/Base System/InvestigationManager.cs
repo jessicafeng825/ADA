@@ -104,7 +104,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         
         BaseUIManager.Instance.SpawnNotificationPanel("Move Area?", "Use 1AP to move area?", 2, -1f);
         NotificationScript.yesButtonEvent.AddListener(() => MoveRoom(room));
-        NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
+        //NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
     }
     private void MoveRoom(Rooms room)
     {
@@ -300,7 +300,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void SynchronizeInterestPoint(string ipName)
     {
-        pv.RPC("UpdateGivenIPCNT", RpcTarget.All, ipName);
+        pv.RPC(nameof(UpdateGivenIPCNT), RpcTarget.All, ipName);
     }
 
     [PunRPC]
@@ -312,7 +312,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     // functions to synchronize whether interest points are active or not
     public void SynchronizeInterestPointStatus(string ipName)
     {
-        pv.RPC("UpdateIPFullyCollected", RpcTarget.All, ipName);
+        pv.RPC(nameof(UpdateIPFullyCollected), RpcTarget.All, ipName);
     }
 
     [PunRPC]
