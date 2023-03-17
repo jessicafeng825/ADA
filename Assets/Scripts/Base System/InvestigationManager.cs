@@ -101,8 +101,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void MoveRoomDialog(Rooms room)
     {
-        
-        BaseUIManager.Instance.SpawnNotificationPanel("Move Area?", "Use 1AP to move area?", 2, -1f);
+        BaseUIManager.Instance.SpawnNotificationPanel(room.roomName, "Use 1AP to move to " + room.roomName +"?", 2, -1f);
         NotificationScript.yesButtonEvent.AddListener(() => MoveRoom(room));
         //NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
     }
