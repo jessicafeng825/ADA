@@ -21,4 +21,31 @@ public class PuzzleInfo : MonoBehaviour
     {
         provideClue, unlockArea, unlockMemory
     }
+
+    protected virtual void PuzzleSolveEffect()
+    {
+        switch (puzzleEffect)
+        {
+            case PuzzleEffect.provideClue:
+                // give clue
+                InvestigationManager.Instance.AddCluePrefab(clueProvided);
+                break;
+
+            case PuzzleEffect.unlockArea:
+                // unlock area
+                break;
+
+            case PuzzleEffect.unlockMemory:
+                // unlock memory, teleport player
+                InvestigationManager.Instance.UnlockMemoryInOverview(unlockedMemory);
+                // TODO: A small bug to fix: right now the teleport is from 1 -> unlocked memory
+                InvestigationManager.Instance.UnlockTeleport(collectedAt, unlockedMemory);
+                break;
+        }
+    }
+    protected void HideThisUI()
+    {
+        gameObject.SetActive(false);
+        BaseUIManager.Instance.HidePuzzleUI();
+    }
 }
