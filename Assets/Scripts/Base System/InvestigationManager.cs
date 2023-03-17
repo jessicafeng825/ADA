@@ -6,7 +6,7 @@ using UnityEngine;
 
 public enum Memory
 {
-    None, Mansion, StreetCorner, LawyerOffice, NightClub, VoidBase
+    None, BishopMemory, Mansion, StreetCorner, LawyerOffice, NightClub, VoidBase
 }
 
 public class InvestigationManager : Singleton<InvestigationManager>
