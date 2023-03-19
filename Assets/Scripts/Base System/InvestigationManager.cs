@@ -111,7 +111,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
         playerController.Instance.currentRoom = room;
         playerController.Instance.currentRoom.gameObject.SetActive(true);
         StartCoroutine(RoomCoroutine(room, 0.5f));
-        playerController.Instance.Change_currentAP(-1);
     }
     IEnumerator RoomCoroutine(Rooms room, float sec)
     {
