@@ -55,12 +55,13 @@ public class Launcher : MonoBehaviourPunCallbacks {
   }
 
   public void SetName() {
-    string name = playerNameInputField.text;
-    if (!string.IsNullOrEmpty(name)) {
+    //string name = playerNameInputField.text;
+    string name = "Player " + Random.Range(0, 1000).ToString();
+        if (!string.IsNullOrEmpty(name)) {
       PhotonNetwork.NickName = name;
       titleWelcomeText.text = $"Welcome, {name}!";
       MenuManager.Instance.OpenMenu("title");
-      playerNameInputField.text = "";
+      //playerNameInputField.text = "";
     } else {
       Debug.Log("No player name entered");
       // TODO: Display an error to the user
@@ -68,14 +69,18 @@ public class Launcher : MonoBehaviourPunCallbacks {
   }
 
   public void CreateRoom() {
-    if (!string.IsNullOrEmpty(roomNameInputField.text)) {
+        string roomName = "Room " + Random.Range(0, 100).ToString();
+        PhotonNetwork.CreateRoom(roomName);
+        MenuManager.Instance.OpenMenu("loading");
+
+/*    if (!string.IsNullOrEmpty(roomNameInputField.text)) {
       PhotonNetwork.CreateRoom(roomNameInputField.text);
       MenuManager.Instance.OpenMenu("loading");
       roomNameInputField.text = "";
     } else {
       Debug.Log("No room name entered");
       // TODO: Display an error to the user
-    }
+    }*/
   }
 
   public override void OnJoinedRoom() {
