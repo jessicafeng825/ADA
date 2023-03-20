@@ -366,11 +366,11 @@ RectTransform:
   m_Father: {fileID: 863724858921435493}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -602.5198}
-  m_SizeDelta: {x: -100, y: -1482.9395}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 980, y: 700}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &863724858591048519
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -399,14 +399,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\"Experiment Report:\nSubject1: \n21:00 Experiment start\n21:18 Uncontrollable
-    epilepsy\n21:29 Death from a heart attack\nSubject2:\n21:00 Experiment start\n21:07
-    Fainted\n21:25 Extreme traumatic shock, leading to cardiac arrest\nSubject3:\n21:00
-    Experiment Start\n21:21 Stable connection\n21:42 Stable connection\n22:12 Extreme
-    muscle spasm\n22:15 Congestive heart failure, the first defibrillation 120J\n22:18
-    Second defibrillation 150J\n22:20 Second defibrillation 200J\n22:25 Second defibrillation
-    300J\n22:26 Defibrillation success, subject paralyzed unsuitable for further
-    experiement\""
+  m_text: "\"Experiment Report:\n\tSubject1: \n\t\t21:00 Experiment start\n\t\t21:18
+    Uncontrollable epilepsy\n\t\t21:29 Death from a heart attack\n\tSubject2:\n\t\t21:00
+    Experiment start\n\t\t21:07 Fainted\n\t\t21:25 Extreme traumatic shock, leading
+    to cardiac arrest\n\tSubject3:\n\t\t21:00 Experiment Start\n\t\t21:21 Stable
+    connection\n\t\t21:42 Stable connection\n\t\t22:12 Extreme muscle spasm\n\t\t22:15
+    Congestive heart failure, the first defibrillation 120J\n\t\t22:18 Second defibrillation
+    150J\n\t\t22:20 Second defibrillation 200J\n\t\t22:25 Second defibrillation 300J\n\t\t22:26
+    Defibrillation success, subject paralyzed unsuitable for \n\t\t\tfurther experiement\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -433,14 +433,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
