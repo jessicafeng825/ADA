@@ -35,6 +35,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
                 unableMenuList[i].Close();
             }
         }
+        SetName();
   }
 
   public override void OnConnectedToMaster() {
