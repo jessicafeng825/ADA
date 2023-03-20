@@ -19,14 +19,22 @@ public class Launcher : MonoBehaviourPunCallbacks {
   [SerializeField] GameObject playerListItemPrefab;
   [SerializeField] GameObject startGameButton;
   [SerializeField] TMP_Text errorText;
+  [SerializeField] public Menu[] unableMenuList;
 
-  private void Awake() {
+    private void Awake() {
     Instance = this;
-  }
+    }
 
   private void Start() {
     Debug.Log("Connecting to master...");
     PhotonNetwork.ConnectUsingSettings();
+        for (int i = 0; i < unableMenuList.Length; i++)
+        {
+            if (unableMenuList[i].open)
+            {
+                unableMenuList[i].Close();
+            }
+        }
   }
 
   public override void OnConnectedToMaster() {
