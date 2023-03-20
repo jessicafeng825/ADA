@@ -28,6 +28,6 @@ public class ClueInfo : MonoBehaviour
 
     private void ShareThisClue()
     {
-
+        DetectiveBoardManager.Instance.ShareClue(clueID);
     }
 }

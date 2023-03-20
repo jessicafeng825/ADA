@@ -59,7 +59,7 @@ public class TimerManager : MonoBehaviour
             gamePhaseTimer -= Time.deltaTime;
             if(time != lastUpdateTime)
             {
-                Debug.Log(time);
+                //Debug.Log(time);
                 pv.RPC(nameof(SyncTimer), RpcTarget.Others, publicStageNow.ToString(), time);
                 lastUpdateTime = time;
             }
