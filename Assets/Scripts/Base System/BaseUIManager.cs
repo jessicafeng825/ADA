@@ -35,7 +35,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();
 
     [SerializeField]
-    private GameObject MapOverview;
+    private GameObject MemoryOverview;
 
     public void Start()
     {
@@ -122,7 +122,8 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     public void InitializeCharacterUI()
     {
-        playerPanel.transform.Find("MainMenu").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
+        playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
+        playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
         charaterPanel.transform.Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
         charaterPanel.transform.Find("Description").GetChild(1).GetComponent<TMP_Text>().text = playerController.Instance.playerBackground;
         charaterPanel.transform.Find("Relationship").GetChild(1).GetComponent<TMP_Text>().text = "Relationship";
@@ -133,14 +134,57 @@ public class BaseUIManager : Singleton<BaseUIManager>
         playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("APpoints").GetChild(1).GetComponent<TMP_Text>().text = num.ToString() + "AP";
     }
 
+    public void ClickMemoryOverview()
+    {
+        if (MemoryOverview.activeSelf)
+        {
+            MemoryOverview.SetActive(false);
+        }
+        else MemoryOverview.SetActive(true);
+    }
+
     public void ClickMapOverview()
     {
-        if (MapOverview.activeSelf)
+        foreach (Transform room in playerController.Instance.currentMemory.transform)
         {
-            MapOverview.SetActive(false);
+            if(room.GetComponent<Rooms>().midRoom)
+                continue;
+            room.gameObject.SetActive(true);
+            room.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            room.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            room.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            room.GetComponent<CanvasGroup>().alpha = 1;
+            room.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            room.transform.localScale = Vector3.one;
         }
-        else MapOverview.SetActive(true);
+        playerController.Instance.currentMemory.localPosition = -playerController.Instance.currentMemory.GetChild(0).localPosition;
+        float scale = playerController.Instance.currentMemory.GetChild(0).transform.GetComponent<Rooms>().roomScale;
+        playerController.Instance.currentMemory.localScale = Vector3.one * scale;
     }
+    public void CloseMapOverview()
+    {
+        foreach (Transform room in playerController.Instance.currentMemory.transform)
+        {
+            if(room.GetComponent<Rooms>().midRoom)
+                continue;
+            if(room.GetComponent<Rooms>().roomName == playerController.Instance.currentRoom.roomName)
+            {
+                room.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                room.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                room.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                room.transform.localScale = Vector3.one * playerController.Instance.currentRoom.roomScale;
+                continue;
+            }
+            room.gameObject.SetActive(false);
+            room.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            room.GetComponent<CanvasGroup>().alpha = 1;
+            room.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            room.transform.localScale = Vector3.one;
+        }
+        playerController.Instance.currentMemory.localPosition = -playerController.Instance.currentRoom.transform.localPosition;
+        playerController.Instance.currentMemory.localScale = Vector3.one;
+    }
+
 
     // Just for temporary use to solve the UI bug
     IEnumerator showshowway(GameObject panel)

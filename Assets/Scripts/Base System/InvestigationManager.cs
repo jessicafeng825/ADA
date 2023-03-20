@@ -107,22 +107,46 @@ public class InvestigationManager : Singleton<InvestigationManager>
     }
     private void MoveRoom(Rooms room)
     {
-        playerController.Instance.currentRoom.gameObject.SetActive(false);
+        Rooms oldRoom = playerController.Instance.currentRoom;
         playerController.Instance.currentRoom = room;
         playerController.Instance.currentRoom.gameObject.SetActive(true);
-        StartCoroutine(RoomCoroutine(room, 0.5f));
+        playerController.Instance.currentRoom.transform.GetChild(0).gameObject.SetActive(true);
+        playerController.Instance.currentRoom.transform.GetChild(1).gameObject.SetActive(true);
+        playerController.Instance.currentRoom.transform.GetChild(2).gameObject.SetActive(true);
+        playerController.Instance.currentRoom.GetComponent<CanvasGroup>().interactable = true;
+        playerController.Instance.currentRoom.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        StartCoroutine(RoomCoroutine(oldRoom, room, 0.5f));
     }
-    IEnumerator RoomCoroutine(Rooms room, float sec)
+    IEnumerator RoomCoroutine(Rooms oldroom, Rooms newroom, float sec)
     {
         float time = 0f;
         Vector2 startPos = playerController.Instance.currentMemory.localPosition;
+
+        Vector3 oldstartScale = newroom.transform.localScale;
+        float oldalpha = 1f;
+        Vector3 newstartScale = newroom.transform.localScale;
+        float newalpha = 0f;
         while(time <= sec)
         {
-            playerController.Instance.currentMemory.localPosition = Vector2.Lerp(startPos, -room.transform.localPosition, time/sec);
+            playerController.Instance.currentMemory.localPosition = Vector2.Lerp(startPos, -newroom.transform.localPosition, time/sec);
+            oldroom.transform.localScale = Vector3.Lerp(oldstartScale, new Vector3(oldroom.roomScale, oldroom.roomScale, oldroom.roomScale), time/sec);
+            oldroom.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(oldalpha, 0f, time/sec);
+            newroom.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(newalpha, 1f, time/sec);
+            newroom.transform.localScale = Vector3.Lerp(newstartScale, new Vector3(newroom.roomScale, newroom.roomScale, newroom.roomScale), time/sec);
             time +=Time.deltaTime;
             yield return null;
         }
-        playerController.Instance.currentMemory.localPosition = -room.transform.localPosition;
+        playerController.Instance.currentMemory.localPosition = -newroom.transform.localPosition;
+        oldroom.transform.localScale = new Vector3(oldroom.roomScale, oldroom.roomScale, oldroom.roomScale);
+        oldroom.transform.GetChild(0).gameObject.SetActive(false);
+        oldroom.transform.GetChild(1).gameObject.SetActive(false);
+        oldroom.transform.GetChild(2).gameObject.SetActive(false);
+        oldroom.GetComponent<CanvasGroup>().alpha = 0f;
+        oldroom.GetComponent<CanvasGroup>().interactable = false;
+        oldroom.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        oldroom.gameObject.SetActive(false);
+        newroom.transform.localScale = new Vector3(newroom.roomScale, newroom.roomScale, newroom.roomScale);
+        newroom.GetComponent<CanvasGroup>().alpha = 1f;
     }
     #endregion
 
@@ -250,6 +274,16 @@ public class InvestigationManager : Singleton<InvestigationManager>
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
         MemoryUI_Dic[toMemory.ToString()].SetActive(true);
         playerController.Instance.currentMemory = MemoryUI_Dic[toMemory.ToString()].GetComponent<Transform>();
+        Component[] tempRooms = playerController.Instance.currentMemory.GetComponentsInChildren<Rooms>();
+        foreach(Rooms room in tempRooms)
+        {
+            if (room.firstRoominMemory)
+            {
+                Debug.Log("First room: " + room.roomName);
+                playerController.Instance.currentRoom = room;
+                break;
+            }
+        }
     }
 
     #endregion
