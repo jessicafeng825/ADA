@@ -12,6 +12,10 @@ public enum Memory
 public class InvestigationManager : Singleton<InvestigationManager>
 {
     #region Parameters: Movement
+
+    
+    [SerializeField]
+    private GameObject PCMap;
     //New map movement
     [SerializeField]
     private Transform startMemory;
@@ -108,7 +112,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void MoveRoom(Rooms room)
     {
         Rooms oldRoom = playerController.Instance.currentRoom;
+        pv.RPC(nameof(PCMapUpdate), RpcTarget.MasterClient, playerController.Instance.currentMemory.transform.name, oldRoom.name, -1);
         playerController.Instance.currentRoom = room;
+        pv.RPC(nameof(PCMapUpdate), RpcTarget.MasterClient, playerController.Instance.currentMemory.transform.name, room.name, 1);
         playerController.Instance.currentRoom.gameObject.SetActive(true);
         playerController.Instance.currentRoom.transform.GetChild(0).gameObject.SetActive(true);
         playerController.Instance.currentRoom.transform.GetChild(1).gameObject.SetActive(true);
@@ -148,6 +154,33 @@ public class InvestigationManager : Singleton<InvestigationManager>
         newroom.transform.localScale = new Vector3(newroom.roomScale, newroom.roomScale, newroom.roomScale);
         newroom.GetComponent<CanvasGroup>().alpha = 1f;
     }
+    [PunRPC]
+    public void PCMapUpdate(string memory, string room, int num)
+    {
+        foreach(Transform mem in PCMap.transform)
+        {
+            if(mem.gameObject.name == memory)
+            {
+                foreach(Transform r in mem)
+                {
+                    if(r.gameObject.name == room)
+                    {
+                        r.GetComponent<PCMapRoom>().PlayerCount += num;
+                        switch(num)
+                        {
+                            case 1:
+                                r.GetChild(0).GetChild(r.GetComponent<PCMapRoom>().PlayerCount - 1).gameObject.SetActive(true);
+                                break;
+                            case -1:
+                                r.GetChild(0).GetChild(r.GetComponent<PCMapRoom>().PlayerCount).gameObject.SetActive(false);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     #endregion
 
     #region Clue Related Functions
@@ -274,6 +307,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
         MemoryUI_Dic[toMemory.ToString()].SetActive(true);
         playerController.Instance.currentMemory = MemoryUI_Dic[toMemory.ToString()].GetComponent<Transform>();
+        foreach(Transform room in playerController.Instance.currentMemory)
+        {
+            if(room.gameObject.name == "FirstRoom")
+            {
+                playerController.Instance.currentRoom = room.GetComponent<Rooms>();
+            }
+        }
         Component[] tempRooms = playerController.Instance.currentMemory.GetComponentsInChildren<Rooms>();
         foreach(Rooms room in tempRooms)
         {
