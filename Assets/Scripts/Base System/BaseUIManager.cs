@@ -12,7 +12,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     [SerializeField]
     private GameObject charaterPanel;
     // use this for a while, till Hui finish the MenuManager part
-    [SerializeField]
+/*    [SerializeField]
     private GameObject clueInfoNoPicPanel, clueInfoPicPanel;
 
     [SerializeField]
@@ -22,8 +22,12 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private TMP_Text clueDescripText, clueDescripPicText;
 
     [SerializeField]
-    private Image cluePicHolder;
-    
+    private Image cluePicHolder;*/
+
+    [SerializeField]
+    private GameObject clueInfoMenu;
+    private GameObject tempClue;
+    private Dictionary<string, GameObject> inSceneClues = new Dictionary<string, GameObject>();
 
     [SerializeField]
     private GameObject puzzleInfoMenu;
@@ -31,7 +35,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();
 
     [SerializeField]
-    private GameObject MapOverview;
+    private GameObject MemoryOverview;
 
     public void Start()
     {
@@ -40,34 +44,25 @@ public class BaseUIManager : Singleton<BaseUIManager>
         InitializeCharacterUI();
     }
     #region Clue UI Related Functions
-    // function: show clue information panel with no picture 
-    public void ShowClueInfoNoPicture(string clueName, string clueTitle, string clueDescrip)
+    public void ShowClueUI(string clueID)
     {
-        clueNameText.text = clueTitle;
-        clueDescripText.text = clueDescrip;
-        clueInfoNoPicPanel.SetActive(true);
-        StartCoroutine(showshowway(clueInfoNoPicPanel));
+        if (inSceneClues.ContainsKey(clueID))
+        {
+            inSceneClues[clueID].SetActive(true);
+        }
+        else
+        {
+            tempClue = Instantiate(ResourceManager.Instance.GetClueInfo(clueID));
+            tempClue.GetComponent<Transform>().SetParent(clueInfoMenu.GetComponent<Transform>(), false);
+            inSceneClues.Add(clueID, tempPuzzle);
+        }
+
+        clueInfoMenu.SetActive(true);
     }
 
-    // function: show clue information panel with picture 
-    public void ShowClueInfoWithPicture(string clueName, string clueTitle, string clueDescrip)
+    public void HideClueUI()
     {
-        clueNamePicText.text = clueTitle;
-        clueDescripPicText.text = clueDescrip;
-        cluePicHolder.sprite = ResourceManager.Instance.GetCluePic(clueName);
-        StartCoroutine(showshowway(clueInfoPicPanel));
-    }
-
-    // function: hide clue information panel with no picture 
-    public void HideCLueInfoNoPicture()
-    {
-        clueInfoNoPicPanel.SetActive(false);
-    }
-
-    // function: hide clue information panel with picture 
-    public void HideClueInfoWithPicture()
-    {
-        clueInfoPicPanel.SetActive(false);
+        clueInfoMenu.SetActive(false);
     }
     #endregion
 
@@ -127,7 +122,8 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     public void InitializeCharacterUI()
     {
-        playerPanel.transform.Find("MainMenu").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
+        playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
+        playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
         charaterPanel.transform.Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
         charaterPanel.transform.Find("Description").GetChild(1).GetComponent<TMP_Text>().text = playerController.Instance.playerBackground;
         charaterPanel.transform.Find("Relationship").GetChild(1).GetComponent<TMP_Text>().text = "Relationship";
@@ -138,14 +134,57 @@ public class BaseUIManager : Singleton<BaseUIManager>
         playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("APpoints").GetChild(1).GetComponent<TMP_Text>().text = num.ToString() + "AP";
     }
 
+    public void ClickMemoryOverview()
+    {
+        if (MemoryOverview.activeSelf)
+        {
+            MemoryOverview.SetActive(false);
+        }
+        else MemoryOverview.SetActive(true);
+    }
+
     public void ClickMapOverview()
     {
-        if (MapOverview.activeSelf)
+        foreach (Transform room in playerController.Instance.currentMemory.transform)
         {
-            MapOverview.SetActive(false);
+            if(room.GetComponent<Rooms>().midRoom)
+                continue;
+            room.gameObject.SetActive(true);
+            room.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            room.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            room.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            room.GetComponent<CanvasGroup>().alpha = 1;
+            room.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            room.transform.localScale = Vector3.one;
         }
-        else MapOverview.SetActive(true);
+        playerController.Instance.currentMemory.localPosition = -playerController.Instance.currentMemory.GetChild(0).localPosition;
+        float scale = playerController.Instance.currentMemory.GetChild(0).transform.GetComponent<Rooms>().roomScale;
+        playerController.Instance.currentMemory.localScale = Vector3.one * scale;
     }
+    public void CloseMapOverview()
+    {
+        foreach (Transform room in playerController.Instance.currentMemory.transform)
+        {
+            if(room.GetComponent<Rooms>().midRoom)
+                continue;
+            if(room.GetComponent<Rooms>().roomName == playerController.Instance.currentRoom.roomName)
+            {
+                room.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                room.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                room.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                room.transform.localScale = Vector3.one * playerController.Instance.currentRoom.roomScale;
+                continue;
+            }
+            room.gameObject.SetActive(false);
+            room.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            room.GetComponent<CanvasGroup>().alpha = 1;
+            room.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            room.transform.localScale = Vector3.one;
+        }
+        playerController.Instance.currentMemory.localPosition = -playerController.Instance.currentRoom.transform.localPosition;
+        playerController.Instance.currentMemory.localScale = Vector3.one;
+    }
+
 
     // Just for temporary use to solve the UI bug
     IEnumerator showshowway(GameObject panel)

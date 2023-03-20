@@ -42,7 +42,7 @@ public class CaesarCipher : PuzzleInfo
             {
                 // entered answer correct
                 Debug.Log("correct");
-                // TODO: Hide UI, Mark this puzzle with "solved";
+                // Hide UI, Mark this puzzle with "solved";
                 InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
                 // Trigger puzzle effect (unlock or clue)
                 PuzzleSolveEffect();
@@ -53,33 +53,5 @@ public class CaesarCipher : PuzzleInfo
                 Debug.Log("entered answer is wrong");
             }
         }
-    }
-
-    private void PuzzleSolveEffect()
-    {
-        switch (puzzleEffect)
-        {
-            case PuzzleEffect.provideClue:
-                // give clue
-                InvestigationManager.Instance.AddCluePrefab(clueProvided);
-                break;
-
-            case PuzzleEffect.unlockArea:
-                // unlock area
-                break;
-
-            case PuzzleEffect.unlockMemory:
-                // unlock memory, teleport player
-                InvestigationManager.Instance.UnlockMemoryInOverview(unlockedMemory);
-                // TODO: A small bug to fix: right now the teleport is from 1 -> unlocked memory
-                InvestigationManager.Instance.UnlockTeleport(collectedAt, unlockedMemory);
-                break;
-        }
-    }
-
-    private void HideThisUI()
-    {
-        gameObject.SetActive(false);
-        BaseUIManager.Instance.HidePuzzleUI();
     }
 }

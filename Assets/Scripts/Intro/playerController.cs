@@ -20,6 +20,8 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     [SerializeField] public Sprite playerImage;//player Image
     public int maxAP;
     public int currentAP;
+    public Rooms currentRoom;
+    public Transform currentMemory;
     private PhotonView pv;
 
     private void Awake()

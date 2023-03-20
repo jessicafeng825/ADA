@@ -15,7 +15,12 @@ public class InterestPointInfo : MonoBehaviour
     public class InterestPoint
     {
         public string id;
-        public bool isClue;
+        public ipType type;
+    }
+
+    public enum ipType
+    {
+        Clue, Puzzle, Item
     }
 
     private void Start()
@@ -32,12 +37,12 @@ public class InterestPointInfo : MonoBehaviour
     {
         if (cnt_current < collectableList.Count)
         {
-            if (collectableList[cnt_current].isClue)
+            if (collectableList[cnt_current].type == ipType.Clue)
             {
                 BaseUIManager.Instance.SpawnNotificationPanel("Clue Found!", "You have found a clue!", 1, 3f);
                 InvestigationManager.Instance.AddCluePrefab(collectableList[cnt_current].id);
             }
-            else
+            else if (collectableList[cnt_current].type == ipType.Puzzle)
             {
                 BaseUIManager.Instance.SpawnNotificationPanel("Puzzle Found!", "You have found a puzzle!", 1, 3f);
                 InvestigationManager.Instance.AddPuzzlePrefab(collectableList[cnt_current].id);
@@ -47,7 +52,6 @@ public class InterestPointInfo : MonoBehaviour
             // If the current clue is the last one, inactivate the interest point
             if (cnt_current == collectableList.Count - 1)
             {
-                Debug.Log("disappear!");
                 InvestigationManager.Instance.SynchronizeInterestPointStatus(name);
             }
 

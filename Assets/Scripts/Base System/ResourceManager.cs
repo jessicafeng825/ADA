@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
-    private Dictionary<string, GameObject> clueInBagDic = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> clueInfoDic = new Dictionary<string, GameObject>();
+    private Dictionary<string, Sprite> clueBtnPicsDic = new Dictionary<string, Sprite>();
+    private GameObject tempClueBtn;
+
     public int allClueCount;
-    private Dictionary<string, GameObject> puzzleInBagDic = new Dictionary<string, GameObject>();
-    private Dictionary<string, Sprite> cluePicsDic = new Dictionary<string, Sprite>();
+    private Dictionary<string, GameObject> puzzleBtnDic = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> puzzleInteractionDic = new Dictionary<string, GameObject>();
+
     private Dictionary<string, GameObject> uiElements = new Dictionary<string, GameObject>();
 
     void Start()
     {
-        LoadAllClueBtns();
-        LoadAllPics();
+        LoadClueBtnTemplate();
+        LoadAllClueInfos();
+        LoadAllClueBtnPics();
 
         LoadAllPuzzleBtns();
         LoadAllPuzzleInteractions();
@@ -22,45 +27,50 @@ public class ResourceManager : Singleton<ResourceManager>
         LoadUIElements();
     }
 
-    private void LoadAllClueBtns()
+    private void LoadClueBtnTemplate()
     {
-        foreach (GameObject cluePrefab in Resources.LoadAll("CluesRelated/ClueBtns/"))
+        tempClueBtn = Resources.Load<GameObject>("CluesRelated/clueBtnTemplate");
+    }
+
+    private void LoadAllClueBtnPics()
+    {
+        foreach (Sprite clueBtnPic in Resources.LoadAll<Sprite>("CluesRelated/CluePics/"))
         {
-            allClueCount++;
-            clueInBagDic.Add(cluePrefab.GetComponent<ClueInfo>().GetClueID(), cluePrefab);
+            clueBtnPicsDic.Add(clueBtnPic.name, clueBtnPic);
         }
-        Debug.Log("All clue count: " + allClueCount);
     }
 
     public GameObject GetClueBtn(string clueID)
     {
-        return clueInBagDic[clueID];
+        tempClueBtn.GetComponent<Image>().sprite = clueBtnPicsDic[clueID];
+        tempClueBtn.GetComponent<ClueBtn>().SetClueID(clueID);
+        return tempClueBtn;
+    }
+
+    private void LoadAllClueInfos()
+    {
+        foreach (GameObject clueInfo in Resources.LoadAll("CluesRelated/ClueInfos/"))
+        {
+            clueInfoDic.Add(clueInfo.GetComponent<ClueInfo>().GetClueID(), clueInfo);
+        }
+    }
+
+    public GameObject GetClueInfo(string clueID)
+    {
+        return clueInfoDic[clueID];
     }
 
     private void LoadAllPuzzleBtns()
     {
         foreach (GameObject puzzlePrefab in Resources.LoadAll("PuzzlesRelated/PuzzleBtns/"))
         {
-            puzzleInBagDic.Add(puzzlePrefab.GetComponent<PuzzleBtn>().GetPuzzleID(), puzzlePrefab);
+            puzzleBtnDic.Add(puzzlePrefab.GetComponent<PuzzleBtn>().GetPuzzleID(), puzzlePrefab);
         }
     }
 
     public GameObject GetPuzzleBtn(string puzzleID)
     {
-        return puzzleInBagDic[puzzleID];
-    }
-
-    private void LoadAllPics()
-    {
-        foreach (Sprite cluePic in Resources.LoadAll<Sprite>("CluesRelated/CluePics/"))
-        {
-            cluePicsDic.Add(cluePic.name, cluePic);
-        }
-    }
-
-    public Sprite GetCluePic(string clueName)
-    {
-        return cluePicsDic[clueName];
+        return puzzleBtnDic[puzzleID];
     }
 
     private void LoadAllPuzzleInteractions()

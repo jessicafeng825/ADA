@@ -9,7 +9,7 @@ public class TeleportInfo : MonoBehaviour
 
     public void TeleportTriggered()
     {
-        InvestigationManager.Instance.TeleportToFrom(teleportFromMemory, teleportToMemory);
+        InvestigationManager.Instance.SpawnTelepoetDialog("To " + teleportToMemory.ToString(), "Do you want to move from " + teleportFromMemory.ToString() + " to " + teleportToMemory.ToString() + "?",teleportFromMemory, teleportToMemory);
         Debug.Log("teleport succeed");
     }
 }
