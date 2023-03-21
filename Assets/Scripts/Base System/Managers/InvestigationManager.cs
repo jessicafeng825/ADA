@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -112,24 +113,39 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void MoveRoom(Rooms room)
     {
         Rooms oldRoom = playerController.Instance.currentRoom;
+
+        //Update PC Map room player count
         pv.RPC(nameof(PCMapUpdate), RpcTarget.MasterClient, playerController.Instance.currentMemory.transform.name, oldRoom.name, -1);
-        playerController.Instance.currentRoom = room;
         pv.RPC(nameof(PCMapUpdate), RpcTarget.MasterClient, playerController.Instance.currentMemory.transform.name, room.name, 1);
-        playerController.Instance.currentRoom.gameObject.SetActive(true);
-        playerController.Instance.currentRoom.transform.GetChild(0).gameObject.SetActive(true);
-        playerController.Instance.currentRoom.transform.GetChild(1).gameObject.SetActive(true);
-        playerController.Instance.currentRoom.transform.GetChild(2).gameObject.SetActive(true);
-        playerController.Instance.currentRoom.GetComponent<CanvasGroup>().interactable = true;
-        playerController.Instance.currentRoom.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        //Update player's current room
+        playerController.Instance.currentRoom = room;
         StartCoroutine(RoomCoroutine(oldRoom, room, 0.5f));
+    }
+    private void ActivateRoom(Rooms room)
+    {
+        room.gameObject.SetActive(true);
+        room.GetComponent<CanvasGroup>().interactable = true;
+        room.GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }
+    private void DeActivateRoom(Rooms room)
+    {
+        room.gameObject.SetActive(false);
+        room.GetComponent<CanvasGroup>().interactable = false;
+        room.GetComponent<CanvasGroup>().blocksRaycasts = false;        
     }
     IEnumerator RoomCoroutine(Rooms oldroom, Rooms newroom, float sec)
     {
+        ActivateRoom(newroom);
         float time = 0f;
+        //Memory map starting position
         Vector2 startPos = playerController.Instance.currentMemory.localPosition;
 
+        //Original old room scale & alpha
         Vector3 oldstartScale = newroom.transform.localScale;
         float oldalpha = 1f;
+        
+        //Original new room scale & alpha
         Vector3 newstartScale = newroom.transform.localScale;
         float newalpha = 0f;
         while(time <= sec)
@@ -144,13 +160,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
         playerController.Instance.currentMemory.localPosition = -newroom.transform.localPosition;
         oldroom.transform.localScale = new Vector3(oldroom.roomScale, oldroom.roomScale, oldroom.roomScale);
-        oldroom.transform.GetChild(0).gameObject.SetActive(false);
-        oldroom.transform.GetChild(1).gameObject.SetActive(false);
-        oldroom.transform.GetChild(2).gameObject.SetActive(false);
         oldroom.GetComponent<CanvasGroup>().alpha = 0f;
-        oldroom.GetComponent<CanvasGroup>().interactable = false;
-        oldroom.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        oldroom.gameObject.SetActive(false);
+        DeActivateRoom(oldroom);
         newroom.transform.localScale = new Vector3(newroom.roomScale, newroom.roomScale, newroom.roomScale);
         newroom.GetComponent<CanvasGroup>().alpha = 1f;
     }
@@ -166,17 +177,15 @@ public class InvestigationManager : Singleton<InvestigationManager>
                     if(r.gameObject.name == room)
                     {
                         r.GetComponent<PCMapRoom>().PlayerCount += num;
-                        switch(num)
-                        {
-                            case 1:
-                                r.GetChild(0).GetChild(r.GetComponent<PCMapRoom>().PlayerCount - 1).gameObject.SetActive(true);
-                                break;
-                            case -1:
-                                r.GetChild(0).GetChild(r.GetComponent<PCMapRoom>().PlayerCount).gameObject.SetActive(false);
-                                break;
-                        }
+                        if(r.GetComponent<PCMapRoom>().PlayerCount == 0)
+                            r.GetComponent<PCMapRoom>().transform.Find("Number").gameObject.SetActive(false);
+                        else
+                            r.GetComponent<PCMapRoom>().transform.Find("Number").gameObject.SetActive(true);
+                            r.GetComponent<PCMapRoom>().transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
+                        break;                        
                     }
                 }
+                break;
             }
         }
     }

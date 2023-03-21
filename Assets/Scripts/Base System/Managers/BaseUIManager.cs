@@ -143,23 +143,19 @@ public class BaseUIManager : Singleton<BaseUIManager>
         else MemoryOverview.SetActive(true);
     }
 
+    //Zoom out to view the full map of the current lovated memory
     public void ClickMapOverview()
     {
         foreach (Transform room in playerController.Instance.currentMemory.transform)
         {
             if(room.GetComponent<Rooms>().midRoom)
                 continue;
-            room.gameObject.SetActive(true);
-            room.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            room.gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            room.gameObject.transform.GetChild(2).gameObject.SetActive(false);
-            room.GetComponent<CanvasGroup>().alpha = 1;
-            room.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            room.transform.localScale = Vector3.one;
+            OpenRoom(room.GetComponent<Rooms>());
         }
-        playerController.Instance.currentMemory.localPosition = -playerController.Instance.currentMemory.GetChild(0).localPosition;
-        float scale = playerController.Instance.currentMemory.GetChild(0).transform.GetComponent<Rooms>().roomScale;
-        playerController.Instance.currentMemory.localScale = Vector3.one * scale;
+        Vector3 midPos = -playerController.Instance.currentMemory.GetChild(0).transform.position;
+        Vector3 midScale = Vector3.one * playerController.Instance.currentMemory.GetChild(0).transform.GetComponent<Rooms>().roomScale;
+        playerController.Instance.currentMemory.localPosition = midPos;
+        playerController.Instance.currentMemory.localScale = midScale;
     }
     public void CloseMapOverview()
     {
@@ -167,22 +163,38 @@ public class BaseUIManager : Singleton<BaseUIManager>
         {
             if(room.GetComponent<Rooms>().midRoom)
                 continue;
+
+            CloseRoom(room.GetComponent<Rooms>());
             if(room.GetComponent<Rooms>().roomName == playerController.Instance.currentRoom.roomName)
             {
-                room.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                room.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                room.gameObject.SetActive(true);
+                room.GetComponent<CanvasGroup>().alpha = 1;
                 room.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 room.transform.localScale = Vector3.one * playerController.Instance.currentRoom.roomScale;
                 continue;
             }
-            room.gameObject.SetActive(false);
-            room.gameObject.transform.GetChild(1).gameObject.SetActive(false);
-            room.GetComponent<CanvasGroup>().alpha = 1;
-            room.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            room.transform.localScale = Vector3.one;
         }
-        playerController.Instance.currentMemory.localPosition = -playerController.Instance.currentRoom.transform.localPosition;
+        Vector3 currentRoomPos = -playerController.Instance.currentRoom.transform.localPosition;
+        playerController.Instance.currentMemory.localPosition = currentRoomPos;
         playerController.Instance.currentMemory.localScale = Vector3.one;
+    }
+    private void OpenRoom(Rooms room)
+    {
+        room.gameObject.SetActive(true);
+        room.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        room.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+        room.GetComponent<CanvasGroup>().alpha = 1;
+        room.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        room.transform.localScale = Vector3.one;
+    }
+    private void CloseRoom(Rooms room)
+    {
+        room.gameObject.SetActive(false);
+        room.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        room.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+        room.GetComponent<CanvasGroup>().alpha = 0;
+        room.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        room.transform.localScale = Vector3.one;
     }
 
 
