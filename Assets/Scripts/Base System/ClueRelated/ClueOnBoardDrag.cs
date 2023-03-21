@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ClueOnBoardDrag : MonoBehaviour
 {
+    private string clueID;
+
     [SerializeField]
     private Canvas canvas;
     private Vector2 newPosition;
@@ -42,5 +44,15 @@ public class ClueOnBoardDrag : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void SetClueID(string givenClueID)
+    {
+        clueID = givenClueID;
+    }
+
+    public string GetClueID()
+    {
+        return clueID;
     }
 }

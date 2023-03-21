@@ -40,6 +40,11 @@ public class ResourceManager : Singleton<ResourceManager>
         }
     }
 
+    public Sprite GetCluePic(string clueID)
+    {
+        return clueBtnPicsDic[clueID];
+    }
+
     public GameObject GetClueBtn(string clueID)
     {
         tempClueBtn.GetComponent<Image>().sprite = clueBtnPicsDic[clueID];

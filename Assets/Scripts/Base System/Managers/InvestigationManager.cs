@@ -196,7 +196,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     // function: when player click on interest point, add a clue to their clue base
     public void AddCluePrefab(string clueID)
     {
-        tempClue = (GameObject)Instantiate(ResourceManager.Instance.GetClueBtn(clueID));
+        tempClue = Instantiate(ResourceManager.Instance.GetClueBtn(clueID));
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true);
         playerController.Instance.Change_currentAP(-1);
         ResourceManager.Instance.allClueCount --;
