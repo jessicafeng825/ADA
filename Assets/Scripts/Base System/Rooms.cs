@@ -49,9 +49,6 @@ public class Rooms : MonoBehaviour
             this.GetComponent<CanvasGroup>().alpha = 0;
             this.GetComponent<CanvasGroup>().interactable = false;
             this.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            this.transform.GetChild(0).gameObject.SetActive(false);
-            this.transform.GetChild(1).gameObject.SetActive(false);
-            this.transform.GetChild(2).gameObject.SetActive(false);
             this.gameObject.SetActive(false);
         }
     }

@@ -152,7 +152,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
                 continue;
             OpenRoom(room.GetComponent<Rooms>());
         }
-        Vector3 midPos = -playerController.Instance.currentMemory.GetChild(0).transform.position;
+        Vector3 midPos = -playerController.Instance.currentMemory.GetChild(0).transform.localPosition;
         Vector3 midScale = Vector3.one * playerController.Instance.currentMemory.GetChild(0).transform.GetComponent<Rooms>().roomScale;
         playerController.Instance.currentMemory.localPosition = midPos;
         playerController.Instance.currentMemory.localScale = midScale;
@@ -170,6 +170,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
                 room.gameObject.SetActive(true);
                 room.GetComponent<CanvasGroup>().alpha = 1;
                 room.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                room.GetComponent<CanvasGroup>().interactable = true;
                 room.transform.localScale = Vector3.one * playerController.Instance.currentRoom.roomScale;
                 continue;
             }
@@ -185,15 +186,17 @@ public class BaseUIManager : Singleton<BaseUIManager>
         room.gameObject.transform.GetChild(2).gameObject.SetActive(false);
         room.GetComponent<CanvasGroup>().alpha = 1;
         room.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        room.GetComponent<CanvasGroup>().interactable = false;
         room.transform.localScale = Vector3.one;
     }
     private void CloseRoom(Rooms room)
     {
-        room.gameObject.SetActive(false);
         room.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         room.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+        room.gameObject.SetActive(false);
         room.GetComponent<CanvasGroup>().alpha = 0;
         room.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        room.GetComponent<CanvasGroup>().interactable = false;
         room.transform.localScale = Vector3.one;
     }
 
