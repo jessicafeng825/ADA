@@ -82,7 +82,7 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         foreach (GameObject puzzleInteraction in Resources.LoadAll("PuzzlesRelated/PuzzleInteractions/"))
         {
-            puzzleInteractionDic.Add(puzzleInteraction.GetComponent<PuzzleInfo>().GetPuzzleID(), puzzleInteraction);
+            puzzleInteractionDic.Add(puzzleInteraction.name, puzzleInteraction);
         }
     }
 
