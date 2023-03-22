@@ -13,6 +13,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
     
     [SerializeField]
     private GameObject PCMap;
+
+    private List<PCMapRoom> PCMapRooms = new List<PCMapRoom>();
+
     //New map movement
     [SerializeField]
     private Transform startMemory;
@@ -72,6 +75,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
         playerController.Instance.currentRoom = startRoom;
         playerController.Instance.currentMemory = startMemory;
+
+        //Initialize PC Map
+        PCMapInitialize();
     }
     private void OnEnable() 
     {
@@ -162,26 +168,33 @@ public class InvestigationManager : Singleton<InvestigationManager>
         newroom.GetComponent<CanvasGroup>().alpha = 1f;
     }
     [PunRPC]
-    public void PCMapUpdate(string memory, string room, int num)
+    public void PCMapUpdate(Memory memory, string room, int num)
+    {
+        foreach(PCMapRoom r in PCMapRooms)
+        {
+            if(r.memory == memory)
+            {
+                if(r.roomName == room)
+                {
+                    r.PlayerCount += num;
+                    if(r.PlayerCount == 0)
+                        r.transform.Find("Number").gameObject.SetActive(false);
+                    else
+                        r.transform.Find("Number").gameObject.SetActive(true);
+                        r.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
+                    break;                        
+                }
+            }
+        }
+    }
+
+    public void PCMapInitialize()
     {
         foreach(Transform mem in PCMap.transform)
         {
-            if(mem.gameObject.name == memory)
+            foreach(Transform r in mem)
             {
-                foreach(Transform r in mem)
-                {
-                    if(r.gameObject.name == room)
-                    {
-                        r.GetComponent<PCMapRoom>().PlayerCount += num;
-                        if(r.GetComponent<PCMapRoom>().PlayerCount == 0)
-                            r.GetComponent<PCMapRoom>().transform.Find("Number").gameObject.SetActive(false);
-                        else
-                            r.GetComponent<PCMapRoom>().transform.Find("Number").gameObject.SetActive(true);
-                            r.GetComponent<PCMapRoom>().transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
-                        break;                        
-                    }
-                }
-                break;
+                PCMapRooms.Add(r.GetComponent<PCMapRoom>());
             }
         }
     }
@@ -375,6 +388,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
             interestPoints.Add(interestPoint.name, interestPoint);
         }
     }
+    // Add interest point to the dictionary
     public void AddInterestPoint(string name, GameObject interestPoint)
     {
         interestPoints.Add(name, interestPoint);
@@ -401,6 +415,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void UpdateIPFullyCollected(string ipName)
     {
         interestPoints[ipName].SetActive(false);
+        MemoryUI_Dic[Memory.BishopMemory.ToString()].GetComponent<MemoryInfo>().interestPointCount--;
     }
 
     // Activate the interest point based on name, when some puzzles solved

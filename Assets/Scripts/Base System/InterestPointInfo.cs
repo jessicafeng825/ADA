@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class InterestPointInfo : MonoBehaviour
 {
+    
+    [SerializeField]
+    public Memory memory;
+
     [SerializeField]
     private List<InterestPoint> collectableList;
     [SerializeField]

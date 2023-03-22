@@ -37,6 +37,7 @@ public class Rooms : MonoBehaviour
 
     void Awake()
     {
+        roomName = this.gameObject.name;
         if(midRoom)
             return;
         foreach(Transform child in this.transform.GetChild(1))
