@@ -48,4 +48,9 @@ public class PuzzleInfo : MonoBehaviour
         gameObject.SetActive(false);
         BaseUIManager.Instance.HidePuzzleUI();
     }
+
+    public string GetPuzzleID()
+    {
+        return puzzleID;
+    }
 }

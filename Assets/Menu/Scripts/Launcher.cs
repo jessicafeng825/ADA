@@ -58,9 +58,9 @@ public class Launcher : MonoBehaviourPunCallbacks {
 
   public void SetName() {
     //string name = playerNameInputField.text;
-    string name = "Player " + Random.Range(0, 1000).ToString();
+    string name = "Detective";
         if (!string.IsNullOrEmpty(name)) {
-      PhotonNetwork.NickName = name;
+      //PhotonNetwork.NickName = name;
       titleWelcomeText.text = $"Welcome, {name}!";
       //playerNameInputField.text = "";
     } else {
@@ -69,8 +69,9 @@ public class Launcher : MonoBehaviourPunCallbacks {
     }
   }
 
+
   public void CreateRoom() {
-        string roomName = "Room " + Random.Range(0, 100).ToString();
+        string roomName = "Room " + PhotonNetwork.CountOfRooms;
         PhotonNetwork.CreateRoom(roomName);
         MenuManager.Instance.OpenMenu("loading");
 
