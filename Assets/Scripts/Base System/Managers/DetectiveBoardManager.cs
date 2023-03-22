@@ -20,10 +20,13 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     // For Raycast
     private GraphicRaycaster graphicRaycaster;
     private PointerEventData peData;
+    [SerializeField]
     private EventSystem eventSystem;
     private List<RaycastResult> r_results;
 
     // For Connecting Objects
+    private LineRenderer lineRenderer;
+    private int lineCnt = 0;
     private bool selectedOne;
     private GameObject firstObj;
     private GameObject secondObj;
@@ -32,40 +35,36 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     {
         pv = GetComponent<PhotonView>();
         graphicRaycaster = mainCanvas.GetComponent<GraphicRaycaster>();
-        eventSystem = GetComponent<EventSystem>();
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && PhotonNetwork.IsMasterClient)
         {
             peData = new PointerEventData(eventSystem);
             peData.position = Input.mousePosition;
             r_results = new List<RaycastResult>();
             graphicRaycaster.Raycast(peData, r_results);
 
-            //Debug.Log(r_results[1].gameObject.GetComponent<ClueOnBoardDrag>().GetClueID());
-
-            foreach (RaycastResult result in r_results)
+            if (r_results[1].gameObject.GetComponent<ClueOnBoardDrag>())
             {
-                Debug.Log(result.gameObject.GetComponentsInChildren<ClueOnBoardDrag>()[0].GetClueID());
+                if (!selectedOne)
+                {
+                    firstObj = r_results[1].gameObject;
+                    selectedOne = true;
+                }
+                else
+                {
+                    secondObj = r_results[1].gameObject;
+                    selectedOne = false;
+                    lineRenderer.SetPosition(0, new Vector3(firstObj.transform.position.x, firstObj.transform.position.y, 1));
+                    lineRenderer.SetPosition(1, new Vector3(secondObj.transform.position.x, secondObj.transform.position.y, 1));
+                    // Create line prefab between 2 objects
+                }
             }
-
-            if (!selectedOne)
-            {
-                firstObj = r_results[0].gameObject;
-                selectedOne = true;
-            }
-            else
-            {
-                secondObj = r_results[0].gameObject;
-                selectedOne = false;
-                // Create line prefab between 2 objects
-
-            }
-
             //Todo: Highlight selected
-            //r_results[0].gameObject.GetComponent<Material>() =
+            //r_results[1].gameObject.GetComponent<Material>() =
             
         }
     }

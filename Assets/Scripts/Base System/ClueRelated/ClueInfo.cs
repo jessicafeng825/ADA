@@ -9,6 +9,7 @@ public class ClueInfo : MonoBehaviour
     private string clueID;
     [SerializeField]
     private Button closeBtn, shareBtn;
+    private bool isShared;
 
     private void Start()
     {
@@ -28,6 +29,10 @@ public class ClueInfo : MonoBehaviour
 
     private void ShareThisClue()
     {
-        DetectiveBoardManager.Instance.ShareClue(clueID);
+        if (!isShared)
+        {
+            DetectiveBoardManager.Instance.ShareClue(clueID);
+            isShared = true;
+        } 
     }
 }

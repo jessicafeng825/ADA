@@ -54,7 +54,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
         {
             tempClue = Instantiate(ResourceManager.Instance.GetClueInfo(clueID));
             tempClue.GetComponent<Transform>().SetParent(clueInfoMenu.GetComponent<Transform>(), false);
-            inSceneClues.Add(clueID, tempPuzzle);
+            inSceneClues.Add(clueID, tempClue);
         }
 
         clueInfoMenu.SetActive(true);
