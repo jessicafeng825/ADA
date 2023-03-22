@@ -17,8 +17,12 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     [SerializeField] public string playerJob = "None";//player job
     [SerializeField] public string playerName = "None";//player job
     [SerializeField] public string playerBackground = "None";//player job
+   // [SerializeField] public string skillText = "None";//player skillText
+   // [SerializeField] public string relationshipText = "None";//player relationshiptext
+
     [SerializeField] public Sprite playerImage;//player Image
-    public int maxAP;
+    [SerializeField] public bool isselected = false;
+   public int maxAP;
     public int currentAP;
     public Rooms currentRoom;
     public Transform currentMemory;
@@ -57,10 +61,15 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     }
     public void jobSelect(string job,string playername,string playerbackground,string playerimage)
     {
-        playerJob = job;
-        playerName = playername;
-        playerBackground = playerbackground;
-        playerImage = Resources.Load<Sprite>("CharacterUI/Round/" + "Round-" + playerimage);
+        //if(isselected == false)
+        //{
+            playerJob = job;
+            playerName = playername;
+            playerBackground = playerbackground;
+            playerImage = Resources.Load<Sprite>("CharacterUI/Round/" + "Round-" + playerimage);
+            isselected = true;
+       // }
+       
     }
 
     public void discusstoInvest()

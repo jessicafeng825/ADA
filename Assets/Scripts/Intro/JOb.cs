@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Realtime;
+using Photon.Pun;
 public class JOb : MonoBehaviour
 {
     public string playerImage;
@@ -26,6 +28,10 @@ public class JOb : MonoBehaviour
     public void select()
     {
         isselected = true;
-        button.interactable = false;
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            button.interactable = false;
+        }
+        
     }
 }

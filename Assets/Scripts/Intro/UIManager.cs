@@ -24,10 +24,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMP_Text playerbk;//player background
     [SerializeField] public TMP_Text playersk;//player skills
     [SerializeField] public TMP_Text playerrl;//player relationship
-    [SerializeField] public Image playerImage;//player Image
+    [SerializeField] public Image playerImageUI;//player Image
     [SerializeField] public VideoPlayer video;
     public bool ifintroend = false;
+    private bool ifselected = false;
     private GameObject[] listofgameObjectwithtag;
+    private GameObject gameObjectNow;
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -194,17 +196,26 @@ public class UIManager : MonoBehaviour
             }
         }
         */
-        pv.RPC(nameof(updateallplayerName), RpcTarget.All, PhotonNetwork.NickName,job.jobName, job.playername,job.backgroundstory, job.playerImage);
+        pv.RPC(nameof(updateallplayerName), RpcTarget.All, PhotonNetwork.NickName,job.jobName, job.playername,job.backgroundstory, job.playerImage, job.relationshiptext, job.skilltext);
         //playerController.Instance.jobSelect(name);
+
         Debug.Log(playerController.Instance.playerJob);
-        playerJob.text = job.jobName;
-        playerName.text = job.playername;
-        playerbk.text = job.backgroundstory;
-        playerrl.text = job.relationshiptext;
-        playersk.text = job.skilltext;
-        playerImage.sprite = Resources.Load<Sprite>("CharacterUI/" + job.playerImage);
+        if(ifselected == false)
+        {
+            playerJob.text = job.jobName;
+            playerName.text = job.playername;
+            playerbk.text = job.backgroundstory;
+            playerrl.text = job.relationshiptext;
+            playersk.text = job.skilltext;
+            playerImageUI.sprite = Resources.Load<Sprite>("CharacterUI/" + job.playerImage);
+            ifselected = true;
+        }
+        
+       
         //make all the player button inactive
-        pv.RPC(nameof(setbuttonInactive), RpcTarget.All, job.jobName);
+        //pv.RPC(nameof(setbuttonInactive), RpcTarget.All, job.jobName); 
+        
+
         if (checkIfAllhaveSelectJob())//if all the player have select job
         {
            
@@ -243,7 +254,7 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.jobselectForname(name);
     }
     [PunRPC]
-    private void updateallplayerName(string name,string jobname,string playername,string playerbackground, string playerImage)
+    private void updateallplayerName(string name,string jobname,string playername,string playerbackground, string playerImage,string relationshipText,string skillText)
     {
         //gb.GetComponent<playerController>().jobSelect(name);
         listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
@@ -251,8 +262,16 @@ public class UIManager : MonoBehaviour
         {
             if (listofgameObjectwithtag[i].GetComponent<PhotonView>().Owner.NickName == name)
             {
-                listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname,playername,playerbackground,playerImage);
-           }
+                if(listofgameObjectwithtag[i].GetComponent<playerController>().isselected == false)
+                {
+                    listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname, playername, playerbackground, playerImage);
+
+                    //gameObjectNow = listofgameObjectwithtag[i];
+
+                    pv.RPC(nameof(setbuttonInactive), RpcTarget.All, jobname);
+                }
+                
+            }
         }
     }
     //===movescene====//
