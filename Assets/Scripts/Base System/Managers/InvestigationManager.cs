@@ -5,10 +5,6 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
-public enum Memory
-{
-    None, BishopMemory, Mansion, StreetCorner, LawyerOffice, NightClub, VoidBase
-}
 
 public class InvestigationManager : Singleton<InvestigationManager>
 {
@@ -65,7 +61,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         //The distance every two area
 
         pv = GetComponent<PhotonView>();
-        PreloadInterestPoints();
+        //PreloadInterestPoints();
         playerController.Instance.maxAP = GetPlayerInitialAP();
         playerController.Instance.currentAP = playerController.Instance.maxAP;
         playerController.Instance.Change_currentAP(0);
@@ -378,6 +374,10 @@ public class InvestigationManager : Singleton<InvestigationManager>
         {
             interestPoints.Add(interestPoint.name, interestPoint);
         }
+    }
+    public void AddInterestPoint(string name, GameObject interestPoint)
+    {
+        interestPoints.Add(name, interestPoint);
     }
 
     public void SynchronizeInterestPoint(string ipName)

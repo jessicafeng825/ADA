@@ -46,12 +46,13 @@ public class Launcher : MonoBehaviourPunCallbacks {
   }
 
   public override void OnJoinedLobby() {
-    if (PhotonNetwork.NickName == "") {
-      PhotonNetwork.NickName = "Player " + Random.Range(0, 1000).ToString(); // Set a default nickname, just as a backup
-      MenuManager.Instance.OpenMenu("name");
-    } else {
+    // if (PhotonNetwork.NickName == "") {
+    //   PhotonNetwork.NickName = "Player " + Random.Range(0, 1000).ToString(); // Set a default nickname, just as a backup
+    //   MenuManager.Instance.OpenMenu("name");
+    // } else 
+    // {
       MenuManager.Instance.OpenMenu("title");
-    }
+    // }
     Debug.Log("Joined lobby");
   }
 
@@ -61,7 +62,6 @@ public class Launcher : MonoBehaviourPunCallbacks {
         if (!string.IsNullOrEmpty(name)) {
       PhotonNetwork.NickName = name;
       titleWelcomeText.text = $"Welcome, {name}!";
-      MenuManager.Instance.OpenMenu("title");
       //playerNameInputField.text = "";
     } else {
       Debug.Log("No player name entered");

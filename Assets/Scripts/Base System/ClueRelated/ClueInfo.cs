@@ -13,6 +13,8 @@ public class ClueInfo : MonoBehaviour
 
     private void Start()
     {
+        closeBtn = this.transform.Find("Btn_close").GetComponent<Button>();
+        shareBtn = this.transform.Find("Btn_share").GetComponent<Button>();
         closeBtn.onClick.AddListener(HideThisClueInfo);
         shareBtn.onClick.AddListener(ShareThisClue);
     }
