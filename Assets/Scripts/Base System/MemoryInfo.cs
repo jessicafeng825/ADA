@@ -12,6 +12,10 @@ public class MemoryInfo : MonoBehaviour
     public Memory memory 
     { get; private set; }
 
+    [field: SerializeField]
+    public List<DoorInfo> Doors
+    { get; private set; }
+
     public int totalInterestPoints 
     { get; private set; }
     
@@ -30,6 +34,10 @@ public class MemoryInfo : MonoBehaviour
                     totalInterestPoints++;
                     
                     InvestigationManager.Instance.AddInterestPoint(point.name, point.gameObject);
+                }
+                foreach(Transform door in child.Find("Doors"))
+                {
+                    Doors.Add(door.GetComponent<DoorInfo>());
                 }
             }
         }

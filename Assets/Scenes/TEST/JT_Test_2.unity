@@ -135,9 +135,10 @@ GameObject:
   - component: {fileID: 1434146}
   - component: {fileID: 1434145}
   - component: {fileID: 1434144}
+  - component: {fileID: 1434147}
   m_Layer: 0
   m_Name: ToStudy
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,6 +257,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434142}
   m_CullTransparentMesh: 1
+--- !u!114 &1434147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 517877590}
 --- !u!1 &2414525
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,9 +452,10 @@ GameObject:
   - component: {fileID: 6941257}
   - component: {fileID: 6941256}
   - component: {fileID: 6941255}
+  - component: {fileID: 6941258}
   m_Layer: 0
   m_Name: ToAva
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -559,6 +574,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6941253}
   m_CullTransparentMesh: 1
+--- !u!114 &6941258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6941253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1455976507}
 --- !u!1 &7039186
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <memory>k__BackingField: 6
+  <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!1 &17580747
 GameObject:
@@ -928,9 +957,10 @@ GameObject:
   - component: {fileID: 34214798}
   - component: {fileID: 34214797}
   - component: {fileID: 34214796}
+  - component: {fileID: 34214799}
   m_Layer: 0
   m_Name: ToOwnersOffice
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1049,6 +1079,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34214794}
   m_CullTransparentMesh: 1
+--- !u!114 &34214799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34214794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 971626530}
 --- !u!1 &34486323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,9 +1465,10 @@ GameObject:
   - component: {fileID: 56128809}
   - component: {fileID: 56128808}
   - component: {fileID: 56128807}
+  - component: {fileID: 56128810}
   m_Layer: 0
   m_Name: ToAlley
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1543,6 +1587,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56128805}
   m_CullTransparentMesh: 1
+--- !u!114 &56128810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56128805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 2086706318}
 --- !u!1 &56340100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,9 +1851,10 @@ GameObject:
   - component: {fileID: 62654704}
   - component: {fileID: 62654703}
   - component: {fileID: 62654702}
+  - component: {fileID: 62654705}
   m_Layer: 0
   m_Name: ToOwnersOffice
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1915,6 +1973,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62654700}
   m_CullTransparentMesh: 1
+--- !u!114 &62654705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62654700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 971626530}
 --- !u!1 &67180365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2556,6 +2627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <memory>k__BackingField: 1
+  <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!1 &78644419
 GameObject:
@@ -4331,9 +4403,10 @@ GameObject:
   - component: {fileID: 144687863}
   - component: {fileID: 144687862}
   - component: {fileID: 144687861}
+  - component: {fileID: 144687864}
   m_Layer: 0
   m_Name: ToFrontHall
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4452,6 +4525,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144687859}
   m_CullTransparentMesh: 1
+--- !u!114 &144687864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144687859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 974915642}
 --- !u!1 &148030332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4636,9 +4722,10 @@ GameObject:
   - component: {fileID: 155461037}
   - component: {fileID: 155461036}
   - component: {fileID: 155461035}
+  - component: {fileID: 155461038}
   m_Layer: 0
   m_Name: ToDumpster
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4757,6 +4844,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155461033}
   m_CullTransparentMesh: 1
+--- !u!114 &155461038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155461033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1232443642}
 --- !u!1 &157497685
 GameObject:
   m_ObjectHideFlags: 0
@@ -5008,9 +5108,10 @@ GameObject:
   - component: {fileID: 162812802}
   - component: {fileID: 162812801}
   - component: {fileID: 162812800}
+  - component: {fileID: 162812803}
   m_Layer: 0
   m_Name: ToCommander
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5129,6 +5230,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162812798}
   m_CullTransparentMesh: 1
+--- !u!114 &162812803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162812798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 524124977}
 --- !u!1 &166209851
 GameObject:
   m_ObjectHideFlags: 0
@@ -5141,9 +5255,10 @@ GameObject:
   - component: {fileID: 166209855}
   - component: {fileID: 166209854}
   - component: {fileID: 166209853}
+  - component: {fileID: 166209856}
   m_Layer: 0
   m_Name: ToStorage
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5262,6 +5377,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166209851}
   m_CullTransparentMesh: 1
+--- !u!114 &166209856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166209851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1409837883}
 --- !u!1 &169679913
 GameObject:
   m_ObjectHideFlags: 0
@@ -5384,9 +5512,10 @@ GameObject:
   - component: {fileID: 176417620}
   - component: {fileID: 176417619}
   - component: {fileID: 176417618}
+  - component: {fileID: 176417621}
   m_Layer: 0
   m_Name: ToOpen
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5505,6 +5634,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176417616}
   m_CullTransparentMesh: 1
+--- !u!114 &176417621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176417616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 613353533}
 --- !u!1 &179287476
 GameObject:
   m_ObjectHideFlags: 0
@@ -5763,9 +5905,10 @@ GameObject:
   - component: {fileID: 184514879}
   - component: {fileID: 184514878}
   - component: {fileID: 184514877}
+  - component: {fileID: 184514880}
   m_Layer: 0
   m_Name: ToOpenArea
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5884,6 +6027,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 184514875}
   m_CullTransparentMesh: 1
+--- !u!114 &184514880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184514875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 613353533}
 --- !u!1 &185182405
 GameObject:
   m_ObjectHideFlags: 0
@@ -6031,9 +6187,10 @@ GameObject:
   - component: {fileID: 186729421}
   - component: {fileID: 186729420}
   - component: {fileID: 186729419}
+  - component: {fileID: 186729422}
   m_Layer: 0
-  m_Name: TpKitchen
-  m_TagString: Untagged
+  m_Name: ToKitchen
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6152,6 +6309,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186729417}
   m_CullTransparentMesh: 1
+--- !u!114 &186729422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186729417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 747015717}
 --- !u!1 &193122213
 GameObject:
   m_ObjectHideFlags: 0
@@ -7018,6 +7188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <memory>k__BackingField: 5
+  <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!1001 &205013161
 PrefabInstance:
@@ -7265,9 +7436,10 @@ GameObject:
   - component: {fileID: 222330833}
   - component: {fileID: 222330832}
   - component: {fileID: 222330831}
+  - component: {fileID: 222330834}
   m_Layer: 0
   m_Name: ToDiningRoom
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7386,6 +7558,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222330829}
   m_CullTransparentMesh: 1
+--- !u!114 &222330834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222330829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1821411535}
 --- !u!1 &229989944
 GameObject:
   m_ObjectHideFlags: 0
@@ -8260,9 +8445,10 @@ GameObject:
   - component: {fileID: 279654108}
   - component: {fileID: 279654107}
   - component: {fileID: 279654106}
+  - component: {fileID: 279654109}
   m_Layer: 0
   m_Name: ToRestroom
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8381,6 +8567,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279654104}
   m_CullTransparentMesh: 1
+--- !u!114 &279654109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279654104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1486675021}
 --- !u!1 &280658540
 GameObject:
   m_ObjectHideFlags: 0
@@ -8900,9 +9099,10 @@ GameObject:
   - component: {fileID: 292506118}
   - component: {fileID: 292506117}
   - component: {fileID: 292506116}
+  - component: {fileID: 292506119}
   m_Layer: 0
   m_Name: ToMaster
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9021,6 +9221,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292506114}
   m_CullTransparentMesh: 1
+--- !u!114 &292506119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292506114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 2047155952}
 --- !u!1 &297253480
 GameObject:
   m_ObjectHideFlags: 0
@@ -9875,9 +10088,10 @@ GameObject:
   - component: {fileID: 313096851}
   - component: {fileID: 313096850}
   - component: {fileID: 313096849}
+  - component: {fileID: 313096852}
   m_Layer: 0
   m_Name: ToDumpster
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9996,6 +10210,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313096847}
   m_CullTransparentMesh: 1
+--- !u!114 &313096852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313096847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 854776256}
 --- !u!1 &322652936
 GameObject:
   m_ObjectHideFlags: 0
@@ -10008,9 +10235,10 @@ GameObject:
   - component: {fileID: 322652940}
   - component: {fileID: 322652939}
   - component: {fileID: 322652938}
+  - component: {fileID: 322652941}
   m_Layer: 0
   m_Name: ToPrivateRoom02
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10129,6 +10357,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322652936}
   m_CullTransparentMesh: 1
+--- !u!114 &322652941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322652936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 202812257}
 --- !u!1 &327445157
 GameObject:
   m_ObjectHideFlags: 0
@@ -10404,9 +10645,10 @@ GameObject:
   - component: {fileID: 351411774}
   - component: {fileID: 351411773}
   - component: {fileID: 351411772}
+  - component: {fileID: 351411775}
   m_Layer: 0
   m_Name: ToDanceFloor
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10525,6 +10767,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351411770}
   m_CullTransparentMesh: 1
+--- !u!114 &351411775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351411770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1887467273}
 --- !u!1 &351464481
 GameObject:
   m_ObjectHideFlags: 0
@@ -10609,9 +10864,10 @@ GameObject:
   - component: {fileID: 352957904}
   - component: {fileID: 352957903}
   - component: {fileID: 352957902}
+  - component: {fileID: 352957905}
   m_Layer: 0
   m_Name: ToDanceFloor
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10730,6 +10986,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352957900}
   m_CullTransparentMesh: 1
+--- !u!114 &352957905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352957900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1887467273}
 --- !u!1 &356386183
 GameObject:
   m_ObjectHideFlags: 0
@@ -11719,9 +11988,10 @@ GameObject:
   - component: {fileID: 390759295}
   - component: {fileID: 390759294}
   - component: {fileID: 390759293}
+  - component: {fileID: 390759296}
   m_Layer: 0
   m_Name: ToGallery
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11840,6 +12110,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390759291}
   m_CullTransparentMesh: 1
+--- !u!114 &390759296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390759291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 56340102}
 --- !u!1 &395288123
 GameObject:
   m_ObjectHideFlags: 0
@@ -12902,9 +13185,10 @@ GameObject:
   - component: {fileID: 435828812}
   - component: {fileID: 435828811}
   - component: {fileID: 435828810}
+  - component: {fileID: 435828813}
   m_Layer: 0
   m_Name: ToFrontHall
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13023,6 +13307,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435828808}
   m_CullTransparentMesh: 1
+--- !u!114 &435828813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435828808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 974915642}
 --- !u!1 &439332548
 GameObject:
   m_ObjectHideFlags: 0
@@ -13071,9 +13368,10 @@ GameObject:
   - component: {fileID: 441236294}
   - component: {fileID: 441236293}
   - component: {fileID: 441236292}
+  - component: {fileID: 441236295}
   m_Layer: 0
   m_Name: ToMainStreet
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13192,6 +13490,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441236290}
   m_CullTransparentMesh: 1
+--- !u!114 &441236295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441236290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 2110861977}
 --- !u!1 &443260643
 GameObject:
   m_ObjectHideFlags: 0
@@ -14738,7 +15049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &481478864
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14758,7 +15069,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 300, y: 200}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &481478865
 MonoBehaviour:
@@ -14836,8 +15147,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c6151a189b36ff4785d5c73f5f8f965, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: ba50088fb17d437459a802604f864c24, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -15136,9 +15447,10 @@ GameObject:
   - component: {fileID: 485992007}
   - component: {fileID: 485992006}
   - component: {fileID: 485992005}
+  - component: {fileID: 485992008}
   m_Layer: 0
   m_Name: ToExperiment
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15257,6 +15569,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485992003}
   m_CullTransparentMesh: 1
+--- !u!114 &485992008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485992003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 40195014}
 --- !u!1 &486092229
 GameObject:
   m_ObjectHideFlags: 0
@@ -16121,6 +16446,7 @@ RectTransform:
   - {fileID: 599392732}
   - {fileID: 1037687099}
   - {fileID: 685856405}
+  - {fileID: 1039715717}
   m_Father: {fileID: 854776255}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16864,9 +17190,10 @@ GameObject:
   - component: {fileID: 537255445}
   - component: {fileID: 537255444}
   - component: {fileID: 537255443}
+  - component: {fileID: 537255446}
   m_Layer: 0
   m_Name: ToKitchen
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16985,6 +17312,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537255441}
   m_CullTransparentMesh: 1
+--- !u!114 &537255446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537255441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1911721651}
 --- !u!1 &538797174
 GameObject:
   m_ObjectHideFlags: 0
@@ -17629,9 +17969,10 @@ GameObject:
   - component: {fileID: 554418331}
   - component: {fileID: 554418330}
   - component: {fileID: 554418329}
+  - component: {fileID: 554418332}
   m_Layer: 0
   m_Name: ToFrontHall
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17750,6 +18091,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554418327}
   m_CullTransparentMesh: 1
+--- !u!114 &554418332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554418327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 974915642}
 --- !u!1 &555338198
 GameObject:
   m_ObjectHideFlags: 0
@@ -17813,6 +18167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <memory>k__BackingField: 7
+  <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!1 &557075100
 GameObject:
@@ -18107,7 +18462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "End \nInvestigation"
+  m_text: End Investigation
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18196,9 +18551,10 @@ GameObject:
   - component: {fileID: 566134261}
   - component: {fileID: 566134260}
   - component: {fileID: 566134259}
+  - component: {fileID: 566134262}
   m_Layer: 0
   m_Name: ToDanceFloor
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18317,6 +18673,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566134257}
   m_CullTransparentMesh: 1
+--- !u!114 &566134262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566134257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1887467273}
 --- !u!1 &569727365
 GameObject:
   m_ObjectHideFlags: 0
@@ -18604,9 +18973,10 @@ GameObject:
   - component: {fileID: 580392437}
   - component: {fileID: 580392436}
   - component: {fileID: 580392435}
+  - component: {fileID: 580392438}
   m_Layer: 0
   m_Name: ToLivingRoom
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18725,6 +19095,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580392433}
   m_CullTransparentMesh: 1
+--- !u!114 &580392438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580392433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1283366929}
 --- !u!1 &581700675
 GameObject:
   m_ObjectHideFlags: 0
@@ -20115,6 +20498,141 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &643890295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 643890296}
+  - component: {fileID: 643890298}
+  - component: {fileID: 643890297}
+  m_Layer: 0
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &643890296
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643890295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1039715717}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &643890297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643890295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: '?'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 100
+  m_fontSizeBase: 100
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 100
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &643890298
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643890295}
+  m_CullTransparentMesh: 1
 --- !u!1 &644458067
 GameObject:
   m_ObjectHideFlags: 0
@@ -21406,9 +21924,10 @@ GameObject:
   - component: {fileID: 711843155}
   - component: {fileID: 711843154}
   - component: {fileID: 711843153}
+  - component: {fileID: 711843156}
   m_Layer: 0
   m_Name: ToPrivateRoom01
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21527,6 +22046,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711843151}
   m_CullTransparentMesh: 1
+--- !u!114 &711843156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711843151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 276116301}
 --- !u!1 &722783336
 GameObject:
   m_ObjectHideFlags: 0
@@ -22021,9 +22553,10 @@ GameObject:
   - component: {fileID: 733468546}
   - component: {fileID: 733468545}
   - component: {fileID: 733468544}
+  - component: {fileID: 733468547}
   m_Layer: 0
   m_Name: ToGallery
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22142,6 +22675,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733468542}
   m_CullTransparentMesh: 1
+--- !u!114 &733468547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733468542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 56340102}
 --- !u!1 &734482670
 GameObject:
   m_ObjectHideFlags: 0
@@ -22618,7 +23164,7 @@ GameObject:
   - component: {fileID: 747015720}
   m_Layer: 0
   m_Name: Kitchen
-  m_TagString: Room
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22995,9 +23541,10 @@ GameObject:
   - component: {fileID: 750559826}
   - component: {fileID: 750559825}
   - component: {fileID: 750559824}
+  - component: {fileID: 750559827}
   m_Layer: 0
   m_Name: ToMeeting
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23116,6 +23663,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750559822}
   m_CullTransparentMesh: 1
+--- !u!114 &750559827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750559822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1495556685}
 --- !u!1 &750965474
 GameObject:
   m_ObjectHideFlags: 0
@@ -24575,7 +25135,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 313096848}
-  - {fileID: 1864062713}
   m_Father: {fileID: 1289937169}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25357,9 +25916,10 @@ GameObject:
   - component: {fileID: 822731186}
   - component: {fileID: 822731185}
   - component: {fileID: 822731184}
+  - component: {fileID: 822731187}
   m_Layer: 0
   m_Name: ToAlley
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25478,6 +26038,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822731182}
   m_CullTransparentMesh: 1
+--- !u!114 &822731187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822731182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 2086706318}
 --- !u!1 &823934772
 GameObject:
   m_ObjectHideFlags: 0
@@ -26624,9 +27197,10 @@ GameObject:
   - component: {fileID: 864791704}
   - component: {fileID: 864791703}
   - component: {fileID: 864791702}
+  - component: {fileID: 864791705}
   m_Layer: 0
   m_Name: ToStorage
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26745,6 +27319,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864791700}
   m_CullTransparentMesh: 1
+--- !u!114 &864791705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864791700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 106142549}
 --- !u!1 &865216492
 GameObject:
   m_ObjectHideFlags: 0
@@ -27783,9 +28370,10 @@ GameObject:
   - component: {fileID: 914717068}
   - component: {fileID: 914717067}
   - component: {fileID: 914717066}
+  - component: {fileID: 914717069}
   m_Layer: 0
   m_Name: ToStorage
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27904,6 +28492,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914717064}
   m_CullTransparentMesh: 1
+--- !u!114 &914717069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914717064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 722783338}
 --- !u!1 &919474488
 GameObject:
   m_ObjectHideFlags: 0
@@ -27955,9 +28556,10 @@ GameObject:
   - component: {fileID: 926353752}
   - component: {fileID: 926353751}
   - component: {fileID: 926353750}
+  - component: {fileID: 926353753}
   m_Layer: 0
   m_Name: ToOpenArea
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28076,6 +28678,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926353748}
   m_CullTransparentMesh: 1
+--- !u!114 &926353753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926353748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 488602291}
 --- !u!1 &929583277
 GameObject:
   m_ObjectHideFlags: 0
@@ -29793,9 +30408,10 @@ GameObject:
   - component: {fileID: 980350966}
   - component: {fileID: 980350965}
   - component: {fileID: 980350964}
+  - component: {fileID: 980350967}
   m_Layer: 0
   m_Name: ToDiningRoom
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29914,6 +30530,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980350962}
   m_CullTransparentMesh: 1
+--- !u!114 &980350967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980350962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1821411535}
 --- !u!1 &982286012
 GameObject:
   m_ObjectHideFlags: 0
@@ -30787,7 +31416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1010699511
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30995,9 +31624,10 @@ GameObject:
   - component: {fileID: 1018486394}
   - component: {fileID: 1018486393}
   - component: {fileID: 1018486392}
+  - component: {fileID: 1018486395}
   m_Layer: 0
   m_Name: ToKitchen
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31116,6 +31746,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018486390}
   m_CullTransparentMesh: 1
+--- !u!114 &1018486395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018486390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1911721651}
 --- !u!1 &1019206383
 GameObject:
   m_ObjectHideFlags: 0
@@ -31486,6 +32129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <memory>k__BackingField: 3
+  <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!1 &1027250363
 GameObject:
@@ -31854,9 +32498,10 @@ GameObject:
   - component: {fileID: 1039122598}
   - component: {fileID: 1039122597}
   - component: {fileID: 1039122596}
+  - component: {fileID: 1039122599}
   m_Layer: 0
   m_Name: ToHall
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31974,6 +32619,159 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039122594}
+  m_CullTransparentMesh: 1
+--- !u!114 &1039122599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039122594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 474234553}
+--- !u!1 &1039715716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039715717}
+  - component: {fileID: 1039715721}
+  - component: {fileID: 1039715720}
+  - component: {fileID: 1039715719}
+  - component: {fileID: 1039715718}
+  m_Layer: 0
+  m_Name: RupturedPath
+  m_TagString: InterestPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1039715717
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039715716}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.41666034, y: 0.41666034, z: 0.41666034}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 643890296}
+  m_Father: {fileID: 514853288}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 61.1, y: 177}
+  m_SizeDelta: {x: 150, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1039715718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039715716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1c909e505ddd0498c6b0f7e981eda1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  memory: 1
+  collectableList:
+  - id: NumpadPuzzle
+    type: 1
+  cnt_current: 0
+--- !u!114 &1039715719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039715716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1039715720}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1039715720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039715716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.81960785, g: 0.81960785, b: 0.81960785, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6ae296b0dc52b2a489e18ae9c63ad8e0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1039715721
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039715716}
   m_CullTransparentMesh: 1
 --- !u!1 &1045985688
 GameObject:
@@ -32680,9 +33478,10 @@ GameObject:
   - component: {fileID: 1068580932}
   - component: {fileID: 1068580931}
   - component: {fileID: 1068580930}
+  - component: {fileID: 1068580933}
   m_Layer: 0
   m_Name: ToMeeting
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32801,6 +33600,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068580928}
   m_CullTransparentMesh: 1
+--- !u!114 &1068580933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068580928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 2000731128}
 --- !u!1 &1068936446
 GameObject:
   m_ObjectHideFlags: 0
@@ -34963,9 +35775,10 @@ GameObject:
   - component: {fileID: 1167377361}
   - component: {fileID: 1167377360}
   - component: {fileID: 1167377359}
+  - component: {fileID: 1167377362}
   m_Layer: 0
   m_Name: ToOpenArea
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35084,6 +35897,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167377357}
   m_CullTransparentMesh: 1
+--- !u!114 &1167377362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167377357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 613353533}
 --- !u!1 &1169194424
 GameObject:
   m_ObjectHideFlags: 0
@@ -35736,9 +36562,10 @@ GameObject:
   - component: {fileID: 1177403144}
   - component: {fileID: 1177403143}
   - component: {fileID: 1177403142}
+  - component: {fileID: 1177403145}
   m_Layer: 0
   m_Name: ToEntrance
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35857,6 +36684,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177403140}
   m_CullTransparentMesh: 1
+--- !u!114 &1177403145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177403140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1610518222}
 --- !u!1 &1183571011
 GameObject:
   m_ObjectHideFlags: 0
@@ -36986,9 +37826,10 @@ GameObject:
   - component: {fileID: 1223986293}
   - component: {fileID: 1223986292}
   - component: {fileID: 1223986291}
+  - component: {fileID: 1223986294}
   m_Layer: 0
   m_Name: ToLab
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37107,6 +37948,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223986289}
   m_CullTransparentMesh: 1
+--- !u!114 &1223986294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223986289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 375552328}
 --- !u!1 &1227618653
 GameObject:
   m_ObjectHideFlags: 0
@@ -38604,9 +39458,10 @@ GameObject:
   - component: {fileID: 1279928941}
   - component: {fileID: 1279928940}
   - component: {fileID: 1279928939}
+  - component: {fileID: 1279928942}
   m_Layer: 0
   m_Name: ToOperationRoom
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38725,6 +39580,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279928937}
   m_CullTransparentMesh: 1
+--- !u!114 &1279928942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279928937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 853211325}
 --- !u!1 &1282900849
 GameObject:
   m_ObjectHideFlags: 0
@@ -39814,9 +40682,10 @@ GameObject:
   - component: {fileID: 1337226950}
   - component: {fileID: 1337226949}
   - component: {fileID: 1337226948}
+  - component: {fileID: 1337226951}
   m_Layer: 0
   m_Name: ToOpenArea
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39935,6 +40804,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337226946}
   m_CullTransparentMesh: 1
+--- !u!114 &1337226951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337226946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 488602291}
 --- !u!1 &1339865946
 GameObject:
   m_ObjectHideFlags: 0
@@ -39947,9 +40829,10 @@ GameObject:
   - component: {fileID: 1339865950}
   - component: {fileID: 1339865949}
   - component: {fileID: 1339865948}
+  - component: {fileID: 1339865951}
   m_Layer: 0
   m_Name: ToData
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40068,6 +40951,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339865946}
   m_CullTransparentMesh: 1
+--- !u!114 &1339865951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339865946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 739142916}
 --- !u!1 &1342951323
 GameObject:
   m_ObjectHideFlags: 0
@@ -41248,9 +42144,10 @@ GameObject:
   - component: {fileID: 1364232337}
   - component: {fileID: 1364232336}
   - component: {fileID: 1364232335}
+  - component: {fileID: 1364232338}
   m_Layer: 0
   m_Name: ToCommander
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41369,6 +42266,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364232333}
   m_CullTransparentMesh: 1
+--- !u!114 &1364232338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364232333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 524124977}
 --- !u!1 &1366102853
 GameObject:
   m_ObjectHideFlags: 0
@@ -41553,9 +42463,10 @@ GameObject:
   - component: {fileID: 1371858949}
   - component: {fileID: 1371858948}
   - component: {fileID: 1371858947}
+  - component: {fileID: 1371858950}
   m_Layer: 0
   m_Name: ToOpenArea
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41674,6 +42585,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371858945}
   m_CullTransparentMesh: 1
+--- !u!114 &1371858950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371858945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 488602291}
 --- !u!1 &1373198843
 GameObject:
   m_ObjectHideFlags: 0
@@ -41686,9 +42610,10 @@ GameObject:
   - component: {fileID: 1373198847}
   - component: {fileID: 1373198846}
   - component: {fileID: 1373198845}
+  - component: {fileID: 1373198848}
   m_Layer: 0
   m_Name: ToOperationRoom
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41807,6 +42732,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373198843}
   m_CullTransparentMesh: 1
+--- !u!114 &1373198848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373198843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 853211325}
 --- !u!1 &1374110557
 GameObject:
   m_ObjectHideFlags: 0
@@ -42445,9 +43383,10 @@ GameObject:
   - component: {fileID: 1388792574}
   - component: {fileID: 1388792573}
   - component: {fileID: 1388792572}
+  - component: {fileID: 1388792575}
   m_Layer: 0
   m_Name: ToDanceFloor
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42566,6 +43505,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388792570}
   m_CullTransparentMesh: 1
+--- !u!114 &1388792575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388792570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1887467273}
 --- !u!1 &1390808941
 GameObject:
   m_ObjectHideFlags: 0
@@ -42887,9 +43839,10 @@ GameObject:
   - component: {fileID: 1404221539}
   - component: {fileID: 1404221538}
   - component: {fileID: 1404221537}
+  - component: {fileID: 1404221540}
   m_Layer: 0
   m_Name: ToSecurity
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43008,6 +43961,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404221535}
   m_CullTransparentMesh: 1
+--- !u!114 &1404221540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404221535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 193122215}
 --- !u!1 &1405842042
 GameObject:
   m_ObjectHideFlags: 0
@@ -43154,9 +44120,10 @@ GameObject:
   - component: {fileID: 1406404303}
   - component: {fileID: 1406404302}
   - component: {fileID: 1406404301}
+  - component: {fileID: 1406404304}
   m_Layer: 0
   m_Name: ToOperationRoom
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43275,6 +44242,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406404299}
   m_CullTransparentMesh: 1
+--- !u!114 &1406404304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406404299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 853211325}
 --- !u!1 &1407893731
 GameObject:
   m_ObjectHideFlags: 0
@@ -43924,9 +44904,10 @@ GameObject:
   - component: {fileID: 1422505393}
   - component: {fileID: 1422505392}
   - component: {fileID: 1422505391}
+  - component: {fileID: 1422505394}
   m_Layer: 0
   m_Name: ToLab
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44045,6 +45026,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422505389}
   m_CullTransparentMesh: 1
+--- !u!114 &1422505394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422505389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 375552328}
 --- !u!1 &1425304003
 GameObject:
   m_ObjectHideFlags: 0
@@ -46048,9 +47042,10 @@ GameObject:
   - component: {fileID: 1475662514}
   - component: {fileID: 1475662513}
   - component: {fileID: 1475662512}
+  - component: {fileID: 1475662515}
   m_Layer: 0
   m_Name: ToOpenArea
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46169,6 +47164,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475662510}
   m_CullTransparentMesh: 1
+--- !u!114 &1475662515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475662510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 488602291}
 --- !u!1 &1476862724
 GameObject:
   m_ObjectHideFlags: 0
@@ -46489,9 +47497,10 @@ GameObject:
   - component: {fileID: 1482791193}
   - component: {fileID: 1482791192}
   - component: {fileID: 1482791191}
+  - component: {fileID: 1482791194}
   m_Layer: 0
   m_Name: ToOpenArea
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46610,6 +47619,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482791189}
   m_CullTransparentMesh: 1
+--- !u!114 &1482791194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482791189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 488602291}
 --- !u!1 &1483105956
 GameObject:
   m_ObjectHideFlags: 0
@@ -46809,9 +47831,10 @@ GameObject:
   - component: {fileID: 1487525241}
   - component: {fileID: 1487525240}
   - component: {fileID: 1487525239}
+  - component: {fileID: 1487525242}
   m_Layer: 0
   m_Name: ToDanceFloor
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46930,6 +47953,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487525237}
   m_CullTransparentMesh: 1
+--- !u!114 &1487525242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487525237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1887467273}
 --- !u!1 &1488935077
 GameObject:
   m_ObjectHideFlags: 0
@@ -48458,9 +49494,10 @@ GameObject:
   - component: {fileID: 1536333510}
   - component: {fileID: 1536333509}
   - component: {fileID: 1536333508}
+  - component: {fileID: 1536333511}
   m_Layer: 0
   m_Name: To???
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48579,6 +49616,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536333506}
   m_CullTransparentMesh: 1
+--- !u!114 &1536333511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536333506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1783409918}
 --- !u!1 &1543801006
 GameObject:
   m_ObjectHideFlags: 0
@@ -48884,9 +49934,10 @@ GameObject:
   - component: {fileID: 1554146049}
   - component: {fileID: 1554146048}
   - component: {fileID: 1554146047}
+  - component: {fileID: 1554146050}
   m_Layer: 0
   m_Name: ToMeeting
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49005,6 +50056,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554146045}
   m_CullTransparentMesh: 1
+--- !u!114 &1554146050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554146045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 2000731128}
 --- !u!1 &1555675963
 GameObject:
   m_ObjectHideFlags: 0
@@ -49265,9 +50329,10 @@ GameObject:
   - component: {fileID: 1565304723}
   - component: {fileID: 1565304722}
   - component: {fileID: 1565304721}
+  - component: {fileID: 1565304724}
   m_Layer: 0
   m_Name: ToMax
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49386,6 +50451,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565304719}
   m_CullTransparentMesh: 1
+--- !u!114 &1565304724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565304719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 443260644}
 --- !u!1 &1566108932
 GameObject:
   m_ObjectHideFlags: 0
@@ -49964,9 +51042,10 @@ GameObject:
   - component: {fileID: 1573458085}
   - component: {fileID: 1573458084}
   - component: {fileID: 1573458083}
+  - component: {fileID: 1573458086}
   m_Layer: 0
   m_Name: ToLivingRoom
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50085,6 +51164,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573458081}
   m_CullTransparentMesh: 1
+--- !u!114 &1573458086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573458081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1283366929}
 --- !u!1 &1579999887
 GameObject:
   m_ObjectHideFlags: 0
@@ -51492,6 +52584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <memory>k__BackingField: 2
+  <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!1 &1627142279
 GameObject:
@@ -52252,9 +53345,10 @@ GameObject:
   - component: {fileID: 1648115752}
   - component: {fileID: 1648115751}
   - component: {fileID: 1648115750}
+  - component: {fileID: 1648115753}
   m_Layer: 0
   m_Name: ToHall
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52373,6 +53467,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648115748}
   m_CullTransparentMesh: 1
+--- !u!114 &1648115753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648115748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 474234553}
 --- !u!1 &1652571116
 GameObject:
   m_ObjectHideFlags: 0
@@ -52514,9 +53621,10 @@ GameObject:
   - component: {fileID: 1655278792}
   - component: {fileID: 1655278791}
   - component: {fileID: 1655278790}
+  - component: {fileID: 1655278793}
   m_Layer: 0
-  m_Name: ToOffice01
-  m_TagString: Untagged
+  m_Name: ToParalegals
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52635,6 +53743,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655278788}
   m_CullTransparentMesh: 1
+--- !u!114 &1655278793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655278788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 362741422}
 --- !u!1 &1655580324
 GameObject:
   m_ObjectHideFlags: 0
@@ -53884,9 +55005,10 @@ GameObject:
   - component: {fileID: 1701191060}
   - component: {fileID: 1701191059}
   - component: {fileID: 1701191058}
+  - component: {fileID: 1701191061}
   m_Layer: 0
   m_Name: ToServer
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54005,6 +55127,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701191056}
   m_CullTransparentMesh: 1
+--- !u!114 &1701191061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701191056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 2013308615}
 --- !u!1 &1711483303
 GameObject:
   m_ObjectHideFlags: 0
@@ -54017,9 +55152,10 @@ GameObject:
   - component: {fileID: 1711483307}
   - component: {fileID: 1711483306}
   - component: {fileID: 1711483305}
+  - component: {fileID: 1711483308}
   m_Layer: 0
   m_Name: ToMeeting
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54138,6 +55274,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711483303}
   m_CullTransparentMesh: 1
+--- !u!114 &1711483308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711483303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1495556685}
 --- !u!1 &1713493886
 GameObject:
   m_ObjectHideFlags: 0
@@ -54459,9 +55608,10 @@ GameObject:
   - component: {fileID: 1720343708}
   - component: {fileID: 1720343707}
   - component: {fileID: 1720343706}
+  - component: {fileID: 1720343709}
   m_Layer: 0
   m_Name: ToStudy
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54580,6 +55730,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720343704}
   m_CullTransparentMesh: 1
+--- !u!114 &1720343709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720343704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 517877590}
 --- !u!1 &1722625926
 GameObject:
   m_ObjectHideFlags: 0
@@ -57743,139 +58906,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855973746}
   m_CullTransparentMesh: 1
---- !u!1 &1864062712
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1864062713}
-  - component: {fileID: 1864062716}
-  - component: {fileID: 1864062715}
-  - component: {fileID: 1864062714}
-  m_Layer: 0
-  m_Name: ToMainStreet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1864062713
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864062712}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071063, w: 0.7071073}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 789519341}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 202, y: 0}
-  m_SizeDelta: {x: 50, y: 35}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1864062714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864062712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1864062715}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1278040465}
-        m_TargetAssemblyTypeName: InvestigationManager, Assembly-CSharp
-        m_MethodName: MoveRoomDialog
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Rooms, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1864062715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864062712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2575b0ba05ffa54e9606cf791767cd1, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1864062716
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864062712}
-  m_CullTransparentMesh: 1
 --- !u!1 &1865124835
 GameObject:
   m_ObjectHideFlags: 0
@@ -58002,9 +59032,10 @@ GameObject:
   - component: {fileID: 1877735207}
   - component: {fileID: 1877735206}
   - component: {fileID: 1877735205}
+  - component: {fileID: 1877735208}
   m_Layer: 0
   m_Name: ToOpenArea
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58123,6 +59154,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877735203}
   m_CullTransparentMesh: 1
+--- !u!114 &1877735208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877735203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 613353533}
 --- !u!1 &1881383440
 GameObject:
   m_ObjectHideFlags: 0
@@ -58652,9 +59696,10 @@ GameObject:
   - component: {fileID: 1888418964}
   - component: {fileID: 1888418963}
   - component: {fileID: 1888418962}
+  - component: {fileID: 1888418965}
   m_Layer: 0
   m_Name: ToOpen
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58773,6 +59818,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888418960}
   m_CullTransparentMesh: 1
+--- !u!114 &1888418965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888418960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 613353533}
 --- !u!1 &1888790245
 GameObject:
   m_ObjectHideFlags: 0
@@ -59127,9 +60185,10 @@ GameObject:
   - component: {fileID: 1906881395}
   - component: {fileID: 1906881394}
   - component: {fileID: 1906881393}
+  - component: {fileID: 1906881396}
   m_Layer: 0
   m_Name: ToHall
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59248,6 +60307,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906881391}
   m_CullTransparentMesh: 1
+--- !u!114 &1906881396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906881391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 474234553}
 --- !u!1 &1907860719
 GameObject:
   m_ObjectHideFlags: 0
@@ -60573,9 +61645,10 @@ GameObject:
   - component: {fileID: 1947795628}
   - component: {fileID: 1947795627}
   - component: {fileID: 1947795626}
+  - component: {fileID: 1947795629}
   m_Layer: 0
   m_Name: ToFrontHall
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60694,6 +61767,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947795624}
   m_CullTransparentMesh: 1
+--- !u!114 &1947795629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947795624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 974915642}
 --- !u!1 &1950209027
 GameObject:
   m_ObjectHideFlags: 0
@@ -61552,13 +62638,14 @@ GameObject:
   - component: {fileID: 1968769106}
   - component: {fileID: 1968769105}
   - component: {fileID: 1968769104}
+  - component: {fileID: 1968769107}
   m_Layer: 0
   m_Name: ToAlley
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1968769103
 RectTransform:
   m_ObjectHideFlags: 0
@@ -61673,6 +62760,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968769102}
   m_CullTransparentMesh: 1
+--- !u!114 &1968769107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968769102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1289937165}
 --- !u!1 &1969218229
 GameObject:
   m_ObjectHideFlags: 0
@@ -61825,9 +62925,10 @@ GameObject:
   - component: {fileID: 1969998946}
   - component: {fileID: 1969998945}
   - component: {fileID: 1969998944}
+  - component: {fileID: 1969998947}
   m_Layer: 0
   m_Name: ToLivingRoom
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61946,6 +63047,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969998942}
   m_CullTransparentMesh: 1
+--- !u!114 &1969998947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969998942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1283366929}
 --- !u!1 &1976152834
 GameObject:
   m_ObjectHideFlags: 0
@@ -63381,9 +64495,10 @@ GameObject:
   - component: {fileID: 2015956431}
   - component: {fileID: 2015956430}
   - component: {fileID: 2015956429}
+  - component: {fileID: 2015956432}
   m_Layer: 0
   m_Name: ToStorage
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63502,6 +64617,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015956427}
   m_CullTransparentMesh: 1
+--- !u!114 &2015956432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015956427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 106142549}
 --- !u!1 &2020850186
 GameObject:
   m_ObjectHideFlags: 0
@@ -63514,9 +64642,10 @@ GameObject:
   - component: {fileID: 2020850190}
   - component: {fileID: 2020850189}
   - component: {fileID: 2020850188}
+  - component: {fileID: 2020850191}
   m_Layer: 0
   m_Name: ToOpenArea
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63635,6 +64764,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020850186}
   m_CullTransparentMesh: 1
+--- !u!114 &2020850191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020850186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 488602291}
 --- !u!1 &2020907596
 GameObject:
   m_ObjectHideFlags: 0
@@ -64264,9 +65406,10 @@ GameObject:
   - component: {fileID: 2043467348}
   - component: {fileID: 2043467347}
   - component: {fileID: 2043467346}
+  - component: {fileID: 2043467349}
   m_Layer: 0
   m_Name: ToStorage
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64385,6 +65528,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043467344}
   m_CullTransparentMesh: 1
+--- !u!114 &2043467349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043467344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 722783338}
 --- !u!1 &2045480159
 GameObject:
   m_ObjectHideFlags: 0
@@ -65383,9 +66539,10 @@ GameObject:
   - component: {fileID: 2081994025}
   - component: {fileID: 2081994024}
   - component: {fileID: 2081994023}
+  - component: {fileID: 2081994026}
   m_Layer: 0
   m_Name: ToStudy
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65504,6 +66661,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081994021}
   m_CullTransparentMesh: 1
+--- !u!114 &2081994026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081994021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 517877590}
 --- !u!1 &2083831307
 GameObject:
   m_ObjectHideFlags: 0
@@ -65791,9 +66961,10 @@ GameObject:
   - component: {fileID: 2086193258}
   - component: {fileID: 2086193257}
   - component: {fileID: 2086193256}
+  - component: {fileID: 2086193259}
   m_Layer: 0
   m_Name: ToHall
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65912,6 +67083,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086193254}
   m_CullTransparentMesh: 1
+--- !u!114 &2086193259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086193254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 474234553}
 --- !u!1 &2086470721
 GameObject:
   m_ObjectHideFlags: 0
@@ -65946,10 +67130,10 @@ RectTransform:
   m_Father: {fileID: 1772707166}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -540}
-  m_SizeDelta: {x: 600, y: 500}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2086470723
 CanvasRenderer:
@@ -66475,9 +67659,10 @@ GameObject:
   - component: {fileID: 2094491989}
   - component: {fileID: 2094491988}
   - component: {fileID: 2094491987}
+  - component: {fileID: 2094491990}
   m_Layer: 0
   m_Name: ToLivingRoom
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66596,6 +67781,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094491985}
   m_CullTransparentMesh: 1
+--- !u!114 &2094491990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094491985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1283366929}
 --- !u!1 &2095878458
 GameObject:
   m_ObjectHideFlags: 0
@@ -66653,6 +67851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <memory>k__BackingField: 4
+  <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!1 &2099041659
 GameObject:
@@ -68123,9 +69322,10 @@ GameObject:
   - component: {fileID: 2128900740}
   - component: {fileID: 2128900739}
   - component: {fileID: 2128900738}
+  - component: {fileID: 2128900741}
   m_Layer: 0
-  m_Name: ToOffice02
-  m_TagString: Untagged
+  m_Name: ToWaiting
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68244,6 +69444,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128900736}
   m_CullTransparentMesh: 1
+--- !u!114 &2128900741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128900736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a628cb7db505443b09690e91ea4ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <targetRoom>k__BackingField: {fileID: 1173682822}
 --- !u!1 &2129873946
 GameObject:
   m_ObjectHideFlags: 0

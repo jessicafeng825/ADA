@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PuzzleInfo : MonoBehaviour
 {
+    
+    [field: SerializeField]
+    public Memory collectedAt
+    {get; set;}
+
     [SerializeField]
     protected string puzzleID;
     [SerializeField]
@@ -13,13 +18,14 @@ public class PuzzleInfo : MonoBehaviour
     [SerializeField]
     protected string clueProvided;
     [SerializeField]
-    protected int unlockedArea;
+    protected string unlockedRoom;
+
     [SerializeField]
-    protected Memory collectedAt, unlockedMemory;
+    protected Memory unlockedMemory;
 
     public enum PuzzleEffect
     {
-        provideClue, unlockArea, unlockMemory
+        provideClue, unlockRoom, unlockMemory
     }
 
     protected virtual void PuzzleSolveEffect()
@@ -31,8 +37,9 @@ public class PuzzleInfo : MonoBehaviour
                 InvestigationManager.Instance.AddCluePrefab(clueProvided);
                 break;
 
-            case PuzzleEffect.unlockArea:
+            case PuzzleEffect.unlockRoom:
                 // unlock area
+                InvestigationManager.Instance.UnlockDoor(collectedAt, unlockedRoom);
                 break;
 
             case PuzzleEffect.unlockMemory:
@@ -53,4 +60,5 @@ public class PuzzleInfo : MonoBehaviour
     {
         return puzzleID;
     }
+
 }

@@ -235,6 +235,22 @@ public class InvestigationManager : Singleton<InvestigationManager>
         Debug.Log(puzzleName);
         inBasePuzzleBtns[puzzleName].GetComponent<PuzzleBtn>().ShowSolvedMark();
     }
+    public void UnlockDoor(Memory memory, string targetRoom)
+    {
+        pv.RPC(nameof(UnlockDoorSynchronize), RpcTarget.All, memory, targetRoom);
+    }
+    [PunRPC]
+    public void UnlockDoorSynchronize(Memory memory, string targetRoom)
+    {
+        List<DoorInfo> doors = MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().Doors;
+        foreach(DoorInfo door in doors)
+        {
+            if(door.targetRoom.name == targetRoom)
+            {
+                door.gameObject.SetActive(true);
+            }
+        }
+    }
 
     #endregion
 
