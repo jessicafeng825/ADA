@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class NotificationScript : MonoBehaviour
 {
-    static public UnityEvent yesButtonEvent = new UnityEvent();
-    static public UnityEvent noButtonEvent = new UnityEvent();
+    private UnityEvent yesButtonEvent = new UnityEvent();
+    private UnityEvent noButtonEvent = new UnityEvent();
     static public NotificationScript Instance;
     public float despawnTime = 10f;
     private void Start()
@@ -17,7 +17,6 @@ public class NotificationScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Destroy old");
             Destroy(Instance.gameObject);
             Instance = this;
         }
@@ -27,17 +26,31 @@ public class NotificationScript : MonoBehaviour
     public void ButtonYes()
     {
         yesButtonEvent.Invoke();
-        yesButtonEvent.RemoveAllListeners();
-        noButtonEvent.RemoveAllListeners();
+        ResetButtons();
         Destroy(this.gameObject);
     }
     public void ButtonNo()
     {
         noButtonEvent.Invoke();
-        yesButtonEvent.RemoveAllListeners();
-        noButtonEvent.RemoveAllListeners();
+        ResetButtons();
         Destroy(this.gameObject);
     }
+    public void AddFunctiontoYesButton(UnityAction function)
+    {
+        yesButtonEvent.RemoveAllListeners();
+        yesButtonEvent.AddListener(function);
+    }
+    public void AddFunctiontoNoButton(UnityAction function)
+    {
+        noButtonEvent.RemoveAllListeners();
+        noButtonEvent.AddListener(function);
+    }
+    public void ResetButtons()
+    {
+        yesButtonEvent.RemoveAllListeners();
+        noButtonEvent.RemoveAllListeners();
+    }
+
     IEnumerator Despawn()
     {
         float timer = 0;
@@ -53,7 +66,6 @@ public class NotificationScript : MonoBehaviour
         }
         if(despawnTime != -1)
         {
-            Debug.Log("Despawn");
             Destroy(this.gameObject);
         }
     }

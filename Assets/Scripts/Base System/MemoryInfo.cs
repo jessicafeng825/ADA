@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public enum Memory
 {
@@ -22,6 +23,8 @@ public class MemoryInfo : MonoBehaviour
     [field: SerializeField]
     public int interestPointCount
     { get; set; }
+
+    private PhotonView pv;
     // Start is called before the first frame update
     void Awake()
     {
@@ -42,11 +45,25 @@ public class MemoryInfo : MonoBehaviour
             }
         }
         interestPointCount = totalInterestPoints;
+        if(memory != InvestigationManager.Instance.startMemory.GetComponent<MemoryInfo>().memory)
+            this.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start() 
     {
-        
+        pv = GetComponent<PhotonView>();
+    }
+
+    public bool UpdateInterestPointCount(int n)
+    {
+        interestPointCount += n;
+        if(memory == Memory.BishopMemory && interestPointCount == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

@@ -91,7 +91,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
 
     //Spawn notification panel
-    public void SpawnNotificationPanel(string title, string discription, int btnNum, float time)
+    public NotificationScript SpawnNotificationPanel(string title, string discription, int btnNum, float time)
     {
         
         GameObject tempNotification = Instantiate(ResourceManager.Instance.GetUIElement("NotificationPanel"));
@@ -119,6 +119,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
                 tempNotification.transform.GetChild(4).gameObject.SetActive(false);
                 break;
         }
+        return tempNotification.GetComponent<NotificationScript>();
     }
     public void InitializeCharacterUI()
     {

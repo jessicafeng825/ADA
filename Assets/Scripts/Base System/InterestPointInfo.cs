@@ -33,8 +33,8 @@ public class InterestPointInfo : MonoBehaviour
     }
     public void SpawnPopup()
     {
-        BaseUIManager.Instance.SpawnNotificationPanel("Use Action Points?", "Use the action point for investigate the interest point?", 2, -1f);
-        NotificationScript.yesButtonEvent.AddListener(AddCollectable);
+        NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel("Use Action Points?", "Use the action point for investigate the interest point?", 2, -1f);
+        tempNoti.AddFunctiontoYesButton(AddCollectable);
     }
 
     private void AddCollectable()
@@ -56,7 +56,7 @@ public class InterestPointInfo : MonoBehaviour
             // If the current clue is the last one, inactivate the interest point
             if (cnt_current == collectableList.Count - 1)
             {
-                InvestigationManager.Instance.SynchronizeInterestPointStatus(name);
+                InvestigationManager.Instance.SynchronizeInterestPointStatus(name, memory);
             }
 
             // Tell im to synchronize

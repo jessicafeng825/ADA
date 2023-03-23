@@ -44,7 +44,6 @@ public class Rooms : MonoBehaviour
         {
             interestPointCount++;
         }
-        Debug.Log(roomName + ": " + interestPointCount + " interest points");
         if(!firstRoominMemory)
         {   
             this.GetComponent<CanvasGroup>().alpha = 0;

@@ -18,7 +18,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     //New map movement
     [SerializeField]
-    private Transform startMemory;
+    public Transform startMemory;
 
     [SerializeField]
     private Rooms startRoom;
@@ -47,6 +47,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     #region Parameters: Teleport & Memory Unlock
     [SerializeField]
+    private GameObject memoryTitleText;
+
+    [SerializeField]
     private List<GameObject> MemoryUI_List;
     private Dictionary<string, GameObject> MemoryUI_Dic = new Dictionary<string, GameObject>();
 
@@ -58,14 +61,24 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private List<Button> teleportBtnList;
 
     #endregion
+    #region Parameters: AP
+    [SerializeField]
+    private int playerInitialAP;
+    #endregion
 
+    private void Awake() 
+    {
+        playerController.Instance.currentRoom = startRoom;
+        playerController.Instance.currentMemory = startMemory;
+    }
     private void Start()
     {
-        //The distance every two area
+        
 
         pv = GetComponent<PhotonView>();
         //PreloadInterestPoints();
         playerController.Instance.maxAP = GetPlayerInitialAP();
+        Debug.Log("Player Initial AP: " + playerController.Instance.maxAP);
         playerController.Instance.currentAP = playerController.Instance.maxAP;
         playerController.Instance.Change_currentAP(0);
         playerController.Instance.Change_maxAP(playerController.Instance.maxAP);
@@ -73,14 +86,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
         InitializeMemoryUIDic();
         InitializeMemoryInOverviewDic();
 
-        playerController.Instance.currentRoom = startRoom;
-        playerController.Instance.currentMemory = startMemory;
 
         //Initialize PC Map
         PCMapInitialize();
     }
     private void OnEnable() 
     {
+        playerController.Instance.maxAP = GetPlayerInitialAP();
         playerController.Instance.currentAP = playerController.Instance.maxAP;
         playerController.Instance.Change_currentAP(0);
     }
@@ -108,8 +120,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void MoveRoomDialog(Rooms room)
     {
-        BaseUIManager.Instance.SpawnNotificationPanel(room.roomName, "Use 1AP to move to " + room.roomName +"?", 2, -1f);
-        NotificationScript.yesButtonEvent.AddListener(() => MoveRoom(room));
+        NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel(room.roomName, "Use 1AP to move to " + room.roomName +"?", 2, -1f);
+        tempNoti.AddFunctiontoYesButton(() => MoveRoom(room));
         //NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
     }
     private void MoveRoom(Rooms room)
@@ -117,8 +129,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         Rooms oldRoom = playerController.Instance.currentRoom;
 
         //Update PC Map room player count
-        pv.RPC(nameof(PCMapUpdate), RpcTarget.MasterClient, playerController.Instance.currentMemory.transform.name, oldRoom.name, -1);
-        pv.RPC(nameof(PCMapUpdate), RpcTarget.MasterClient, playerController.Instance.currentMemory.transform.name, room.name, 1);
+        pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory, oldRoom.name, -1);
+        pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory, room.name, 1);
 
         //Update player's current room
         playerController.Instance.currentRoom = room;
@@ -168,7 +180,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         newroom.GetComponent<CanvasGroup>().alpha = 1f;
     }
     [PunRPC]
-    public void PCMapUpdate(Memory memory, string room, int num)
+    public void PCMapUpdatePlayerCount(Memory memory, string room, int num)
     {
         foreach(PCMapRoom r in PCMapRooms)
         {
@@ -274,6 +286,14 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void UnlockMemoryInOverview(Memory memory)
     {
+        foreach(Transform child in PCMap.transform)
+        {
+            if(child.name == memory.ToString())
+            {
+                child.gameObject.SetActive(true);
+                break;
+            }
+        }
         pv.RPC(nameof(UnlockMemorySynchronize), RpcTarget.All, memory);
     }
 
@@ -332,22 +352,20 @@ public class InvestigationManager : Singleton<InvestigationManager>
     }*/
     public void SpawnTelepoetDialog(string title, string content, Memory fromMemory, Memory toMemory)
     {
-        BaseUIManager.Instance.SpawnNotificationPanel(title, content, 2, -1f);
-        NotificationScript.yesButtonEvent.AddListener(() => TeleportToFrom(fromMemory, toMemory));
-        NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
+        NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel(title, content, 2, -1f);
+        tempNoti.AddFunctiontoYesButton(() => TeleportToFrom(fromMemory, toMemory));
+        tempNoti.AddFunctiontoYesButton(() => playerController.Instance.Change_currentAP(-1));
     }
     public void TeleportToFrom(Memory fromMemory, Memory toMemory)
     {
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
         MemoryUI_Dic[toMemory.ToString()].SetActive(true);
+        memoryTitleText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = toMemory.ToString();
+
+        //Change current memory
         playerController.Instance.currentMemory = MemoryUI_Dic[toMemory.ToString()].GetComponent<Transform>();
-        foreach(Transform room in playerController.Instance.currentMemory)
-        {
-            if(room.gameObject.name == "FirstRoom")
-            {
-                playerController.Instance.currentRoom = room.GetComponent<Rooms>();
-            }
-        }
+
+        //Change current room
         Component[] tempRooms = playerController.Instance.currentMemory.GetComponentsInChildren<Rooms>();
         foreach(Rooms room in tempRooms)
         {
@@ -360,6 +378,24 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
     }
 
+    public void ExitTutorialChangeStage()
+    {
+        StartCoroutine(WaitSecondForTeleport(1f));
+        TimerManager.Instance.SwitchStage("All interest points have been collected");
+    }
+    IEnumerator WaitSecondForTeleport(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        PCMap.transform.GetChild(0).gameObject.SetActive(false);
+        PCMap.transform.GetChild(1).gameObject.SetActive(true);
+        pv.RPC(nameof(TeleportEveryone), RpcTarget.Others, Memory.BishopMemory, Memory.LawyerOffice);
+    }
+    [PunRPC]
+    public void TeleportEveryone(Memory fromMemory, Memory toMemory)
+    {
+        TeleportToFrom(fromMemory, toMemory);
+    }
+
     #endregion
 
     #region AP (Action Points) Related Functions
@@ -369,13 +405,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
         {
             return 0;
         }
-        else if (playerController.Instance.playerJob == "")
+        else if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
         {
-            return 4;
+            return playerInitialAP;
         }
         else
         {
-            return 3;
+            return 5;
         }
     }
 
@@ -422,23 +458,23 @@ public class InvestigationManager : Singleton<InvestigationManager>
     }
 
     // functions to synchronize whether interest points are active or not
-    public void SynchronizeInterestPointStatus(string ipName)
+    public void SynchronizeInterestPointStatus(string ipName, Memory memory)
     {
-        pv.RPC(nameof(UpdateIPFullyCollected), RpcTarget.All, ipName);
+        pv.RPC(nameof(UpdateIPFullyCollected), RpcTarget.All, ipName, memory);
     }
 
     [PunRPC]
-    private void UpdateIPFullyCollected(string ipName)
+    private void UpdateIPFullyCollected(string ipName, Memory memory)
     {
         interestPoints[ipName].SetActive(false);
-        MemoryUI_Dic[Memory.BishopMemory.ToString()].GetComponent<MemoryInfo>().interestPointCount--;
+        // minus interest point count from memory
+        if(MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().UpdateInterestPointCount(-1) && PhotonNetwork.IsMasterClient)
+        {
+            // if all interest points are collected, change stage
+            ExitTutorialChangeStage();
+        }
     }
 
-    // Activate the interest point based on name, when some puzzles solved
-    public void ActiveInterestPoint(string ipName)
-    {
-
-    }
     
 
     #endregion

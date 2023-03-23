@@ -8,6 +8,8 @@ using TMPro;
 public class TimerManager : MonoBehaviour
 {
     public static TimerManager Instance;
+    [SerializeField]
+    private GameObject PCMapPanel;
     
     [SerializeField]
     private GameObject timerPanel;
@@ -73,6 +75,7 @@ public class TimerManager : MonoBehaviour
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, false);
                 pv.RPC(nameof(ChangeAllPlayerStage), RpcTarget.All, PlayerManagerForAll.gamestage.Dissussion);
                 timerPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
+                PCMapPanel.SetActive(false);
                 publicStageNow = PlayerManagerForAll.gamestage.Dissussion;
                 currentStageTimer = discussTime;
                 break;
@@ -80,6 +83,7 @@ public class TimerManager : MonoBehaviour
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, true);
                 pv.RPC(nameof(ChangeAllPlayerStage), RpcTarget.All, PlayerManagerForAll.gamestage.Investigate);
                 timerPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
+                PCMapPanel.SetActive(true);
                 publicStageNow = PlayerManagerForAll.gamestage.Investigate;
                 currentStageTimer = investigateTime;
                 break;
