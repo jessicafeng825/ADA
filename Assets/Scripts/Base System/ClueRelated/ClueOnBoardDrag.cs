@@ -22,14 +22,14 @@ public class ClueOnBoardDrag : MonoBehaviour
 
     private void Update()
     {
-        if (mouseOver)
-        {
-            Debug.Log("mouseOver");
-        }
-        else
-        {
-            Debug.Log("Not over");
-        }
+        // if (mouseOver)
+        // {
+        //     Debug.Log("mouseOver");
+        // }
+        // else
+        // {
+        //     Debug.Log("Not over");
+        // }
     }
 
     private void OnMouseOver()
@@ -62,8 +62,8 @@ public class ClueOnBoardDrag : MonoBehaviour
 
     private bool InCanvasRegion(Vector3 position)
     {
-        if (position.y < canvasHeight && position.y > 0 &&
-            position.x < canvasWidth && position.x > 0)
+        if (position.y < canvasHeight*2 - 250 && position.y > 300 &&
+            position.x < canvasWidth*2 && position.x > 0)
         {
             return true;
         }

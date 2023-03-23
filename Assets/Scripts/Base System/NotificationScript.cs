@@ -35,9 +35,12 @@ public class NotificationScript : MonoBehaviour
         ResetButtons();
         Destroy(this.gameObject);
     }
-    public void AddFunctiontoYesButton(UnityAction function)
+    public void AddFunctiontoYesButton(UnityAction function, bool reset)
     {
-        yesButtonEvent.RemoveAllListeners();
+        if(reset)
+        {
+            yesButtonEvent.RemoveAllListeners();
+        }
         yesButtonEvent.AddListener(function);
     }
     public void AddFunctiontoNoButton(UnityAction function)

@@ -34,7 +34,7 @@ public class InterestPointInfo : MonoBehaviour
     public void SpawnPopup()
     {
         NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel("Use Action Points?", "Use the action point for investigate the interest point?", 2, -1f);
-        tempNoti.AddFunctiontoYesButton(AddCollectable);
+        tempNoti.AddFunctiontoYesButton(AddCollectable, false);
     }
 
     private void AddCollectable()

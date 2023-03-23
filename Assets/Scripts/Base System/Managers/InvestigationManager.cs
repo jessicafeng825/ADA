@@ -121,8 +121,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void MoveRoomDialog(Rooms room)
     {
         NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel(room.roomName, "Use 1AP to move to " + room.roomName +"?", 2, -1f);
-        tempNoti.AddFunctiontoYesButton(() => MoveRoom(room));
-        //NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
+        tempNoti.AddFunctiontoYesButton(() => MoveRoom(room), true);
+        tempNoti.AddFunctiontoYesButton(() => playerController.Instance.Change_currentAP(-1), false);
     }
     private void MoveRoom(Rooms room)
     {
@@ -353,8 +353,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void SpawnTelepoetDialog(string title, string content, Memory fromMemory, Memory toMemory)
     {
         NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel(title, content, 2, -1f);
-        tempNoti.AddFunctiontoYesButton(() => TeleportToFrom(fromMemory, toMemory));
-        tempNoti.AddFunctiontoYesButton(() => playerController.Instance.Change_currentAP(-1));
+        tempNoti.AddFunctiontoYesButton(() => TeleportToFrom(fromMemory, toMemory), true);
+        tempNoti.AddFunctiontoYesButton(() => playerController.Instance.Change_currentAP(-1), false);
     }
     public void TeleportToFrom(Memory fromMemory, Memory toMemory)
     {
