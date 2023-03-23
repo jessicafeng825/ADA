@@ -30,6 +30,10 @@ public class UIManager : MonoBehaviour
     private bool ifselected = false;
     private GameObject[] listofgameObjectwithtag;
     private GameObject gameObjectNow;
+
+    //One player for development
+    private bool isSinglePlayer;
+
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
@@ -162,7 +166,10 @@ public class UIManager : MonoBehaviour
     //===Check Overall Functions===//
     private bool checkIfAllhaveSelectJob()
     {
-        
+        if(isSinglePlayer)
+        {
+            return true;
+        }
         for (int i = 0; i < jobList.Length; i++) 
         {
             if(jobList[i].isselected == false)//have not yet select a job
@@ -200,16 +207,16 @@ public class UIManager : MonoBehaviour
         //playerController.Instance.jobSelect(name);
 
         Debug.Log(playerController.Instance.playerJob);
-        if(ifselected == false)
-        {
+        // if(ifselected == false)
+        // {
             playerJob.text = job.jobName;
             playerName.text = job.playername;
             playerbk.text = job.backgroundstory;
             playerrl.text = job.relationshiptext;
             playersk.text = job.skilltext;
-            playerImageUI.sprite = Resources.Load<Sprite>("CharacterUI/" + job.playerImage);
-            ifselected = true;
-        }
+            playerImageUI.sprite = Resources.Load<Sprite>("CharacterUI/Round/" + "Round-" + job.playerImage);
+            //ifselected = true;
+        // }
         
        
         //make all the player button inactive
@@ -224,15 +231,25 @@ public class UIManager : MonoBehaviour
         
 
     }
-    public void jobselectForname(string name)
+    public void jobselectForname(string oldJob, string newJob)
     {
         for (int i = 0; i < jobList.Length; i++)
         {
-            if (jobList[i].jobName == name)
+            if (jobList[i].jobName == newJob)
             {
                 if (!jobList[i].isselected)
                 {
+                    Debug.Log("set " + name + " to be inactive");
                     jobList[i].select();//set this to be inactive
+                }
+                
+            }
+            else if (jobList[i].jobName == oldJob)
+            {
+                if (jobList[i].isselected)                
+                {
+                    Debug.Log("set " + name +  " to be active");
+                    jobList[i].unSelect();//set this to be active
                 }
                 
             }
@@ -249,9 +266,9 @@ public class UIManager : MonoBehaviour
 
     }
     [PunRPC]
-    private void setbuttonInactive(string name)
+    private void setbuttonActivation(string oldJob, string newJob)
     {
-        UIManager.Instance.jobselectForname(name);
+        UIManager.Instance.jobselectForname(oldJob, newJob);
     }
     [PunRPC]
     private void updateallplayerName(string name,string jobname,string playername,string playerbackground, string playerImage,string relationshipText,string skillText)
@@ -262,14 +279,15 @@ public class UIManager : MonoBehaviour
         {
             if (listofgameObjectwithtag[i].GetComponent<PhotonView>().Owner.NickName == name)
             {
-                if(listofgameObjectwithtag[i].GetComponent<playerController>().isselected == false)
-                {
+                // if(listofgameObjectwithtag[i].GetComponent<playerController>().isselected == false)
+                // {
+                    string oldJob = listofgameObjectwithtag[i].GetComponent<playerController>().playerJob;
                     listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname, playername, playerbackground, playerImage);
 
                     //gameObjectNow = listofgameObjectwithtag[i];
 
-                    pv.RPC(nameof(setbuttonInactive), RpcTarget.All, jobname);
-                }
+                    pv.RPC(nameof(setbuttonActivation), RpcTarget.All, oldJob, jobname);
+                // }
                 
             }
         }
@@ -312,6 +330,12 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.OpenMenu("CharacterSelect");
         UIManager.Instance.OpenMenu("CharacterSelectPC");
 
+    }
+
+    public void isSinglePlayerMode(GameObject check)
+    {
+        isSinglePlayer = !isSinglePlayer;
+        check.gameObject.SetActive(isSinglePlayer);
     }
 
 

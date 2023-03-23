@@ -34,4 +34,13 @@ public class JOb : MonoBehaviour
         }
         
     }
+    public void unSelect()
+    {
+        isselected = false;
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            button.interactable = true;
+        }
+        
+    }
 }
