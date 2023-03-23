@@ -42,12 +42,15 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     {
         if (Input.GetMouseButtonDown(0) && PhotonNetwork.IsMasterClient)
         {
+            // Move Clues
             peData = new PointerEventData(eventSystem);
             peData.position = Input.mousePosition;
             r_results = new List<RaycastResult>();
             graphicRaycaster.Raycast(peData, r_results);
 
-            if (r_results[1].gameObject.GetComponent<ClueOnBoardDrag>())
+
+            // Connect Clues
+/*            if (r_results[1].gameObject.GetComponent<ClueOnBoardDrag>())
             {
                 if (!selectedOne)
                 {
@@ -62,10 +65,9 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
                     lineRenderer.SetPosition(1, new Vector3(secondObj.transform.position.x, secondObj.transform.position.y, 1));
                     // Create line prefab between 2 objects
                 }
-            }
+            }*/
             //Todo: Highlight selected
             //r_results[1].gameObject.GetComponent<Material>() =
-            
         }
     }
 

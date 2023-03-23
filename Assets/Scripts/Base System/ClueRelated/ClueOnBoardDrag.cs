@@ -10,8 +10,9 @@ public class ClueOnBoardDrag : MonoBehaviour
     [SerializeField]
     private Canvas canvas;
     private Vector2 newPosition;
-
     private float canvasWidth, canvasHeight;
+
+    private bool mouseOver;
 
     private void Start()
     {
@@ -19,8 +20,31 @@ public class ClueOnBoardDrag : MonoBehaviour
         canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
     }
 
+    private void Update()
+    {
+        if (mouseOver)
+        {
+            Debug.Log("mouseOver");
+        }
+        else
+        {
+            Debug.Log("Not over");
+        }
+    }
+
+    private void OnMouseOver()
+    {
+        mouseOver = true;
+    }
+
+    private void OnMouseExit()
+    {
+        mouseOver = false;
+    }
+
     public void DragHandler(BaseEventData eventData)
     {
+        mouseOver = false;
         PointerEventData pointerEventData = (PointerEventData)eventData;
 
         if (InCanvasRegion(pointerEventData.position))
