@@ -10,6 +10,8 @@ public class TimerManager : MonoBehaviour
     public static TimerManager Instance;
     [SerializeField]
     private GameObject PCMapPanel;
+    [SerializeField]
+    private GameObject DetectiveBoardPanel;
     
     [SerializeField]
     private GameObject timerPanel;
@@ -75,7 +77,9 @@ public class TimerManager : MonoBehaviour
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, false);
                 pv.RPC(nameof(ChangeAllPlayerStage), RpcTarget.All, PlayerManagerForAll.gamestage.Dissussion);
                 timerPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
+                //Open and close Map and detective board
                 PCMapPanel.SetActive(false);
+                DetectiveBoardPanel.SetActive(true);
                 publicStageNow = PlayerManagerForAll.gamestage.Dissussion;
                 currentStageTimer = discussTime;
                 break;
@@ -83,7 +87,9 @@ public class TimerManager : MonoBehaviour
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, true);
                 pv.RPC(nameof(ChangeAllPlayerStage), RpcTarget.All, PlayerManagerForAll.gamestage.Investigate);
                 timerPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
+                //Open and close Map and detective board
                 PCMapPanel.SetActive(true);
+                DetectiveBoardPanel.SetActive(false);
                 publicStageNow = PlayerManagerForAll.gamestage.Investigate;
                 currentStageTimer = investigateTime;
                 break;
