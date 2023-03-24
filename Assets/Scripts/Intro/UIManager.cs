@@ -51,13 +51,16 @@ public class UIManager : MonoBehaviour
         listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
 
         playerName.text = PhotonNetwork.NickName;
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        
         introToSelect();
+        
     }
     void OnPrepareVideo(VideoPlayer vp)
     {
@@ -204,7 +207,7 @@ public class UIManager : MonoBehaviour
             }
         }
         */
-        pv.RPC(nameof(updateallplayerName), RpcTarget.All, PhotonNetwork.NickName,job.jobName, job.playername,job.backgroundstory, job.playerImage, job.relationshiptext, job.skilltext);
+        pv.RPC(nameof(updateallplayerName), RpcTarget.All, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.playerImage, job.relationshiptext, job.skilltext);
         //playerController.Instance.jobSelect(name);
 
         Debug.Log(playerController.Instance.playerJob);
@@ -272,13 +275,13 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.jobselectForname(oldJob, newJob);
     }
     [PunRPC]
-    private void updateallplayerName(string name,string jobname,string playername,string playerbackground, string playerImage,string relationshipText,string skillText)
+    private void updateallplayerName(int id,string jobname,string playername,string playerbackground, string playerImage,string relationshipText,string skillText)
     {
         //gb.GetComponent<playerController>().jobSelect(name);
         listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < listofgameObjectwithtag.Length; i++)
         {
-            if (listofgameObjectwithtag[i].GetComponent<PhotonView>().Owner.NickName == name)
+            if (listofgameObjectwithtag[i].GetComponent<PhotonView>().ViewID == id)
             {
                 // if(listofgameObjectwithtag[i].GetComponent<playerController>().isselected == false)
                 // {

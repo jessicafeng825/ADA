@@ -120,6 +120,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void MoveRoomDialog(Rooms room)
     {
+        if(playerController.Instance.currentAP <= 0)
+        {
+            Debug.Log("No AP");
+            return;
+        }
         NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel(room.roomName, "Use 1AP to move to " + room.roomName +"?", 2, -1f);
         tempNoti.AddFunctiontoYesButton(() => MoveRoom(room), true);
         tempNoti.AddFunctiontoYesButton(() => playerController.Instance.Change_currentAP(-1), false);
@@ -236,7 +241,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
             if(child.name.Contains(m))
             {
                 child.gameObject.SetActive(true);
-                if(child.name == m + "BaseContent")
+                if(child.name == m + "Content")
                     tempClue.GetComponent<Transform>().SetParent(child, true);
             }
         }

@@ -39,6 +39,11 @@ public class InterestPointInfo : MonoBehaviour
 
     private void AddCollectable()
     {
+        if(playerController.Instance.currentAP <= 0)
+        {
+            Debug.Log("No AP");
+            return;
+        }
         if (cnt_current < collectableList.Count)
         {
             if (collectableList[cnt_current].type == ipType.Clue)
