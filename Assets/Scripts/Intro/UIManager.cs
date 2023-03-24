@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour
         playerName.text = PhotonNetwork.NickName;
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -325,11 +326,18 @@ public class UIManager : MonoBehaviour
     [PunRPC]
     private void closeintro()
     {
-        UIManager.Instance.CloseMenu("PlayerBackground");
-        UIManager.Instance.CloseMenu("PcBackground");
-        UIManager.Instance.OpenMenu("CharacterSelect");
+        StartCoroutine(KeepLoading(1f));
+        UIManager.Instance.CloseMenu("IntroBackground");
         UIManager.Instance.OpenMenu("CharacterSelectPC");
 
+    }
+
+    //Coroutine for loading screen for work around of the video error
+    IEnumerator KeepLoading(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        UIManager.Instance.CloseMenu("BgLoad");
+        UIManager.Instance.OpenMenu("CharacterSelect");
     }
 
     public void isSinglePlayerMode(GameObject check)

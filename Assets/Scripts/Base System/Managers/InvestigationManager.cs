@@ -129,8 +129,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         Rooms oldRoom = playerController.Instance.currentRoom;
 
         //Update PC Map room player count
-        pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory, oldRoom.name, -1);
-        pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory, room.name, 1);
+        Memory tempMemory = playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory;
+        pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, tempMemory, oldRoom.name, tempMemory, room.name);
 
         //Update player's current room
         playerController.Instance.currentRoom = room;
@@ -180,21 +180,32 @@ public class InvestigationManager : Singleton<InvestigationManager>
         newroom.GetComponent<CanvasGroup>().alpha = 1f;
     }
     [PunRPC]
-    public void PCMapUpdatePlayerCount(Memory memory, string room, int num)
+    public void PCMapUpdatePlayerCount(Memory oldMemory, string oldRoom, Memory newMemory, string newRoom)
     {
         foreach(PCMapRoom r in PCMapRooms)
         {
-            if(r.memory == memory)
+            if(r.memory == oldMemory)
             {
-                if(r.roomName == room)
+                if(r.roomName == oldRoom)
                 {
-                    r.PlayerCount += num;
+                    r.PlayerCount --;
                     if(r.PlayerCount == 0)
                         r.transform.Find("Number").gameObject.SetActive(false);
-                    else
+                    
+                    r.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
+                                         
+                }
+            }
+            if(r.memory == newMemory)
+            {
+                if(r.roomName == newRoom)
+                {
+                    r.PlayerCount ++;
+                    if(r.PlayerCount > 0)
                         r.transform.Find("Number").gameObject.SetActive(true);
-                        r.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
-                    break;                        
+
+                    r.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
+                                        
                 }
             }
         }
@@ -219,6 +230,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         tempClue = Instantiate(ResourceManager.Instance.GetClueBtn(clueID));
         tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true);
+        tempClue.transform.localScale = new Vector3(1f, 1f, 1f);
         playerController.Instance.Change_currentAP(-1);
         ResourceManager.Instance.allClueCount --;
         pv.RPC(nameof(SyncClueCount), RpcTarget.All, ResourceManager.Instance.allClueCount);
@@ -236,6 +248,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         tempPuzzle = Instantiate(ResourceManager.Instance.GetPuzzleBtn(puzzleName));
         tempPuzzle.GetComponent<Transform>().SetParent(PuzzleBase.GetComponent<Transform>(), true);
+        tempPuzzle.transform.localScale = new Vector3(1f, 1f, 1f);
         inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
         
         playerController.Instance.Change_currentAP(-1);
@@ -301,6 +314,17 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void UnlockMemorySynchronize(Memory memory)
     {
         unlockedMemoryInOverviewDic[memory.ToString()].gameObject.SetActive(true);
+        if(PhotonNetwork.IsMasterClient)
+        {
+            foreach(Transform child in PCMap.transform)
+            {
+                if(child.name == memory.ToString())
+                {
+                    child.gameObject.SetActive(true);
+                    break;
+                }
+            }
+        }
     }
 
     public void UnlockTeleport(Memory fromMemory, Memory toMemory)
@@ -372,10 +396,16 @@ public class InvestigationManager : Singleton<InvestigationManager>
             if (room.firstRoominMemory)
             {
                 Debug.Log("First room: " + room.roomName);
+                Rooms originalRoom = playerController.Instance.currentRoom;
                 playerController.Instance.currentRoom = room;
+                pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, fromMemory, originalRoom.name, toMemory, room.name);
                 break;
             }
         }
+
+
+        
+
     }
 
     public void ExitTutorialChangeStage()
@@ -394,6 +424,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void TeleportEveryone(Memory fromMemory, Memory toMemory)
     {
         TeleportToFrom(fromMemory, toMemory);
+    }
+    [PunRPC]
+    public void TeleportSynonPCMap(Memory memory)
+    {
+        UnlockMemoryInOverview(memory);
     }
 
     #endregion
