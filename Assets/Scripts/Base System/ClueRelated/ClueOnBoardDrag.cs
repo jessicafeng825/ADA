@@ -17,12 +17,13 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField]
     private float waitForSeconds;
     [SerializeField]
-    private float timer = 0;
+    private float timer;
 
     private void Start()
     {
         canvasWidth = canvas.GetComponent<RectTransform>().rect.width;
         canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
+        timer = 0;
     }
 
     private void Update()
@@ -35,9 +36,7 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
         // call detectiveboardManager to open clue after several seconds
         if (timer >= waitForSeconds)
         {
-            DetectiveBoardManager.Instance.OpenClueInfoOnBoard(clueID);
-            Debug.Log("Open");
-            timer = 0;
+            DetectiveBoardManager.Instance.OpenClueInfoOnBoard(clueID, transform.position); 
         }
 
     }
@@ -45,6 +44,7 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnPointerEnter(PointerEventData eventData)
     {
         mouseOver = true;
+        Debug.Log("mouse on");
     }
 
     public void OnPointerExit(PointerEventData eventData)

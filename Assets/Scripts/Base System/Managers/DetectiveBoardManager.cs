@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 
@@ -12,10 +13,11 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     [SerializeField]
     private Canvas mainCanvas;
     [SerializeField]
-    private GameObject detectiveBoard;
+    private GameObject detectiveBoard, clueBtnsOnBoard;
     [SerializeField]
-    private GameObject clueOnBoardTemplate;
-    private GameObject tempClue;
+    private GameObject clueOnBoardTemplate, onBoardClueInfoTemplate;
+    private GameObject tempClueOnBoardBtn, tempClueOnBoardInfo, tempClueInfo;
+    private Dictionary<string, GameObject> OnBoardClueInfosDic = new Dictionary<string, GameObject>();
 
     // For Raycast
     private GraphicRaycaster graphicRaycaster;
@@ -80,16 +82,34 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     private void SynchronizeShareClue(string clueID)
     {
         Debug.Log("share");
-        tempClue = Instantiate(clueOnBoardTemplate);
-        tempClue.GetComponent<Image>().sprite = ResourceManager.Instance.GetCluePic(clueID);
-        tempClue.GetComponent<ClueOnBoardDrag>().SetClueID(clueID);
-        tempClue.GetComponent<ClueOnBoardDrag>().SetCanvas(mainCanvas);
-        tempClue.GetComponent<Transform>().SetParent(detectiveBoard.GetComponent<Transform>(), false);
+        tempClueOnBoardBtn = Instantiate(clueOnBoardTemplate);
+        tempClueOnBoardBtn.GetComponent<Image>().sprite = ResourceManager.Instance.GetCluePic(clueID);
+        tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetClueID(clueID);
+        tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetCanvas(mainCanvas);
+        tempClueOnBoardBtn.GetComponent<Transform>().SetParent(clueBtnsOnBoard.GetComponent<Transform>(), false);
     }
 
-    public void OpenClueInfoOnBoard(string clueID)
+    public void OpenClueInfoOnBoard(string clueID, Vector3 clueBtnPosition)
     {
+        tempClueInfo = ResourceManager.Instance.GetClueInfo(clueID);
+        tempClueOnBoardInfo = Instantiate(onBoardClueInfoTemplate);
+        // Title
+        tempClueOnBoardInfo.GetComponentsInChildren<TMP_Text>()[0].text = tempClueInfo.GetComponentsInChildren<TMP_Text>()[0].text;
+        // Description
+        tempClueOnBoardInfo.GetComponentsInChildren<TMP_Text>()[1].text = tempClueInfo.GetComponentsInChildren<TMP_Text>()[1].text;
+        // Image
+        tempClueOnBoardInfo.GetComponentsInChildren<Image>()[1].sprite = tempClueInfo.GetComponentsInChildren<Image>()[1].sprite;
+        tempClueOnBoardInfo.GetComponentInChildren<Button>().onClick.AddListener(() => CloseClueInfoOnBoard(clueID));
+        // Put on canvas
+        tempClueOnBoardInfo.GetComponent<Transform>().SetParent(detectiveBoard.GetComponent<Transform>(), false);
+        tempClueOnBoardInfo.transform.position = clueBtnPosition;
+        OnBoardClueInfosDic.Add(clueID, tempClueOnBoardInfo);
+    }
 
+    public void CloseClueInfoOnBoard(string clueID)
+    {
+        Destroy(OnBoardClueInfosDic[clueID]);
+        OnBoardClueInfosDic.Remove(clueID);
     }
 
     public void ActivateDetectiveBoard()
