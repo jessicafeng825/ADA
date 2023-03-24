@@ -87,6 +87,11 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         tempClue.GetComponent<Transform>().SetParent(detectiveBoard.GetComponent<Transform>(), false);
     }
 
+    public void OpenClueInfoOnBoard(string clueID)
+    {
+
+    }
+
     public void ActivateDetectiveBoard()
     {
         detectiveBoard.SetActive(true);
