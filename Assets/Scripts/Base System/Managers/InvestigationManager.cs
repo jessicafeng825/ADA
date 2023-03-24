@@ -28,7 +28,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     // Player Clue Base Part
     [SerializeField]
-    private GameObject ClueBase;
+    private GameObject ClueBases;
     private GameObject tempClue;
 
     // Player Puzzle Base Part
@@ -226,10 +226,21 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     #region Clue Related Functions
     // function: when player click on interest point, add a clue to their clue base
-    public void AddCluePrefab(string clueID)
+    public void AddCluePrefab(string clueID, Memory memory)
     {
         tempClue = Instantiate(ResourceManager.Instance.GetClueBtn(clueID));
-        tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true);
+        string m = memory.ToString();
+        Debug.Log(m);
+        foreach(Transform child in ClueBases.transform)
+        {
+            if(child.name.Contains(m))
+            {
+                child.gameObject.SetActive(true);
+                if(child.name == m + "BaseContent")
+                    tempClue.GetComponent<Transform>().SetParent(child, true);
+            }
+        }
+        
         tempClue.transform.localScale = new Vector3(1f, 1f, 1f);
         playerController.Instance.Change_currentAP(-1);
         ResourceManager.Instance.allClueCount --;

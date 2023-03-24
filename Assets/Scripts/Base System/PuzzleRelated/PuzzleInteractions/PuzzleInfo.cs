@@ -34,7 +34,7 @@ public class PuzzleInfo : MonoBehaviour
         {
             case PuzzleEffect.provideClue:
                 // give clue
-                InvestigationManager.Instance.AddCluePrefab(clueProvided);
+                InvestigationManager.Instance.AddCluePrefab(clueProvided, collectedAt);
                 break;
 
             case PuzzleEffect.unlockRoom:

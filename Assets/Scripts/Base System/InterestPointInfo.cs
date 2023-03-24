@@ -44,7 +44,7 @@ public class InterestPointInfo : MonoBehaviour
             if (collectableList[cnt_current].type == ipType.Clue)
             {
                 BaseUIManager.Instance.SpawnNotificationPanel("Clue Found!", "You have found a clue!", 1, 3f);
-                InvestigationManager.Instance.AddCluePrefab(collectableList[cnt_current].id);
+                InvestigationManager.Instance.AddCluePrefab(collectableList[cnt_current].id, memory);
             }
             else if (collectableList[cnt_current].type == ipType.Puzzle)
             {
