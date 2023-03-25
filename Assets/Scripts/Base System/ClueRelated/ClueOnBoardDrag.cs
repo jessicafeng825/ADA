@@ -53,7 +53,6 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnPointerEnter(PointerEventData eventData)
     {
         mouseOver = true;
-        Debug.Log("mouse on");
     }
 
     public void OnPointerExit(PointerEventData eventData)

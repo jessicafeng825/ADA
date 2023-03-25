@@ -16,7 +16,7 @@ public class InterestPointInfo : MonoBehaviour
     [SerializeField]
     private int cnt_current = 0;
 
-    private TextMeshProUGUI countText;
+    private TMP_Text countText;
 
     [System.Serializable]
     public class InterestPoint
@@ -34,7 +34,7 @@ public class InterestPointInfo : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(SpawnPopup);
         cnt_current = collectableList.Count;
-        countText = this.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        countText = GetComponentInChildren<TMP_Text>();
         countText.text = cnt_current.ToString();
     }
     public void SpawnPopup()

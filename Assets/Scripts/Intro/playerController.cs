@@ -28,6 +28,9 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     public Transform currentMemory;
     private PhotonView pv;
 
+    // Share Clue Part
+    public int currentClueSharedNum;
+
     private void Awake()
     {
         //Only the local player will be the instance instead of the last player entering the scene
@@ -134,4 +137,5 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     //         stageNow = (PlayerManagerForAll.gamestage)stream.ReceiveNext();
     //     }
     // }
+
 }
