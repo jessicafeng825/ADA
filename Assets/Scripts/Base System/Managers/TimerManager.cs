@@ -23,6 +23,8 @@ public class TimerManager : MonoBehaviour
     
     [SerializeField]
     private GameObject playerPanel;
+    private GameObject investigationPanel;
+    private GameObject discussionPanel;
     
     [SerializeField]
     private float investigateTime;
@@ -45,6 +47,10 @@ public class TimerManager : MonoBehaviour
         pv = GetComponent<PhotonView>();
         publicStageNow = PlayerManagerForAll.gamestage.Investigate;
         gamePhaseTimer = investigateTime;
+
+        investigationPanel = playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").gameObject;
+        discussionPanel = playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").gameObject;
+
         TimerTitle = timerPanel.transform.Find("TimerTitle").gameObject;
         EndButton = timerPanel.transform.Find("EndButton").gameObject;
     }
@@ -120,12 +126,12 @@ public class TimerManager : MonoBehaviour
         switch(active)
         {
             case true:
-                playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").gameObject.SetActive(true);
-                playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").gameObject.SetActive(false);
+                investigationPanel.gameObject.SetActive(true);
+                discussionPanel.gameObject.SetActive(false);
                 break;
             case false:
-                playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").gameObject.SetActive(false);
-                playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").gameObject.SetActive(true);
+                investigationPanel.gameObject.SetActive(false);
+                discussionPanel.gameObject.SetActive(true);
                 break;
         }
     }

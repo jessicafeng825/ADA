@@ -63,7 +63,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #endregion
     #region Parameters: AP
     [SerializeField]
-    private int playerInitialAP;
+    private int playerTutorialAP;
+    [SerializeField]
+    private int playerNormalAP;
     #endregion
 
     private void Awake() 
@@ -78,7 +80,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
         pv = GetComponent<PhotonView>();
         //PreloadInterestPoints();
         playerController.Instance.maxAP = GetPlayerInitialAP();
-        Debug.Log("Player Initial AP: " + playerController.Instance.maxAP);
         playerController.Instance.currentAP = playerController.Instance.maxAP;
         playerController.Instance.Change_currentAP(0);
         playerController.Instance.Change_maxAP(playerController.Instance.maxAP);
@@ -125,9 +126,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
             Debug.Log("No AP");
             return;
         }
-        NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel(room.roomName, "Use 1AP to move to " + room.roomName +"?", 2, -1f);
-        tempNoti.AddFunctiontoYesButton(() => MoveRoom(room), true);
-        tempNoti.AddFunctiontoYesButton(() => playerController.Instance.Change_currentAP(-1), false);
+        MoveRoom(room);
     }
     private void MoveRoom(Rooms room)
     {
@@ -235,7 +234,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         tempClue = Instantiate(ResourceManager.Instance.GetClueBtn(clueID));
         string m = memory.ToString();
-        Debug.Log(m);
         foreach(Transform child in ClueBases.transform)
         {
             if(child.name.Contains(m))
@@ -458,11 +456,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
         else if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
         {
-            return playerInitialAP;
+            return playerTutorialAP;
         }
         else
         {
-            return 5;
+            return playerNormalAP;
         }
     }
 

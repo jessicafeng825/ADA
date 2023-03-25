@@ -9,6 +9,10 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     [SerializeField]
     private Canvas canvas;
+    
+    [SerializeField]
+    private RectTransform movableArea;
+    private float movableAreaMaxHeight, movableAreaMinHeight, movableAreaMaxWidth, movableAreaMinWidth;
     private Vector2 newPosition;
     private float canvasWidth, canvasHeight;
 
@@ -23,6 +27,11 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         canvasWidth = canvas.GetComponent<RectTransform>().rect.width;
         canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
+        movableArea = this.transform.parent.GetComponent<RectTransform>();
+        movableAreaMaxHeight = (movableArea.rect.height + movableArea.offsetMin.y) * movableArea.transform.lossyScale.y;
+        movableAreaMinHeight = movableArea.offsetMin.y * movableArea.transform.lossyScale.y;
+        movableAreaMaxWidth = movableArea.rect.width * movableArea.transform.lossyScale.x;
+        movableAreaMinWidth = 0;
         timer = 0;
     }
 
@@ -73,8 +82,8 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private bool InCanvasRegion(Vector3 position)
     {
-        if (position.y < canvasHeight - 250 && position.y > 300 &&
-            position.x < canvasWidth && position.x > 0)
+        if (position.y < movableAreaMaxHeight && position.y > movableAreaMinHeight &&
+            position.x < movableAreaMaxWidth && position.x > movableAreaMinWidth)
         {
             return true;
         }

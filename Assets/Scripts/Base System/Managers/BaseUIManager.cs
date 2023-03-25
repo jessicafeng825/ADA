@@ -37,6 +37,9 @@ public class BaseUIManager : Singleton<BaseUIManager>
     [SerializeField]
     private GameObject MemoryOverview;
 
+    [SerializeField]
+    private TextMeshProUGUI APText;
+
     public void Start()
     {
         pcPanel.SetActive(PhotonNetwork.IsMasterClient);
@@ -132,7 +135,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     public void UpdateAPUI(int num)
     {
-        playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("APpoints").GetChild(1).GetComponent<TMP_Text>().text = num.ToString() + "AP";
+        APText.text = num.ToString() + "\r\nAP";
     }
 
     public void ClickMemoryOverview()
