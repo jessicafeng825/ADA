@@ -14,9 +14,7 @@ public class InterestPointInfo : MonoBehaviour
     [SerializeField]
     private List<InterestPoint> collectableList;
     [SerializeField]
-    private int cnt_current = 0;
-
-    private TMP_Text countText;
+    private int cnt_current;
 
     [System.Serializable]
     public class InterestPoint
@@ -34,8 +32,7 @@ public class InterestPointInfo : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(SpawnPopup);
         cnt_current = collectableList.Count;
-        countText = GetComponentInChildren<TMP_Text>();
-        countText.text = cnt_current.ToString();
+        GetComponentInChildren<TMP_Text>().text = cnt_current.ToString();
     }
     public void SpawnPopup()
     {
@@ -78,6 +75,6 @@ public class InterestPointInfo : MonoBehaviour
     public void changeIP_Current(int change)
     {
         cnt_current -= change;
-        countText.text = cnt_current.ToString();
+        GetComponentInChildren<TMP_Text>().text = cnt_current.ToString();
     }
 }
