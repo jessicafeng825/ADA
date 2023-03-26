@@ -92,6 +92,7 @@ public class TimerManager : MonoBehaviour
                 DetectiveBoardPanel.SetActive(true);
                 publicStageNow = PlayerManagerForAll.gamestage.Dissussion;
                 currentStageTimer = discussTime;
+                playerController.Instance.currentClueSharedNum = 0;
                 break;
             case PlayerManagerForAll.gamestage.Dissussion:
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, true);

@@ -309,7 +309,6 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.CloseMenu("InfoPC");
         //Synchronize stage between players
         playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Investigate);
-        playerController.Instance.currentClueSharedNum = 0;
         PhotonNetwork.LoadLevel(2);
         
     }

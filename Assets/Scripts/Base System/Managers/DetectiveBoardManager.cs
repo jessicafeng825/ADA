@@ -30,8 +30,8 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     private LineRenderer lineRenderer;
     private int lineCnt = 0;
     private bool selectedOne;
-    private GameObject firstObj;
-    private GameObject secondObj;
+    private string firstClueID, secondClueID;
+    private List<GameObject> allCluesOnBoard = new List<GameObject>();
 
     private void Start()
     {
@@ -42,17 +42,20 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && PhotonNetwork.IsMasterClient)
+        if (Input.GetMouseButton(0) && PhotonNetwork.IsMasterClient)
         {
             // Move Clues
             peData = new PointerEventData(eventSystem);
             peData.position = Input.mousePosition;
             r_results = new List<RaycastResult>();
             graphicRaycaster.Raycast(peData, r_results);
+        }
 
-
+/*        if (Input.GetMouseButtonDown(0) && PhotonNetwork.IsMasterClient)
+        {
+            //Debug.Log("click 1");
             // Connect Clues
-/*            if (r_results[1].gameObject.GetComponent<ClueOnBoardDrag>())
+            if (r_results[1].gameObject.GetComponent<ClueOnBoardDrag>())
             {
                 if (!selectedOne)
                 {
@@ -67,10 +70,14 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
                     lineRenderer.SetPosition(1, new Vector3(secondObj.transform.position.x, secondObj.transform.position.y, 1));
                     // Create line prefab between 2 objects
                 }
-            }*/
-            //Todo: Highlight selected
-            //r_results[1].gameObject.GetComponent<Material>() =
-        }
+            }
+        }*/
+
+        /*        foreach (GameObject clueOnBoard in allCluesOnBoard)
+                {
+                    // if line dic contains id? line position 
+                    // if (clueOnBoard.GetComponent<ClueOnBoardDrag>().GetClueID())
+                }*/
     }
 
     public void ShareClue(string clueID)
@@ -86,6 +93,7 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         tempClueOnBoardBtn.GetComponent<Image>().sprite = ResourceManager.Instance.GetCluePic(clueID);
         tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetClueID(clueID);
         tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetCanvas(mainCanvas);
+        allCluesOnBoard.Add(tempClueOnBoardBtn);
         tempClueOnBoardBtn.GetComponent<Transform>().SetParent(clueBtnsOnBoard.GetComponent<Transform>(), false);
     }
 
@@ -110,6 +118,35 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     {
         Destroy(OnBoardClueInfosDic[clueID]);
         OnBoardClueInfosDic.Remove(clueID);
+        firstClueID = null;
+    }
+
+    public void SetFirstSelectedClue(string selectedClue)
+    {
+        firstClueID = selectedClue;
+        Debug.Log("1st clue: " + firstClueID);
+    }
+
+    public string GetFirstSelectedClue()
+    {
+        return firstClueID;
+    }
+
+    public void SetSecondSelectedClue(string selectedClue)
+    {
+        secondClueID = selectedClue;
+        Debug.Log("2nd clue: " + secondClueID);
+    }
+
+    public string GetSecondSelectedClue()
+    {
+        return secondClueID;
+    }
+
+    public void ResetSelectedClues()
+    {
+        firstClueID = null;
+        secondClueID = null;
     }
 
     public void ActivateDetectiveBoard()
