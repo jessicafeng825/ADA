@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
 
-public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IBeginDragHandler, IEndDragHandler
 {
     private string clueID;
 
@@ -17,9 +17,9 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private float canvasWidth, canvasHeight;
 
     // Mouse over to open clue detail
-    private bool mouseOver;
+    private bool mouseHoldToOpen, isDragging;
     [SerializeField]
-    private float waitForSeconds;
+    private float pressedTimeRequired;
     [SerializeField]
     private float timer;
 
@@ -32,46 +32,50 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
         movableAreaMinHeight = movableArea.offsetMin.y * movableArea.transform.lossyScale.y;
         movableAreaMaxWidth = movableArea.rect.width * movableArea.transform.lossyScale.x;
         movableAreaMinWidth = 0;
+        timer = 0;
     }
 
     private void Update()
     {
+        if (mouseHoldToOpen && Input.GetMouseButton(0))
+        {
+            timer += Time.deltaTime;
+        }
 
+        if(timer > pressedTimeRequired)
+        {
+            DetectiveBoardManager.Instance.OpenClueInfoOnBoard(clueID, transform.position);
+            timer = 0;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        mouseHoldToOpen = true;
         // high light ui
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        mouseHoldToOpen = false;
+        timer = 0;
         // cancel highlight
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.clickCount == 1)
+        if (!isDragging)
         {
-            // select this game object as first game object in dbm
-            if (DetectiveBoardManager.Instance.GetFirstSelectedClue() == null)
-            {
-                DetectiveBoardManager.Instance.SetFirstSelectedClue(clueID);
-            }
-            else if (DetectiveBoardManager.Instance.GetSecondSelectedClue() == null)
-            {
-                DetectiveBoardManager.Instance.SetSecondSelectedClue(clueID);
-            }
-            else
-            {
-                DetectiveBoardManager.Instance.SetSecondSelectedClue(null);
-            }
-            
+            DetectiveBoardManager.Instance.ClueSelected(clueID);
         }
-        else if (eventData.clickCount == 2)
-        {
-            DetectiveBoardManager.Instance.OpenClueInfoOnBoard(clueID, transform.position);
-        }
+    }
+
+    #region Dragging Related Functions
+    // Function to move clue on board
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        isDragging = true;
+        mouseHoldToOpen = false;
     }
 
     public void DragHandler(BaseEventData eventData)
@@ -85,6 +89,12 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
             transform.position = canvas.transform.TransformPoint(newPosition);
         }
     }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        isDragging = false;
+    }
+    #endregion
 
     public void SetCanvas(Canvas mainCanvas)
     {

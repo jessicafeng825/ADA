@@ -13,44 +13,23 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     [SerializeField]
     private Canvas mainCanvas;
     [SerializeField]
-    private GameObject detectiveBoard, clueBtnsOnBoard;
+    private GameObject detectiveBoard, clueBtnsOnBoard, linesBoard;
     [SerializeField]
-    private GameObject clueOnBoardTemplate, onBoardClueInfoTemplate;
-    private GameObject tempClueOnBoardBtn, tempClueOnBoardInfo, tempClueInfo;
+    private GameObject clueOnBoardTemplate, onBoardClueInfoTemplate, linePrefab;
+    private GameObject tempClueOnBoardBtn, tempClueOnBoardInfo, tempClueInfo, tempLine;
     private Dictionary<string, GameObject> OnBoardClueInfosDic = new Dictionary<string, GameObject>();
 
-    // For Raycast
-    private GraphicRaycaster graphicRaycaster;
-    private PointerEventData peData;
-    [SerializeField]
-    private EventSystem eventSystem;
-    private List<RaycastResult> r_results;
-
     // For Connecting Objects
-    private LineRenderer lineRenderer;
-    private int lineCnt = 0;
-    private bool selectedOne;
     private string firstClueID, secondClueID;
-    private List<GameObject> allCluesOnBoard = new List<GameObject>();
+    private Dictionary<string, GameObject> allCluesOnBoardDic = new Dictionary<string, GameObject>();
 
     private void Start()
     {
         pv = GetComponent<PhotonView>();
-        graphicRaycaster = mainCanvas.GetComponent<GraphicRaycaster>();
-        lineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && PhotonNetwork.IsMasterClient)
-        {
-            // Move Clues
-            peData = new PointerEventData(eventSystem);
-            peData.position = Input.mousePosition;
-            r_results = new List<RaycastResult>();
-            graphicRaycaster.Raycast(peData, r_results);
-        }
-
 /*        if (Input.GetMouseButtonDown(0) && PhotonNetwork.IsMasterClient)
         {
             //Debug.Log("click 1");
@@ -93,7 +72,7 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         tempClueOnBoardBtn.GetComponent<Image>().sprite = ResourceManager.Instance.GetCluePic(clueID);
         tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetClueID(clueID);
         tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetCanvas(mainCanvas);
-        allCluesOnBoard.Add(tempClueOnBoardBtn);
+        allCluesOnBoardDic.Add(clueID, tempClueOnBoardBtn);
         tempClueOnBoardBtn.GetComponent<Transform>().SetParent(clueBtnsOnBoard.GetComponent<Transform>(), false);
     }
 
@@ -121,32 +100,29 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         firstClueID = null;
     }
 
-    public void SetFirstSelectedClue(string selectedClue)
+    public void ClueSelected(string clueID)
     {
-        firstClueID = selectedClue;
-        Debug.Log("1st clue: " + firstClueID);
+        if (firstClueID == null)
+        {
+            firstClueID = clueID;
+            Debug.Log("1st clue selected: " + clueID);
+        }
+        else if (secondClueID == null)
+        {
+            Debug.Log("2nd clue selected: " + clueID);
+            secondClueID = clueID;
+            // connect clues
+            ConnectTwoClues(allCluesOnBoardDic[firstClueID].transform.position, allCluesOnBoardDic[secondClueID].transform.position);
+        }
     }
 
-    public string GetFirstSelectedClue()
+    private void ConnectTwoClues(Vector2 firstCluePosition, Vector2 secondCluePosition)
     {
-        return firstClueID;
-    }
-
-    public void SetSecondSelectedClue(string selectedClue)
-    {
-        secondClueID = selectedClue;
-        Debug.Log("2nd clue: " + secondClueID);
-    }
-
-    public string GetSecondSelectedClue()
-    {
-        return secondClueID;
-    }
-
-    public void ResetSelectedClues()
-    {
-        firstClueID = null;
-        secondClueID = null;
+        Debug.Log("draw");
+        tempLine = Instantiate(linePrefab);
+        tempLine.GetComponent<Transform>().SetParent(linesBoard.GetComponent<Transform>(), true);
+        tempLine.GetComponent<LineRenderer>().SetPosition(0, firstCluePosition);
+        tempLine.GetComponent<LineRenderer>().SetPosition(1, secondCluePosition);
     }
 
     public void ActivateDetectiveBoard()
