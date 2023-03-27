@@ -523,7 +523,16 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
     }
 
-    
+    public void SynchronizeActivateInterestPoint(string ipName)
+    {
+        pv.RPC(nameof(ActivateInterestPoint), RpcTarget.All, ipName);
+    }
+
+    [PunRPC]
+    private void ActivateInterestPoint(string ipName)
+    {
+        interestPoints[ipName].SetActive(true);
+    }
 
     #endregion
 
