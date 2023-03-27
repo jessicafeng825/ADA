@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
@@ -63,6 +64,10 @@ public class ResourceManager : Singleton<ResourceManager>
     public GameObject GetClueInfo(string clueID)
     {
         return clueInfoDic[clueID];
+    }
+    public string GetClueInfoTitle(string clueID)
+    {
+        return clueInfoDic[clueID].transform.Find("txt_ClueName").GetComponent<TextMeshProUGUI>().text;
     }
 
     private void LoadAllPuzzleBtns()

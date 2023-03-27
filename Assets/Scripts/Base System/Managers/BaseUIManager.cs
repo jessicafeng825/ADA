@@ -93,7 +93,9 @@ public class BaseUIManager : Singleton<BaseUIManager>
     #endregion
 
 
-    //Spawn notification panel
+
+    #region Pop-up UI Related Functions
+    //Spawn Yes/No panel
     public NotificationScript SpawnNotificationPanel(string title, string discription, int btnNum, float time)
     {
         
@@ -124,6 +126,39 @@ public class BaseUIManager : Singleton<BaseUIManager>
         }
         return tempNotification.GetComponent<NotificationScript>();
     }
+    //Spawn interest point choice panel
+    public IPCollectPanel SpawnInterestPointPanel(string title, List<bool> collected)
+    {
+        GameObject tempIPPanel = Instantiate(ResourceManager.Instance.GetUIElement("IPCollectPopupPanel"));
+
+        tempIPPanel.transform.SetParent(playerPanel.transform);
+        tempIPPanel.transform.localScale = new Vector3(1, 1, 1);
+        tempIPPanel.transform.localPosition = new Vector3(0, 0, 0);
+        tempIPPanel.transform.Find("Title").GetChild(1).GetComponent<TMP_Text>().text = title;
+        for(int i = 0; i < tempIPPanel.transform.Find("Choices").childCount; i++)
+        {
+            if(i < collected.Count)
+            {
+                if(!collected[i])
+                {
+                    tempIPPanel.transform.Find("Choices").GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    tempIPPanel.transform.Find("Choices").GetChild(i).gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                tempIPPanel.transform.Find("Choices").GetChild(i).gameObject.SetActive(false);
+            }
+            
+        }
+        return tempIPPanel.GetComponent<IPCollectPanel>();
+    }
+
+
+    #endregion
     public void InitializeCharacterUI()
     {
         playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;

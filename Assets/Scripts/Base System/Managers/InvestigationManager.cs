@@ -495,15 +495,16 @@ public class InvestigationManager : Singleton<InvestigationManager>
         interestPoints.Add(name, interestPoint);
     }
 
-    public void SynchronizeInterestPoint(string ipName)
+    public void SynchronizeInterestPoint(string ipName, int itemNum)
     {
-        pv.RPC(nameof(UpdateGivenIPCNT), RpcTarget.All, ipName);
+        pv.RPC(nameof(UpdateGivenIPCNT), RpcTarget.All, ipName, itemNum);
     }
 
     [PunRPC]
-    private void UpdateGivenIPCNT(string ipName)
+    private void UpdateGivenIPCNT(string ipName, int itemNum)
     {
         interestPoints[ipName].GetComponent<InterestPointInfo>().changeIP_Current(1);
+        interestPoints[ipName].GetComponent<InterestPointInfo>().itemCollected(itemNum);
     }
 
     // functions to synchronize whether interest points are active or not
