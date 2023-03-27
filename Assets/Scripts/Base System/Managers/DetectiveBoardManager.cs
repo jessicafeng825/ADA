@@ -15,13 +15,22 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     [SerializeField]
     private GameObject detectiveBoard, clueBtnsOnBoard, linesBoard;
     [SerializeField]
-    private GameObject clueOnBoardTemplate, onBoardClueInfoTemplate, linePrefab;
-    private GameObject tempClueOnBoardBtn, tempClueOnBoardInfo, tempClueInfo, tempLine;
+    private GameObject clueOnBoardTemplate, onBoardClueInfoTemplate;
+    private GameObject tempClueOnBoardBtn, tempClueOnBoardInfo, tempClueInfo;
+    private Dictionary<string, GameObject> allCluesOnBoardDic = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> OnBoardClueInfosDic = new Dictionary<string, GameObject>();
 
     // For Connecting Objects
     private string firstClueID, secondClueID;
-    private Dictionary<string, GameObject> allCluesOnBoardDic = new Dictionary<string, GameObject>();
+    [SerializeField]
+    private GameObject linePrefab;
+    private GameObject tempLine;
+    private List<GameObject> linesOnBoardList = new List<GameObject>();
+    private Vector2 firstCluePosition, secondCluePosition, diff;
+    private float angle, sign, width, midpointX, midpointY;
+    [SerializeField]
+    private float lineThickness;
+
 
     private void Start()
     {
@@ -30,33 +39,6 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
 
     private void Update()
     {
-/*        if (Input.GetMouseButtonDown(0) && PhotonNetwork.IsMasterClient)
-        {
-            //Debug.Log("click 1");
-            // Connect Clues
-            if (r_results[1].gameObject.GetComponent<ClueOnBoardDrag>())
-            {
-                if (!selectedOne)
-                {
-                    firstObj = r_results[1].gameObject;
-                    selectedOne = true;
-                }
-                else
-                {
-                    secondObj = r_results[1].gameObject;
-                    selectedOne = false;
-                    lineRenderer.SetPosition(0, new Vector3(firstObj.transform.position.x, firstObj.transform.position.y, 1));
-                    lineRenderer.SetPosition(1, new Vector3(secondObj.transform.position.x, secondObj.transform.position.y, 1));
-                    // Create line prefab between 2 objects
-                }
-            }
-        }*/
-
-        /*        foreach (GameObject clueOnBoard in allCluesOnBoard)
-                {
-                    // if line dic contains id? line position 
-                    // if (clueOnBoard.GetComponent<ClueOnBoardDrag>().GetClueID())
-                }*/
     }
 
     public void ShareClue(string clueID)
@@ -112,17 +94,73 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
             Debug.Log("2nd clue selected: " + clueID);
             secondClueID = clueID;
             // connect clues
-            ConnectTwoClues(allCluesOnBoardDic[firstClueID].transform.position, allCluesOnBoardDic[secondClueID].transform.position);
+            //DrawTwoCluesConnection(allCluesOnBoardDic[firstClueID], allCluesOnBoardDic[secondClueID]);
         }
     }
 
-    private void ConnectTwoClues(Vector2 firstCluePosition, Vector2 secondCluePosition)
+    private void DrawTwoCluesConnection(GameObject firstClue, GameObject secondClue)
     {
         Debug.Log("draw");
-        tempLine = Instantiate(linePrefab);
+        firstCluePosition = firstClue.transform.position;
+        secondCluePosition = secondClue.transform.position;
+        tempLine = Instantiate(linePrefab, secondCluePosition, Quaternion.identity);
+
+        // Calculate the line rotation
+        diff = firstCluePosition - secondCluePosition;
+        sign = (firstCluePosition.y < secondCluePosition.y) ? -1.0f : 1.0f;
+        angle = Vector2.Angle(Vector2.right, diff) * sign;
+        tempLine.transform.Rotate(0, 0, angle);
+
+        // Calculate the line length
+        width = Vector2.Distance(secondCluePosition, firstCluePosition);
+        tempLine.GetComponent<RectTransform>().sizeDelta = new Vector2(width, lineThickness);
+
+        // Calculate mid point position
+        midpointX = secondCluePosition.x + (firstCluePosition.x - secondCluePosition.x) / 2;
+        midpointY = secondCluePosition.y + (firstCluePosition.y - secondCluePosition.y) / 2;
+        tempLine.transform.position = new Vector3(midpointX, midpointY, 0);
+
+        // Update line info
+        tempLine.GetComponent<LineInfo>().SetFirstClueID(firstClue.GetComponent<ClueOnBoardDrag>().GetClueID());
+        tempLine.GetComponent<LineInfo>().SetSecondClueID(firstClue.GetComponent<ClueOnBoardDrag>().GetClueID());
+
         tempLine.GetComponent<Transform>().SetParent(linesBoard.GetComponent<Transform>(), true);
-        tempLine.GetComponent<LineRenderer>().SetPosition(0, firstCluePosition);
-        tempLine.GetComponent<LineRenderer>().SetPosition(1, secondCluePosition);
+        linesOnBoardList.Add(tempLine);
+    }
+
+    public void UpdateLinesConnection(string clueID, Vector2 newPosition)
+    {
+        foreach (GameObject line in linesOnBoardList)
+        {
+            if (line.GetComponent<LineInfo>().GetFirstClueID() == clueID)
+            {
+                UpdateLineConnectionFirstPosition(line, newPosition);
+            }
+            else if (line.GetComponent<LineInfo>().GetSecondClueID() == clueID)
+            {
+
+            }
+        }
+    }
+
+    private void UpdateLineConnectionFirstPosition(GameObject line, Vector2 newFirstPosition)
+    {
+        Vector2 secondPosition = allCluesOnBoardDic[line.GetComponent<LineInfo>().GetSecondClueID()].transform.position;
+        
+        // Update Rotation
+        diff = newFirstPosition - secondPosition;
+        sign = (newFirstPosition.y < secondPosition.y) ? -1.0f : 1.0f;
+        angle = Vector2.Angle(Vector2.right, diff) * sign;
+        line.transform.Rotate(0, 0, angle);
+
+        // Update Length
+        width = Vector2.Distance(secondPosition, newFirstPosition);
+        line.GetComponent<RectTransform>().sizeDelta = new Vector2(width, line.GetComponent<RectTransform>().sizeDelta.y);
+
+        // Update mid point position
+        midpointX = secondPosition.x + (newFirstPosition.x - secondPosition.x) * 0.5f;
+        midpointY = secondPosition.y + (newFirstPosition.y - secondPosition.y) * 0.5f;
+        line.transform.position = new Vector3(midpointX, midpointY, 0);
     }
 
     public void ActivateDetectiveBoard()

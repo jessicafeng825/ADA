@@ -37,7 +37,7 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void Update()
     {
-        if (mouseHoldToOpen && Input.GetMouseButton(0))
+        if (mouseHoldToOpen && Input.GetMouseButton(0) && !isDragging)
         {
             timer += Time.deltaTime;
         }
@@ -87,6 +87,7 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
             (RectTransform)canvas.transform, pointerEventData.position, canvas.worldCamera, out newPosition);
             transform.position = canvas.transform.TransformPoint(newPosition);
+            //DetectiveBoardManager.Instance.UpdateLinesConnection(clueID, newPosition);
         }
     }
 
