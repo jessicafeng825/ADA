@@ -167,9 +167,9 @@ public class BaseUIManager : Singleton<BaseUIManager>
         playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
         playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
         charaterPanel.transform.Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
-        charaterPanel.transform.Find("Description").GetChild(1).GetComponent<TMP_Text>().text = playerController.Instance.playerBackground;
-        charaterPanel.transform.Find("Relationship").GetChild(1).GetComponent<TMP_Text>().text = "Relationship";
-        charaterPanel.transform.Find("Skill").GetChild(1).GetComponent<TMP_Text>().text = "Skill";
+        charaterPanel.transform.Find("Description").GetComponentInChildren<TMP_Text>().text = playerController.Instance.playerBackground;
+        charaterPanel.transform.Find("Relationship").GetComponentInChildren<TMP_Text>().text = playerController.Instance.relationshipText;
+        charaterPanel.transform.Find("Skill").GetComponentInChildren<TMP_Text>().text = playerController.Instance.skillText;
     }
     public void UpdateAPUI(int num)
     {

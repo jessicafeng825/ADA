@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0dd20cd4b02a58468d7b8ae200b59fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuName: PcBackground
+  menuName: IntroBackground
   open: 1
 --- !u!1 &1550642811563517352
 GameObject:
@@ -1993,24 +1993,38 @@ MonoBehaviour:
   playerImage: Lawyer
   jobName: Lawyer
   playername: Max Orion
-  backgroundstory: 'Backstory:  You were raised in a wealthy family with access to
-    the best education and tech. Despite living in luxury, childhood was lonely.
-    Your parents loved you in their own way, but never encouraging. When you got
-    to college you met Bishop Kaine and quickly became friends. Bishop supported
-    your lawyerial dreams and even introduced you to your soon-to-be ex-wife. Bishop
-    was always larger than life, but his means of rising to the top were... questionable.
-    You still remained loyal and won every case on behalf of the Kaine Corporation.'
-  skilltext: 'Special Ability:  TechGlass       With TechGlass you are able to notice
-    small details that others may have overlooked. '
-  relationshiptext: 'Relationship to Ava Kaine:  You had suspicions that your wife
-    had been cheating. You hired a P.I. who uncovered the truth. Your wife had been
-    seeing someone -- Bishop Kaine. Fueled with rage you went to confront Bishop,
-    who stayed flippant and coolly admitted that it was true. Bishop then continued
-    to fire you as his attorney. You! After years of covering up Bishop''s dirty
-    business. You''d been waiting for an apology but none came. Instead, Ava Kaine
-    showed up one day. As the previous Kaine family lawyer, you''ve known Ava since
-    she was born. That day, she requested any info you had on MemTech, her father''s
-    new risky product. You obliged. '
+  backgroundstory: 'You were raised in a wealthy family with access to the best education
+    and tech. Despite living in luxury, childhood was lonely. Your parents loved
+    you in their own way, but never encouraging.  <br><br>
+
+    When you got to college
+    <b>you met Bishop Kaine and quickly became friends</b>. Bishop <b>supported your
+    lawyerial dreams</b> and even <b>introduced you to your soon-to-be ex-wife</b>.
+    Bishop was always larger than life, but his means of rising to the top were...
+    questionable. You still remained loyal and won every case on behalf of the Kaine
+    Corporation.'
+  skilltext: "<b><u> TechGlass </u></b><br><br>\n\u201CWith TechGlass I\u2019m able
+    to notice small details that others may have overlooked.\u201D"
+  relationshiptext: 'You had always suspected that something was off with your wife,
+    but you never had proof until you hired a private investigator. The truth was
+    gut-wrenching - <b>your wife had been cheating on you with none other than Bishop
+    Kaine</b>.<br><br>
+
+    In a fit of anger, <b>you confronted Bishop</b>, hoping
+    for an apology or at least some remorse. But instead, he stayed cool and admitted
+    to the affair before <b>firing you as his attorney</b>. You were dumbfounded
+    - after years of covering up his dirty business, he had the nerve to let you
+    go just like that.<br><br>
+
+    You had been waiting for an apology from Bishop,
+    but it never came. Instead, Ava Kaine, Bishop''s daughter, showed up at your
+    office one day. You had <b>known Ava since she was born</b>, having served as
+    the previous Kaine family lawyer.
+
+    She <b>requested any information you had
+    on MemTech</b>, her father''s new and risky product. Despite feeling meek and
+    fed-up, <b>you obliged</b>. After all, you had nothing left to lose, and it felt
+    good to finally stand up to the Kaine family in some small way.'
   isselected: 0
 --- !u!1 &2395052887423186606
 GameObject:
@@ -2183,9 +2197,9 @@ RectTransform:
   m_Father: {fileID: 8655176093338010076}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 482.69736, y: -1153.965}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1998394680299001336
@@ -2554,7 +2568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stree
+  m_text: Biohacker
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
   m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
@@ -2840,7 +2854,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00048828125}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2178256361199818123
@@ -3144,22 +3158,33 @@ MonoBehaviour:
   playerImage: StreetKid
   jobName: StreetKid
   playername: Mutts
-  backgroundstory: "Backstory:  You never knew your parents and found your family
-    amongst a pack of wild street dogs. You didn\u2019t have a name until you heard
-    people call your dogs \u201Cmutts\u201D and liked the sound of it.  Having to
-    scavenge to survive, you\u2019ve grown to have a certain affinity for shiny objects.
-    Sometimes you go to crowded streets so that you can \u201Cborrow\u201D from passers-by.
-    These people never seem to care too much about these \u201Cborrowed\u201D objects,
-    they never come looking for them! Mutts takes care of the shiny objects and keeps
-    them in safe places.  Lately, you\u2019ve discovered the big houses in the city
-    have the best food and objects, so you\u2019ve been breaking in.  The big houses
-    have lots of puzzles and security but Mutts gets past them with ease. "
-  skilltext: 'Special Ability:  Picking Locks    One time you saw this dude picking
-    a lock to get into a house, and you were like, whoa, that''s so cool! So you
-    decided to try it yourself, and guess what? It was a breeze. '
-  relationshiptext: 'Relationship to Ava Kaine:  You would often see Ava walking
-    from the nightclub, The Smoke and Chrome, which was on the main drag. She would
-    always give you a smile and wave. She was kind... for a human. '
+  backgroundstory: "You never knew your parents and <b>found your family amongst
+    a pack of wild street dogs</b>. You didn\u2019t have a name until you heard people
+    call your dogs \u201Cmutts\u201D and liked the sound of it.<br>\n\nHaving to
+    scavenge to survive, you\u2019ve grown to have a <b>certain affinity for shiny
+    objects</b>. Sometimes you go to crowded streets so that you can <b>\u201Cborrow\u201D
+    from passers-by</b>. These people never seem to care too much about these \u201Cborrowed\u201D
+    objects, they never come looking for them! Mutts takes care of the shiny objects
+    and keeps them in safe places. <br>\n\nLately, you\u2019ve discovered the big
+    houses in the city have the best food and objects, so you\u2019ve been <b>breaking
+    in</b>.<br>\n\nThe big houses have lots of puzzles and security but Mutts gets
+    past them with ease. It's a fun challenge, and the rewards are worth it. You
+    feel alive in those moments, the rush of adrenaline pumping through your veins.
+    <b>You're a chaotic force of nature, living life on your own terms</b>."
+  skilltext: "<b><u>Picking Locks</u></b> <br><br> \n\u201CI love the feeling of
+    being able to slip past certain locks and sneak into places without anyone noticing
+    me! It's like I have a superpower or something.\u201D"
+  relationshiptext: "You would often see Ava walking from the nightclub, The Smoke
+    and Chrome, which was on the main drag. She would always give you a smile and
+    wave. She was kind... for a human. Not as much as your pack, but who is? \r<br>\n\r\n<b>You
+    \u201Cborrowed\u201D her wallet that day</b>. It didn\u2019t have much in it,
+    just her ID and some photos. You caught a glimpse of her ring, though, one of
+    the shiniest you\u2019d ever seen! You followed her for a little while, to the
+    nightclub and her house. <b>After she left her house, she was crying</b>. She
+    threw her bracelet on the ground and stepped on it. \r<br>\n\r\n<b>You picked
+    up her bracelet</b> \u2013 a medium shiny one, it said A + C on it \u2013 <b>but
+    you stopped following her</b>. You don\u2019t know humans as well as dogs, but
+    you knew for sure she needed to be alone."
   isselected: 0
 --- !u!1 &3470548431622659721
 GameObject:
@@ -3850,7 +3875,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.0013427734, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6452341960911904257
@@ -7215,7 +7240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0dd20cd4b02a58468d7b8ae200b59fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuName: PlayerBackground
+  menuName: BgLoad
   open: 1
 --- !u!1 &8085102256906187877
 GameObject:
@@ -8069,28 +8094,40 @@ MonoBehaviour:
   playerImage: DIY
   jobName: Biohacker
   playername: Caden Slate
-  backgroundstory: 'Backstory:  Cyber augments saved your life at six months old.
-    Your parents thought you''d grow up grateful for it and join the techie workforce.
-    They were fools. You can''t help but see the exploitation, the corporate overreach,
-    and the lies behind the corps. And you can''t help but imagine augmented life
-    outside of their control. When you first hacked your augment as a kid, the rush
-    of it overwhelmed you. Now, you might be more machine than man. The Void recruited
-    you right out of school. You fit right in with the rebels and the anarchists
-    and the utopia-minded. You''ll get to that world you imagine, no matter the cost. '
-  skilltext: ' Special Ability:  Cryptography     If you wanted to rock all the cybernetic
-    implants and upgrades, you had to be a DIY pro. That meant getting savvy with
-    cryptography, and now you''ve totally nailed it. You can now hack through firewalls
-    and handle any cybersecurity hurdles like a boss. '
-  relationshiptext: 'Relationship to Ava Kaine: Ava was always in your corner. You
-    met in Engineering class at 14, two outcasts in a sea of aspiring capitalist
-    pigs. She taught you to hotwire a hovercar, you took out her parental tracking
-    implant. She loved you, for a while. You didn''t stop loving her. When she finally
-    went no contact with her dad, you welcomed her into the Void. Most of them still
-    don''t trust her with the big stuff, five years on. That''s why you started fighting.
-    She figured out that the next big action wasn''t just sabotaging, wasn''t just
-    an expose. She won''t endorse violence, and she won''t forgive you for not telling
-    her. It was a huge, blowout fight, and she left crying. Why can''t she see that
-    the mission is what matters? '
+  backgroundstory: 'Cyber augments saved your life at six months old. Your parents
+    thought you''d grow up grateful for it and join the techie workforce. They were
+    fools.<br><br>
+
+
+    <b>You can''t help but see the exploitation, the corporate
+    overreach, and the lies behind the corps</b>. And you can''t help but imagine
+    augmented life outside of their control. When you first hacked your augment as
+    a kid, the rush of it overwhelmed you. Now, you might be <b>more machine than
+    man</b>. The Void recruited you right out of school. <b>You fit right in with
+    the Void</b>, with the rebels and the anarchists and the utopia-minded. <b>You''ll
+    get to that world you imagine, no matter the cost</b>.
+
+'
+  skilltext: '<b><u> Cryptography </u></b><br><br>
+
+    If you wanted to rock all
+    the cybernetic implants and upgrades, you had to be a DIY pro. That meant getting
+    savvy with cryptography, and now you''ve totally nailed it. You can now hack
+    through firewalls and handle any cybersecurity hurdles like a boss. '
+  relationshiptext: '<b>Ava was always in your corner</b>. You met in Engineering
+    class at 14, two outcasts in a sea of aspiring capitalist pigs. She taught you
+    to hotwire a hovercar, you took out her parental tracking implant. <b>She loved
+    you, for a while. You didn''t stop loving her</b>. <br><br>
+
+    When she finally
+    went no contact with her dad, <b>you welcomed her into the Void</b>. Most of
+    them still don''t trust her with the big stuff, five years on.<br><br>
+
+    <b>That''s
+    why you started fighting</b>. She figured out that the next big action wasn''t
+    just sabotaging, wasn''t just an expose. <b>She won''t endorse violence</b>,
+    and she won''t forgive you for not telling her. It was a huge, blowout fight,
+    and she left crying. <b>Why can''t she see that the mission is what matters?</b>'
   isselected: 0
 --- !u!1 &8593276635366754487
 GameObject:
@@ -8128,7 +8165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.0007324219}
   m_SizeDelta: {x: 0, y: -1292.2169}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3486244151376535710
@@ -8275,9 +8312,9 @@ RectTransform:
   m_Father: {fileID: 8655176093338010076}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 482.69736, y: -1048.965}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 600, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7668325073363589630

@@ -284,7 +284,7 @@ public class UIManager : MonoBehaviour
                 // if(listofgameObjectwithtag[i].GetComponent<playerController>().isselected == false)
                 // {
                     string oldJob = listofgameObjectwithtag[i].GetComponent<playerController>().playerJob;
-                    listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname, playername, playerbackground, playerImage);
+                    listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname, playername, playerbackground, skillText, relationshipText, playerImage);
 
                     //gameObjectNow = listofgameObjectwithtag[i];
 
