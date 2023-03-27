@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public enum Memory
 {
-    None, BishopMemory, Mansion, StreetCorner, LawyerOffice, NightClub, VoidBase, SecretLaboratory
+    None, BishopMemory, Mansion, StreetCorner, LawyerOffice, Nightclub, VoidBase, SecretLaboratory
 }
 public class MemoryInfo : MonoBehaviour
 {

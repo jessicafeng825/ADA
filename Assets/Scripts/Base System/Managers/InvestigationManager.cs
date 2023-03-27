@@ -297,7 +297,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         foreach (GameObject memoryUI in MemoryUI_List)
         {
-            MemoryUI_Dic.Add(memoryUI.name, memoryUI);
+            MemoryUI_Dic.Add(memoryUI.GetComponent<MemoryInfo>().memory.ToString(), memoryUI);
         }
     }
 

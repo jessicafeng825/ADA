@@ -14,9 +14,9 @@ public class PuzzleInfo : MonoBehaviour
     [SerializeField]
     protected bool isSolved;
     [SerializeField]
-    protected PuzzleEffect puzzleEffect;
+    protected List<PuzzleEffect> puzzleEffects = new List<PuzzleEffect>();
     [SerializeField]
-    protected string clueProvided;
+    protected List<string> clueProvided = new List<string>();
     [SerializeField]
     protected string unlockedRoom;
 
@@ -30,25 +30,32 @@ public class PuzzleInfo : MonoBehaviour
 
     protected virtual void PuzzleSolveEffect()
     {
-        switch (puzzleEffect)
+        foreach(PuzzleEffect effect in puzzleEffects)
         {
-            case PuzzleEffect.provideClue:
-                // give clue
-                InvestigationManager.Instance.AddCluePrefab(clueProvided, collectedAt);
-                break;
+            switch(effect)
+            {
+                case PuzzleEffect.provideClue:
+                    // give clue
+                    foreach(string clue in clueProvided)
+                    {
+                        InvestigationManager.Instance.AddCluePrefab(clue, collectedAt);
+                    }
+                    break;
 
-            case PuzzleEffect.unlockRoom:
-                // unlock area
-                InvestigationManager.Instance.UnlockDoor(collectedAt, unlockedRoom);
-                break;
+                case PuzzleEffect.unlockRoom:
+                    // unlock area
+                    InvestigationManager.Instance.UnlockDoor(collectedAt, unlockedRoom);
+                    break;
 
-            case PuzzleEffect.unlockMemory:
-                // unlock memory, teleport player
-                InvestigationManager.Instance.UnlockMemoryInOverview(unlockedMemory);
-                // TODO: A small bug to fix: right now the teleport is from 1 -> unlocked memory
-                InvestigationManager.Instance.UnlockTeleport(collectedAt, unlockedMemory);
-                break;
+                case PuzzleEffect.unlockMemory:
+                    // unlock memory, teleport player
+                    InvestigationManager.Instance.UnlockMemoryInOverview(unlockedMemory);
+                    // TODO: A small bug to fix: right now the teleport is from 1 -> unlocked memory
+                    InvestigationManager.Instance.UnlockTeleport(collectedAt, unlockedMemory);
+                    break;
+            }
         }
+        
     }
     protected void HideThisUI()
     {

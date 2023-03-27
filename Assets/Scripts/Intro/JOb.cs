@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
+
 public class JOb : MonoBehaviour
 {
     public string playerImage;
