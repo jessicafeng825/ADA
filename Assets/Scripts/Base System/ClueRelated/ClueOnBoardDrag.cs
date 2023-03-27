@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine;
 
-public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IBeginDragHandler, IEndDragHandler
+public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler
 {
     private string clueID;
 
@@ -14,51 +15,68 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private RectTransform movableArea;
     private float movableAreaMaxHeight, movableAreaMinHeight, movableAreaMaxWidth, movableAreaMinWidth;
     private Vector2 newPosition;
-    private float canvasWidth, canvasHeight;
 
     // Mouse over to open clue detail
-    private bool mouseHoldToOpen, isDragging;
+    [SerializeField]
+    private bool mouseOver, isDragging;
     [SerializeField]
     private float pressedTimeRequired;
     [SerializeField]
     private float timer;
+    [SerializeField]
+    private GameObject progressBar;
+    private Image fillImage;
 
     private void Start()
     {
-        canvasWidth = canvas.GetComponent<RectTransform>().rect.width;
-        canvasHeight = canvas.GetComponent<RectTransform>().rect.height;
         movableArea = transform.parent.GetComponent<RectTransform>();
         movableAreaMaxHeight = (movableArea.rect.height + movableArea.offsetMin.y) * movableArea.transform.lossyScale.y;
         movableAreaMinHeight = movableArea.offsetMin.y * movableArea.transform.lossyScale.y;
         movableAreaMaxWidth = movableArea.rect.width * movableArea.transform.lossyScale.x;
         movableAreaMinWidth = 0;
         timer = 0;
+        progressBar.SetActive(false);
+        fillImage = progressBar.GetComponentsInChildren<Image>()[1];
     }
 
     private void Update()
     {
-        if (mouseHoldToOpen && Input.GetMouseButton(0) && !isDragging)
+        if (mouseOver && !isDragging)
         {
-            timer += Time.deltaTime;
+            timer += Time.deltaTime; 
+            progressBar.SetActive(true);
+            fillImage.fillAmount = timer / pressedTimeRequired;
+        }
+        else
+        {
+            timer = 0;
+            fillImage.fillAmount = 0;
+            progressBar.SetActive(false);
         }
 
         if(timer > pressedTimeRequired)
         {
+            ResetLoading();
             DetectiveBoardManager.Instance.OpenClueInfoOnBoard(clueID, transform.position);
-            timer = 0;
         }
+    }
+
+    private void ResetLoading()
+    {
+        timer = 0;
+        fillImage.fillAmount = 0;
+        progressBar.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        mouseHoldToOpen = true;
+        mouseOver = true;
         // high light ui
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        mouseHoldToOpen = false;
-        timer = 0;
+        mouseOver = false;
         // cancel highlight
     }
 
@@ -70,12 +88,19 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (isDragging)
+        {
+            isDragging = false;
+        }
+    }
+
     #region Dragging Related Functions
     // Function to move clue on board
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDragging = true;
-        mouseHoldToOpen = false;
     }
 
     public void DragHandler(BaseEventData eventData)

@@ -31,7 +31,6 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     [SerializeField]
     private float lineThickness;
 
-
     private void Start()
     {
         pv = GetComponent<PhotonView>();
@@ -98,6 +97,7 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         }
     }
 
+    #region For Connecting lines
     private void DrawTwoCluesConnection(GameObject firstClue, GameObject secondClue)
     {
         Debug.Log("draw");
@@ -162,6 +162,7 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         midpointY = secondPosition.y + (newFirstPosition.y - secondPosition.y) * 0.5f;
         line.transform.position = new Vector3(midpointX, midpointY, 0);
     }
+    #endregion
 
     public void ActivateDetectiveBoard()
     {
