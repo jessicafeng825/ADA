@@ -60,7 +60,7 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     }
     public void investtoDicuss()
     {
-        stageNow = PlayerManagerForAll.gamestage.Dissussion;
+        stageNow = PlayerManagerForAll.gamestage.Discussion;
     }
     public void jobSelect(string job,string playername,string playerbackground,string playerimage)
     {

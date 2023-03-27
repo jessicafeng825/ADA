@@ -38,6 +38,9 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private GameObject MemoryOverview;
 
     [SerializeField]
+    private GameObject thisRoundCollectPanel;
+
+    [SerializeField]
     private TextMeshProUGUI APText;
 
     public void Start()
@@ -239,6 +242,34 @@ public class BaseUIManager : Singleton<BaseUIManager>
         room.transform.localScale = Vector3.one;
     }
 
+    public void CollectedThisRoundUI(ipType type, string title)
+    {
+        if(!thisRoundCollectPanel.activeSelf)
+        {
+            thisRoundCollectPanel.SetActive(true);
+        }
+        for(int i = 0; i < thisRoundCollectPanel.transform.childCount; i++)
+        {
+            if(thisRoundCollectPanel.transform.GetChild(i).gameObject.activeSelf)
+            {
+                continue;
+            }
+            else
+            {
+                thisRoundCollectPanel.transform.GetChild(i).gameObject.SetActive(true);
+                thisRoundCollectPanel.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = type.ToString() + ": " + title;
+                break;
+            }
+        }
+    }
+    public void CloseCollectedUI()
+    {
+        thisRoundCollectPanel.SetActive(false);
+        for(int i = 0; i < thisRoundCollectPanel.transform.childCount; i++)
+        {
+            thisRoundCollectPanel.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
 
     // Just for temporary use to solve the UI bug
     IEnumerator showshowway(GameObject panel)

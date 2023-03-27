@@ -39,7 +39,6 @@ public class IPCollectPanel : MonoBehaviour
         choiceButtons[i].transform.Find("Text (TMP)").GetComponent<TMP_Text>().text = title;
         if(choiceEvent[i] != null)
             choiceEvent[i].RemoveAllListeners();
-        Debug.Log("AddFunctiontoChoiceButton" + i);
         choiceEvent[i].AddListener(function);
     }
 

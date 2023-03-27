@@ -102,16 +102,14 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         if (playerController.Instance.currentAP == 0 && playerController.Instance.stageNow == PlayerManagerForAll.gamestage.Investigate)
         {
-            Debug.Log("No AP");
-            playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Dissussion);
+            playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Discussion);
             if(PhotonNetwork.IsMasterClient)
                 return;
             BaseUIManager.Instance.SpawnNotificationPanel("0AP Remained", "Waiting for others to finish investigation...", 0, -1f);
             if (CheckAllPlayer())
             {
-                Debug.Log("Change Stage to Disscussion");
-                pv.RPC(nameof(MasterChangeStage), RpcTarget.MasterClient);
-                pv.RPC(nameof(ChangeStageDialog), RpcTarget.All, "0AP Remained", "Investigation has ended!");
+                StartCoroutine(WaitSecondForChangeStage(1f));
+                //pv.RPC(nameof(ChangeStageDialog), RpcTarget.All, "0AP Remained", "Investigation has ended!");
             }
         }
     }
@@ -425,7 +423,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void ExitTutorialChangeStage()
     {
         StartCoroutine(WaitSecondForTeleport(1f));
-        TimerManager.Instance.SwitchStage("All interest points have been collected");
+        TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Discussion);
     }
     IEnumerator WaitSecondForTeleport(float sec)
     {
@@ -470,7 +468,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
         foreach(var player in playerList)
         {
-            if (player.GetComponent<playerController>().stageNow != PlayerManagerForAll.gamestage.Dissussion)
+            if (player.GetComponent<playerController>().stageNow != PlayerManagerForAll.gamestage.Discussion)
             {
                 return false;
             }
@@ -540,7 +538,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [PunRPC]
     public void MasterChangeStage()
     {
-        TimerManager.Instance.SwitchStage("0AP Remained");
+        TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Discussion);
+    }
+
+    IEnumerator WaitSecondForChangeStage(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        pv.RPC(nameof(MasterChangeStage), RpcTarget.MasterClient);
     }
     #endregion
 }

@@ -243,7 +243,6 @@ public class UIManager : MonoBehaviour
             {
                 if (!jobList[i].isselected)
                 {
-                    Debug.Log("set " + name + " to be inactive");
                     jobList[i].select();//set this to be inactive
                 }
                 
@@ -252,7 +251,6 @@ public class UIManager : MonoBehaviour
             {
                 if (jobList[i].isselected)                
                 {
-                    Debug.Log("set " + name +  " to be active");
                     jobList[i].unSelect();//set this to be active
                 }
                 

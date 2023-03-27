@@ -5,6 +5,11 @@ using Photon.Pun;
 using UnityEngine;
 using TMPro;
 
+
+public enum ipType
+{
+    Clue, Puzzle, Item
+}
 public class InterestPointInfo : MonoBehaviour
 {
     
@@ -24,11 +29,6 @@ public class InterestPointInfo : MonoBehaviour
     {
         public string id;
         public ipType type;
-    }
-
-    public enum ipType
-    {
-        Clue, Puzzle, Item
     }
 
     private void Start()
@@ -51,7 +51,6 @@ public class InterestPointInfo : MonoBehaviour
         IPCollectPanel tempIPPanel = BaseUIManager.Instance.SpawnInterestPointPanel(this.gameObject.name, collectableBool);
         for(int i = 0; i < collectableList.Count; i++)
         {
-            Debug.Log(collectableList[i].id + ": " + collectableBool[i]);
             int temp = i;
             if(collectableBool[i] == false)
             {
@@ -83,14 +82,15 @@ public class InterestPointInfo : MonoBehaviour
             {
                 BaseUIManager.Instance.SpawnNotificationPanel("Clue Found!", "You have found a clue!", 1, 3f);
                 InvestigationManager.Instance.AddCluePrefab(collectableList[i].id, memory);
+                BaseUIManager.Instance.CollectedThisRoundUI(collectableList[i].type, ResourceManager.Instance.GetClueInfoTitle(collectableList[i].id));
             }
             else if (collectableList[i].type == ipType.Puzzle)
             {
                 BaseUIManager.Instance.SpawnNotificationPanel("Puzzle Found!", "You have found a puzzle!", 1, 3f);
                 InvestigationManager.Instance.AddPuzzlePrefab(collectableList[i].id);
+                BaseUIManager.Instance.CollectedThisRoundUI(collectableList[i].type, collectableList[i].id);
             }
                 
-
             // If the current clue is the last one, inactivate the interest point
             if (cnt_current == 1)
             {
@@ -143,6 +143,7 @@ public class InterestPointInfo : MonoBehaviour
     }
     public void itemCollected(int i)
     {
-        collectableBool[i] = true;
+        if(collectableBool.Count > i)
+            collectableBool[i] = true;
     }
 }
