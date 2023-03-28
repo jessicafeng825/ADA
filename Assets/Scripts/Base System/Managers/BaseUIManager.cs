@@ -241,33 +241,41 @@ public class BaseUIManager : Singleton<BaseUIManager>
         room.GetComponent<CanvasGroup>().interactable = false;
         room.transform.localScale = Vector3.one;
     }
-
+    //Update the things collected in this round
     public void CollectedThisRoundUI(ipType type, string title)
     {
         if(!thisRoundCollectPanel.activeSelf)
         {
             thisRoundCollectPanel.SetActive(true);
+            thisRoundCollectPanel.transform.GetChild(0).gameObject.SetActive(true);
+            thisRoundCollectPanel.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = type.ToString() + ": " + title;
         }
-        for(int i = 0; i < thisRoundCollectPanel.transform.childCount; i++)
+        else
         {
-            if(thisRoundCollectPanel.transform.GetChild(i).gameObject.activeSelf)
-            {
-                continue;
-            }
-            else
-            {
-                thisRoundCollectPanel.transform.GetChild(i).gameObject.SetActive(true);
-                thisRoundCollectPanel.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = type.ToString() + ": " + title;
-                break;
-            }
+            GameObject temp = thisRoundCollectPanel.transform.GetChild(0).gameObject;
+            GameObject newCollected = Instantiate(temp, thisRoundCollectPanel.transform);
+            newCollected.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = type.ToString() + ": " + title;
         }
+        // for(int i = 0; i < thisRoundCollectPanel.transform.childCount; i++)
+        // {
+        //     if(thisRoundCollectPanel.transform.GetChild(i).gameObject.activeSelf)
+        //     {
+        //         continue;
+        //     }
+        //     else
+        //     {
+        //         thisRoundCollectPanel.transform.GetChild(i).gameObject.SetActive(true);
+        //         thisRoundCollectPanel.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = type.ToString() + ": " + title;
+        //         break;
+        //     }
+        // }
     }
     public void CloseCollectedUI()
     {
         thisRoundCollectPanel.SetActive(false);
-        for(int i = 0; i < thisRoundCollectPanel.transform.childCount; i++)
+        for(int i = 1; i < thisRoundCollectPanel.transform.childCount; i++)
         {
-            thisRoundCollectPanel.transform.GetChild(i).gameObject.SetActive(false);
+            Destroy(thisRoundCollectPanel.transform.GetChild(i).gameObject);
         }
     }
 

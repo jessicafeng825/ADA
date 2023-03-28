@@ -214,10 +214,10 @@ public class TimerManager : MonoBehaviour
         switch(nextStage)
         {
             case PlayerManagerForAll.gamestage.Investigate:
-                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Discussion";
+                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Investigation";
                 break;
             case PlayerManagerForAll.gamestage.Discussion:
-                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Investigation";
+                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Discussion";
                 break;
             default:
                 break;
