@@ -4,13 +4,24 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class NumpadPuzzle : PuzzleInfo
+public class HeatMapPuzzle : PuzzleInfo
 {
     [SerializeField]
     private GameObject answerText;
 
     [SerializeField]
     private string answer;
+
+    [SerializeField]
+    private GameObject enterbtnFinger;
+
+    [SerializeField]
+    private GameObject[] fingerPrints = new GameObject[6];
+
+    [SerializeField]
+    private GameObject numberButtons;
+
+    private GameObject[] numbers= new GameObject[10];
 
     private string enteredNum = "";
 
@@ -21,7 +32,24 @@ public class NumpadPuzzle : PuzzleInfo
 
         this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
         answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = new string('0', answer.Length);
-        
+        if(fingerPrints != null)
+        {
+            for(int i = 0; i < numbers.Length; i++)
+            {
+                numbers[i] = numberButtons.transform.Find(i.ToString() + "btn").gameObject;
+                Debug.Log(numbers[i]);
+            }
+            for(int i = 0; i < answer.Length; i++)
+            {
+                Debug.Log(answer[i].ToString());
+                int temp;
+                int.TryParse(answer[i].ToString(), out temp);
+                fingerPrints[i].SetActive(true);
+                fingerPrints[i].transform.SetParent(numbers[temp].transform);
+                fingerPrints[i].transform.localPosition = new Vector3(Random.Range(-30, 30), Random.Range(-30, 30), 0);
+                fingerPrints[i].transform.localRotation = Quaternion.Euler(0, 0, Random.Range(-40, 40));
+            }
+        }
     }
 
 

@@ -470,7 +470,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
         else if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
         {
-            if(playerController.Instance.playerJob == "Cybernetic Brawler")
+            if(playerController.Instance.playerJob == "Security Guard")
             {
                 return playerTutorialAP + 1;
             }
@@ -478,7 +478,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
                 return playerTutorialAP;
         }
         else
-        {   if(playerController.Instance.playerJob == "Cybernetic Brawler")
+        {   if(playerController.Instance.playerJob == "Security Guard")
             {
                 return playerNormalAP + 1;
             }
