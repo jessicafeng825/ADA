@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using TMPro;
 
 public class PCMapRoom : MonoBehaviour
 {
@@ -19,6 +21,15 @@ public class PCMapRoom : MonoBehaviour
     private void Start()
     {
         roomName = this.gameObject.name;
+        if(memory == InvestigationManager.Instance.startMemory.GetComponent<MemoryInfo>().memory)
+        {
+            if(roomName == InvestigationManager.Instance.startRoom.roomName)
+            {
+                PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount - 1;
+                this.transform.Find("Number").gameObject.SetActive(true);
+                this.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = PlayerCount.ToString();
+            }
+        }
     }
 
 }

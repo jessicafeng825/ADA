@@ -164,9 +164,9 @@ public class BaseUIManager : Singleton<BaseUIManager>
     #endregion
     public void InitializeCharacterUI()
     {
-        playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
-        playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
-        charaterPanel.transform.Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
+        playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("CharacterButton").GetChild(0).GetComponent<Image>().sprite = playerController.Instance.playerImage;
+        playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").Find("CharacterButton").GetChild(0).GetComponent<Image>().sprite = playerController.Instance.playerImage;
+        charaterPanel.transform.Find("CharacterButton").GetChild(0).GetComponent<Image>().sprite = playerController.Instance.playerImage;
         charaterPanel.transform.Find("Description").GetComponentInChildren<TMP_Text>().text = playerController.Instance.playerBackground;
         charaterPanel.transform.Find("Relationship").GetComponentInChildren<TMP_Text>().text = playerController.Instance.relationshipText;
         charaterPanel.transform.Find("Skill").GetComponentInChildren<TMP_Text>().text = playerController.Instance.skillText;

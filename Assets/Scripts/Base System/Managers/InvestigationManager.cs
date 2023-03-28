@@ -22,7 +22,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public Transform startMemory;
 
     [SerializeField]
-    private Rooms startRoom;
+    public Rooms startRoom;
     #endregion
 
     #region Parameters: Clue & Puzzle Base
@@ -470,11 +470,20 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
         else if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
         {
-            return playerTutorialAP;
+            if(playerController.Instance.playerJob == "Cybernetic Brawler")
+            {
+                return playerTutorialAP + 1;
+            }
+            else
+                return playerTutorialAP;
         }
         else
-        {
-            return playerNormalAP;
+        {   if(playerController.Instance.playerJob == "Cybernetic Brawler")
+            {
+                return playerNormalAP + 1;
+            }
+            else
+                return playerNormalAP;
         }
     }
 

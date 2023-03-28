@@ -10,10 +10,16 @@ public class JOb : MonoBehaviour
     public string playerImage;
     public string jobName;
     public string playername;
+
+    [TextArea(5, 20)]
+    public string brief;
+
     [TextArea(15, 20)]
     public string backgroundstory;
+
     [TextArea(15, 20)]
     public string skilltext;
+
     [TextArea(15, 20)]
     public string relationshiptext;
     public bool isselected = false;

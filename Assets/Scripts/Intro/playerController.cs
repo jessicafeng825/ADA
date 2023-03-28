@@ -71,7 +71,7 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
             playerBackground = playerbackground;
             skillText = playerskill;
             relationshipText = playerrelationship;
-            playerImage = Resources.Load<Sprite>("CharacterUI/Round/" + "Round-" + playerimage);
+            playerImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + playerimage);
             isselected = true;
        // }
        

@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMP_Text playerrl;//player relationship
     [SerializeField] public Image playerImageUI;//player Image
     [SerializeField] public VideoPlayer video;
+    [SerializeField] private GameObject characterBrief;
     public bool ifintroend = false;
     private bool ifselected = false;
     private GameObject[] listofgameObjectwithtag;
@@ -37,7 +38,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        video.prepareCompleted += OnPrepareVideo;
+        //video.prepareCompleted += OnPrepareVideo;
         Instance = this;
     }
     // Start is called before the first frame update
@@ -195,6 +196,22 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.OpenMenu("TestMenu");
     }
 
+    public void OpenCharacterBrief(JOb job)
+    {
+        UIManager.Instance.CloseMenu("CharacterSelect");
+        UIManager.Instance.OpenMenu("CharacterBrief");
+        characterBrief.transform.Find("Title").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.jobName;
+        characterBrief.transform.Find("Brief").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.brief;
+        characterBrief.transform.Find("Brief").Find("Title").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.playername;
+        characterBrief.transform.Find("CharacterImage").GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + job.playerImage);;
+        characterBrief.transform.Find("YesButton").GetComponent<Button>().onClick.AddListener(() => { jobSelect(job); });
+    }
+    public void CloseCharacterBrief()
+    {
+        characterBrief.transform.Find("YesButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        UIManager.Instance.CloseMenu("CharacterBrief");
+        UIManager.Instance.OpenMenu("CharacterSelect");
+    }
     public void jobSelect(JOb job)
     {
         //listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
@@ -218,10 +235,15 @@ public class UIManager : MonoBehaviour
             playerbk.text = job.backgroundstory;
             playerrl.text = job.relationshiptext;
             playersk.text = job.skilltext;
-            playerImageUI.sprite = Resources.Load<Sprite>("CharacterUI/Round/" + "Round-" + job.playerImage);
+            playerImageUI.sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + job.playerImage);
             //ifselected = true;
         // }
         
+        characterBrief.transform.Find("Brief").gameObject.SetActive(false);
+        characterBrief.transform.Find("YesButton").gameObject.SetActive(false);
+        characterBrief.transform.Find("NoButton").gameObject.SetActive(false);
+        characterBrief.transform.Find("CharacterImage").GetComponent<RectTransform>().localPosition = new Vector3(0, characterBrief.transform.Find("CharacterImage").GetComponent<RectTransform>().localPosition.y, 0);
+    
        
         //make all the player button inactive
         //pv.RPC(nameof(setbuttonInactive), RpcTarget.All, job.jobName); 
@@ -263,6 +285,7 @@ public class UIManager : MonoBehaviour
     {
         UIManager.Instance.OpenMenu("Info");
         UIManager.Instance.OpenMenu("InfoPC");
+        UIManager.Instance.CloseMenu("CharacterBrief");
         UIManager.Instance.CloseMenu("CharacterSelect");
         UIManager.Instance.CloseMenu("CharacterSelectPC");
 

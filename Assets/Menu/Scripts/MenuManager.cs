@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
   public static MenuManager Instance;
+  public bool speedUpVid;
   [SerializeField] Menu[] menus;
   [SerializeField]
   private TextMeshProUGUI versionText;
@@ -37,5 +38,11 @@ public class MenuManager : MonoBehaviour {
 
   public void CloseMenu(Menu menu) {
     menu.Close();
+  }
+
+  public void SwitchSpeedUpVid(GameObject check) 
+  {
+      speedUpVid = !speedUpVid;
+      check.gameObject.SetActive(speedUpVid);
   }
 }
