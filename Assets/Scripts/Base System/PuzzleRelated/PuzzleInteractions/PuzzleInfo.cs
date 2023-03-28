@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PuzzleInfo : MonoBehaviour
@@ -22,6 +23,10 @@ public class PuzzleInfo : MonoBehaviour
 
     [SerializeField]
     protected Memory unlockedMemory;
+
+    // Transfer Puzzles Part
+    [SerializeField]
+    private GameObject TransferMenu;
 
     public enum PuzzleEffect
     {
@@ -57,6 +62,32 @@ public class PuzzleInfo : MonoBehaviour
         }
         
     }
+
+    public void OpenTransferSelectionMenu()
+    {
+        TransferMenu.gameObject.SetActive(true);
+
+        GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+        int cnt = 1;
+
+        foreach (var player in playerList)
+        {
+            // If the player job is not current player's job or the host's job
+            if (player.GetComponent<playerController>().playerJob != playerController.Instance.playerJob && player.GetComponent<playerController>().playerJob != "None")
+            {
+                TransferMenu.GetComponentsInChildren<Button>()[cnt].GetComponentInChildren<TMPro.TMP_Text>().text = player.GetComponent<playerController>().playerJob;
+                TransferMenu.GetComponentsInChildren<Button>()[cnt].onClick.AddListener(() => TransferThisPuzzle(player.GetComponent<playerController>().playerJob));
+                cnt++;
+            }
+        }
+    }
+
+    private void TransferThisPuzzle(string playerJob)
+    {
+        InvestigationManager.Instance.TransferPuzzleSynchronize(puzzleID, playerJob);
+        Destroy(gameObject);
+    }
+
     protected void HideThisUI()
     {
         gameObject.SetActive(false);

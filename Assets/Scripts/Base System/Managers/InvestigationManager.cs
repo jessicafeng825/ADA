@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
@@ -67,7 +68,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [SerializeField]
     private int playerNormalAP;
     #endregion
-
     private void Awake() 
     {
         playerController.Instance.currentRoom = startRoom;
@@ -286,6 +286,22 @@ public class InvestigationManager : Singleton<InvestigationManager>
             {
                 door.gameObject.SetActive(true);
             }
+        }
+    }
+
+    public void TransferPuzzleSynchronize(string puzzleID, string playerJob)
+    {
+        Destroy(inBasePuzzleBtns[puzzleID].gameObject);
+        inBasePuzzleBtns.Remove(puzzleID);
+        pv.RPC(nameof(TransferPuzzle), RpcTarget.All, puzzleID, playerJob);
+    }
+
+    [PunRPC]
+    public void TransferPuzzle(string puzzleID, string playerJob)
+    {
+        if (playerController.Instance.playerJob == playerJob)
+        {
+            AddPuzzlePrefab(puzzleID);
         }
     }
 
