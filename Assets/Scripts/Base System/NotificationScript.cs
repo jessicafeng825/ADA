@@ -9,9 +9,10 @@ public class NotificationScript : MonoBehaviour
     private UnityEvent noButtonEvent = new UnityEvent();
     static public NotificationScript Instance;
     public float despawnTime = 10f;
+
     private void Start()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -21,19 +22,19 @@ public class NotificationScript : MonoBehaviour
             Instance = this;
         }
         StartCoroutine(Despawn());
-        
     }
     public void ButtonYes()
     {
         yesButtonEvent.Invoke();
         ResetButtons();
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
     public void ButtonNo()
     {
+        GetComponent<Animator>().SetTrigger("isDisappearing");
         noButtonEvent.Invoke();
         ResetButtons();
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
     public void AddFunctiontoYesButton(UnityAction function, bool reset)
     {
@@ -54,9 +55,24 @@ public class NotificationScript : MonoBehaviour
         noButtonEvent.RemoveAllListeners();
     }
 
-    IEnumerator Despawn()
+    private IEnumerator Despawn()
     {
-        float timer = 0;
+        GetComponent<Animator>().SetTrigger("isAppearing");
+        if (despawnTime != -1)
+        {
+            yield return new WaitForSeconds(despawnTime);
+            GetComponent<Animator>().SetTrigger("isDisappearing");
+            yield return new WaitForSeconds(1f);
+            Destroy(gameObject);
+        }
+        else
+        {
+            yield break;
+        }
+        
+
+
+/*        float timer = 0;
         
         while(timer < despawnTime)
         {
@@ -69,7 +85,7 @@ public class NotificationScript : MonoBehaviour
         }
         if(despawnTime != -1)
         {
-            Destroy(this.gameObject);
-        }
+
+        }*/
     }
 }

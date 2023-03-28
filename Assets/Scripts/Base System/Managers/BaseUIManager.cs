@@ -103,7 +103,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     {
         
         GameObject tempNotification = Instantiate(ResourceManager.Instance.GetUIElement("NotificationPanel"));
-        if(PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
             tempNotification.transform.SetParent(pcPanel.transform);
         else
             tempNotification.transform.SetParent(playerPanel.transform);
