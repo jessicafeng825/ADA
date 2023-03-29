@@ -31,10 +31,16 @@ public class ClueInfo : MonoBehaviour
 
     private void ShareThisClue()
     {
-        if (!isShared)
+        if (!isShared && playerController.Instance.currentClueSharedNum < DetectiveBoardManager.Instance.GetClueShareLimit())
         {
+            playerController.Instance.currentClueSharedNum ++;
             DetectiveBoardManager.Instance.ShareClue(clueID);
             isShared = true;
-        } 
+            Debug.Log("share");
+        }
+        else
+        {
+            //TODO: UI "you have shared this clue"
+        }
     }
 }

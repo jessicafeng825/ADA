@@ -10,7 +10,7 @@ public class PlayerManagerForAll : MonoBehaviour
     {
         Intro,
         Investigate,
-        Dissussion,
+        Discussion,
         Accusation
     };
     

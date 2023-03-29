@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
@@ -18,22 +19,22 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     //New map movement
     [SerializeField]
-    private Transform startMemory;
+    public Transform startMemory;
 
     [SerializeField]
-    private Rooms startRoom;
+    public Rooms startRoom;
     #endregion
 
     #region Parameters: Clue & Puzzle Base
 
     // Player Clue Base Part
     [SerializeField]
-    private GameObject ClueBase;
+    private GameObject ClueBases;
     private GameObject tempClue;
 
     // Player Puzzle Base Part
     [SerializeField]
-    private GameObject PuzzleBase;
+    private GameObject PuzzleBases;
     private GameObject tempPuzzle;
     private Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
     #endregion
@@ -47,6 +48,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     #region Parameters: Teleport & Memory Unlock
     [SerializeField]
+    private GameObject memoryTitleText;
+
+    [SerializeField]
     private List<GameObject> MemoryUI_List;
     private Dictionary<string, GameObject> MemoryUI_Dic = new Dictionary<string, GameObject>();
 
@@ -58,10 +62,20 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private List<Button> teleportBtnList;
 
     #endregion
-
+    #region Parameters: AP
+    [SerializeField]
+    private int playerTutorialAP;
+    [SerializeField]
+    private int playerNormalAP;
+    #endregion
+    private void Awake() 
+    {
+        playerController.Instance.currentRoom = startRoom;
+        playerController.Instance.currentMemory = startMemory;
+    }
     private void Start()
     {
-        //The distance every two area
+        
 
         pv = GetComponent<PhotonView>();
         //PreloadInterestPoints();
@@ -73,14 +87,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
         InitializeMemoryUIDic();
         InitializeMemoryInOverviewDic();
 
-        playerController.Instance.currentRoom = startRoom;
-        playerController.Instance.currentMemory = startMemory;
 
         //Initialize PC Map
         PCMapInitialize();
     }
     private void OnEnable() 
     {
+        playerController.Instance.maxAP = GetPlayerInitialAP();
         playerController.Instance.currentAP = playerController.Instance.maxAP;
         playerController.Instance.Change_currentAP(0);
     }
@@ -89,16 +102,14 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         if (playerController.Instance.currentAP == 0 && playerController.Instance.stageNow == PlayerManagerForAll.gamestage.Investigate)
         {
-            Debug.Log("No AP");
-            playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Dissussion);
+            playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Discussion);
             if(PhotonNetwork.IsMasterClient)
                 return;
             BaseUIManager.Instance.SpawnNotificationPanel("0AP Remained", "Waiting for others to finish investigation...", 0, -1f);
             if (CheckAllPlayer())
             {
-                Debug.Log("Change Stage to Disscussion");
-                pv.RPC(nameof(MasterChangeStage), RpcTarget.MasterClient);
-                pv.RPC(nameof(ChangeStageDialog), RpcTarget.All, "0AP Remained", "Investigation has ended!");
+                StartCoroutine(WaitSecondForChangeStage(1f));
+                //pv.RPC(nameof(ChangeStageDialog), RpcTarget.All, "0AP Remained", "Investigation has ended!");
             }
         }
     }
@@ -108,17 +119,20 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void MoveRoomDialog(Rooms room)
     {
-        BaseUIManager.Instance.SpawnNotificationPanel(room.roomName, "Use 1AP to move to " + room.roomName +"?", 2, -1f);
-        NotificationScript.yesButtonEvent.AddListener(() => MoveRoom(room));
-        //NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
+        if(playerController.Instance.currentAP <= 0)
+        {
+            Debug.Log("No AP");
+            return;
+        }
+        MoveRoom(room);
     }
     private void MoveRoom(Rooms room)
     {
         Rooms oldRoom = playerController.Instance.currentRoom;
 
         //Update PC Map room player count
-        pv.RPC(nameof(PCMapUpdate), RpcTarget.MasterClient, playerController.Instance.currentMemory.transform.name, oldRoom.name, -1);
-        pv.RPC(nameof(PCMapUpdate), RpcTarget.MasterClient, playerController.Instance.currentMemory.transform.name, room.name, 1);
+        Memory tempMemory = playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory;
+        pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, tempMemory, oldRoom.name, tempMemory, room.name);
 
         //Update player's current room
         playerController.Instance.currentRoom = room;
@@ -168,21 +182,32 @@ public class InvestigationManager : Singleton<InvestigationManager>
         newroom.GetComponent<CanvasGroup>().alpha = 1f;
     }
     [PunRPC]
-    public void PCMapUpdate(Memory memory, string room, int num)
+    public void PCMapUpdatePlayerCount(Memory oldMemory, string oldRoom, Memory newMemory, string newRoom)
     {
         foreach(PCMapRoom r in PCMapRooms)
         {
-            if(r.memory == memory)
+            if(r.memory == oldMemory)
             {
-                if(r.roomName == room)
+                if(r.roomName == oldRoom)
                 {
-                    r.PlayerCount += num;
+                    r.PlayerCount --;
                     if(r.PlayerCount == 0)
                         r.transform.Find("Number").gameObject.SetActive(false);
-                    else
+                    
+                    r.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
+                                         
+                }
+            }
+            if(r.memory == newMemory)
+            {
+                if(r.roomName == newRoom)
+                {
+                    r.PlayerCount ++;
+                    if(r.PlayerCount > 0)
                         r.transform.Find("Number").gameObject.SetActive(true);
-                        r.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
-                    break;                        
+
+                    r.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
+                                        
                 }
             }
         }
@@ -203,13 +228,26 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     #region Clue Related Functions
     // function: when player click on interest point, add a clue to their clue base
-    public void AddCluePrefab(string clueID)
+    public void AddCluePrefab(string clueID, Memory memory)
     {
         tempClue = Instantiate(ResourceManager.Instance.GetClueBtn(clueID));
-        tempClue.GetComponent<Transform>().SetParent(ClueBase.GetComponent<Transform>(), true);
+        string m = memory.ToString();
+        foreach(Transform child in ClueBases.transform)
+        {
+            if(child.name.Contains(m))
+            {
+                child.gameObject.SetActive(true);
+                if(child.name == m + "Content")
+                    tempClue.GetComponent<Transform>().SetParent(child, true);
+            }
+        }
+        
+        tempClue.transform.localScale = new Vector3(1f, 1f, 1f);
         playerController.Instance.Change_currentAP(-1);
         ResourceManager.Instance.allClueCount --;
         pv.RPC(nameof(SyncClueCount), RpcTarget.All, ResourceManager.Instance.allClueCount);
+
+        tempClue = null;
     }
     [PunRPC]
     public void SyncClueCount(int n)
@@ -220,13 +258,24 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #endregion
 
     #region Puzzle Related Functions
-    public void AddPuzzlePrefab(string puzzleName)
+    public void AddPuzzlePrefab(string puzzleName, Memory memory)
     {
         tempPuzzle = Instantiate(ResourceManager.Instance.GetPuzzleBtn(puzzleName));
-        tempPuzzle.GetComponent<Transform>().SetParent(PuzzleBase.GetComponent<Transform>(), true);
+        string m = memory.ToString();
+        foreach(Transform child in PuzzleBases.transform)
+        {
+            if(child.name.Contains(m))
+            {
+                child.gameObject.SetActive(true);
+                if(child.name == m + "Content")
+                    tempPuzzle.GetComponent<Transform>().SetParent(child, true);
+            }
+        }
+        tempPuzzle.transform.localScale = new Vector3(1f, 1f, 1f);
         inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
         
         playerController.Instance.Change_currentAP(-1);
+        tempPuzzle = null;
     }
 
     // Call when puzzle solved, update sprite
@@ -234,6 +283,38 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         Debug.Log(puzzleName);
         inBasePuzzleBtns[puzzleName].GetComponent<PuzzleBtn>().ShowSolvedMark();
+    }
+    public void UnlockDoor(Memory memory, string targetRoom)
+    {
+        pv.RPC(nameof(UnlockDoorSynchronize), RpcTarget.All, memory, targetRoom);
+    }
+    [PunRPC]
+    public void UnlockDoorSynchronize(Memory memory, string targetRoom)
+    {
+        List<DoorInfo> doors = MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().Doors;
+        foreach(DoorInfo door in doors)
+        {
+            if(door.targetRoom.name == targetRoom)
+            {
+                door.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void TransferPuzzleSynchronize(string puzzleID, string playerJob, Memory memory)
+    {
+        Destroy(inBasePuzzleBtns[puzzleID].gameObject);
+        inBasePuzzleBtns.Remove(puzzleID);
+        pv.RPC(nameof(TransferPuzzle), RpcTarget.All, puzzleID, playerJob, memory);
+    }
+
+    [PunRPC]
+    public void TransferPuzzle(string puzzleID, string playerJob, Memory memory)
+    {
+        if (playerController.Instance.playerJob == playerJob)
+        {
+            AddPuzzlePrefab(puzzleID, memory);
+        }
     }
 
     #endregion
@@ -244,7 +325,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         foreach (GameObject memoryUI in MemoryUI_List)
         {
-            MemoryUI_Dic.Add(memoryUI.name, memoryUI);
+            MemoryUI_Dic.Add(memoryUI.GetComponent<MemoryInfo>().memory.ToString(), memoryUI);
         }
     }
 
@@ -258,6 +339,14 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void UnlockMemoryInOverview(Memory memory)
     {
+        foreach(Transform child in PCMap.transform)
+        {
+            if(child.name == memory.ToString())
+            {
+                child.gameObject.SetActive(true);
+                break;
+            }
+        }
         pv.RPC(nameof(UnlockMemorySynchronize), RpcTarget.All, memory);
     }
 
@@ -265,6 +354,17 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void UnlockMemorySynchronize(Memory memory)
     {
         unlockedMemoryInOverviewDic[memory.ToString()].gameObject.SetActive(true);
+        if(PhotonNetwork.IsMasterClient)
+        {
+            foreach(Transform child in PCMap.transform)
+            {
+                if(child.name == memory.ToString())
+                {
+                    child.gameObject.SetActive(true);
+                    break;
+                }
+            }
+        }
     }
 
     public void UnlockTeleport(Memory fromMemory, Memory toMemory)
@@ -316,32 +416,63 @@ public class InvestigationManager : Singleton<InvestigationManager>
     }*/
     public void SpawnTelepoetDialog(string title, string content, Memory fromMemory, Memory toMemory)
     {
-        BaseUIManager.Instance.SpawnNotificationPanel(title, content, 2, -1f);
-        NotificationScript.yesButtonEvent.AddListener(() => TeleportToFrom(fromMemory, toMemory));
-        NotificationScript.yesButtonEvent.AddListener(() => playerController.Instance.Change_currentAP(-1));
+        NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel(title, content, 2, -1f);
+        tempNoti.AddFunctiontoYesButton(() => TeleportToFrom(fromMemory, toMemory), true);
+        tempNoti.AddFunctiontoYesButton(() => playerController.Instance.Change_currentAP(-1), false);
     }
     public void TeleportToFrom(Memory fromMemory, Memory toMemory)
     {
+        if(playerController.Instance.currentAP < 1)
+        {
+            return;
+        }
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
         MemoryUI_Dic[toMemory.ToString()].SetActive(true);
+        memoryTitleText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = toMemory.ToString();
+
+        //Change current memory
         playerController.Instance.currentMemory = MemoryUI_Dic[toMemory.ToString()].GetComponent<Transform>();
-        foreach(Transform room in playerController.Instance.currentMemory)
-        {
-            if(room.gameObject.name == "FirstRoom")
-            {
-                playerController.Instance.currentRoom = room.GetComponent<Rooms>();
-            }
-        }
+
+        //Change current room
         Component[] tempRooms = playerController.Instance.currentMemory.GetComponentsInChildren<Rooms>();
         foreach(Rooms room in tempRooms)
         {
             if (room.firstRoominMemory)
             {
                 Debug.Log("First room: " + room.roomName);
+                Rooms originalRoom = playerController.Instance.currentRoom;
                 playerController.Instance.currentRoom = room;
+                pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, fromMemory, originalRoom.name, toMemory, room.name);
                 break;
             }
         }
+
+
+        
+
+    }
+
+    public void ExitTutorialChangeStage()
+    {
+        StartCoroutine(WaitSecondForTeleport(1f));
+        TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Discussion);
+    }
+    IEnumerator WaitSecondForTeleport(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        PCMap.transform.GetChild(0).gameObject.SetActive(false);
+        PCMap.transform.GetChild(1).gameObject.SetActive(true);
+        pv.RPC(nameof(TeleportEveryone), RpcTarget.Others, Memory.BishopMemory, Memory.LawyerOffice);
+    }
+    [PunRPC]
+    public void TeleportEveryone(Memory fromMemory, Memory toMemory)
+    {
+        TeleportToFrom(fromMemory, toMemory);
+    }
+    [PunRPC]
+    public void TeleportSynonPCMap(Memory memory)
+    {
+        UnlockMemoryInOverview(memory);
     }
 
     #endregion
@@ -353,13 +484,22 @@ public class InvestigationManager : Singleton<InvestigationManager>
         {
             return 0;
         }
-        else if (playerController.Instance.playerJob == "")
+        else if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
         {
-            return 4;
+            if(playerController.Instance.playerJob == "Security Guard")
+            {
+                return playerTutorialAP + 1;
+            }
+            else
+                return playerTutorialAP;
         }
         else
-        {
-            return 3;
+        {   if(playerController.Instance.playerJob == "Security Guard")
+            {
+                return playerNormalAP + 1;
+            }
+            else
+                return playerNormalAP;
         }
     }
 
@@ -369,7 +509,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
         foreach(var player in playerList)
         {
-            if (player.GetComponent<playerController>().stageNow != PlayerManagerForAll.gamestage.Dissussion)
+            if (player.GetComponent<playerController>().stageNow != PlayerManagerForAll.gamestage.Discussion)
             {
                 return false;
             }
@@ -394,36 +534,46 @@ public class InvestigationManager : Singleton<InvestigationManager>
         interestPoints.Add(name, interestPoint);
     }
 
-    public void SynchronizeInterestPoint(string ipName)
+    public void SynchronizeInterestPoint(string ipName, int itemNum)
     {
-        pv.RPC(nameof(UpdateGivenIPCNT), RpcTarget.All, ipName);
+        pv.RPC(nameof(UpdateGivenIPCNT), RpcTarget.All, ipName, itemNum);
     }
 
     [PunRPC]
-    private void UpdateGivenIPCNT(string ipName)
+    private void UpdateGivenIPCNT(string ipName, int itemNum)
     {
         interestPoints[ipName].GetComponent<InterestPointInfo>().changeIP_Current(1);
+        interestPoints[ipName].GetComponent<InterestPointInfo>().itemCollected(itemNum);
     }
 
     // functions to synchronize whether interest points are active or not
-    public void SynchronizeInterestPointStatus(string ipName)
+    public void SynchronizeInterestPointStatus(string ipName, Memory memory)
     {
-        pv.RPC(nameof(UpdateIPFullyCollected), RpcTarget.All, ipName);
+        pv.RPC(nameof(UpdateIPFullyCollected), RpcTarget.All, ipName, memory);
     }
 
     [PunRPC]
-    private void UpdateIPFullyCollected(string ipName)
+    private void UpdateIPFullyCollected(string ipName, Memory memory)
     {
         interestPoints[ipName].SetActive(false);
-        MemoryUI_Dic[Memory.BishopMemory.ToString()].GetComponent<MemoryInfo>().interestPointCount--;
+        // minus interest point count from memory
+        if(MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().UpdateInterestPointCount(-1) && PhotonNetwork.IsMasterClient)
+        {
+            // if all interest points are collected, change stage
+            ExitTutorialChangeStage();
+        }
     }
 
-    // Activate the interest point based on name, when some puzzles solved
-    public void ActiveInterestPoint(string ipName)
+    public void SynchronizeActivateInterestPoint(string ipName)
     {
-
+        pv.RPC(nameof(ActivateInterestPoint), RpcTarget.All, ipName);
     }
-    
+
+    [PunRPC]
+    private void ActivateInterestPoint(string ipName)
+    {
+        interestPoints[ipName].SetActive(true);
+    }
 
     #endregion
 
@@ -438,7 +588,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [PunRPC]
     public void MasterChangeStage()
     {
-        TimerManager.Instance.SwitchStage("0AP Remained");
+        TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Discussion);
+    }
+
+    IEnumerator WaitSecondForChangeStage(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        pv.RPC(nameof(MasterChangeStage), RpcTarget.MasterClient);
     }
     #endregion
 }

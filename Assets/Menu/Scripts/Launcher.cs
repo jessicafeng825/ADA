@@ -35,7 +35,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
                 unableMenuList[i].Close();
             }
         }
-        SetName();
+        //SetName();
   }
 
   public override void OnConnectedToMaster() {
@@ -54,13 +54,14 @@ public class Launcher : MonoBehaviourPunCallbacks {
       MenuManager.Instance.OpenMenu("title");
     // }
     Debug.Log("Joined lobby");
-  }
+    SetName();
+    }
 
   public void SetName() {
     //string name = playerNameInputField.text;
-    string name = "Detective";
+    string name = "Detective " + (PhotonNetwork.CountOfPlayers - 1).ToString();
         if (!string.IsNullOrEmpty(name)) {
-      //PhotonNetwork.NickName = name;
+      PhotonNetwork.NickName = name;
       titleWelcomeText.text = $"Welcome, {name}!";
       //playerNameInputField.text = "";
     } else {
@@ -89,16 +90,30 @@ public class Launcher : MonoBehaviourPunCallbacks {
     // Called whenever you create or join a room
     MenuManager.Instance.OpenMenu("room");
     roomNameText.text = PhotonNetwork.CurrentRoom.Name;
-    Player[] players = PhotonNetwork.PlayerList;
-    foreach (Transform trans in playerListContent) {
-      Destroy(trans.gameObject);
+
+    if (PhotonNetwork.IsMasterClient)
+    {
+        PhotonNetwork.NickName = "Host";
     }
-    for (int i = 0; i < players.Count(); i++) {
-      Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
-    }
+
+    UpdatePlayersOnUI();
+
     // Only enable the start button if the player is the host of the room
     startGameButton.SetActive(PhotonNetwork.IsMasterClient);
   }
+  
+  private void UpdatePlayersOnUI()
+    {
+        Player[] players = PhotonNetwork.PlayerList;
+        foreach (Transform trans in playerListContent)
+        {
+            Destroy(trans.gameObject);
+        }
+        for (int i = 0; i < players.Count(); i++)
+        {
+            Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
+        }
+    }
 
   public override void OnMasterClientSwitched(Player newMasterClient) {
     startGameButton.SetActive(PhotonNetwork.IsMasterClient);

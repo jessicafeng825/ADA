@@ -4,13 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
+
 public class JOb : MonoBehaviour
 {
     public string playerImage;
     public string jobName;
     public string playername;
+
+    [TextArea(5, 20)]
+    public string brief;
+
+    [TextArea(15, 20)]
     public string backgroundstory;
+
+    [TextArea(15, 20)]
     public string skilltext;
+
+    [TextArea(15, 20)]
     public string relationshiptext;
     public bool isselected = false;
     private Button button;
@@ -31,6 +41,15 @@ public class JOb : MonoBehaviour
         if (!PhotonNetwork.IsMasterClient)
         {
             button.interactable = false;
+        }
+        
+    }
+    public void unSelect()
+    {
+        isselected = false;
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            button.interactable = true;
         }
         
     }

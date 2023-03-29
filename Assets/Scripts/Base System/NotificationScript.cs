@@ -5,56 +5,71 @@ using UnityEngine.Events;
 
 public class NotificationScript : MonoBehaviour
 {
-    static public UnityEvent yesButtonEvent = new UnityEvent();
-    static public UnityEvent noButtonEvent = new UnityEvent();
+    private UnityEvent yesButtonEvent = new UnityEvent();
+    private UnityEvent noButtonEvent = new UnityEvent();
     static public NotificationScript Instance;
     public float despawnTime = 10f;
+
     private void Start()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
         else
         {
-            Debug.Log("Destroy old");
             Destroy(Instance.gameObject);
             Instance = this;
         }
         StartCoroutine(Despawn());
-        
     }
     public void ButtonYes()
     {
+        GetComponent<Animator>().SetTrigger("isDisappearing");
         yesButtonEvent.Invoke();
-        yesButtonEvent.RemoveAllListeners();
-        noButtonEvent.RemoveAllListeners();
-        Destroy(this.gameObject);
+        ResetButtons();
+        Destroy(gameObject);
     }
     public void ButtonNo()
     {
+        GetComponent<Animator>().SetTrigger("isDisappearing");
         noButtonEvent.Invoke();
+        ResetButtons();
+        Destroy(gameObject);
+    }
+    public void AddFunctiontoYesButton(UnityAction function, bool reset)
+    {
+        if(reset)
+        {
+            yesButtonEvent.RemoveAllListeners();
+        }
+        yesButtonEvent.AddListener(function);
+    }
+    public void AddFunctiontoNoButton(UnityAction function)
+    {
+        noButtonEvent.RemoveAllListeners();
+        noButtonEvent.AddListener(function);
+    }
+    public void ResetButtons()
+    {
         yesButtonEvent.RemoveAllListeners();
         noButtonEvent.RemoveAllListeners();
-        Destroy(this.gameObject);
     }
-    IEnumerator Despawn()
+
+    private IEnumerator Despawn()
     {
-        float timer = 0;
-        
-        while(timer < despawnTime)
+        GetComponent<Animator>().SetTrigger("isAppearing");
+        if (despawnTime != -1)
         {
-            if(despawnTime == -1)
-            {
-                yield break;
-            }
-            timer += Time.deltaTime;
-            yield return null;
+            yield return new WaitForSeconds(despawnTime);
+            GetComponent<Animator>().SetTrigger("isDisappearing");
+            yield return new WaitForSeconds(1f);
+            Destroy(gameObject);
         }
-        if(despawnTime != -1)
+        else
         {
-            Debug.Log("Despawn");
-            Destroy(this.gameObject);
+            yield break;
         }
+    
     }
 }

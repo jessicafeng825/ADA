@@ -17,8 +17,8 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     [SerializeField] public string playerJob = "None";//player job
     [SerializeField] public string playerName = "None";//player job
     [SerializeField] public string playerBackground = "None";//player job
-   // [SerializeField] public string skillText = "None";//player skillText
-   // [SerializeField] public string relationshipText = "None";//player relationshiptext
+    [SerializeField] public string skillText = "None";//player skillText
+    [SerializeField] public string relationshipText = "None";//player relationshiptext
 
     [SerializeField] public Sprite playerImage;//player Image
     [SerializeField] public bool isselected = false;
@@ -27,6 +27,9 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     public Rooms currentRoom;
     public Transform currentMemory;
     private PhotonView pv;
+
+    // Share Clue Part
+    public int currentClueSharedNum = 0;
 
     private void Awake()
     {
@@ -57,16 +60,18 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     }
     public void investtoDicuss()
     {
-        stageNow = PlayerManagerForAll.gamestage.Dissussion;
+        stageNow = PlayerManagerForAll.gamestage.Discussion;
     }
-    public void jobSelect(string job,string playername,string playerbackground,string playerimage)
+    public void jobSelect(string job,string playername,string playerbackground, string playerskill, string playerrelationship, string playerimage)
     {
         //if(isselected == false)
         //{
             playerJob = job;
             playerName = playername;
             playerBackground = playerbackground;
-            playerImage = Resources.Load<Sprite>("CharacterUI/Round/" + "Round-" + playerimage);
+            skillText = playerskill;
+            relationshipText = playerrelationship;
+            playerImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + playerimage);
             isselected = true;
        // }
        
@@ -134,4 +139,5 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     //         stageNow = (PlayerManagerForAll.gamestage)stream.ReceiveNext();
     //     }
     // }
+
 }

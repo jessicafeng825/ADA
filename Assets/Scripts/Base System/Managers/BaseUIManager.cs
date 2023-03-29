@@ -37,6 +37,12 @@ public class BaseUIManager : Singleton<BaseUIManager>
     [SerializeField]
     private GameObject MemoryOverview;
 
+    [SerializeField]
+    private GameObject thisRoundCollectPanel;
+
+    [SerializeField]
+    private TextMeshProUGUI APText;
+
     public void Start()
     {
         pcPanel.SetActive(PhotonNetwork.IsMasterClient);
@@ -90,12 +96,14 @@ public class BaseUIManager : Singleton<BaseUIManager>
     #endregion
 
 
-    //Spawn notification panel
-    public void SpawnNotificationPanel(string title, string discription, int btnNum, float time)
+
+    #region Pop-up UI Related Functions
+    //Spawn Yes/No panel
+    public NotificationScript SpawnNotificationPanel(string title, string discription, int btnNum, float time)
     {
         
         GameObject tempNotification = Instantiate(ResourceManager.Instance.GetUIElement("NotificationPanel"));
-        if(PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
             tempNotification.transform.SetParent(pcPanel.transform);
         else
             tempNotification.transform.SetParent(playerPanel.transform);
@@ -119,19 +127,53 @@ public class BaseUIManager : Singleton<BaseUIManager>
                 tempNotification.transform.GetChild(4).gameObject.SetActive(false);
                 break;
         }
+        return tempNotification.GetComponent<NotificationScript>();
     }
+    //Spawn interest point choice panel
+    public IPCollectPanel SpawnInterestPointPanel(string title, List<bool> collected)
+    {
+        GameObject tempIPPanel = Instantiate(ResourceManager.Instance.GetUIElement("IPCollectPopupPanel"));
+
+        tempIPPanel.transform.SetParent(playerPanel.transform);
+        tempIPPanel.transform.localScale = new Vector3(1, 1, 1);
+        tempIPPanel.transform.localPosition = new Vector3(0, 0, 0);
+        tempIPPanel.transform.Find("Title").GetChild(1).GetComponent<TMP_Text>().text = title;
+        for(int i = 0; i < tempIPPanel.transform.Find("Choices").childCount; i++)
+        {
+            if(i < collected.Count)
+            {
+                if(!collected[i])
+                {
+                    tempIPPanel.transform.Find("Choices").GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    tempIPPanel.transform.Find("Choices").GetChild(i).gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                tempIPPanel.transform.Find("Choices").GetChild(i).gameObject.SetActive(false);
+            }
+            
+        }
+        return tempIPPanel.GetComponent<IPCollectPanel>();
+    }
+
+
+    #endregion
     public void InitializeCharacterUI()
     {
-        playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
-        playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
-        charaterPanel.transform.Find("CharacterButton").GetComponent<Button>().image.sprite = playerController.Instance.playerImage;
-        charaterPanel.transform.Find("Description").GetChild(1).GetComponent<TMP_Text>().text = playerController.Instance.playerBackground;
-        charaterPanel.transform.Find("Relationship").GetChild(1).GetComponent<TMP_Text>().text = "Relationship";
-        charaterPanel.transform.Find("Skill").GetChild(1).GetComponent<TMP_Text>().text = "Skill";
+        playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("CharacterButton").GetChild(0).GetComponent<Image>().sprite = playerController.Instance.playerImage;
+        playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").Find("CharacterButton").GetChild(0).GetComponent<Image>().sprite = playerController.Instance.playerImage;
+        charaterPanel.transform.Find("CharacterButton").GetChild(0).GetComponent<Image>().sprite = playerController.Instance.playerImage;
+        charaterPanel.transform.Find("Description").GetComponentInChildren<TMP_Text>().text = playerController.Instance.playerBackground;
+        charaterPanel.transform.Find("Relationship").GetComponentInChildren<TMP_Text>().text = playerController.Instance.relationshipText;
+        charaterPanel.transform.Find("Skill").GetComponentInChildren<TMP_Text>().text = playerController.Instance.skillText;
     }
     public void UpdateAPUI(int num)
     {
-        playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("APpoints").GetChild(1).GetComponent<TMP_Text>().text = num.ToString() + "AP";
+        APText.text = num.ToString() + "\r\nAP";
     }
 
     public void ClickMemoryOverview()
@@ -199,7 +241,43 @@ public class BaseUIManager : Singleton<BaseUIManager>
         room.GetComponent<CanvasGroup>().interactable = false;
         room.transform.localScale = Vector3.one;
     }
-
+    //Update the things collected in this round
+    public void CollectedThisRoundUI(ipType type, string title)
+    {
+        if(!thisRoundCollectPanel.activeSelf)
+        {
+            thisRoundCollectPanel.SetActive(true);
+            thisRoundCollectPanel.transform.GetChild(0).gameObject.SetActive(true);
+            thisRoundCollectPanel.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = type.ToString() + ": " + title;
+        }
+        else
+        {
+            GameObject temp = thisRoundCollectPanel.transform.GetChild(0).gameObject;
+            GameObject newCollected = Instantiate(temp, thisRoundCollectPanel.transform);
+            newCollected.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = type.ToString() + ": " + title;
+        }
+        // for(int i = 0; i < thisRoundCollectPanel.transform.childCount; i++)
+        // {
+        //     if(thisRoundCollectPanel.transform.GetChild(i).gameObject.activeSelf)
+        //     {
+        //         continue;
+        //     }
+        //     else
+        //     {
+        //         thisRoundCollectPanel.transform.GetChild(i).gameObject.SetActive(true);
+        //         thisRoundCollectPanel.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = type.ToString() + ": " + title;
+        //         break;
+        //     }
+        // }
+    }
+    public void CloseCollectedUI()
+    {
+        thisRoundCollectPanel.SetActive(false);
+        for(int i = 1; i < thisRoundCollectPanel.transform.childCount; i++)
+        {
+            Destroy(thisRoundCollectPanel.transform.GetChild(i).gameObject);
+        }
+    }
 
     // Just for temporary use to solve the UI bug
     IEnumerator showshowway(GameObject panel)

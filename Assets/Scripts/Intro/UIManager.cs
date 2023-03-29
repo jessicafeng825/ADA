@@ -26,14 +26,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMP_Text playerrl;//player relationship
     [SerializeField] public Image playerImageUI;//player Image
     [SerializeField] public VideoPlayer video;
+    [SerializeField] private GameObject characterBrief;
     public bool ifintroend = false;
     private bool ifselected = false;
     private GameObject[] listofgameObjectwithtag;
     private GameObject gameObjectNow;
+
+    //One player for development
+    private bool isSinglePlayer;
+
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
-        video.prepareCompleted += OnPrepareVideo;
+        //video.prepareCompleted += OnPrepareVideo;
         Instance = this;
     }
     // Start is called before the first frame update
@@ -47,12 +52,16 @@ public class UIManager : MonoBehaviour
         listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
 
         playerName.text = PhotonNetwork.NickName;
+
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        
         introToSelect();
+        
     }
     void OnPrepareVideo(VideoPlayer vp)
     {
@@ -162,7 +171,10 @@ public class UIManager : MonoBehaviour
     //===Check Overall Functions===//
     private bool checkIfAllhaveSelectJob()
     {
-        
+        if(isSinglePlayer)
+        {
+            return true;
+        }
         for (int i = 0; i < jobList.Length; i++) 
         {
             if(jobList[i].isselected == false)//have not yet select a job
@@ -184,6 +196,22 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.OpenMenu("TestMenu");
     }
 
+    public void OpenCharacterBrief(JOb job)
+    {
+        UIManager.Instance.CloseMenu("CharacterSelect");
+        UIManager.Instance.OpenMenu("CharacterBrief");
+        characterBrief.transform.Find("Title").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.jobName;
+        characterBrief.transform.Find("Brief").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.brief;
+        characterBrief.transform.Find("Brief").Find("Title").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.playername;
+        characterBrief.transform.Find("CharacterImage").GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + job.playerImage);;
+        characterBrief.transform.Find("YesButton").GetComponent<Button>().onClick.AddListener(() => { jobSelect(job); });
+    }
+    public void CloseCharacterBrief()
+    {
+        characterBrief.transform.Find("YesButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        UIManager.Instance.CloseMenu("CharacterBrief");
+        UIManager.Instance.OpenMenu("CharacterSelect");
+    }
     public void jobSelect(JOb job)
     {
         //listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
@@ -196,21 +224,26 @@ public class UIManager : MonoBehaviour
             }
         }
         */
-        pv.RPC(nameof(updateallplayerName), RpcTarget.All, PhotonNetwork.NickName,job.jobName, job.playername,job.backgroundstory, job.playerImage, job.relationshiptext, job.skilltext);
+        pv.RPC(nameof(updateallplayerName), RpcTarget.All, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.playerImage, job.relationshiptext, job.skilltext);
         //playerController.Instance.jobSelect(name);
 
         Debug.Log(playerController.Instance.playerJob);
-        if(ifselected == false)
-        {
+        // if(ifselected == false)
+        // {
             playerJob.text = job.jobName;
             playerName.text = job.playername;
             playerbk.text = job.backgroundstory;
             playerrl.text = job.relationshiptext;
             playersk.text = job.skilltext;
-            playerImageUI.sprite = Resources.Load<Sprite>("CharacterUI/" + job.playerImage);
-            ifselected = true;
-        }
+            playerImageUI.sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + job.playerImage);
+            //ifselected = true;
+        // }
         
+        characterBrief.transform.Find("Brief").gameObject.SetActive(false);
+        characterBrief.transform.Find("YesButton").gameObject.SetActive(false);
+        characterBrief.transform.Find("NoButton").gameObject.SetActive(false);
+        characterBrief.transform.Find("CharacterImage").GetComponent<RectTransform>().localPosition = new Vector3(0, characterBrief.transform.Find("CharacterImage").GetComponent<RectTransform>().localPosition.y, 0);
+    
        
         //make all the player button inactive
         //pv.RPC(nameof(setbuttonInactive), RpcTarget.All, job.jobName); 
@@ -224,15 +257,23 @@ public class UIManager : MonoBehaviour
         
 
     }
-    public void jobselectForname(string name)
+    public void jobselectForname(string oldJob, string newJob)
     {
         for (int i = 0; i < jobList.Length; i++)
         {
-            if (jobList[i].jobName == name)
+            if (jobList[i].jobName == newJob)
             {
                 if (!jobList[i].isselected)
                 {
                     jobList[i].select();//set this to be inactive
+                }
+                
+            }
+            else if (jobList[i].jobName == oldJob)
+            {
+                if (jobList[i].isselected)                
+                {
+                    jobList[i].unSelect();//set this to be active
                 }
                 
             }
@@ -244,32 +285,34 @@ public class UIManager : MonoBehaviour
     {
         UIManager.Instance.OpenMenu("Info");
         UIManager.Instance.OpenMenu("InfoPC");
+        UIManager.Instance.CloseMenu("CharacterBrief");
         UIManager.Instance.CloseMenu("CharacterSelect");
         UIManager.Instance.CloseMenu("CharacterSelectPC");
 
     }
     [PunRPC]
-    private void setbuttonInactive(string name)
+    private void setbuttonActivation(string oldJob, string newJob)
     {
-        UIManager.Instance.jobselectForname(name);
+        UIManager.Instance.jobselectForname(oldJob, newJob);
     }
     [PunRPC]
-    private void updateallplayerName(string name,string jobname,string playername,string playerbackground, string playerImage,string relationshipText,string skillText)
+    private void updateallplayerName(int id,string jobname,string playername,string playerbackground, string playerImage,string relationshipText,string skillText)
     {
         //gb.GetComponent<playerController>().jobSelect(name);
         listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < listofgameObjectwithtag.Length; i++)
         {
-            if (listofgameObjectwithtag[i].GetComponent<PhotonView>().Owner.NickName == name)
+            if (listofgameObjectwithtag[i].GetComponent<PhotonView>().ViewID == id)
             {
-                if(listofgameObjectwithtag[i].GetComponent<playerController>().isselected == false)
-                {
-                    listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname, playername, playerbackground, playerImage);
+                // if(listofgameObjectwithtag[i].GetComponent<playerController>().isselected == false)
+                // {
+                    string oldJob = listofgameObjectwithtag[i].GetComponent<playerController>().playerJob;
+                    listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname, playername, playerbackground, skillText, relationshipText, playerImage);
 
                     //gameObjectNow = listofgameObjectwithtag[i];
 
-                    pv.RPC(nameof(setbuttonInactive), RpcTarget.All, jobname);
-                }
+                    pv.RPC(nameof(setbuttonActivation), RpcTarget.All, oldJob, jobname);
+                // }
                 
             }
         }
@@ -307,11 +350,24 @@ public class UIManager : MonoBehaviour
     [PunRPC]
     private void closeintro()
     {
-        UIManager.Instance.CloseMenu("PlayerBackground");
-        UIManager.Instance.CloseMenu("PcBackground");
-        UIManager.Instance.OpenMenu("CharacterSelect");
+        StartCoroutine(KeepLoading(1f));
+        UIManager.Instance.CloseMenu("IntroBackground");
         UIManager.Instance.OpenMenu("CharacterSelectPC");
 
+    }
+
+    //Coroutine for loading screen for work around of the video error
+    IEnumerator KeepLoading(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        UIManager.Instance.CloseMenu("BgLoad");
+        UIManager.Instance.OpenMenu("CharacterSelect");
+    }
+
+    public void isSinglePlayerMode(GameObject check)
+    {
+        isSinglePlayer = !isSinglePlayer;
+        check.gameObject.SetActive(isSinglePlayer);
     }
 
 
