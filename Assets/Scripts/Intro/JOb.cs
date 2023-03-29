@@ -22,6 +22,10 @@ public class JOb : MonoBehaviour
 
     [TextArea(15, 20)]
     public string relationshiptext;
+
+    [TextArea(15, 20)]
+    public string alibitext;
+
     public bool isselected = false;
     private Button button;
     // Start is called before the first frame update

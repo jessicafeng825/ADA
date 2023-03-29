@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMP_Text playerbk;//player background
     [SerializeField] public TMP_Text playersk;//player skills
     [SerializeField] public TMP_Text playerrl;//player relationship
+    [SerializeField] public TMP_Text playerAlibi;
     [SerializeField] public Image playerImageUI;//player Image
     [SerializeField] public VideoPlayer video;
     [SerializeField] private GameObject characterBrief;
@@ -235,6 +236,7 @@ public class UIManager : MonoBehaviour
             playerbk.text = job.backgroundstory;
             playerrl.text = job.relationshiptext;
             playersk.text = job.skilltext;
+            playerAlibi.text = job.alibitext;
             playerImageUI.sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + job.playerImage);
             //ifselected = true;
         // }

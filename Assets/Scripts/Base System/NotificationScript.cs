@@ -25,14 +25,12 @@ public class NotificationScript : MonoBehaviour
     }
     public void ButtonYes()
     {
-        GetComponent<Animator>().SetTrigger("isDisappearing");
         yesButtonEvent.Invoke();
         ResetButtons();
         Destroy(gameObject);
     }
     public void ButtonNo()
     {
-        GetComponent<Animator>().SetTrigger("isDisappearing");
         noButtonEvent.Invoke();
         ResetButtons();
         Destroy(gameObject);
