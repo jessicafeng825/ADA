@@ -162,6 +162,7 @@ public class TimerManager : MonoBehaviour
     public void InvestigationManagerSwitch(bool active)
     {
         InvestigationManager.Instance.gameObject.SetActive(active);
+        playerPanel.transform.Find("MainMenu").gameObject.SetActive(true);
         investigationPanel.gameObject.SetActive(active);
         discussionPanel.gameObject.SetActive(!active);
         CloseAllMenuonSwitch();
