@@ -38,17 +38,13 @@ public class HeatMapPuzzle : PuzzleInfo
 
     private bool show;
 
+    private bool enable;
     private void Start()
     {
         heatMapAnim = GetComponent<Animator>();
         this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
+        this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(delegate{ScriptEnableSwitch(false);});
         answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = new string('0', answer.Length);
-        if(playerController.Instance.playerJob != "Lawyer")
-            return;
-        else
-        {
-            scanButton.SetActive(true);
-        }
         if(fingerPrints != null)
         {
             for(int i = 0; i < numbers.Length; i++)
@@ -65,6 +61,26 @@ public class HeatMapPuzzle : PuzzleInfo
                 fingerPrints[i].transform.localRotation = Quaternion.Euler(0, 0, Random.Range(-40, 40));
             }
         }
+    }
+    void Update()
+    {
+        if(!enable)
+        {            
+            if(playerController.Instance.playerJob != "Lawyer")
+            {
+                scanButton.SetActive(false);
+                return;
+            }
+            else
+            {
+                scanButton.SetActive(true);
+            }
+            enable = true;
+        }
+    }
+    public void ScriptEnableSwitch(bool b)
+    {
+        enable = b;
     }
 
     public void btnDown(float time)
