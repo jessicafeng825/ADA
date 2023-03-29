@@ -25,6 +25,7 @@ public class NotificationScript : MonoBehaviour
     }
     public void ButtonYes()
     {
+        GetComponent<Animator>().SetTrigger("isDisappearing");
         yesButtonEvent.Invoke();
         ResetButtons();
         Destroy(gameObject);
