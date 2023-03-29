@@ -314,6 +314,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         if (playerController.Instance.playerJob == playerJob)
         {
             AddPuzzlePrefab(puzzleID, memory);
+            BaseUIManager.Instance.SpawnNotificationPanel("Receive Puzzle", "You receive a puzzle from other players", 1, -1f);
         }
     }
 
