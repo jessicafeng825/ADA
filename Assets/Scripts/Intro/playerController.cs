@@ -29,7 +29,7 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     private PhotonView pv;
 
     // Share Clue Part
-    public int currentClueSharedNum;
+    public int currentClueSharedNum = 0;
 
     private void Awake()
     {

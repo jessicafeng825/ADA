@@ -14,11 +14,15 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     private Canvas mainCanvas;
     [SerializeField]
     private GameObject detectiveBoard, clueBtnsOnBoard, linesBoard;
+
+    // For Sharing Clue
     [SerializeField]
     private GameObject clueOnBoardTemplate, onBoardClueInfoTemplate;
     private GameObject tempClueOnBoardBtn, tempClueOnBoardInfo, tempClueInfo;
     private Dictionary<string, GameObject> allCluesOnBoardDic = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> OnBoardClueInfosDic = new Dictionary<string, GameObject>();
+    [SerializeField]
+    private int clueShareLimit;
 
     // For Connecting Objects
     private string firstClueID, secondClueID;
@@ -163,6 +167,11 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         line.transform.position = new Vector3(midpointX, midpointY, 0);
     }
     #endregion
+
+    public int GetClueShareLimit()
+    {
+        return clueShareLimit;
+    }
 
     public void ActivateDetectiveBoard()
     {

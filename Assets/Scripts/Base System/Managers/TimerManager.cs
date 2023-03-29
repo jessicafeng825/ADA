@@ -100,12 +100,12 @@ public class TimerManager : MonoBehaviour
         {
             case PlayerManagerForAll.gamestage.Investigate:
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, true);
+                pv.RPC(nameof(ResetClueSharedLimitSynchronize), RpcTarget.All);
                 TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
                 //Open and close Map and detective board
                 PCMapPanel.SetActive(true);
                 DetectiveBoardPanel.SetActive(false);
                 currentStageTimer = investigateTime;
-                playerController.Instance.currentClueSharedNum = 0;
                 break;
             case PlayerManagerForAll.gamestage.Discussion:
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, false);
@@ -125,7 +125,7 @@ public class TimerManager : MonoBehaviour
     {
         timeout = true;
         TimerTitle.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
-        switch(publicStageNow)
+        switch (publicStageNow)
         {
             case PlayerManagerForAll.gamestage.Investigate:
                 SwitchStage(PlayerManagerForAll.gamestage.Discussion);
@@ -137,6 +137,7 @@ public class TimerManager : MonoBehaviour
     }
     public void SwitchStage(PlayerManagerForAll.gamestage nextStage)
     {
+        playerController.Instance.currentClueSharedNum = 0;
         timeout = true;
         pv.RPC(nameof(SwitchStageVisualRPC), RpcTarget.All, 2f, nextStage);
         StartCoroutine(TimerPauseCoroutine(2f, nextStage));
@@ -178,6 +179,12 @@ public class TimerManager : MonoBehaviour
         if(NotificationScript.Instance != null)
             Destroy(NotificationScript.Instance.gameObject);
         StartCoroutine(SwitchStageVisualCoroutine(sec, nextStage));
+    }
+
+    [PunRPC]
+    private void ResetClueSharedLimitSynchronize()
+    {
+        playerController.Instance.currentClueSharedNum = 0;
     }
 
     #endregion

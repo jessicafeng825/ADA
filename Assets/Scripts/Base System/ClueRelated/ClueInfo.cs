@@ -31,7 +31,7 @@ public class ClueInfo : MonoBehaviour
 
     private void ShareThisClue()
     {
-        if (!isShared && playerController.Instance.currentClueSharedNum < 3)
+        if (!isShared && playerController.Instance.currentClueSharedNum < DetectiveBoardManager.Instance.GetClueShareLimit())
         {
             playerController.Instance.currentClueSharedNum ++;
             DetectiveBoardManager.Instance.ShareClue(clueID);
