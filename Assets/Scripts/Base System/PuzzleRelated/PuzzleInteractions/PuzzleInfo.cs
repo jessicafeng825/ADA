@@ -91,9 +91,10 @@ public class PuzzleInfo : MonoBehaviour
 
     private void ExecutePuzzleTransfer(string playerJob)
     {
-        InvestigationManager.Instance.TransferPuzzleSynchronize(puzzleID, playerJob, collectedAt);
-        Destroy(gameObject);
         BaseUIManager.Instance.SpawnNotificationPanel("Transfer Completed", "The puzzle is transferred to " + playerJob, 1, -1f);
+        BaseUIManager.Instance.HidePuzzleUI();
+        Destroy(gameObject);
+        InvestigationManager.Instance.TransferPuzzleSynchronize(puzzleID, playerJob, collectedAt);
     }
 
     protected void HideThisUI()
