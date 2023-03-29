@@ -50,6 +50,10 @@ public class NumpadPuzzle : PuzzleInfo
         if(enteredNum == answer)
         {
             answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "ACCESS GRANTED";
+            if (puzzleID == "Elevator Passcode")
+            {
+                BaseUIManager.Instance.SpawnNotificationPanel("Teleport Unlocked", "Teleport to the new area is unlocked in investigation!", 1, -1f);
+            }
             isSolved = true;
             return true;
         }
