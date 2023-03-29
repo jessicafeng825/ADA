@@ -70,23 +70,6 @@ public class NotificationScript : MonoBehaviour
         {
             yield break;
         }
-        
-
-
-/*        float timer = 0;
-        
-        while(timer < despawnTime)
-        {
-            if(despawnTime == -1)
-            {
-                yield break;
-            }
-            timer += Time.deltaTime;
-            yield return null;
-        }
-        if(despawnTime != -1)
-        {
-
-        }*/
+    
     }
 }

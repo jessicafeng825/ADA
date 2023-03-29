@@ -23,25 +23,40 @@ public class HeatMapPuzzle : PuzzleInfo
 
     private GameObject[] numbers= new GameObject[10];
 
+    
+    [SerializeField]
+    private GameObject scanButton;
+    private Animator heatMapAnim;
+
+
     private string enteredNum = "";
 
     private bool denying;
 
+    private bool buttonPressed;
+    private float pressingTime;
+
+    private bool show;
+
     private void Start()
     {
-
+        heatMapAnim = GetComponent<Animator>();
         this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
         answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = new string('0', answer.Length);
+        if(playerController.Instance.playerJob != "Lawyer")
+            return;
+        else
+        {
+            scanButton.SetActive(true);
+        }
         if(fingerPrints != null)
         {
             for(int i = 0; i < numbers.Length; i++)
             {
                 numbers[i] = numberButtons.transform.Find(i.ToString() + "btn").gameObject;
-                Debug.Log(numbers[i]);
             }
             for(int i = 0; i < answer.Length; i++)
             {
-                Debug.Log(answer[i].ToString());
                 int temp;
                 int.TryParse(answer[i].ToString(), out temp);
                 fingerPrints[i].SetActive(true);
@@ -52,6 +67,29 @@ public class HeatMapPuzzle : PuzzleInfo
         }
     }
 
+    public void btnDown(float time)
+    {
+        if(show)
+            return;
+        buttonPressed = true;
+        StartCoroutine(PressTimer(3f));
+    }
+    
+    public void btnUp()
+    {
+        Debug.Log("up");
+        if(!show)
+        {
+            for(int i = 0; i < answer.Length; i++)
+            {
+                fingerPrints[i].GetComponent<CanvasGroup>().alpha = 0;
+            }
+            enterbtnFinger.GetComponent<CanvasGroup>().alpha = 0;
+        }
+        buttonPressed = false;
+        pressingTime = 0;
+        heatMapAnim.SetBool("ScanBool", false);
+    }
 
     public void NumEnter(int num)
     {
@@ -106,6 +144,15 @@ public class HeatMapPuzzle : PuzzleInfo
         }
     }
 
+    public void ShowFingerPrint()
+    {
+        show = true;
+        for(int i = 0; i < answer.Length; i++)
+        {
+            fingerPrints[i].SetActive(true);
+        }
+    }
+
     IEnumerator ShowResult(string result)
     {
         denying = true;
@@ -114,6 +161,33 @@ public class HeatMapPuzzle : PuzzleInfo
         denying = false;
         answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = new string('0', answer.Length);
         enteredNum = enteredNum.Remove(0, enteredNum.Length);
+    }
+
+    IEnumerator PressTimer(float time)
+    {
+        heatMapAnim.SetBool("ScanBool", true);
+
+        while(buttonPressed && !show)
+        {
+            pressingTime += Time.deltaTime;
+            for(int i = 0; i < answer.Length; i++)
+            {
+                fingerPrints[i].GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, pressingTime / time);
+            }
+            enterbtnFinger.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, pressingTime / time);
+
+            if(pressingTime >= time)
+            {
+                for(int i = 0; i < answer.Length; i++)
+                {
+                    fingerPrints[i].GetComponent<CanvasGroup>().alpha = 1;
+                }
+                enterbtnFinger.GetComponent<CanvasGroup>().alpha = 1;
+                show = true;
+            }
+            yield return null;
+        }
+        heatMapAnim.SetBool("ScanBool", false);
     }
     
 }

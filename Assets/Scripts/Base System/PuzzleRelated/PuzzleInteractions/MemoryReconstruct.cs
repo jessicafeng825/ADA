@@ -40,6 +40,8 @@ public class MemoryReconstruct : PuzzleInfo
  
     public void btnDown(float time)
     {
+        if(isSolved)
+            return;
         buttonPressed = true;
         StartCoroutine(PressTimer(6f));
     }
@@ -47,7 +49,9 @@ public class MemoryReconstruct : PuzzleInfo
     public void btnUp()
     {
         Debug.Log("up");
-        
+        if(isSolved)
+            return;
+        descriptionText.SetActive(true);
         loadingScreen.transform.GetChild(0).Find("LoadingLabel").GetComponent<TextMeshProUGUI>().text = "Verifying...";
         loadingScreen.transform.GetChild(0).Find("LoadingBar").gameObject.SetActive(true);
         loadingScreen.SetActive(false);

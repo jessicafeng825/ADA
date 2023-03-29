@@ -84,7 +84,7 @@ public class PuzzleInfo : MonoBehaviour
 
     private void TransferThisPuzzle(string playerJob)
     {
-        InvestigationManager.Instance.TransferPuzzleSynchronize(puzzleID, playerJob);
+        InvestigationManager.Instance.TransferPuzzleSynchronize(puzzleID, playerJob, collectedAt);
         Destroy(gameObject);
     }
 

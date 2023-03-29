@@ -34,7 +34,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     // Player Puzzle Base Part
     [SerializeField]
-    private GameObject PuzzleBase;
+    private GameObject PuzzleBases;
     private GameObject tempPuzzle;
     private Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
     #endregion
@@ -246,6 +246,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         playerController.Instance.Change_currentAP(-1);
         ResourceManager.Instance.allClueCount --;
         pv.RPC(nameof(SyncClueCount), RpcTarget.All, ResourceManager.Instance.allClueCount);
+
+        tempClue = null;
     }
     [PunRPC]
     public void SyncClueCount(int n)
@@ -256,14 +258,24 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #endregion
 
     #region Puzzle Related Functions
-    public void AddPuzzlePrefab(string puzzleName)
+    public void AddPuzzlePrefab(string puzzleName, Memory memory)
     {
         tempPuzzle = Instantiate(ResourceManager.Instance.GetPuzzleBtn(puzzleName));
-        tempPuzzle.GetComponent<Transform>().SetParent(PuzzleBase.GetComponent<Transform>(), true);
+        string m = memory.ToString();
+        foreach(Transform child in PuzzleBases.transform)
+        {
+            if(child.name.Contains(m))
+            {
+                child.gameObject.SetActive(true);
+                if(child.name == m + "Content")
+                    tempPuzzle.GetComponent<Transform>().SetParent(child, true);
+            }
+        }
         tempPuzzle.transform.localScale = new Vector3(1f, 1f, 1f);
         inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
         
         playerController.Instance.Change_currentAP(-1);
+        tempPuzzle = null;
     }
 
     // Call when puzzle solved, update sprite
@@ -289,19 +301,19 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
     }
 
-    public void TransferPuzzleSynchronize(string puzzleID, string playerJob)
+    public void TransferPuzzleSynchronize(string puzzleID, string playerJob, Memory memory)
     {
         Destroy(inBasePuzzleBtns[puzzleID].gameObject);
         inBasePuzzleBtns.Remove(puzzleID);
-        pv.RPC(nameof(TransferPuzzle), RpcTarget.All, puzzleID, playerJob);
+        pv.RPC(nameof(TransferPuzzle), RpcTarget.All, puzzleID, playerJob, memory);
     }
 
     [PunRPC]
-    public void TransferPuzzle(string puzzleID, string playerJob)
+    public void TransferPuzzle(string puzzleID, string playerJob, Memory memory)
     {
         if (playerController.Instance.playerJob == playerJob)
         {
-            AddPuzzlePrefab(puzzleID);
+            AddPuzzlePrefab(puzzleID, memory);
         }
     }
 
@@ -410,6 +422,10 @@ public class InvestigationManager : Singleton<InvestigationManager>
     }
     public void TeleportToFrom(Memory fromMemory, Memory toMemory)
     {
+        if(playerController.Instance.currentAP < 1)
+        {
+            return;
+        }
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
         MemoryUI_Dic[toMemory.ToString()].SetActive(true);
         memoryTitleText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = toMemory.ToString();

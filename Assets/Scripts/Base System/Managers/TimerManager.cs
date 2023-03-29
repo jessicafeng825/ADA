@@ -25,6 +25,9 @@ public class TimerManager : MonoBehaviour
     private GameObject playerPanel;
     private GameObject investigationPanel;
     private GameObject discussionPanel;
+    private GameObject characterPanel;
+    private GameObject cluePanel;
+    private GameObject puzzlePanel;
     
     [SerializeField]
     private GameObject transtitionPanel;
@@ -55,6 +58,10 @@ public class TimerManager : MonoBehaviour
 
         investigationPanel = playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").gameObject;
         discussionPanel = playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").gameObject;
+
+        characterPanel = playerPanel.transform.Find("CharacterMenu").gameObject;
+        cluePanel = playerPanel.transform.Find("ClueMenu").gameObject;
+        puzzlePanel = playerPanel.transform.Find("PuzzleMenu").gameObject;
 
         TimerTitle = timerPanel.transform.Find("TimerTitle").gameObject;
         EndButton = timerPanel.transform.Find("EndButton").gameObject;
@@ -142,9 +149,12 @@ public class TimerManager : MonoBehaviour
         pv.RPC(nameof(SwitchStageVisualRPC), RpcTarget.All, 2f, nextStage);
         StartCoroutine(TimerPauseCoroutine(2f, nextStage));
     }
-    public void TimeupEndTransition(PlayerManagerForAll.gamestage stage)
+    
+    private void CloseAllMenuonSwitch()
     {
-        transtitionPanel.gameObject.SetActive(true);
+        characterPanel.GetComponent<DeactivateChild>().CloseThisMenu();
+        cluePanel.GetComponent<DeactivateChild>().CloseThisMenu();
+        puzzlePanel.GetComponent<DeactivateChild>().CloseThisMenu();
     }
 
     #region RPC
@@ -152,7 +162,9 @@ public class TimerManager : MonoBehaviour
     public void InvestigationManagerSwitch(bool active)
     {
         InvestigationManager.Instance.gameObject.SetActive(active);
+        investigationPanel.gameObject.SetActive(active);
         discussionPanel.gameObject.SetActive(!active);
+        CloseAllMenuonSwitch();
     }
 
     [PunRPC]

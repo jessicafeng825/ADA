@@ -87,7 +87,7 @@ public class InterestPointInfo : MonoBehaviour
             else if (collectableList[i].type == ipType.Puzzle)
             {
                 BaseUIManager.Instance.SpawnNotificationPanel("Puzzle Found!", "You have found a puzzle!", 1, 3f);
-                InvestigationManager.Instance.AddPuzzlePrefab(collectableList[i].id);
+                InvestigationManager.Instance.AddPuzzlePrefab(collectableList[i].id, memory);
                 BaseUIManager.Instance.CollectedThisRoundUI(collectableList[i].type, collectableList[i].id);
             }
                 
