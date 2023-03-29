@@ -31,16 +31,26 @@ public class ClueInfo : MonoBehaviour
 
     private void ShareThisClue()
     {
-        if (!isShared && playerController.Instance.currentClueSharedNum < DetectiveBoardManager.Instance.GetClueShareLimit())
+        NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel("Sharing Clue", "Are you sure you want to share this clue?", 2, -1f);
+        tempNoti.AddFunctiontoYesButton(() => ExecuteClueShare(), true);
+    }
+
+    private void ExecuteClueShare()
+    {
+        if (isShared)
         {
-            playerController.Instance.currentClueSharedNum ++;
-            DetectiveBoardManager.Instance.ShareClue(clueID);
-            isShared = true;
-            Debug.Log("share");
+            BaseUIManager.Instance.SpawnNotificationPanel("Clue Shared", "You have already shared this clue", 1, -1f);
+        }
+        else if (playerController.Instance.currentClueSharedNum >= DetectiveBoardManager.Instance.GetClueShareLimit())
+        {
+            BaseUIManager.Instance.SpawnNotificationPanel("Exceed Share Limit", "You have shared " + playerController.Instance.currentClueSharedNum + " clues for this round!", 1, -1f);
         }
         else
         {
-            //TODO: UI "you have shared this clue"
+            playerController.Instance.currentClueSharedNum++;
+            DetectiveBoardManager.Instance.ShareClue(clueID);
+            isShared = true;
+            BaseUIManager.Instance.SpawnNotificationPanel("Share Completed", "The clue is shared to the detective board", 1, -1f);
         }
     }
 }

@@ -84,8 +84,16 @@ public class PuzzleInfo : MonoBehaviour
 
     private void TransferThisPuzzle(string playerJob)
     {
+        NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel("Transfer Puzzles", "Are you sure you want to transfer this puzzle?", 2, -1f);
+        tempNoti.AddFunctiontoYesButton(() => ExecutePuzzleTransfer(playerJob), true);
+        
+    }
+
+    private void ExecutePuzzleTransfer(string playerJob)
+    {
         InvestigationManager.Instance.TransferPuzzleSynchronize(puzzleID, playerJob, collectedAt);
         Destroy(gameObject);
+        BaseUIManager.Instance.SpawnNotificationPanel("Transfer Completed", "The puzzle is transferred to " + playerJob, 1, -1f);
     }
 
     protected void HideThisUI()
