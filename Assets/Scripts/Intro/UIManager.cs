@@ -225,7 +225,7 @@ public class UIManager : MonoBehaviour
             }
         }
         */
-        pv.RPC(nameof(updateallplayerName), RpcTarget.All, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.playerImage, job.relationshiptext, job.skilltext);
+        pv.RPC(nameof(updateallplayerName), RpcTarget.All, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.relationshiptext, job.skilltext, job.alibitext, job.playerImage);
         //playerController.Instance.jobSelect(name);
 
         Debug.Log(playerController.Instance.playerJob);
@@ -298,7 +298,7 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.jobselectForname(oldJob, newJob);
     }
     [PunRPC]
-    private void updateallplayerName(int id,string jobname,string playername,string playerbackground, string playerImage,string relationshipText,string skillText)
+    private void updateallplayerName(int id,string jobname,string playername,string playerbackground, string relationshipText,string skillText, string alibiText, string playerImage)
     {
         //gb.GetComponent<playerController>().jobSelect(name);
         listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
@@ -309,7 +309,7 @@ public class UIManager : MonoBehaviour
                 // if(listofgameObjectwithtag[i].GetComponent<playerController>().isselected == false)
                 // {
                     string oldJob = listofgameObjectwithtag[i].GetComponent<playerController>().playerJob;
-                    listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname, playername, playerbackground, skillText, relationshipText, playerImage);
+                    listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname, playername, playerbackground, skillText, relationshipText, alibiText, playerImage);
 
                     //gameObjectNow = listofgameObjectwithtag[i];
 
