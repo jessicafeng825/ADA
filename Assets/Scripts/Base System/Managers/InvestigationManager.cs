@@ -134,13 +134,14 @@ public class InvestigationManager : Singleton<InvestigationManager>
             return;
         }
         Rooms oldRoom = playerController.Instance.currentRoom;
-
         //Update PC Map room player count
         Memory tempMemory = playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory;
         pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, tempMemory, oldRoom.name, tempMemory, room.name);
 
         //Update player's current room
         playerController.Instance.currentRoom = room;
+        Debug.Log("Current Room: " + playerController.Instance.currentRoom);
+        Debug.Log("Current Memory: " + playerController.Instance.currentMemory);
         StartCoroutine(RoomCoroutine(oldRoom, room, 0.5f));
     }
     private void ActivateRoom(Rooms room)
@@ -445,7 +446,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
         {
             if (room.firstRoominMemory)
             {
-                Debug.Log("First room: " + room.roomName);
                 Rooms originalRoom = playerController.Instance.currentRoom;
                 playerController.Instance.currentRoom = room;
                 pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, fromMemory, originalRoom.name, toMemory, room.name);
