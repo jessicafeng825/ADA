@@ -42,9 +42,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
     // Synchronize Interest Point Status Part
     [SerializeField]
     private PhotonView pv;
-    [SerializeField]
-    private List<GameObject> interestPointList;
     private Dictionary<string, GameObject> interestPoints = new Dictionary<string, GameObject>();
+    [SerializeField]
+    private int allInterestPointCount = 0;
 
     #region Parameters: Teleport & Memory Unlock
     [SerializeField]
@@ -463,6 +463,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         yield return new WaitForSeconds(sec);
         PCMap.transform.GetChild(0).gameObject.SetActive(false);
         PCMap.transform.GetChild(1).gameObject.SetActive(true);
+        yield return new WaitForSeconds(sec);
         pv.RPC(nameof(TeleportEveryone), RpcTarget.Others, Memory.BishopMemory, Memory.LawyerOffice);
     }
     [PunRPC]
@@ -522,19 +523,14 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #endregion
 
     #region Interest Points Related Functions
-    private void PreloadInterestPoints()
-    {
-        foreach (GameObject interestPoint in interestPointList)
-        {
-            interestPoints.Add(interestPoint.name, interestPoint);
-        }
-    }
+    
     // Add interest point to the dictionary
     public void AddInterestPoint(string name, GameObject interestPoint)
     {
         interestPoints.Add(name, interestPoint);
+        allInterestPointCount += 1;
     }
-
+    // functions to synchronize the item count of one interest points
     public void SynchronizeInterestPoint(string ipName, int itemNum)
     {
         pv.RPC(nameof(UpdateGivenIPCNT), RpcTarget.All, ipName, itemNum);
@@ -547,7 +543,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         interestPoints[ipName].GetComponent<InterestPointInfo>().itemCollected(itemNum);
     }
 
-    // functions to synchronize whether interest points are active or not
+    // functions to synchronize whether interest points are active or not depends on if there are items left
     public void SynchronizeInterestPointStatus(string ipName, Memory memory)
     {
         pv.RPC(nameof(UpdateIPFullyCollected), RpcTarget.All, ipName, memory);
@@ -557,11 +553,18 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void UpdateIPFullyCollected(string ipName, Memory memory)
     {
         interestPoints[ipName].SetActive(false);
+        allInterestPointCount --;
+        Debug.Log("All interest point count: " + allInterestPointCount);
         // minus interest point count from memory
         if(MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().UpdateInterestPointCount(-1) && PhotonNetwork.IsMasterClient)
         {
             // if all interest points are collected, change stage
             ExitTutorialChangeStage();
+        }
+        else if(allInterestPointCount == 0 && PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("All interest points are collected");
+            TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Accusation);
         }
     }
 

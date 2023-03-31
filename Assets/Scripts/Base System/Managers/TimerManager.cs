@@ -25,6 +25,7 @@ public class TimerManager : MonoBehaviour
     private GameObject playerPanel;
     private GameObject investigationPanel;
     private GameObject discussionPanel;
+    private GameObject accusationPanel;
     private GameObject characterPanel;
     private GameObject cluePanel;
     private GameObject puzzlePanel;
@@ -36,6 +37,8 @@ public class TimerManager : MonoBehaviour
     private float investigateTime;
     [SerializeField]
     private float discussTime;
+    [SerializeField]
+    private float accuseTime;
     private float currentStageTimer;
     private float gamePhaseTimer;
     private PlayerManagerForAll.gamestage publicStageNow;
@@ -58,6 +61,7 @@ public class TimerManager : MonoBehaviour
 
         investigationPanel = playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").gameObject;
         discussionPanel = playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").gameObject;
+        accusationPanel = playerPanel.transform.Find("MainMenu").Find("PlayerAccusationPanel").gameObject;
 
         characterPanel = playerPanel.transform.Find("CharacterMenu").gameObject;
         cluePanel = playerPanel.transform.Find("ClueMenu").gameObject;
@@ -86,6 +90,10 @@ public class TimerManager : MonoBehaviour
             else if(publicStageNow == PlayerManagerForAll.gamestage.Discussion)
             {
                 SwitchStage(PlayerManagerForAll.gamestage.Investigate);
+            }
+            else if(publicStageNow == PlayerManagerForAll.gamestage.Accusation)
+            {
+                Debug.Log("Accusation Time Up");
             }
         }
         else if(gamePhaseTimer > 0 && !timeout)
@@ -121,6 +129,14 @@ public class TimerManager : MonoBehaviour
                 PCMapPanel.SetActive(false);
                 DetectiveBoardPanel.SetActive(true);
                 currentStageTimer = discussTime;
+                break;
+            case PlayerManagerForAll.gamestage.Accusation:
+                pv.RPC(nameof(AccusationSwitch), RpcTarget.All);
+                TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Accusation";
+                //Open and close Map and detective board
+                PCMapPanel.SetActive(false);
+                DetectiveBoardPanel.SetActive(true);
+                currentStageTimer = accuseTime;
                 break;
         }
         pv.RPC(nameof(ChangeAllPlayerStage), RpcTarget.All, nextStage);
@@ -165,6 +181,16 @@ public class TimerManager : MonoBehaviour
         playerPanel.transform.Find("MainMenu").gameObject.SetActive(true);
         investigationPanel.gameObject.SetActive(active);
         discussionPanel.gameObject.SetActive(!active);
+        CloseAllMenuonSwitch();
+    }
+    [PunRPC]
+    public void AccusationSwitch()
+    {
+        InvestigationManager.Instance.gameObject.SetActive(false);
+        playerPanel.transform.Find("MainMenu").gameObject.SetActive(true);
+        investigationPanel.gameObject.SetActive(false);
+        discussionPanel.gameObject.SetActive(false);
+        accusationPanel.SetActive(true);
         CloseAllMenuonSwitch();
     }
 
@@ -222,6 +248,12 @@ public class TimerManager : MonoBehaviour
                 TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
                 transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Discussion";
                 break;
+            case PlayerManagerForAll.gamestage.Accusation:
+                BaseUIManager.Instance.CloseCollectedUI();
+                transtitionPanel.transform.Find("Round").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Final Round";
+                TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Accusation";
+                transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Accusation";
+                break;
         }
         yield return new WaitForSeconds(sec);
         transtitionPanel.gameObject.SetActive(false);
@@ -239,13 +271,17 @@ public class TimerManager : MonoBehaviour
             case PlayerManagerForAll.gamestage.Discussion:
                 EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Discussion";
                 break;
+            case PlayerManagerForAll.gamestage.Accusation:
+                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Accusation";
+                break;
             default:
                 break;
         }
         TimerTitle.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
         EndButton.gameObject.SetActive(false);
         yield return new WaitForSeconds(sec);
-        EndButton.gameObject.SetActive(true);
+        if(nextStage != PlayerManagerForAll.gamestage.Accusation)
+            EndButton.gameObject.SetActive(true);
         PublicStageChange(nextStage);
         timeout = false;
     }

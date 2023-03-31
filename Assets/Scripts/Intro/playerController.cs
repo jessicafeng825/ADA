@@ -22,7 +22,9 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     [SerializeField] public string alibiText = "None";
     [SerializeField] public Sprite playerImage;//player Image
     [SerializeField] public bool isselected = false;
-   public int maxAP;
+
+    public string accusedPalyer;
+    public int maxAP;
     public int currentAP;
     public Rooms currentRoom;
     public Transform currentMemory;
@@ -42,6 +44,7 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     {
         pv = GetComponent<PhotonView>();
         DontDestroyOnLoad(this);
+        accusedPalyer = "None";
 
     }
 
@@ -114,6 +117,12 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     {
         pv.RPC(nameof(SynchronizeMaxAP), RpcTarget.All, maxAP);
     }
+
+    public void AccusePlayer(string accusedPlayer)
+    {
+        this.accusedPalyer = accusedPlayer;
+        pv.RPC(nameof(AccusePlayerRPC), RpcTarget.All, accusedPlayer);
+    }
     [PunRPC]
     public void SynchronizeCurrentAP(int currentAP)
     {
@@ -123,6 +132,11 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     public void SynchronizeMaxAP(int maxAP)
     {
         this.maxAP = maxAP;
+    }
+    [PunRPC]
+    public void AccusePlayerRPC(string accusedPlayer)
+    {
+        this.accusedPalyer = accusedPlayer;
     }
     //This commented part is a way of synchronizing the stageNow variable across all players, but I have decided to use RPC instead
 
