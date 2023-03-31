@@ -20,7 +20,8 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     [SerializeField] public string skillText = "None";//player skillText
     [SerializeField] public string relationshipText = "None";//player relationshiptext
     [SerializeField] public string alibiText = "None";
-    [SerializeField] public Sprite playerImage;//player Image
+    [SerializeField] public Sprite playerUpperImage;//player Image
+    [SerializeField] public Sprite playerRoundImage;//player Image
     [SerializeField] public bool isselected = false;
 
     public string accusedPalyer;
@@ -75,7 +76,8 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
             skillText = playerskill;
             relationshipText = playerrelationship;
             alibiText = playerAlibi;
-            playerImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + playerimage);
+            playerUpperImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Upper_" + playerimage);
+            playerRoundImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + playerimage);
             isselected = true;
        // }
        

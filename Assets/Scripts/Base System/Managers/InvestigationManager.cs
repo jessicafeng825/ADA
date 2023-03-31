@@ -126,8 +126,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
         MoveRoom(room);
     }
-    private void MoveRoom(Rooms room)
+    public void MoveRoom(Rooms room)
     {
+        if(playerController.Instance.currentAP <= 0)
+        {
+            Debug.Log("No AP");
+            return;
+        }
         Rooms oldRoom = playerController.Instance.currentRoom;
 
         //Update PC Map room player count
@@ -158,7 +163,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         Vector2 startPos = playerController.Instance.currentMemory.localPosition;
 
         //Original old room scale & alpha
-        Vector3 oldstartScale = newroom.transform.localScale;
+        Vector3 oldstartScale = oldroom.transform.localScale;
         float oldalpha = 1f;
         
         //Original new room scale & alpha
@@ -463,12 +468,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
         yield return new WaitForSeconds(sec);
         PCMap.transform.GetChild(0).gameObject.SetActive(false);
         PCMap.transform.GetChild(1).gameObject.SetActive(true);
-        yield return new WaitForSeconds(sec);
+        Debug.Log("Change Map");
         pv.RPC(nameof(TeleportEveryone), RpcTarget.Others, Memory.BishopMemory, Memory.LawyerOffice);
     }
     [PunRPC]
     public void TeleportEveryone(Memory fromMemory, Memory toMemory)
     {
+        Debug.Log("Teleport everyone from " + fromMemory + " to " + toMemory);
         TeleportToFrom(fromMemory, toMemory);
     }
     [PunRPC]
@@ -554,7 +560,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         interestPoints[ipName].SetActive(false);
         allInterestPointCount --;
-        Debug.Log("All interest point count: " + allInterestPointCount);
         // minus interest point count from memory
         if(MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().UpdateInterestPointCount(-1) && PhotonNetwork.IsMasterClient)
         {
