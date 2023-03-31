@@ -95,6 +95,7 @@ public class PuzzleInfo : MonoBehaviour
         BaseUIManager.Instance.HidePuzzleUI();
         Destroy(gameObject);
         InvestigationManager.Instance.TransferPuzzleSynchronize(puzzleID, playerJob, collectedAt);
+        // Inform receiver get a puzzle
     }
 
     protected void HideThisUI()
