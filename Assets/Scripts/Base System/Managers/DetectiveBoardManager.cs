@@ -18,7 +18,7 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     // For Sharing Clue
     [SerializeField]
     private GameObject clueOnBoardTemplate, onBoardClueInfoTemplate;
-    private GameObject tempClueOnBoardBtn, tempClueOnBoardInfo, tempClueInfo;
+    private GameObject tempClueOnBoardBtn, tempClueOnBoardInfoTemplate, tempClueInfo;
     private Dictionary<string, GameObject> allCluesOnBoardDic = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> OnBoardClueInfosDic = new Dictionary<string, GameObject>();
     [SerializeField]
@@ -63,19 +63,21 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
 
     public void OpenClueInfoOnBoard(string clueID, Vector3 clueBtnPosition)
     {
-        tempClueInfo = ResourceManager.Instance.GetClueInfo(clueID);
-        tempClueOnBoardInfo = Instantiate(onBoardClueInfoTemplate);
-        // Title
+        tempClueInfo = Instantiate(ResourceManager.Instance.GetClueInfo(clueID));
+        tempClueOnBoardInfoTemplate = Instantiate(onBoardClueInfoTemplate);
+        tempClueInfo.GetComponent<Transform>().SetParent(tempClueOnBoardInfoTemplate.GetComponent<Transform>(), false);
+/*        // Title
         tempClueOnBoardInfo.GetComponentsInChildren<TMP_Text>()[0].text = tempClueInfo.GetComponentsInChildren<TMP_Text>()[0].text;
         // Description
         tempClueOnBoardInfo.GetComponentsInChildren<TMP_Text>()[1].text = tempClueInfo.GetComponentsInChildren<TMP_Text>()[1].text;
         // Image
-        tempClueOnBoardInfo.GetComponentsInChildren<Image>()[1].sprite = tempClueInfo.GetComponentsInChildren<Image>()[1].sprite;
-        tempClueOnBoardInfo.GetComponentInChildren<Button>().onClick.AddListener(() => CloseClueInfoOnBoard(clueID));
+        tempClueOnBoardInfo.GetComponentsInChildren<Image>()[1].sprite = tempClueInfo.GetComponentsInChildren<Image>()[1].sprite;*/
+        tempClueOnBoardInfoTemplate.AddComponent<Button>().onClick.AddListener(() => CloseClueInfoOnBoard(clueID));
+        //tempClueOnBoardInfo.GetComponentInChildren<Button>().onClick.AddListener(() => CloseClueInfoOnBoard(clueID));
         // Put on canvas
-        tempClueOnBoardInfo.GetComponent<Transform>().SetParent(detectiveBoard.GetComponent<Transform>(), false);
-        tempClueOnBoardInfo.transform.position = clueBtnPosition;
-        OnBoardClueInfosDic.Add(clueID, tempClueOnBoardInfo);
+        tempClueOnBoardInfoTemplate.GetComponent<Transform>().SetParent(detectiveBoard.GetComponent<Transform>(), false);
+        //tempClueOnBoardInfo.transform.position = clueBtnPosition;
+        OnBoardClueInfosDic.Add(clueID, tempClueOnBoardInfoTemplate);
     }
 
     public void CloseClueInfoOnBoard(string clueID)
