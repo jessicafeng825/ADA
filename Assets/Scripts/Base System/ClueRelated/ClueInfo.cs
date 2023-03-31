@@ -31,26 +31,29 @@ public class ClueInfo : MonoBehaviour
 
     private void ShareThisClue()
     {
-        NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel("Sharing Clue", "Are you sure you want to share this clue?", 2, -1f);
-        tempNoti.AddFunctiontoYesButton(() => ExecuteClueShare(), true);
+        if (isShared)
+        {
+            BaseUIManager.Instance.SpawnNotificationPanel("Clue Already Shared", "You have already shared this clue", 1, -1f);
+        }
+        else
+        {
+            NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel("Sharing Clue", "You have shared: <b>" + playerController.Instance.currentClueSharedNum + "/" + DetectiveBoardManager.Instance.GetClueShareLimit() + "</b> clues for this round!", 2, -1f);
+            tempNoti.AddFunctiontoYesButton(() => ExecuteClueShare(), true);
+        }
     }
 
     private void ExecuteClueShare()
     {
-        if (isShared)
+        if (playerController.Instance.currentClueSharedNum >= DetectiveBoardManager.Instance.GetClueShareLimit())
         {
-            BaseUIManager.Instance.SpawnNotificationPanel("Clue Shared", "You have already shared this clue", 1, -1f);
-        }
-        else if (playerController.Instance.currentClueSharedNum >= DetectiveBoardManager.Instance.GetClueShareLimit())
-        {
-            BaseUIManager.Instance.SpawnNotificationPanel("Exceed Share Limit", "You have shared " + playerController.Instance.currentClueSharedNum + " clues for this round!", 1, -1f);
+            BaseUIManager.Instance.SpawnNotificationPanel("Exceed Share Limit", "You can't share more than <b>" + DetectiveBoardManager.Instance.GetClueShareLimit() + "</b> clues for this round!", 1, -1f);
         }
         else
         {
             playerController.Instance.currentClueSharedNum++;
             DetectiveBoardManager.Instance.ShareClue(clueID);
             isShared = true;
-            BaseUIManager.Instance.SpawnNotificationPanel("Share Completed", "The clue is shared to the detective board", 1, -1f);
+            BaseUIManager.Instance.SpawnNotificationPanel("Sharing Completed", "The clue is shared to the detective board", 1, -1f);
         }
     }
 }
