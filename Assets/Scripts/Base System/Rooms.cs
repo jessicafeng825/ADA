@@ -12,7 +12,7 @@ public class Rooms : MonoBehaviour
 
     [field: SerializeField]
     public bool firstRoominMemory 
-    { get; private set; }
+    { get; set; }
 
     [field: SerializeField]
     public bool midRoom 

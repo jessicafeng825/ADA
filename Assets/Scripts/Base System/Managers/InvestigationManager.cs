@@ -117,15 +117,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
     //Move related functions
     #region Movement Related Functions
 
-    public void MoveRoomDialog(Rooms room)
-    {
-        if(playerController.Instance.currentAP <= 0)
-        {
-            Debug.Log("No AP");
-            return;
-        }
-        MoveRoom(room);
-    }
     public void MoveRoom(Rooms room)
     {
         if(playerController.Instance.currentAP <= 0)
@@ -147,12 +138,14 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void ActivateRoom(Rooms room)
     {
         room.gameObject.SetActive(true);
+        room.firstRoominMemory = true;
         room.GetComponent<CanvasGroup>().interactable = true;
         room.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
     private void DeActivateRoom(Rooms room)
     {
         room.gameObject.SetActive(false);
+        room.firstRoominMemory = false;
         room.GetComponent<CanvasGroup>().interactable = false;
         room.GetComponent<CanvasGroup>().blocksRaycasts = false;        
     }
