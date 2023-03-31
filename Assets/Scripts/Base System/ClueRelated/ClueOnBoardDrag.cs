@@ -4,13 +4,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler
+public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     private string clueID;
 
     [SerializeField]
     private Canvas canvas;
-    
+    private RectTransform rectTransform;
+
     [SerializeField]
     private RectTransform movableArea;
     private float movableAreaMaxHeight, movableAreaMinHeight, movableAreaMaxWidth, movableAreaMinWidth;
@@ -26,6 +27,11 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField]
     private GameObject progressBar;
     private Image fillImage;
+
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
 
     private void Start()
     {
@@ -101,8 +107,13 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDragging = true;
+        Debug.Log("OnbeginDrag");
     }
-
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        Debug.Log("OnDrag");
+    }
     public void DragHandler(BaseEventData eventData)
     {
         PointerEventData pointerEventData = (PointerEventData)eventData;
@@ -119,6 +130,7 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnEndDrag(PointerEventData eventData)
     {
         isDragging = false;
+        Debug.Log("OnbeginDrag");
     }
     #endregion
 

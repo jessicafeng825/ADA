@@ -35,9 +35,27 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     [SerializeField]
     private float lineThickness;
 
+    private Camera cam;
+    [SerializeField] private List<Transform> points = new List<Transform>();
+    [SerializeField] private GameObject line;
+
     private void Start()
     {
         pv = GetComponent<PhotonView>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        
+        //set up different render mode only for Master host
+       
+        if (PhotonNetwork.IsMasterClient)
+        {
+            mainCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+            mainCanvas.worldCamera = cam;
+            mainCanvas.gameObject.SetActive(false);
+            mainCanvas.gameObject.SetActive(true);
+            cam.gameObject.SetActive(false);
+            cam.gameObject.SetActive(true);
+        }
+        
     }
 
     private void Update()
@@ -59,6 +77,10 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetCanvas(mainCanvas);
         allCluesOnBoardDic.Add(clueID, tempClueOnBoardBtn);
         tempClueOnBoardBtn.GetComponent<Transform>().SetParent(clueBtnsOnBoard.GetComponent<Transform>(), false);
+
+        //draw line
+        points.Add(tempClueOnBoardBtn.transform);
+        //line.SetupLine(points);
     }
 
     public void OpenClueInfoOnBoard(string clueID, Vector3 clueBtnPosition)
@@ -87,17 +109,28 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
 
     public void ClueSelected(string clueID)
     {
-        if (firstClueID == null)
+        if (firstClueID == null && secondClueID == null)
         {
             firstClueID = clueID;
             Debug.Log("1st clue selected: " + clueID);
         }
-        else if (secondClueID == null)
+        
+        if (firstClueID != null && secondClueID == null)
         {
             Debug.Log("2nd clue selected: " + clueID);
             secondClueID = clueID;
             // connect clues
             //DrawTwoCluesConnection(allCluesOnBoardDic[firstClueID], allCluesOnBoardDic[secondClueID]);
+            points.Clear();
+            GameObject linenew = GameObject.Instantiate(line);
+            linenew.transform.position = line.transform.position;
+            line.transform.localScale = line.transform.localScale;
+            linenew.transform.parent = line.transform.parent;
+            points.Add(allCluesOnBoardDic[firstClueID].transform);
+            points.Add(allCluesOnBoardDic[secondClueID].transform);
+            linenew.GetComponent<LineController>().SetupLine(points);
+            firstClueID = null;
+            secondClueID = null;
         }
     }
 
