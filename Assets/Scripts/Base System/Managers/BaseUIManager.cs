@@ -11,6 +11,9 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private GameObject pcPanel, playerPanel;
     [SerializeField]
     private GameObject charaterPanel;
+
+    [SerializeField]
+    private GameObject playerTimerPanel;
     // use this for a while, till Hui finish the MenuManager part
 /*    [SerializeField]
     private GameObject clueInfoNoPicPanel, clueInfoPicPanel;
@@ -66,12 +69,13 @@ public class BaseUIManager : Singleton<BaseUIManager>
             tempClue.GetComponent<Transform>().SetParent(clueInfoMenu.GetComponent<Transform>(), false);
             inSceneClues.Add(clueID, tempClue);
         }
-
+        playerTimerPanel.SetActive(false);
         clueInfoMenu.SetActive(true);
     }
 
     public void HideClueUI()
     {
+        playerTimerPanel.SetActive(true);
         clueInfoMenu.SetActive(false);
     }
     #endregion
@@ -90,11 +94,13 @@ public class BaseUIManager : Singleton<BaseUIManager>
             inScenePuzzles.Add(puzzleName, tempPuzzle);
         }
         
+        playerTimerPanel.SetActive(false);
         puzzleInfoMenu.SetActive(true);
     }
 
     public void HidePuzzleUI()
     {
+        playerTimerPanel.SetActive(true);
         puzzleInfoMenu.SetActive(false);
     }
     #endregion

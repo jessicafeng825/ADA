@@ -64,8 +64,11 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     public void OpenClueInfoOnBoard(string clueID, Vector3 clueBtnPosition)
     {
         tempClueInfo = Instantiate(ResourceManager.Instance.GetClueInfo(clueID));
-        tempClueOnBoardInfoTemplate = Instantiate(onBoardClueInfoTemplate);
+        tempClueOnBoardInfoTemplate = Instantiate(onBoardClueInfoTemplate, clueBtnPosition, Quaternion.identity);
+        tempClueOnBoardInfoTemplate.GetComponent<RectTransform>().localPosition = clueBtnPosition;
         tempClueInfo.GetComponent<Transform>().SetParent(tempClueOnBoardInfoTemplate.GetComponent<Transform>(), false);
+        tempClueInfo.transform.Find("Btn_close").gameObject.SetActive(false);
+        tempClueInfo.transform.Find("Btn_share").gameObject.SetActive(false);
 /*        // Title
         tempClueOnBoardInfo.GetComponentsInChildren<TMP_Text>()[0].text = tempClueInfo.GetComponentsInChildren<TMP_Text>()[0].text;
         // Description
