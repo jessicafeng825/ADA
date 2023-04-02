@@ -122,6 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   movableArea: {fileID: 0}
+  mouseOver: 0
+  isDragging: 0
   pressedTimeRequired: 1
   timer: 0
   progressBar: {fileID: 3823421858141345004}
@@ -220,6 +222,18 @@ PrefabInstance:
     - target: {fileID: 3172345749537523886, guid: 9dd7d48baf5eeec4a9df0cb728105c7a, type: 3}
       propertyPath: m_Name
       value: DetectiveBoardProgressBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013690253792953848, guid: 9dd7d48baf5eeec4a9df0cb728105c7a, type: 3}
+      propertyPath: m_Color.b
+      value: 0.65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013690253792953848, guid: 9dd7d48baf5eeec4a9df0cb728105c7a, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013690253792953848, guid: 9dd7d48baf5eeec4a9df0cb728105c7a, type: 3}
+      propertyPath: m_Color.r
+      value: 0.3137255
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
