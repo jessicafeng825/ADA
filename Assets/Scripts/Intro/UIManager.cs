@@ -225,6 +225,10 @@ public class UIManager : MonoBehaviour
             }
         }
         */
+        if(job.isselected)
+        {
+            return;
+        }
         pv.RPC(nameof(updateallplayerName), RpcTarget.All, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.relationshiptext, job.skilltext, job.alibitext, job.playerImage);
         //playerController.Instance.jobSelect(name);
 

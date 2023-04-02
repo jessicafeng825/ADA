@@ -417,12 +417,12 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void SpawnTelepoetDialog(string title, string content, Memory fromMemory, Memory toMemory)
     {
         NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel(title, content, 2, -1f);
-        tempNoti.AddFunctiontoYesButton(() => TeleportToFrom(fromMemory, toMemory), true);
+        tempNoti.AddFunctiontoYesButton(() => TeleportToFrom(fromMemory, toMemory, false), true);
         tempNoti.AddFunctiontoYesButton(() => playerController.Instance.Change_currentAP(-1), false);
     }
-    public void TeleportToFrom(Memory fromMemory, Memory toMemory)
+    public void TeleportToFrom(Memory fromMemory, Memory toMemory, bool force)
     {
-        if(playerController.Instance.currentAP < 1)
+        if(playerController.Instance.currentAP < 1 && !force)
         {
             return;
         }
@@ -454,7 +454,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void ExitTutorialChangeStage()
     {
         StartCoroutine(WaitSecondForTeleport(1f));
-        TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Discussion);
+        teleportBtnList[0].gameObject.SetActive(true);
+        if(PhotonNetwork.IsMasterClient)
+            TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Discussion);
     }
     IEnumerator WaitSecondForTeleport(float sec)
     {
@@ -462,13 +464,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
         PCMap.transform.GetChild(0).gameObject.SetActive(false);
         PCMap.transform.GetChild(1).gameObject.SetActive(true);
         Debug.Log("Change Map");
-        pv.RPC(nameof(TeleportEveryone), RpcTarget.Others, Memory.BishopMemory, Memory.LawyerOffice);
+        pv.RPC(nameof(TeleportEveryone), RpcTarget.All, Memory.BishopMemory, Memory.LawyerOffice);
     }
     [PunRPC]
     public void TeleportEveryone(Memory fromMemory, Memory toMemory)
     {
         Debug.Log("Teleport everyone from " + fromMemory + " to " + toMemory);
-        TeleportToFrom(fromMemory, toMemory);
+        TeleportToFrom(fromMemory, toMemory, true);
     }
     [PunRPC]
     public void TeleportSynonPCMap(Memory memory)
