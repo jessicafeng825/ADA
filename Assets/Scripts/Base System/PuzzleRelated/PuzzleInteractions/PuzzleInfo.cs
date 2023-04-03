@@ -45,11 +45,14 @@ public class PuzzleInfo : MonoBehaviour
                     {
                         InvestigationManager.Instance.AddCluePrefab(clue, collectedAt);
                     }
+
+                    BaseUIManager.Instance.SpawnNotificationPanel("New Clue!", "You got " + clueProvided.Count + " new clues!", 1, -1f);
                     break;
 
                 case PuzzleEffect.unlockRoom:
                     // unlock area
                     InvestigationManager.Instance.UnlockDoor(collectedAt, unlockedRoom);
+                    BaseUIManager.Instance.SpawnNotificationPanel("New Room Unlocked", "The room " + unlockedRoom + " is unlocked!", 1, -1f);
                     break;
 
                 case PuzzleEffect.unlockMemory:
@@ -57,6 +60,7 @@ public class PuzzleInfo : MonoBehaviour
                     InvestigationManager.Instance.UnlockMemoryInOverview(unlockedMemory);
                     // TODO: A small bug to fix: right now the teleport is from 1 -> unlocked memory
                     InvestigationManager.Instance.UnlockTeleport(collectedAt, unlockedMemory);
+                    BaseUIManager.Instance.SpawnNotificationPanel("New Area Unlocked", "You are now able to navigate to <b>" + unlockedMemory.ToString() + "</b> in investigation phase!", 1, -1f);
                     break;
             }
         }

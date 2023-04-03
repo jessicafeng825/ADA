@@ -13,8 +13,8 @@ public class ClueInfo : MonoBehaviour
 
     private void Start()
     {
-        closeBtn = this.transform.Find("Btn_close").GetComponent<Button>();
-        shareBtn = this.transform.Find("Btn_share").GetComponent<Button>();
+        closeBtn = transform.Find("Btn_close").GetComponent<Button>();
+        shareBtn = transform.Find("Btn_share").GetComponent<Button>();
         closeBtn.onClick.AddListener(HideThisClueInfo);
         shareBtn.onClick.AddListener(ShareThisClue);
     }
@@ -53,6 +53,7 @@ public class ClueInfo : MonoBehaviour
             playerController.Instance.currentClueSharedNum++;
             DetectiveBoardManager.Instance.ShareClue(clueID);
             isShared = true;
+            BaseUIManager.Instance.SetClueShared(clueID);
             BaseUIManager.Instance.SpawnNotificationPanel("Sharing Completed", "The clue is shared to the detective board", 1, -1f);
         }
     }

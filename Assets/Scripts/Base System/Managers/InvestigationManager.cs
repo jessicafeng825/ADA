@@ -242,6 +242,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
         
         tempClue.transform.localScale = new Vector3(1f, 1f, 1f);
+        BaseUIManager.Instance.AddClueBtn(clueID, tempClue);
+
         playerController.Instance.Change_currentAP(-1);
         ResourceManager.Instance.allClueCount --;
         pv.RPC(nameof(SyncClueCount), RpcTarget.All, ResourceManager.Instance.allClueCount);
@@ -272,7 +274,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
         tempPuzzle.transform.localScale = new Vector3(1f, 1f, 1f);
         inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
-        
+        BaseUIManager.Instance.AddPuzzleBtns(puzzleName, tempPuzzle);
+
         playerController.Instance.Change_currentAP(-1);
         tempPuzzle = null;
     }
