@@ -31,6 +31,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [SerializeField]
     private GameObject ClueBases;
     private GameObject tempClue;
+    private Dictionary<string, GameObject> inBaseCluesDic = new Dictionary<string, GameObject>();
 
     // Player Puzzle Base Part
     [SerializeField]
@@ -245,13 +246,18 @@ public class InvestigationManager : Singleton<InvestigationManager>
         playerController.Instance.Change_currentAP(-1);
         ResourceManager.Instance.allClueCount --;
         pv.RPC(nameof(SyncClueCount), RpcTarget.All, ResourceManager.Instance.allClueCount);
-
+        inBaseCluesDic.Add(clueID, tempClue);
         tempClue = null;
     }
     [PunRPC]
     public void SyncClueCount(int n)
     {
         ResourceManager.Instance.allClueCount = n;
+    }
+
+    public void SetClueShared(string clueID)
+    {
+        inBaseCluesDic[clueID].GetComponent<ClueBtn>().SetSharedMark();
     }
 
     #endregion
