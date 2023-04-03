@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using Photon.Pun;
+using System.Linq;
 
 public class BaseUIManager : Singleton<BaseUIManager>
 {
@@ -14,28 +15,19 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
     [SerializeField]
     private GameObject playerTimerPanel;
-    // use this for a while, till Hui finish the MenuManager part
-/*    [SerializeField]
-    private GameObject clueInfoNoPicPanel, clueInfoPicPanel;
-
-    [SerializeField]
-    private TMP_Text clueNameText, clueNamePicText;
-        
-    [SerializeField]
-    private TMP_Text clueDescripText, clueDescripPicText;
-
-    [SerializeField]
-    private Image cluePicHolder;*/
 
     [SerializeField]
     private GameObject clueInfoMenu;
     private GameObject tempClue;
-    private Dictionary<string, GameObject> inSceneClues = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> inSceneClueInfos = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> inBaseClueBtns = new Dictionary<string, GameObject>();
+
 
     [SerializeField]
     private GameObject puzzleInfoMenu;
     private GameObject tempPuzzle;
     private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
 
     [SerializeField]
     private GameObject MemoryOverview;
@@ -46,9 +38,12 @@ public class BaseUIManager : Singleton<BaseUIManager>
     [SerializeField]
     private TextMeshProUGUI APText;
 
-
     [SerializeField]
     private GameObject closeMapOverviewButton;
+
+    // UI Effects for new clues and puzzles
+    [SerializeField]
+    private TMP_Text openClueMenuBtnText, openPuzzleMenuBtnText;
 
     public void Start()
     {
@@ -56,18 +51,19 @@ public class BaseUIManager : Singleton<BaseUIManager>
         playerPanel.SetActive(!PhotonNetwork.IsMasterClient);
         InitializeCharacterUI();
     }
+
     #region Clue UI Related Functions
     public void ShowClueUI(string clueID)
     {
-        if (inSceneClues.ContainsKey(clueID))
+        if (inSceneClueInfos.ContainsKey(clueID))
         {
-            inSceneClues[clueID].SetActive(true);
+            inSceneClueInfos[clueID].SetActive(true);
         }
         else
         {
             tempClue = Instantiate(ResourceManager.Instance.GetClueInfo(clueID));
             tempClue.GetComponent<Transform>().SetParent(clueInfoMenu.GetComponent<Transform>(), false);
-            inSceneClues.Add(clueID, tempClue);
+            inSceneClueInfos.Add(clueID, tempClue);
         }
         playerTimerPanel.SetActive(false);
         clueInfoMenu.SetActive(true);
@@ -77,6 +73,30 @@ public class BaseUIManager : Singleton<BaseUIManager>
     {
         playerTimerPanel.SetActive(true);
         clueInfoMenu.SetActive(false);
+    }
+
+    public void AddClueBtn(string clueID, GameObject clueContent)
+    {
+        inBaseClueBtns.Add(clueID, clueContent);
+    }
+
+    public void SetClueShared(string clueID)
+    {
+        inBaseClueBtns[clueID].GetComponent<ClueBtn>().SetSharedMark();
+    }
+
+    public void BaseNewClueEffectsCheck()
+    {
+        openClueMenuBtnText.GetComponent<Animator>().enabled = false;
+        openClueMenuBtnText.GetComponent<TMP_Text>().alpha = 1;
+
+        foreach (GameObject clueBtn in inBaseClueBtns.Values.ToList())
+        {
+            if (!clueBtn.GetComponent<ClueBtn>().isViewed)
+            {
+                openClueMenuBtnText.GetComponent<Animator>().enabled = true;
+            }
+        }
     }
     #endregion
 
@@ -102,6 +122,28 @@ public class BaseUIManager : Singleton<BaseUIManager>
     {
         playerTimerPanel.SetActive(true);
         puzzleInfoMenu.SetActive(false);
+    }
+
+    public void AddPuzzleBtns(string puzzleID, GameObject puzzleContent)
+    {
+        inBasePuzzleBtns.Add(puzzleID, puzzleContent);
+    }
+
+    public void BaseNewPuzzleEffectsCheck()
+    {
+        openPuzzleMenuBtnText.GetComponent<Animator>().enabled = false;
+        openPuzzleMenuBtnText.GetComponent<TMP_Text>().alpha = 1;
+
+        if (inBasePuzzleBtns.Count != 0)
+        {
+            foreach (GameObject puzzleBtn in inBasePuzzleBtns.Values.ToList())
+            {
+                if (!puzzleBtn.GetComponent<PuzzleBtn>().isViewed)
+                {
+                    openPuzzleMenuBtnText.GetComponent<Animator>().enabled = true;
+                }
+            }
+        }
     }
     #endregion
 

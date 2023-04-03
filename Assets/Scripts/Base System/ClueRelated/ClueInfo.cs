@@ -53,7 +53,7 @@ public class ClueInfo : MonoBehaviour
             playerController.Instance.currentClueSharedNum++;
             DetectiveBoardManager.Instance.ShareClue(clueID);
             isShared = true;
-            InvestigationManager.Instance.SetClueShared(clueID);
+            BaseUIManager.Instance.SetClueShared(clueID);
             BaseUIManager.Instance.SpawnNotificationPanel("Sharing Completed", "The clue is shared to the detective board", 1, -1f);
         }
     }

@@ -8,6 +8,7 @@ public class ClueBtn : MonoBehaviour
     // Clue Information that would be shown in UI
     [SerializeField]
     private string clueID;
+    public bool isViewed;
     [SerializeField]
     private GameObject newClueMark, clueSharedMark;
 
@@ -21,6 +22,7 @@ public class ClueBtn : MonoBehaviour
     {
         BaseUIManager.Instance.ShowClueUI(clueID);
         newClueMark.gameObject.SetActive(false);
+        isViewed = true;
     }
 
     public string GetClueID()
