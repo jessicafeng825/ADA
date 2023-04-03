@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class HeatMapPuzzle : PuzzleInfo
 {
+
+    [SerializeField]
+    private GameObject hintText;
+
     [SerializeField]
     private GameObject answerText;
 
@@ -68,11 +72,13 @@ public class HeatMapPuzzle : PuzzleInfo
         {            
             if(playerController.Instance.playerJob != "Lawyer")
             {
+                hintText.SetActive(true);
                 scanButton.SetActive(false);
                 return;
             }
             else
             {
+                hintText.SetActive(false);
                 scanButton.SetActive(true);
             }
             enable = true;

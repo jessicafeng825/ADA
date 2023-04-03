@@ -7,11 +7,11 @@ public class PuzzleBtn : MonoBehaviour
 {
     [SerializeField]
     private string puzzleID;
-    [SerializeField]
     private GameObject solvedMark;
 
     private void Start()
     {
+        solvedMark = this.transform.Find("solvedmark").gameObject;
         GetComponent<Button>().onClick.AddListener(ShowPuzzle);
     }
 
