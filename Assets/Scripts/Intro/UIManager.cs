@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
 
     //One player for development
     private bool isSinglePlayer;
+    public bool superAP;
 
     private void Awake()
     {
@@ -398,6 +399,11 @@ public class UIManager : MonoBehaviour
     {
         isSinglePlayer = !isSinglePlayer;
         check.gameObject.SetActive(isSinglePlayer);
+    }
+    public void SuperAPMode(GameObject check)
+    {
+        superAP = !superAP;
+        check.gameObject.SetActive(superAP);
     }
 
 

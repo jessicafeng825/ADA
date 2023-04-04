@@ -294,11 +294,20 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void UnlockDoorSynchronize(Memory memory, string targetRoom)
     {
         List<DoorInfo> doors = MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().Doors;
+        List<Rooms> rooms = MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().Rooms;
         foreach(DoorInfo door in doors)
         {
             if(door.targetRoom.name == targetRoom)
             {
                 door.gameObject.SetActive(true);
+            }
+        }
+        foreach(Rooms room in rooms)
+        {
+            if(room.roomName == targetRoom)
+            {
+                room.gameObject.SetActive(true);
+                room.isHidden  = false;
             }
         }
     }
@@ -489,6 +498,10 @@ public class InvestigationManager : Singleton<InvestigationManager>
         if(PhotonNetwork.IsMasterClient)
         {
             return 0;
+        }
+        if(UIManager.Instance.superAP)
+        {
+            return 20;
         }
         else if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
         {

@@ -20,6 +20,11 @@ public class Rooms : MonoBehaviour
 
 
     [field: SerializeField]
+    public bool isHidden 
+    { get; set; }
+
+
+    [field: SerializeField]
     public Memory locatedMemory 
     { get; private set;}
 

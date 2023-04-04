@@ -44,26 +44,32 @@ public class MaxComputerPuzzle : PuzzleInfo
         {
             Debug.Log("email01 collected");
             InvestigationManager.Instance.AddCluePrefab(clue, collectedAt);
-            BaseUIManager.Instance.SpawnNotificationPanel("You got a new clue!", "", 1, 3f);
+            BaseUIManager.Instance.SpawnNotificationPanel("New Clue!", "You got 1 new clues!", 1, -1f);
             email01Collected = true;
         }
         else if(clue == email02ClueID && !email02Collected)
         {
             Debug.Log("email02 collected");
             InvestigationManager.Instance.AddCluePrefab(clue, collectedAt);
-            BaseUIManager.Instance.SpawnNotificationPanel("You got a new clue!", "", 1, 3f);
+            BaseUIManager.Instance.SpawnNotificationPanel("New Clue!", "You got 1 new clues!", 1, -1f);
             email02Collected = true;
         }
         else if(clue == codeClueID && !codeCollected)
         {
             Debug.Log("code collected");
             InvestigationManager.Instance.AddCluePrefab(clue, collectedAt);
-            BaseUIManager.Instance.SpawnNotificationPanel("You got a new clue!", "", 1, 3f);
+            BaseUIManager.Instance.SpawnNotificationPanel("New Clue!", "You got 1 new clues!", 1, -1f);
             codeCollected = true;
         }
         else
         {
             Debug.Log("Nothing");
+        }
+        if(email01Collected && email02Collected && codeCollected)
+        {
+            // Hide UI, Mark this puzzle with "solved";
+            InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
+            isSolved = true;
         }
     }
 

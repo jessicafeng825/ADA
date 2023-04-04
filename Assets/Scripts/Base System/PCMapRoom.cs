@@ -15,6 +15,10 @@ public class PCMapRoom : MonoBehaviour
     {get; private set;}
 
     [field: SerializeField]
+    public bool secretRoom
+    {get; set;}
+
+    [field: SerializeField]
     public int PlayerCount
     {get; set;}
 

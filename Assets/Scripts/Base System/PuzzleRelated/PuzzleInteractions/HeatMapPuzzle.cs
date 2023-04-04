@@ -38,7 +38,7 @@ public class HeatMapPuzzle : PuzzleInfo
     private bool denying;
 
     private bool buttonPressed;
-    private float pressingTime;
+    private float scanTime;
 
     private bool show;
 
@@ -87,31 +87,8 @@ public class HeatMapPuzzle : PuzzleInfo
     public void ScriptEnableSwitch(bool b)
     {
         enable = b;
-    }
-
-    public void btnDown(float time)
-    {
-        if(show)
-            return;
-        buttonPressed = true;
-        StartCoroutine(PressTimer(3f));
-    }
+    }  
     
-    public void btnUp()
-    {
-        Debug.Log("up");
-        if(!show)
-        {
-            for(int i = 0; i < answer.Length; i++)
-            {
-                fingerPrints[i].GetComponent<CanvasGroup>().alpha = 0;
-            }
-            enterbtnFinger.GetComponent<CanvasGroup>().alpha = 0;
-        }
-        buttonPressed = false;
-        pressingTime = 0;
-        heatMapAnim.SetBool("ScanBool", false);
-    }
 
     public void NumEnter(int num)
     {
@@ -138,6 +115,7 @@ public class HeatMapPuzzle : PuzzleInfo
         if(enteredNum == answer)
         {
             answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "ACCESS GRANTED";
+            BaseUIManager.Instance.SpawnNotificationPanel("Unlocked", "A sound of a door unlocking", 1, 3f);
             isSolved = true;
             return true;
         }
@@ -165,14 +143,14 @@ public class HeatMapPuzzle : PuzzleInfo
             }
         }
     }
-
-    public void ShowFingerPrint()
+    public void ScanStart()
     {
-        show = true;
-        for(int i = 0; i < answer.Length; i++)
+        if(!show)
         {
-            fingerPrints[i].SetActive(true);
+            show = true;
+            StartCoroutine(ScanTimer(3f));
         }
+        
     }
 
     IEnumerator ShowResult(string result)
@@ -185,30 +163,26 @@ public class HeatMapPuzzle : PuzzleInfo
         enteredNum = enteredNum.Remove(0, enteredNum.Length);
     }
 
-    IEnumerator PressTimer(float time)
+    IEnumerator ScanTimer(float time)
     {
         heatMapAnim.SetBool("ScanBool", true);
 
-        while(buttonPressed && !show)
+        while(scanTime <= time)
         {
-            pressingTime += Time.deltaTime;
+            scanTime += Time.deltaTime;
             for(int i = 0; i < answer.Length; i++)
             {
-                fingerPrints[i].GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, pressingTime / time);
+                fingerPrints[i].GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, scanTime / time);
             }
-            enterbtnFinger.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, pressingTime / time);
+            enterbtnFinger.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, scanTime / time);
 
-            if(pressingTime >= time)
-            {
-                for(int i = 0; i < answer.Length; i++)
-                {
-                    fingerPrints[i].GetComponent<CanvasGroup>().alpha = 1;
-                }
-                enterbtnFinger.GetComponent<CanvasGroup>().alpha = 1;
-                show = true;
-            }
             yield return null;
         }
+        for(int i = 0; i < answer.Length; i++)
+        {
+            fingerPrints[i].GetComponent<CanvasGroup>().alpha = 1;
+        }
+        enterbtnFinger.GetComponent<CanvasGroup>().alpha = 1;
         heatMapAnim.SetBool("ScanBool", false);
     }
     

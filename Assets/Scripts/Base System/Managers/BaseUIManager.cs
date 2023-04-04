@@ -246,7 +246,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
             closeMapOverviewButton.SetActive(false);
             foreach (Transform room in playerController.Instance.currentMemory.transform)
             {
-                if(room.GetComponent<Rooms>().midRoom)
+                if(room.GetComponent<Rooms>().midRoom || room.GetComponent<Rooms>().isHidden )
                     continue;
 
                 CloseRoom(room.GetComponent<Rooms>());

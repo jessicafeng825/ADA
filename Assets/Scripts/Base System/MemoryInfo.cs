@@ -14,6 +14,10 @@ public class MemoryInfo : MonoBehaviour
     { get; private set; }
 
     [field: SerializeField]
+    public List<Rooms> Rooms
+    { get; private set; }
+
+    [field: SerializeField]
     public List<DoorInfo> Doors
     { get; private set; }
 
@@ -32,6 +36,7 @@ public class MemoryInfo : MonoBehaviour
         {
             if(child.tag == "Room")
             {
+                Rooms.Add(child.GetComponent<Rooms>());
                 foreach(Transform point in child.Find("InterestPoints"))
                 {
                     totalInterestPoints++;
