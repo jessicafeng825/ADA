@@ -168,6 +168,7 @@ public class TimerManager : MonoBehaviour
     
     private void CloseAllMenuonSwitch()
     {
+        playerTimerPanel.SetActive(true);
         characterPanel.GetComponent<DeactivateChild>().CloseThisMenu();
         cluePanel.GetComponent<DeactivateChild>().CloseThisMenu();
         puzzlePanel.GetComponent<DeactivateChild>().CloseThisMenu();

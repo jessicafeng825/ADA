@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using Photon.Pun;
+using System.Linq;
 
 public class BaseUIManager : Singleton<BaseUIManager>
 {
@@ -11,28 +12,22 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private GameObject pcPanel, playerPanel;
     [SerializeField]
     private GameObject charaterPanel;
-    // use this for a while, till Hui finish the MenuManager part
-/*    [SerializeField]
-    private GameObject clueInfoNoPicPanel, clueInfoPicPanel;
 
     [SerializeField]
-    private TMP_Text clueNameText, clueNamePicText;
-        
-    [SerializeField]
-    private TMP_Text clueDescripText, clueDescripPicText;
-
-    [SerializeField]
-    private Image cluePicHolder;*/
+    private GameObject playerTimerPanel;
 
     [SerializeField]
     private GameObject clueInfoMenu;
     private GameObject tempClue;
-    private Dictionary<string, GameObject> inSceneClues = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> inSceneClueInfos = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> inBaseClueBtns = new Dictionary<string, GameObject>();
+
 
     [SerializeField]
     private GameObject puzzleInfoMenu;
     private GameObject tempPuzzle;
     private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
 
     [SerializeField]
     private GameObject MemoryOverview;
@@ -43,32 +38,65 @@ public class BaseUIManager : Singleton<BaseUIManager>
     [SerializeField]
     private TextMeshProUGUI APText;
 
+    [SerializeField]
+    private GameObject closeMapOverviewButton;
+
+    // UI Effects for new clues and puzzles
+    [SerializeField]
+    private TMP_Text openClueMenuBtnText, openPuzzleMenuBtnText;
+
     public void Start()
     {
         pcPanel.SetActive(PhotonNetwork.IsMasterClient);
         playerPanel.SetActive(!PhotonNetwork.IsMasterClient);
         InitializeCharacterUI();
     }
+
     #region Clue UI Related Functions
     public void ShowClueUI(string clueID)
     {
-        if (inSceneClues.ContainsKey(clueID))
+        if (inSceneClueInfos.ContainsKey(clueID))
         {
-            inSceneClues[clueID].SetActive(true);
+            inSceneClueInfos[clueID].SetActive(true);
         }
         else
         {
             tempClue = Instantiate(ResourceManager.Instance.GetClueInfo(clueID));
             tempClue.GetComponent<Transform>().SetParent(clueInfoMenu.GetComponent<Transform>(), false);
-            inSceneClues.Add(clueID, tempClue);
+            inSceneClueInfos.Add(clueID, tempClue);
         }
-
+        playerTimerPanel.SetActive(false);
         clueInfoMenu.SetActive(true);
     }
 
     public void HideClueUI()
     {
+        playerTimerPanel.SetActive(true);
         clueInfoMenu.SetActive(false);
+    }
+
+    public void AddClueBtn(string clueID, GameObject clueContent)
+    {
+        inBaseClueBtns.Add(clueID, clueContent);
+    }
+
+    public void SetClueShared(string clueID)
+    {
+        inBaseClueBtns[clueID].GetComponent<ClueBtn>().SetSharedMark();
+    }
+
+    public void BaseNewClueEffectsCheck()
+    {
+        openClueMenuBtnText.GetComponent<Animator>().enabled = false;
+        openClueMenuBtnText.GetComponent<TMP_Text>().alpha = 1;
+
+        foreach (GameObject clueBtn in inBaseClueBtns.Values.ToList())
+        {
+            if (!clueBtn.GetComponent<ClueBtn>().isViewed)
+            {
+                openClueMenuBtnText.GetComponent<Animator>().enabled = true;
+            }
+        }
     }
     #endregion
 
@@ -86,12 +114,36 @@ public class BaseUIManager : Singleton<BaseUIManager>
             inScenePuzzles.Add(puzzleName, tempPuzzle);
         }
         
+        playerTimerPanel.SetActive(false);
         puzzleInfoMenu.SetActive(true);
     }
 
     public void HidePuzzleUI()
     {
+        playerTimerPanel.SetActive(true);
         puzzleInfoMenu.SetActive(false);
+    }
+
+    public void AddPuzzleBtns(string puzzleID, GameObject puzzleContent)
+    {
+        inBasePuzzleBtns.Add(puzzleID, puzzleContent);
+    }
+
+    public void BaseNewPuzzleEffectsCheck()
+    {
+        openPuzzleMenuBtnText.GetComponent<Animator>().enabled = false;
+        openPuzzleMenuBtnText.GetComponent<TMP_Text>().alpha = 1;
+
+        if (inBasePuzzleBtns.Count != 0)
+        {
+            foreach (GameObject puzzleBtn in inBasePuzzleBtns.Values.ToList())
+            {
+                if (!puzzleBtn.GetComponent<PuzzleBtn>().isViewed)
+                {
+                    openPuzzleMenuBtnText.GetComponent<Animator>().enabled = true;
+                }
+            }
+        }
     }
     #endregion
 
@@ -189,38 +241,44 @@ public class BaseUIManager : Singleton<BaseUIManager>
     //Zoom out to view the full map of the current lovated memory
     public void ClickMapOverview()
     {
-        foreach (Transform room in playerController.Instance.currentMemory.transform)
+        if(playerController.Instance.currentMemory.localPosition == -playerController.Instance.currentMemory.transform.Find("Midpoint").transform.localPosition)
         {
-            if(room.GetComponent<Rooms>().midRoom)
-                continue;
-            OpenRoom(room.GetComponent<Rooms>());
-        }
-        Vector3 midPos = -playerController.Instance.currentMemory.GetChild(0).transform.localPosition;
-        Vector3 midScale = Vector3.one * playerController.Instance.currentMemory.GetChild(0).transform.GetComponent<Rooms>().roomScale;
-        playerController.Instance.currentMemory.localPosition = midPos;
-        playerController.Instance.currentMemory.localScale = midScale;
-    }
-    public void CloseMapOverview()
-    {
-        foreach (Transform room in playerController.Instance.currentMemory.transform)
-        {
-            if(room.GetComponent<Rooms>().midRoom)
-                continue;
-
-            CloseRoom(room.GetComponent<Rooms>());
-            if(room.GetComponent<Rooms>().roomName == playerController.Instance.currentRoom.roomName)
+            closeMapOverviewButton.SetActive(false);
+            foreach (Transform room in playerController.Instance.currentMemory.transform)
             {
-                room.gameObject.SetActive(true);
-                room.GetComponent<CanvasGroup>().alpha = 1;
-                room.GetComponent<CanvasGroup>().blocksRaycasts = true;
-                room.GetComponent<CanvasGroup>().interactable = true;
-                room.transform.localScale = Vector3.one * playerController.Instance.currentRoom.roomScale;
-                continue;
+                if(room.GetComponent<Rooms>().midRoom)
+                    continue;
+
+                CloseRoom(room.GetComponent<Rooms>());
+                if(room.GetComponent<Rooms>().roomName == playerController.Instance.currentRoom.roomName && !room.GetComponent<Rooms>().isHidden)
+                {
+                    room.gameObject.SetActive(true);
+                    room.GetComponent<CanvasGroup>().alpha = 1;
+                    room.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    room.GetComponent<CanvasGroup>().interactable = true;
+                    room.transform.localScale = Vector3.one * playerController.Instance.currentRoom.roomScale;
+                    continue;
+                }
             }
+            Vector3 currentRoomPos = -playerController.Instance.currentRoom.transform.localPosition;
+            playerController.Instance.currentMemory.localPosition = currentRoomPos;
+            playerController.Instance.currentMemory.localScale = Vector3.one;
         }
-        Vector3 currentRoomPos = -playerController.Instance.currentRoom.transform.localPosition;
-        playerController.Instance.currentMemory.localPosition = currentRoomPos;
-        playerController.Instance.currentMemory.localScale = Vector3.one;
+        else
+        {
+            closeMapOverviewButton.SetActive(true);
+            foreach (Transform room in playerController.Instance.currentMemory.transform)
+            {
+                if(room.GetComponent<Rooms>().midRoom)
+                    continue;
+                OpenRoom(room.GetComponent<Rooms>());
+            }
+            Vector3 midPos = -playerController.Instance.currentMemory.transform.Find("Midpoint").transform.localPosition;
+            Vector3 midScale = Vector3.one * playerController.Instance.currentMemory.GetChild(0).transform.GetComponent<Rooms>().roomScale;
+            playerController.Instance.currentMemory.localPosition = midPos;
+            playerController.Instance.currentMemory.localScale = midScale;
+        }
+        
     }
     private void OpenRoom(Rooms room)
     {

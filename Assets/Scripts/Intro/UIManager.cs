@@ -24,10 +24,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMP_Text playerbk;//player background
     [SerializeField] public TMP_Text playersk;//player skills
     [SerializeField] public TMP_Text playerrl;//player relationship
-    [SerializeField] public TMP_Text playerAlibi;
+    [SerializeField] public TMP_Text playerAlibi;//player alibi
+    [SerializeField] public TMP_Text playerSecret;//player secret
     [SerializeField] public Image playerImageUI;//player Image
     [SerializeField] public VideoPlayer video;
     [SerializeField] private GameObject characterBrief;
+    [SerializeField] private GameObject PCBrief;
     public bool ifintroend = false;
     private bool ifselected = false;
     private GameObject[] listofgameObjectwithtag;
@@ -35,6 +37,7 @@ public class UIManager : MonoBehaviour
 
     //One player for development
     private bool isSinglePlayer;
+    public bool superAP;
 
     private void Awake()
     {
@@ -55,8 +58,6 @@ public class UIManager : MonoBehaviour
         playerName.text = PhotonNetwork.NickName;
 
     }
-
-
     // Update is called once per frame
     void Update()
     {
@@ -197,6 +198,14 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.OpenMenu("TestMenu");
     }
 
+    public void OpenPCCharacterBrief(JOb job)
+    {
+        PCBrief.SetActive(true);
+        PCBrief.transform.Find("Visuals").Find("TitleText").GetComponent<TMP_Text>().text = job.jobName;
+        PCBrief.transform.Find("Visuals").Find("NameText").GetComponent<TMP_Text>().text = job.playername;
+        PCBrief.transform.Find("BriefText").GetComponent<TMP_Text>().text = job.brief;
+    }
+
     public void OpenCharacterBrief(JOb job)
     {
         UIManager.Instance.CloseMenu("CharacterSelect");
@@ -212,6 +221,9 @@ public class UIManager : MonoBehaviour
         characterBrief.transform.Find("YesButton").GetComponent<Button>().onClick.RemoveAllListeners();
         UIManager.Instance.CloseMenu("CharacterBrief");
         UIManager.Instance.OpenMenu("CharacterSelect");
+        
+        characterBrief.transform.Find("ReturnButton").gameObject.SetActive(false);
+        characterBrief.transform.Find("ReturnPanel").gameObject.SetActive(false);
     }
     public void jobSelect(JOb job)
     {
@@ -225,6 +237,22 @@ public class UIManager : MonoBehaviour
             }
         }
         */
+        foreach(JOb j in jobList)
+        {
+            if(j.name == job.name)
+            {
+                if(j.isselected)
+                {
+                    characterBrief.transform.Find("ReturnButton").gameObject.SetActive(true);
+                    characterBrief.transform.Find("ReturnPanel").gameObject.SetActive(true);
+                    return;
+                }
+            }
+            else
+            {
+                continue;
+            }
+        }
         pv.RPC(nameof(updateallplayerName), RpcTarget.All, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.relationshiptext, job.skilltext, job.alibitext, job.playerImage);
         //playerController.Instance.jobSelect(name);
 
@@ -237,6 +265,7 @@ public class UIManager : MonoBehaviour
             playerrl.text = job.relationshiptext;
             playersk.text = job.skilltext;
             playerAlibi.text = job.alibitext;
+            playerSecret.text = job.secret;
             playerImageUI.sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + job.playerImage);
             //ifselected = true;
         // }
@@ -370,6 +399,11 @@ public class UIManager : MonoBehaviour
     {
         isSinglePlayer = !isSinglePlayer;
         check.gameObject.SetActive(isSinglePlayer);
+    }
+    public void SuperAPMode(GameObject check)
+    {
+        superAP = !superAP;
+        check.gameObject.SetActive(superAP);
     }
 
 

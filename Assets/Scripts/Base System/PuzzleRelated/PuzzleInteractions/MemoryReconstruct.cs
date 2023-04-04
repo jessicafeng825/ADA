@@ -21,7 +21,7 @@ public class MemoryReconstruct : PuzzleInfo
     private GameObject descriptionText;
 
     [SerializeField]
-    private GameObject resiultImage;
+    private GameObject resultImage;
 
     [SerializeField]
     private List<string> neededJob;
@@ -69,7 +69,7 @@ public class MemoryReconstruct : PuzzleInfo
         {
             loadingScreen.transform.GetChild(0).Find("LoadingLabel").GetComponent<TextMeshProUGUI>().text = "Success";
             loadingScreen.transform.GetChild(0).Find("LoadingBar").gameObject.SetActive(false);
-            resiultImage.SetActive(true);
+            resultImage.SetActive(true);
             descriptionText.SetActive(false);
             fingerButton.GetComponent<Image>().color = correctColor;
             fingerButton.GetComponent<Button>().enabled = false;

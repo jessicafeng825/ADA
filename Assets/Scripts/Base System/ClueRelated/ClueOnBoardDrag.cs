@@ -63,7 +63,7 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if(timer > pressedTimeRequired)
         {
             ResetLoading();
-            DetectiveBoardManager.Instance.OpenClueInfoOnBoard(clueID, transform.position);
+            DetectiveBoardManager.Instance.OpenClueInfoOnBoard(clueID, this.GetComponent<RectTransform>().localPosition);
         }
     }
 

@@ -105,7 +105,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
             playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Discussion);
             if(PhotonNetwork.IsMasterClient)
                 return;
-            BaseUIManager.Instance.SpawnNotificationPanel("0AP Remained", "Waiting for others to finish investigation...", 0, -1f);
+            BaseUIManager.Instance.SpawnNotificationPanel("0AP Remained", "Waiting for others to finish investigation...", 1, 2f);
             if (CheckAllPlayer())
             {
                 StartCoroutine(WaitSecondForChangeStage(1f));
@@ -117,41 +117,31 @@ public class InvestigationManager : Singleton<InvestigationManager>
     //Move related functions
     #region Movement Related Functions
 
-    public void MoveRoomDialog(Rooms room)
-    {
-        if(playerController.Instance.currentAP <= 0)
-        {
-            Debug.Log("No AP");
-            return;
-        }
-        MoveRoom(room);
-    }
     public void MoveRoom(Rooms room)
     {
-        if(playerController.Instance.currentAP <= 0)
-        {
-            Debug.Log("No AP");
-            return;
-        }
+        
         Rooms oldRoom = playerController.Instance.currentRoom;
-
         //Update PC Map room player count
         Memory tempMemory = playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory;
         pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, tempMemory, oldRoom.name, tempMemory, room.name);
 
         //Update player's current room
         playerController.Instance.currentRoom = room;
+        Debug.Log("Current Room: " + playerController.Instance.currentRoom);
+        Debug.Log("Current Memory: " + playerController.Instance.currentMemory);
         StartCoroutine(RoomCoroutine(oldRoom, room, 0.5f));
     }
     private void ActivateRoom(Rooms room)
     {
         room.gameObject.SetActive(true);
+        room.firstRoominMemory = true;
         room.GetComponent<CanvasGroup>().interactable = true;
         room.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
     private void DeActivateRoom(Rooms room)
     {
         room.gameObject.SetActive(false);
+        room.firstRoominMemory = false;
         room.GetComponent<CanvasGroup>().interactable = false;
         room.GetComponent<CanvasGroup>().blocksRaycasts = false;        
     }
@@ -248,6 +238,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
         
         tempClue.transform.localScale = new Vector3(1f, 1f, 1f);
+        BaseUIManager.Instance.AddClueBtn(clueID, tempClue);
+
         playerController.Instance.Change_currentAP(-1);
         ResourceManager.Instance.allClueCount --;
         pv.RPC(nameof(SyncClueCount), RpcTarget.All, ResourceManager.Instance.allClueCount);
@@ -278,7 +270,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
         tempPuzzle.transform.localScale = new Vector3(1f, 1f, 1f);
         inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
-        
+        BaseUIManager.Instance.AddPuzzleBtns(puzzleName, tempPuzzle);
+
         playerController.Instance.Change_currentAP(-1);
         tempPuzzle = null;
     }
@@ -297,11 +290,20 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void UnlockDoorSynchronize(Memory memory, string targetRoom)
     {
         List<DoorInfo> doors = MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().Doors;
+        List<Rooms> rooms = MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().Rooms;
         foreach(DoorInfo door in doors)
         {
             if(door.targetRoom.name == targetRoom)
             {
                 door.gameObject.SetActive(true);
+            }
+        }
+        foreach(Rooms room in rooms)
+        {
+            if(room.roomName == targetRoom)
+            {
+                room.gameObject.SetActive(true);
+                room.isHidden  = false;
             }
         }
     }
@@ -423,14 +425,16 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void SpawnTelepoetDialog(string title, string content, Memory fromMemory, Memory toMemory)
     {
         NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel(title, content, 2, -1f);
-        tempNoti.AddFunctiontoYesButton(() => TeleportToFrom(fromMemory, toMemory), true);
+        tempNoti.AddFunctiontoYesButton(() => TeleportToFrom(fromMemory, toMemory, false), true);
         tempNoti.AddFunctiontoYesButton(() => playerController.Instance.Change_currentAP(-1), false);
     }
-    public void TeleportToFrom(Memory fromMemory, Memory toMemory)
+    public void TeleportToFrom(Memory fromMemory, Memory toMemory, bool force)
     {
-        if(playerController.Instance.currentAP < 1)
+        if(playerController.Instance.currentAP == 0 && !force)
         {
+            BaseUIManager.Instance.SpawnNotificationPanel("No Action Point!", "You don't have any action point left!", 1, 3f);
             return;
+            
         }
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
         MemoryUI_Dic[toMemory.ToString()].SetActive(true);
@@ -445,7 +449,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
         {
             if (room.firstRoominMemory)
             {
-                Debug.Log("First room: " + room.roomName);
                 Rooms originalRoom = playerController.Instance.currentRoom;
                 playerController.Instance.currentRoom = room;
                 pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, fromMemory, originalRoom.name, toMemory, room.name);
@@ -461,7 +464,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void ExitTutorialChangeStage()
     {
         StartCoroutine(WaitSecondForTeleport(1f));
-        TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Discussion);
+        teleportBtnList[0].gameObject.SetActive(true);
+        if(PhotonNetwork.IsMasterClient)
+            TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Discussion);
     }
     IEnumerator WaitSecondForTeleport(float sec)
     {
@@ -469,13 +474,13 @@ public class InvestigationManager : Singleton<InvestigationManager>
         PCMap.transform.GetChild(0).gameObject.SetActive(false);
         PCMap.transform.GetChild(1).gameObject.SetActive(true);
         Debug.Log("Change Map");
-        pv.RPC(nameof(TeleportEveryone), RpcTarget.Others, Memory.BishopMemory, Memory.LawyerOffice);
+        pv.RPC(nameof(TeleportEveryone), RpcTarget.All, Memory.BishopMemory, Memory.LawyerOffice);
     }
     [PunRPC]
     public void TeleportEveryone(Memory fromMemory, Memory toMemory)
     {
         Debug.Log("Teleport everyone from " + fromMemory + " to " + toMemory);
-        TeleportToFrom(fromMemory, toMemory);
+        TeleportToFrom(fromMemory, toMemory, true);
     }
     [PunRPC]
     public void TeleportSynonPCMap(Memory memory)
@@ -491,6 +496,10 @@ public class InvestigationManager : Singleton<InvestigationManager>
         if(PhotonNetwork.IsMasterClient)
         {
             return 0;
+        }
+        if(UIManager.Instance.superAP)
+        {
+            return 20;
         }
         else if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
         {
