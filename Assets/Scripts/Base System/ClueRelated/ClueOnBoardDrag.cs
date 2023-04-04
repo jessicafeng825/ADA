@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler
 {
     private string clueID;
 
@@ -101,7 +101,10 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
             isDragging = false;
         }
     }
-
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("OnPointerDown");
+    }
     #region Dragging Related Functions
     // Function to move clue on board
     public void OnBeginDrag(PointerEventData eventData)

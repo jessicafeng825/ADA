@@ -22,11 +22,21 @@ public class LineController : MonoBehaviour
         this.points = points;
     }
     // Update is called once per frame
+    public void renderTwoLine()
+    {
+        int size = points.Count;
+
+
+    }
     void Update()
     {
+        
         for(int i = 0;i < points.Count; i++)
         {
             lr.SetPosition(i, points[i].position);
         }
+        
     }
 }
+
+

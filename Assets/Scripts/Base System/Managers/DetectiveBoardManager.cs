@@ -79,8 +79,8 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         tempClueOnBoardBtn.GetComponent<Transform>().SetParent(clueBtnsOnBoard.GetComponent<Transform>(), false);
 
         //draw line
-        points.Add(tempClueOnBoardBtn.transform);
-        //line.SetupLine(points);
+        //points.Add(tempClueOnBoardBtn.transform);
+        //line.GetComponent<LineController>().SetupLine(points);
     }
 
     public void OpenClueInfoOnBoard(string clueID, Vector3 clueBtnPosition)
@@ -115,22 +115,23 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
             Debug.Log("1st clue selected: " + clueID);
         }
         
-        if (firstClueID != null && secondClueID == null)
+        if (firstClueID != null && secondClueID == null && secondClueID == firstClueID)
         {
             Debug.Log("2nd clue selected: " + clueID);
             secondClueID = clueID;
             // connect clues
             //DrawTwoCluesConnection(allCluesOnBoardDic[firstClueID], allCluesOnBoardDic[secondClueID]);
-            points.Clear();
-            GameObject linenew = GameObject.Instantiate(line);
-            linenew.transform.position = line.transform.position;
-            line.transform.localScale = line.transform.localScale;
-            linenew.transform.parent = line.transform.parent;
+            /*
+            //points.Clear();
+            tempLine = GameObject.Instantiate(line,line.transform.position, Quaternion.identity);
+           // GameObject linenew = GameObject.Instantiate(line);
+            
             points.Add(allCluesOnBoardDic[firstClueID].transform);
             points.Add(allCluesOnBoardDic[secondClueID].transform);
-            linenew.GetComponent<LineController>().SetupLine(points);
+            tempLine.GetComponent<LineController>().SetupLine(points);
             firstClueID = null;
             secondClueID = null;
+            */
         }
     }
 
