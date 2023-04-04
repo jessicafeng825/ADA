@@ -246,11 +246,11 @@ public class BaseUIManager : Singleton<BaseUIManager>
             closeMapOverviewButton.SetActive(false);
             foreach (Transform room in playerController.Instance.currentMemory.transform)
             {
-                if(room.GetComponent<Rooms>().midRoom || room.GetComponent<Rooms>().isHidden )
+                if(room.GetComponent<Rooms>().midRoom)
                     continue;
 
                 CloseRoom(room.GetComponent<Rooms>());
-                if(room.GetComponent<Rooms>().roomName == playerController.Instance.currentRoom.roomName)
+                if(room.GetComponent<Rooms>().roomName == playerController.Instance.currentRoom.roomName && !room.GetComponent<Rooms>().isHidden)
                 {
                     room.gameObject.SetActive(true);
                     room.GetComponent<CanvasGroup>().alpha = 1;
