@@ -13,15 +13,13 @@ public class lineTest : Singleton<lineTest>
 
     public List<List<GameObject>> lindic = new List<List<GameObject>>();
     private List<GameObject> linetemp = new List<GameObject>();
-    public GameObject objadd;
+    //public GameObject objadd;
     [SerializeField] private LineController line;
     public Canvas canvasui;
     private Camera cam;
     enum RenderModeStates { camera, overlay, world };
     RenderModeStates m_RenderModeStates;
 
-    public GameObject obj1;
-    public GameObject obj2;
     void Start()
     {
         line.SetupLine(points);
@@ -79,7 +77,7 @@ public class lineTest : Singleton<lineTest>
 
         }
         return false;
-    }
+    } 
     void ChangeState()
     {
         Debug.Log("change to ScreenSpaceCamera");
@@ -114,20 +112,7 @@ public class lineTest : Singleton<lineTest>
         
 
     }
-    public void selectandConnectTwo(GameObject j1)
-    {
-        if(obj1 == null && obj2 == null)
-        {
-            points.Add(j1.transform);
-        }
-
-        if (obj1 != j1 && obj2 != null)
-        {
-            points.Add(j1.transform);
-            line.SetupLine(points);
-            points.Clear();
-        }
-    }
+    
     public void drawLineIntwoPoint(LineController linenew, List<Transform> p)
     {
         linenew.SetupLine(p);

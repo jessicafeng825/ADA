@@ -20,6 +20,7 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     // Mouse over to open clue detail
     [SerializeField]
     private bool mouseOver, isDragging;
+    private bool isDrag = false;
     [SerializeField]
     private float pressedTimeRequired;
     [SerializeField]
@@ -100,6 +101,13 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             isDragging = false;
         }
+
+        if (isDrag == false)
+        {
+            Debug.Log("Click");
+
+            DetectiveBoardManager.Instance.addOnlyTwoPoints(this.gameObject);
+        }
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -110,8 +118,10 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDragging = true;
+        isDrag = true;
         Debug.Log("OnbeginDrag");
     }
+    //use this draging function instead
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
@@ -133,6 +143,7 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnEndDrag(PointerEventData eventData)
     {
         isDragging = false;
+        isDrag = false;
         Debug.Log("OnbeginDrag");
     }
     #endregion
