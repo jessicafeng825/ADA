@@ -105,7 +105,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
             playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Discussion);
             if(PhotonNetwork.IsMasterClient)
                 return;
-            BaseUIManager.Instance.SpawnNotificationPanel("0AP Remained", "Waiting for others to finish investigation...", 0, -1f);
+            BaseUIManager.Instance.SpawnNotificationPanel("0AP Remained", "Waiting for others to finish investigation...", 1, 2f);
             if (CheckAllPlayer())
             {
                 StartCoroutine(WaitSecondForChangeStage(1f));
@@ -119,11 +119,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void MoveRoom(Rooms room)
     {
-        if(playerController.Instance.currentAP <= 0)
-        {
-            Debug.Log("No AP");
-            return;
-        }
+        
         Rooms oldRoom = playerController.Instance.currentRoom;
         //Update PC Map room player count
         Memory tempMemory = playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory;
@@ -434,9 +430,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
     }
     public void TeleportToFrom(Memory fromMemory, Memory toMemory, bool force)
     {
-        if(playerController.Instance.currentAP < 1 && !force)
+        if(playerController.Instance.currentAP == 0 && !force)
         {
+            BaseUIManager.Instance.SpawnNotificationPanel("No Action Point!", "You don't have any action point left!", 1, 3f);
             return;
+            
         }
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
         MemoryUI_Dic[toMemory.ToString()].SetActive(true);
