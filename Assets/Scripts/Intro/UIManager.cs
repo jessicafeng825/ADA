@@ -23,7 +23,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMP_Text playerJob;//player Job
     [SerializeField] public TMP_Text playerbk;//player background
     [SerializeField] public TMP_Text playersk;//player skills
-    [SerializeField] public TMP_Text playerrl;//player relationship
     [SerializeField] public TMP_Text playerAlibi;//player alibi
     [SerializeField] public TMP_Text playerSecret;//player secret
     [SerializeField] public Image playerImageUI;//player Image
@@ -253,7 +252,7 @@ public class UIManager : MonoBehaviour
                 continue;
             }
         }
-        pv.RPC(nameof(updateallplayerName), RpcTarget.All, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.relationshiptext, job.skilltext, job.alibitext, job.playerImage);
+        pv.RPC(nameof(updateallplayerName), RpcTarget.All, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.skilltext, job.alibitext, job.playerImage);
         //playerController.Instance.jobSelect(name);
 
         Debug.Log(playerController.Instance.playerJob);
@@ -262,7 +261,6 @@ public class UIManager : MonoBehaviour
             playerJob.text = job.jobName;
             playerName.text = job.playername;
             playerbk.text = job.backgroundstory;
-            playerrl.text = job.relationshiptext;
             playersk.text = job.skilltext;
             playerAlibi.text = job.alibitext;
             playerSecret.text = job.secret;
@@ -327,7 +325,7 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.jobselectForname(oldJob, newJob);
     }
     [PunRPC]
-    private void updateallplayerName(int id,string jobname,string playername,string playerbackground, string relationshipText,string skillText, string alibiText, string playerImage)
+    private void updateallplayerName(int id,string jobname,string playername,string playerbackground, string skillText, string alibiText, string playerImage)
     {
         //gb.GetComponent<playerController>().jobSelect(name);
         listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
@@ -338,7 +336,7 @@ public class UIManager : MonoBehaviour
                 // if(listofgameObjectwithtag[i].GetComponent<playerController>().isselected == false)
                 // {
                     string oldJob = listofgameObjectwithtag[i].GetComponent<playerController>().playerJob;
-                    listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname, playername, playerbackground, skillText, relationshipText, alibiText, playerImage);
+                    listofgameObjectwithtag[i].GetComponent<playerController>().jobSelect(jobname, playername, playerbackground, skillText, alibiText, playerImage);
 
                     //gameObjectNow = listofgameObjectwithtag[i];
 

@@ -18,7 +18,6 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     [SerializeField] public string playerName = "None";//player job
     [SerializeField] public string playerBackground = "None";//player job
     [SerializeField] public string skillText = "None";//player skillText
-    [SerializeField] public string relationshipText = "None";//player relationshiptext
     [SerializeField] public string alibiText = "None";
     [SerializeField] public Sprite playerUpperImage;//player Image
     [SerializeField] public Sprite playerRoundImage;//player Image
@@ -66,7 +65,7 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     {
         stageNow = PlayerManagerForAll.gamestage.Discussion;
     }
-    public void jobSelect(string job,string playername,string playerbackground, string playerskill, string playerrelationship, string playerAlibi, string playerimage)
+    public void jobSelect(string job,string playername,string playerbackground, string playerskill, string playerAlibi, string playerimage)
     {
         //if(isselected == false)
         //{
@@ -74,7 +73,6 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
             playerName = playername;
             playerBackground = playerbackground;
             skillText = playerskill;
-            relationshipText = playerrelationship;
             alibiText = playerAlibi;
             playerUpperImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Upper_" + playerimage);
             playerRoundImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + playerimage);
