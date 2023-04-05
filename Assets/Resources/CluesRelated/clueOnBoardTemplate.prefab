@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6596545463201441440}
   - component: {fileID: 4051255716375495097}
   - component: {fileID: 774902355404903752}
-  - component: {fileID: 3304793776194357178}
   - component: {fileID: 4301495393989673893}
   m_Layer: 0
   m_Name: clueOnBoardTemplate
@@ -79,35 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3304793776194357178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5926631496343968782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 5
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4301495393989673893}
-          m_TargetAssemblyTypeName: ClueOnBoardDrag, Assembly-CSharp
-          m_MethodName: DragHandler
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &4301495393989673893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,25 +193,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DetectiveBoardProgressBar
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-=======
-    - target: {fileID: 5828985457602620999, guid: 9dd7d48baf5eeec4a9df0cb728105c7a, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1b43bc290ba48b5468a23b479bea3c76, type: 3}
-    - target: {fileID: 5828985457602620999, guid: 9dd7d48baf5eeec4a9df0cb728105c7a, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828985457602620999, guid: 9dd7d48baf5eeec4a9df0cb728105c7a, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828985457602620999, guid: 9dd7d48baf5eeec4a9df0cb728105c7a, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
->>>>>>> 0e86fafbfffead53a1eed8003c0bb4a0f382d28a
     - target: {fileID: 6013690253792953848, guid: 9dd7d48baf5eeec4a9df0cb728105c7a, type: 3}
       propertyPath: m_Color.b
       value: 0.65882355

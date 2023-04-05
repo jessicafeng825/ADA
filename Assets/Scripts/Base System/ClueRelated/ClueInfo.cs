@@ -31,7 +31,11 @@ public class ClueInfo : MonoBehaviour
 
     private void ShareThisClue()
     {
-        if (isShared)
+        if(playerController.Instance.currentClueSharedNum >= DetectiveBoardManager.Instance.GetClueShareLimit())
+        {
+            BaseUIManager.Instance.SpawnNotificationPanel("Exceed Share Limit", "You can't share more than <b>" + DetectiveBoardManager.Instance.GetClueShareLimit() + "</b> clues for this round!", 1, -1f);
+        }
+        else if (isShared)
         {
             BaseUIManager.Instance.SpawnNotificationPanel("Clue Already Shared", "You have already shared this clue", 1, -1f);
         }
