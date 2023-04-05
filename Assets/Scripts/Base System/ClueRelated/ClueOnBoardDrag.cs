@@ -4,13 +4,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler
+public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler
 {
     private string clueID;
 
     [SerializeField]
     private Canvas canvas;
-    
+    private RectTransform rectTransform;
+
     [SerializeField]
     private RectTransform movableArea;
     private float movableAreaMaxHeight, movableAreaMinHeight, movableAreaMaxWidth, movableAreaMinWidth;
@@ -19,6 +20,7 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     // Mouse over to open clue detail
     [SerializeField]
     private bool mouseOver, isDragging;
+    private bool isDrag = false;
     [SerializeField]
     private float pressedTimeRequired;
     [SerializeField]
@@ -26,6 +28,11 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField]
     private GameObject progressBar;
     private Image fillImage;
+
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
 
     private void Start()
     {
@@ -94,15 +101,32 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             isDragging = false;
         }
-    }
 
+        if (isDrag == false)
+        {
+            Debug.Log("Click");
+
+            DetectiveBoardManager.Instance.addOnlyTwoPoints(this.gameObject);
+        }
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("OnPointerDown");
+    }
     #region Dragging Related Functions
     // Function to move clue on board
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDragging = true;
+        isDrag = true;
+        Debug.Log("OnbeginDrag");
     }
-
+    //use this draging function instead
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        Debug.Log("OnDrag");
+    }
     public void DragHandler(BaseEventData eventData)
     {
         PointerEventData pointerEventData = (PointerEventData)eventData;
@@ -119,6 +143,8 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnEndDrag(PointerEventData eventData)
     {
         isDragging = false;
+        isDrag = false;
+        Debug.Log("OnbeginDrag");
     }
     #endregion
 

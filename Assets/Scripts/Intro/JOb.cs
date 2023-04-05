@@ -21,9 +21,6 @@ public class JOb : MonoBehaviour
     public string skilltext;
 
     [TextArea(15, 20)]
-    public string relationshiptext;
-
-    [TextArea(15, 20)]
     public string alibitext;
 
     [TextArea(5, 20)]

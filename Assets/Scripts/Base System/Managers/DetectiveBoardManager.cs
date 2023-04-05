@@ -37,13 +37,59 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     [SerializeField]
     private float lineThickness;
 
+    private Camera cam;
+
+    [SerializeField] private List<Transform> points = new List<Transform>();
+    [SerializeField] private GameObject p1;
+    [SerializeField] private GameObject p2;
+    [SerializeField] List<Transform> p;
+
+    public List<List<GameObject>> lindic = new List<List<GameObject>>();
+    private List<GameObject> linetemp = new List<GameObject>();
+    //public GameObject objadd;
+    [SerializeField] private LineController line;
+
     private void Start()
     {
         pv = GetComponent<PhotonView>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        
+        //set up different render mode only for Master host
+       
+        if (PhotonNetwork.IsMasterClient)
+        {
+            mainCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+            mainCanvas.worldCamera = cam;
+            mainCanvas.gameObject.SetActive(false);
+            mainCanvas.gameObject.SetActive(true);
+            cam.gameObject.SetActive(false);
+            cam.gameObject.SetActive(true);
+        }
+        
     }
 
     private void Update()
     {
+        if (p.Count == 2)
+        {
+            if (!findifinDic(p1, p2) && p1 && p2)
+            {
+
+                LineController linenew = Instantiate(line);
+                //linedic.Add(p1, p2);
+                if (linetemp != null) linetemp.Clear();
+                linetemp.Add(p1);
+                linetemp.Add(p2);
+                lindic.Add(linetemp);
+                List<Transform> pnew = new List<Transform>(p);
+                drawLineIntwoPoint(linenew, pnew);
+            }
+
+            Debug.Log(lindic.Count);
+
+
+
+        }
     }
 
     public void ShareClue(string clueID)
@@ -61,6 +107,10 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetCanvas(mainCanvas);
         allCluesOnBoardDic.Add(clueID, tempClueOnBoardBtn);
         tempClueOnBoardBtn.GetComponent<Transform>().SetParent(clueBtnsOnBoard.GetComponent<Transform>(), false);
+
+        //draw line
+        //points.Add(tempClueOnBoardBtn.transform);
+        //line.GetComponent<LineController>().SetupLine(points);
     }
 
     public void OpenClueInfoOnBoard(string clueID, Vector3 clueBtnPosition)
@@ -104,20 +154,74 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
 
     public void ClueSelected(string clueID)
     {
-        if (firstClueID == null)
+        if (firstClueID == null && secondClueID == null)
         {
             firstClueID = clueID;
             Debug.Log("1st clue selected: " + clueID);
         }
-        else if (secondClueID == null)
+        
+        if (firstClueID != null && secondClueID == null && secondClueID == firstClueID)
         {
             Debug.Log("2nd clue selected: " + clueID);
             secondClueID = clueID;
             // connect clues
             //DrawTwoCluesConnection(allCluesOnBoardDic[firstClueID], allCluesOnBoardDic[secondClueID]);
+            /*
+            //points.Clear();
+            tempLine = GameObject.Instantiate(line,line.transform.position, Quaternion.identity);
+           // GameObject linenew = GameObject.Instantiate(line);
+            
+            points.Add(allCluesOnBoardDic[firstClueID].transform);
+            points.Add(allCluesOnBoardDic[secondClueID].transform);
+            tempLine.GetComponent<LineController>().SetupLine(points);
+            firstClueID = null;
+            secondClueID = null;
+            */
         }
     }
+    bool findifinDic(GameObject p1, GameObject p2)
+    {
+        for (int i = 0; i < lindic.Count; i++)
+        {
+            if (lindic[i][0] == p1 && lindic[i][1] == p2) return true;
+            if (lindic[i][1] == p1 && lindic[i][0] == p2) return true;
 
+        }
+        return false;
+    }
+    public void addOnlyTwoPoints(GameObject trans)
+    {
+        //points.Add(trans);
+        if (p1 != null && p2 != null)
+        {//clear up
+            p.Clear();
+            p1 = null;
+            p2 = null;
+            p1 = trans;
+            p.Add(p1.transform);
+        }
+
+        if (p1 == null && p2 == null)
+        {
+            p1 = trans;
+            p.Add(p1.transform);
+        }
+
+        if (p1 != trans && p2 == null)
+        {
+            p2 = trans;
+            p.Add(p2.transform);
+
+        }
+
+
+
+    }
+    public void drawLineIntwoPoint(LineController linenew, List<Transform> p)
+    {
+        linenew.SetupLine(p);
+
+    }
     #region For Connecting lines
     private void DrawTwoCluesConnection(GameObject firstClue, GameObject secondClue)
     {
