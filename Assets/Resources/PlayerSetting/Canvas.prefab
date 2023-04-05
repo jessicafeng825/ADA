@@ -1222,8 +1222,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Street Kid
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
-  m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1491,8 +1491,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Security Guard
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
-  m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3236,6 +3236,7 @@ MonoBehaviour:
     Cyber Eye Implants, I can <b>read people like a book</b>. It's come in handy
     during negotiations and poker games. I always know when someone's trying to pull
     a fast one on me.\""
+  relationshiptext: 
   alibitext: "<b><u>Alibi</u></b><br>\nAt the time of the incident, the club was
     open, but you weren\u2019t there. You were schmoozing with some potential investors,
     Wolfram and Hart, at a hotel bar. You\u2019d rather keep their identities under
@@ -4638,6 +4639,7 @@ MonoBehaviour:
     able to tamper with one clue every round. \r</b>\n\r\n<b>Do not reveal this to
     your fellow investigators.</b> \r\n\r\n<b>If anyone asks about your ability,
     you have one extra action point (You do actually).\r</b>\n.\u201D"
+  relationshiptext: 
   alibitext: "<b>Do not reveal this to your fellow investigators</b>.\r\n<br>\nYou
     were working a double that night. It was all quiet until you were nearly at the
     shift change, when you saw Ava Kaine coming in through the front gates. She hadn\u2019t
@@ -6320,6 +6322,7 @@ MonoBehaviour:
   skilltext: "<b><u> TechGlass </u></b><br><br>\n\u201CWith TechGlass I\u2019m able
     to notice small details that others may have overlooked. Even the tiniest scratch
     can't escape my eyes.\u201D"
+  relationshiptext: 
   alibitext: "<b><u>Alibi</u></b><br>\nPeople think you\u2019re a worthless drunk.
     You've <b>hit rock bottom since your wife left you</b>, and have been drowning
     your sorrows in the bottle. But, you swear, <b>you had nothing to do with this
@@ -6445,8 +6448,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Lawyer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
-  m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7803,7 +7806,7 @@ RectTransform:
   - {fileID: 6075260967022232554}
   - {fileID: 2492585333311586784}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7909,6 +7912,7 @@ MonoBehaviour:
   playerJob: {fileID: 5990341204539557531}
   playerbk: {fileID: 5748395294060518865}
   playersk: {fileID: 2911055352451639015}
+  playerrl: {fileID: 0}
   playerAlibi: {fileID: 7037010381732433387}
   playerSecret: {fileID: 8493015422120286901}
   playerImageUI: {fileID: 6772512189998232038}
@@ -8007,8 +8011,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Biohacker
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
-  m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8453,6 +8457,7 @@ MonoBehaviour:
     Cyber Eye Implants, I can <b>read people like a book</b>. It's come in handy
     during negotiations and poker games. I always know when someone's trying to pull
     a fast one on me.\""
+  relationshiptext: 
   alibitext: "<b><u>Alibi</u></b><br>\nAt the time of the incident, the club was
     open, but you weren\u2019t there. You were schmoozing with some potential investors,
     Wolfram and Hart, at a hotel bar. You\u2019d rather keep their identities under
@@ -9235,6 +9240,7 @@ MonoBehaviour:
   skilltext: "<b><u>Picking Locks</u></b> <br><br> \n\u201CI love the feeling of
     being able to slip past certain locks and sneak into places without anyone noticing
     me! It's like I have a superpower or something.\u201D"
+  relationshiptext: 
   alibitext: "<b><u>Alibi</u></b><br>\n<b>You were with your pack of dogs all night</b>,
     roaming the streets in search of food and shelter. You wandered from one alley
     to another, hoping to find something to eat or a safe place to sleep. Your pack
@@ -9816,8 +9822,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Cybernetic Brawler
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
-  m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10234,6 +10240,7 @@ MonoBehaviour:
     fleshy arm for a sleek cybernetic implant. Gotta keep up with the big dogs in
     the fighting circles. That's where the real cash is, baby. And let's not forget
     the killer bonus of being superhuman strong. Can't nobody mess with me now.\u201D"
+  relationshiptext: 
   alibitext: "<b><u>Alibi</u></b><br>\n<b>You were at the gym all night, getting
     ready for the biggest fight of your life</b>. You were pushing yourself to the
     limit, putting all your cybernetic enhancements to the test. You knew you had
@@ -11848,6 +11855,7 @@ MonoBehaviour:
     able to tamper with one clue every round. \r</b>\n\r\n<b>Do not reveal this to
     your fellow investigators.</b> \r\n\r\n<b>If anyone asks about your ability,
     you have one extra action point (You do actually).\r</b>\n.\u201D"
+  relationshiptext: 
   alibitext: "<b>Do not reveal this to your fellow investigators</b>.\r\n<br>\nYou
     were working a double that night. It was all quiet until you were nearly at the
     shift change, when you saw Ava Kaine coming in through the front gates. She hadn\u2019t
@@ -12432,8 +12440,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Character Select
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
-  m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13105,6 +13113,7 @@ MonoBehaviour:
     the cybernetic implants and upgrades, you had to be a DIY pro. That meant getting
     savvy with cryptography, and now you''ve totally nailed it. You can now hack
     through firewalls and handle any cybersecurity hurdles like a boss. '
+  relationshiptext: 
   alibitext: "<b><u>Alibi</u></b><br>\n<b>You were at the Void base all night</b>,
     prepping for the big protest that's happening tomorrow. You were focused on coding
     and security measures to make sure the message gets out and everyone stays safe.
@@ -13342,8 +13351,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter Memory
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
-  m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13553,8 +13562,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nightclub Owner
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
-  m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14602,6 +14611,7 @@ MonoBehaviour:
     Corporation.'
   skilltext: "<b><u> TechGlass </u></b><br><br>\n\u201CWith TechGlass I\u2019m able
     to notice small details that others may have overlooked.\u201D"
+  relationshiptext: 
   alibitext: "<b><u>Alibi</u></b><br>\nPeople think you\u2019re a worthless drunk.
     You've <b>hit rock bottom since your wife left you</b>, and have been drowning
     your sorrows in the bottle. But, you swear, <b>you had nothing to do with this
@@ -15124,6 +15134,7 @@ MonoBehaviour:
     fleshy arm for a sleek cybernetic implant. Gotta keep up with the big dogs in
     the fighting circles. That's where the real cash is, baby. And let's not forget
     the killer bonus of being superhuman strong. Can't nobody mess with me now.\u201D"
+  relationshiptext: 
   alibitext: "<b><u>Alibi</u></b><br>\n<b>You were at the gym all night, getting
     ready for the biggest fight of your life</b>. You were pushing yourself to the
     limit, putting all your cybernetic enhancements to the test. You knew you had
@@ -19083,6 +19094,7 @@ MonoBehaviour:
   skilltext: "<b><u>Picking Locks</u></b> <br><br> \n\u201CI love the feeling of
     being able to slip past certain locks and sneak into places without anyone noticing
     me! It's like I have a superpower or something.\u201D"
+  relationshiptext: 
   alibitext: "<b><u>Alibi</u></b><br>\n<b>You were with your pack of dogs all night</b>,
     roaming the streets in search of food and shelter. You wandered from one alley
     to another, hoping to find something to eat or a safe place to sleep. Your pack
@@ -20003,13 +20015,13 @@ MonoBehaviour:
     bring down the corporations and expose their corruption.\u201D"
   backgroundstory: '<align="center"><size=150%><b>Your Story</b></align><size=100%>
 
-    
+
 
     Cyber
     augments saved your life at six months old. Your parents thought you''d grow
     up grateful for it and join the techie workforce. They were fools.
 
-    
+
 
     <b>You
     can''t help but see the exploitation, the corporate overreach, and the lies behind
@@ -20020,27 +20032,27 @@ MonoBehaviour:
     anarchists and the utopia-minded. <b>You''ll get to that world you imagine, no
     matter the cost</b>.
 
-    
 
-    
+
+
 
     <align="center"><size=125%><b>Your Relationship
     with Ava</b></align><size=100%>
 
-    
+
 
     <b>Ava was always in your corner</b>.
     You met in Engineering class at 14, two outcasts in a sea of aspiring capitalist
     pigs. She taught you to hotwire a hovercar, you took out her parental tracking
     implant. <b>She loved you, for a while. You didn''t stop loving her</b>.
 
-    
+
 
     When
     she finally went no contact with her dad, <b>you welcomed her into the Void</b>.
     Most of them still don''t trust her with the big stuff, five years on.
 
-    
+
 
     <b>That''s
     why you started fighting</b>. She figured out that the next big action wasn''t
@@ -20055,6 +20067,7 @@ MonoBehaviour:
     the cybernetic implants and upgrades, you had to be a DIY pro. That meant getting
     savvy with cryptography, and now you''ve totally nailed it. You can now hack
     through firewalls and handle any cybersecurity hurdles like a boss. '
+  relationshiptext: 
   alibitext: "<b><u>Alibi</u></b><br>\n<b>You were at the Void base all night</b>,
     prepping for the big protest that's happening tomorrow. You were focused on coding
     and security measures to make sure the message gets out and everyone stays safe.
@@ -21604,8 +21617,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Introduce Youself
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
-  m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
