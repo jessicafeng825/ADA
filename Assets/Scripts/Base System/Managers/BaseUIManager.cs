@@ -220,9 +220,9 @@ public class BaseUIManager : Singleton<BaseUIManager>
         playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").Find("CharacterButton").GetChild(0).GetComponent<Image>().sprite = playerController.Instance.playerRoundImage;
         
         charaterPanel.transform.Find("BackgroundPanel").GetComponentInChildren<TMP_Text>().text = playerController.Instance.playerBackground;
-        //charaterPanel.transform.Find("RelationshipPanel").GetComponentInChildren<TMP_Text>().text = playerController.Instance.relationshipText;
         charaterPanel.transform.Find("SkillPanel").GetComponentInChildren<TMP_Text>().text = playerController.Instance.skillText;
         charaterPanel.transform.Find("AlibiPanel").GetComponentInChildren<TMP_Text>().text = playerController.Instance.alibiText;
+        charaterPanel.transform.Find("SecretPanel").GetComponentInChildren<TMP_Text>().text = playerController.Instance.secretText;
     }
     public void UpdateAPUI(int num)
     {
