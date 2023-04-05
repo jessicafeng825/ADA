@@ -43,11 +43,7 @@ public class InterestPointInfo : MonoBehaviour
     }
     public void SpawnPopup()
     {
-        if(playerController.Instance.currentAP <= 0)
-        {
-            Debug.Log("No AP");
-            return;
-        }
+        
         IPCollectPanel tempIPPanel = BaseUIManager.Instance.SpawnInterestPointPanel(this.gameObject.name, collectableBool);
         for(int i = 0; i < collectableList.Count; i++)
         {
@@ -76,7 +72,12 @@ public class InterestPointInfo : MonoBehaviour
 
     private void NewAddCollectable(int i)
     {
-        if (cnt_current > 0)
+        if(playerController.Instance.currentAP == 0)
+        {
+            BaseUIManager.Instance.SpawnNotificationPanel("No Action Point!", "You don't have any action point left!", 1, 3f);
+            return;
+        }
+        else if (cnt_current > 0)
         {
             if (collectableList[i].type == ipType.Clue)
             {
