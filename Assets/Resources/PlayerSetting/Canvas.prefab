@@ -2110,6 +2110,7 @@ GameObject:
   - component: {fileID: 4775774719601548013}
   - component: {fileID: 4808979908490477481}
   - component: {fileID: 2021491486028678613}
+  - component: {fileID: 2169069818714890593}
   m_Layer: 0
   m_Name: BishopKaine
   m_TagString: Untagged
@@ -2136,9 +2137,9 @@ RectTransform:
   m_Father: {fileID: 8383133108171380282}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -340}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 670, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4775774719601548013
@@ -2222,7 +2223,35 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4808979908490477481}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5239909336595713810}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OpenCharacterInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2169069818714890593}
+          m_ObjectArgumentAssemblyTypeName: CharacterInfoSimple, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2169069818714890593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541109200545848902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c540e0e4f22d53f45b06550570b25fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerImage: Bishop
+  jobName: 
+  characterName: 
+  brief: 
 --- !u!1 &586819742449716374
 GameObject:
   m_ObjectHideFlags: 0
@@ -3404,7 +3433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8814275005942533609
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5206,9 +5235,9 @@ RectTransform:
   m_Father: {fileID: 8383133108171380282}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -580}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 670, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6903308067260994253
@@ -6956,7 +6985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1038140305349998180
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7408,6 +7437,7 @@ GameObject:
   - component: {fileID: 155477291178616243}
   - component: {fileID: 1259332419701917125}
   - component: {fileID: 1905564956732385595}
+  - component: {fileID: 4309498544441845895}
   m_Layer: 0
   m_Name: AvaKaine
   m_TagString: Untagged
@@ -7434,9 +7464,9 @@ RectTransform:
   m_Father: {fileID: 8383133108171380282}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 670, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &155477291178616243
@@ -7520,7 +7550,35 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1259332419701917125}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5239909336595713810}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OpenCharacterInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4309498544441845895}
+          m_ObjectArgumentAssemblyTypeName: CharacterInfoSimple, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4309498544441845895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203974979684080161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c540e0e4f22d53f45b06550570b25fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerImage: Ava
+  jobName: Murdered Girl
+  characterName: Ava Kaine
+  brief: Bishop Kaine's daughter, who was murdered. She is the owner of the memories.
 --- !u!1 &2207594473868922361
 GameObject:
   m_ObjectHideFlags: 0
@@ -9194,9 +9252,9 @@ RectTransform:
   m_Father: {fileID: 8383133108171380282}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -1300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 670, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &107804677359444923
@@ -18395,7 +18453,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -100}
+  m_AnchoredPosition: {x: 200, y: -0}
   m_SizeDelta: {x: 600, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7563819437909383566
@@ -19751,7 +19809,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.000030517578, y: -0.00012207031}
-  m_SizeDelta: {x: 0, y: 1880}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7387659160421034494
 MonoBehaviour:
@@ -20196,9 +20254,9 @@ RectTransform:
   m_Father: {fileID: 8383133108171380282}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -1540}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 670, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8134221328908328236
@@ -22454,9 +22512,9 @@ RectTransform:
   m_Father: {fileID: 8383133108171380282}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -820}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 670, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7616361983850595875
@@ -25358,7 +25416,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 451.07, y: 118.56}
+  m_SizeDelta: {x: 0, y: 118.56}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1220018103307945595
 CanvasRenderer:
@@ -27246,9 +27304,9 @@ RectTransform:
   m_Father: {fileID: 8383133108171380282}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -1780}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 670, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3958161370149674705
@@ -27477,9 +27535,9 @@ RectTransform:
   m_Father: {fileID: 8383133108171380282}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -1060}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 670, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8348293296508375905
