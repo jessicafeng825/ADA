@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public VideoPlayer video;
     [SerializeField] private GameObject characterBrief;
     [SerializeField] private GameObject PCBrief;
+    [SerializeField] private GameObject otherCharacterInfo;
     public bool ifintroend = false;
     private bool ifselected = false;
     private GameObject[] listofgameObjectwithtag;
@@ -212,7 +213,7 @@ public class UIManager : MonoBehaviour
         characterBrief.transform.Find("Title").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.jobName;
         characterBrief.transform.Find("Brief").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.brief;
         characterBrief.transform.Find("Brief").Find("Title").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.playername;
-        characterBrief.transform.Find("CharacterImage").GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + job.playerImage);;
+        characterBrief.transform.Find("CharacterImage").GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + job.playerImage);
         characterBrief.transform.Find("YesButton").GetComponent<Button>().onClick.AddListener(() => { jobSelect(job); });
     }
     public void CloseCharacterBrief()
@@ -224,6 +225,16 @@ public class UIManager : MonoBehaviour
         characterBrief.transform.Find("ReturnButton").gameObject.SetActive(false);
         characterBrief.transform.Find("ReturnPanel").gameObject.SetActive(false);
     }
+
+    public void OpenCharacterInfo(CharacterInfoSimple characterInfo)
+    {
+        otherCharacterInfo.SetActive(true);
+        otherCharacterInfo.transform.Find("Title").GetComponentInChildren<TMP_Text>().text = characterInfo.jobName;
+        otherCharacterInfo.transform.Find("Brief").GetComponentsInChildren<TMP_Text>()[0].text = characterInfo.characterName;
+        otherCharacterInfo.transform.Find("Brief").GetComponentsInChildren<TMP_Text>()[1].text = characterInfo.brief;
+        otherCharacterInfo.transform.Find("CharacterImage").GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + characterInfo.playerImage);
+    }
+
     public void jobSelect(JOb job)
     {
         //listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
