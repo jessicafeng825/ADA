@@ -426,16 +426,16 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel(title, content, 2, -1f);
         tempNoti.AddFunctiontoYesButton(() => TeleportToFrom(fromMemory, toMemory, false), true);
-        tempNoti.AddFunctiontoYesButton(() => playerController.Instance.Change_currentAP(-1), false);
     }
     public void TeleportToFrom(Memory fromMemory, Memory toMemory, bool force)
     {
-        if(playerController.Instance.currentAP == 0 && !force)
+        if(playerController.Instance.currentAP <= 0 && !force)
         {
             BaseUIManager.Instance.SpawnNotificationPanel("No Action Point!", "You don't have any action point left!", 1, 3f);
             return;
             
         }
+        playerController.Instance.Change_currentAP(-1);
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
         MemoryUI_Dic[toMemory.ToString()].SetActive(true);
         memoryTitleText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = toMemory.ToString();

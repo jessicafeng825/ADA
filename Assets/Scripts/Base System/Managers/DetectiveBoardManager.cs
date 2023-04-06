@@ -101,7 +101,7 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     private void SynchronizeShareClue(string clueID)
     {
         Debug.Log("share");
-        tempClueOnBoardBtn = Instantiate(clueOnBoardTemplate);
+        tempClueOnBoardBtn = Instantiate(clueOnBoardTemplate, new Vector3(Random.Range(-150, 150), Random.Range(-150, 150), 0), Quaternion.identity);
         tempClueOnBoardBtn.GetComponent<Image>().sprite = ResourceManager.Instance.GetCluePic(clueID);
         tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetClueID(clueID);
         tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetCanvas(mainCanvas);
@@ -117,7 +117,24 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     {
         tempClueInfo = Instantiate(ResourceManager.Instance.GetClueInfo(clueID));
         tempClueOnBoardInfoTemplate = Instantiate(onBoardClueInfoTemplate, clueBtnPosition, Quaternion.identity);
-        tempClueOnBoardInfoTemplate.GetComponent<RectTransform>().localPosition = clueBtnPosition;
+        Vector2 spawnPos = new Vector2(clueBtnPosition.x, clueBtnPosition.y);
+        if(clueBtnPosition.x < -830)
+        {
+            spawnPos = new Vector2(-830, spawnPos.y);
+        }
+        else if(clueBtnPosition.x > 830)
+        {
+            spawnPos = new Vector2(830, spawnPos.y);
+        }
+        if (clueBtnPosition.y < -62)
+        {
+            spawnPos = new Vector2(spawnPos.x, -62);
+        }
+        else if (clueBtnPosition.y > 63)
+        {
+            spawnPos = new Vector2(spawnPos.x, 63);
+        }
+        tempClueOnBoardInfoTemplate.GetComponent<RectTransform>().localPosition = spawnPos;
         tempClueInfo.GetComponent<Transform>().SetParent(tempClueOnBoardInfoTemplate.GetComponent<Transform>(), false);
         tempClueInfo.transform.Find("Btn_close").gameObject.SetActive(false);
         tempClueInfo.transform.Find("Btn_share").gameObject.SetActive(false);

@@ -72,7 +72,7 @@ public class InterestPointInfo : MonoBehaviour
 
     private void NewAddCollectable(int i)
     {
-        if(playerController.Instance.currentAP == 0)
+        if(playerController.Instance.currentAP <= 0)
         {
             BaseUIManager.Instance.SpawnNotificationPanel("No Action Point!", "You don't have any action point left!", 1, 3f);
             return;
