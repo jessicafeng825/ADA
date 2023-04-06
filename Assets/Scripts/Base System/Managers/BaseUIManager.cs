@@ -45,6 +45,9 @@ public class BaseUIManager : Singleton<BaseUIManager>
     [SerializeField]
     private TMP_Text openClueMenuBtnText, openPuzzleMenuBtnText;
 
+    [SerializeField]
+    private GameObject otherCharacterInfo;
+
     public void Start()
     {
         pcPanel.SetActive(PhotonNetwork.IsMasterClient);
@@ -147,6 +150,17 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     #endregion
 
+    #region Character Menu Related Functions
+    public void OpenCharacterInfo(CharacterInfoSimple characterInfo)
+    {
+        otherCharacterInfo.SetActive(true);
+        otherCharacterInfo.transform.Find("Title").GetComponentInChildren<TMP_Text>().text = characterInfo.jobName;
+        otherCharacterInfo.transform.Find("Brief").GetComponentsInChildren<TMP_Text>()[0].text = characterInfo.characterName;
+        otherCharacterInfo.transform.Find("Brief").GetComponentsInChildren<TMP_Text>()[1].text = characterInfo.brief;
+        otherCharacterInfo.transform.Find("CharacterImage").GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + characterInfo.playerImage);
+    }
+       
+    #endregion
 
 
     #region Pop-up UI Related Functions
