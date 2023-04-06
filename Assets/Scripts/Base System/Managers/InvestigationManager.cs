@@ -433,7 +433,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
         {
             BaseUIManager.Instance.SpawnNotificationPanel("No Action Point!", "You don't have any action point left!", 1, 3f);
             return;
-            
         }
         playerController.Instance.Change_currentAP(-1);
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
