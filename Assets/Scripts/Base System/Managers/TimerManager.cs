@@ -98,7 +98,7 @@ public class TimerManager : MonoBehaviour
         }
         else if(gamePhaseTimer > 0 && !timeout)
         {
-            time = (gamePhaseTimer/60).ToString("00") + ":" + Mathf.Floor(gamePhaseTimer%60).ToString("00");
+            time = Mathf.Floor(gamePhaseTimer/60).ToString("00") + ":" + Mathf.Floor(gamePhaseTimer%60).ToString("00");
             timerPanel.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = time;
             gamePhaseTimer -= Time.deltaTime;
             if(time != lastUpdateTime)

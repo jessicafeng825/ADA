@@ -70,6 +70,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #endregion
     private void Awake() 
     {
+        ExitGames.Client.Photon.Hashtable setScene = new ExitGames.Client.Photon.Hashtable();
+        setScene.Add("gameRunning", true);
+        PhotonNetwork.CurrentRoom.SetCustomProperties(setScene);
         playerController.Instance.currentRoom = startRoom;
         playerController.Instance.currentMemory = startMemory;
     }
@@ -135,19 +138,17 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         room.gameObject.SetActive(true);
         room.firstRoominMemory = true;
-        room.GetComponent<CanvasGroup>().interactable = true;
-        room.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
     private void DeActivateRoom(Rooms room)
     {
         room.gameObject.SetActive(false);
-        room.firstRoominMemory = false;
-        room.GetComponent<CanvasGroup>().interactable = false;
-        room.GetComponent<CanvasGroup>().blocksRaycasts = false;        
+        room.firstRoominMemory = false; 
     }
     IEnumerator RoomCoroutine(Rooms oldroom, Rooms newroom, float sec)
     {
         ActivateRoom(newroom);
+        oldroom.GetComponent<CanvasGroup>().interactable = false;
+        oldroom.GetComponent<CanvasGroup>().blocksRaycasts = false;        
         float time = 0f;
         //Memory map starting position
         Vector2 startPos = playerController.Instance.currentMemory.localPosition;
@@ -172,6 +173,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         playerController.Instance.currentMemory.localPosition = -newroom.transform.localPosition;
         oldroom.transform.localScale = new Vector3(oldroom.roomScale, oldroom.roomScale, oldroom.roomScale);
         oldroom.GetComponent<CanvasGroup>().alpha = 0f;
+        newroom.GetComponent<CanvasGroup>().interactable = true;
+        newroom.GetComponent<CanvasGroup>().blocksRaycasts = true;
         DeActivateRoom(oldroom);
         newroom.transform.localScale = new Vector3(newroom.roomScale, newroom.roomScale, newroom.roomScale);
         newroom.GetComponent<CanvasGroup>().alpha = 1f;

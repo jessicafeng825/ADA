@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Photon.Realtime;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class Launcher : MonoBehaviourPunCallbacks {
   public static Launcher Instance;
@@ -73,7 +74,11 @@ public class Launcher : MonoBehaviourPunCallbacks {
 
   public void CreateRoom() {
         string roomName = "Room " + Random.Range(0, 1000).ToString();
-        PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = 7 });
+        var options = new RoomOptions() { MaxPlayers = 7 };
+        options.CustomRoomPropertiesForLobby = new string[1] { "gameRunning" };
+        options.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable();
+        options.CustomRoomProperties.Add("gameRunning", false);
+        PhotonNetwork.CreateRoom(roomName, roomOptions:options);
         MenuManager.Instance.OpenMenu("loading");
 
   }
@@ -82,7 +87,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
     // Called whenever you create or join a room
     MenuManager.Instance.OpenMenu("room");
     roomNameText.text = PhotonNetwork.CurrentRoom.Name;
-
+    Debug.Log("Joined room");
     if (PhotonNetwork.IsMasterClient)
     {
         PhotonNetwork.NickName = "Host";
@@ -157,6 +162,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
     // Use this instead of scene management so that *everyone* in the lobby goes into this scene
     PhotonNetwork.LoadLevel(1);
   }
+  
 
   public void QuitGame() {
     Application.Quit();

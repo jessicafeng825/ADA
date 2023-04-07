@@ -11,6 +11,12 @@ public class RoomListItem : MonoBehaviour {
   public void SetUp(RoomInfo _info) {
     info = _info;
     label.text = _info.Name;
+    if(info.CustomProperties["gameRunning"].Equals(true)) {
+      label.text += " (Started)";
+    }
+    else {
+      label.text += " (" + info.PlayerCount + "/" + info.MaxPlayers + ")";
+    }
   }
 
   public void OnClick() {
