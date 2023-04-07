@@ -351,7 +351,7 @@ public class UIManager : MonoBehaviour
 
                     //gameObjectNow = listofgameObjectwithtag[i];
 
-                    pv.RPC(nameof(setbuttonActivation), RpcTarget.AllBuffered, oldJob, jobname);
+                    pv.RPC(nameof(setbuttonActivation), RpcTarget.AllBufferedViaServer, oldJob, jobname);
                 // }
                 
             }
@@ -381,7 +381,7 @@ public class UIManager : MonoBehaviour
         {
             
             ifintroend = true;
-            pv.RPC(nameof(closeintro), RpcTarget.AllBuffered);
+            pv.RPC(nameof(closeintro), RpcTarget.AllBufferedViaServer);
            
         }
         
