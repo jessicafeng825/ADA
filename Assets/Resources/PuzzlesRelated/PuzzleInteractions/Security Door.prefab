@@ -1697,7 +1697,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 186289519154251182}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EmotionScan, Assembly-CSharp
         m_MethodName: ScanStart
         m_Mode: 1
@@ -2312,82 +2312,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &6001969717425455796
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3967424964298085746}
-  - component: {fileID: 2269363538030090532}
-  - component: {fileID: 8160190435500421159}
-  m_Layer: 0
-  m_Name: ScanImage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3967424964298085746
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6001969717425455796}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3417831834116570539}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -300}
-  m_SizeDelta: {x: 400, y: 100}
-  m_Pivot: {x: 0.5, y: 0}
---- !u!222 &2269363538030090532
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6001969717425455796}
-  m_CullTransparentMesh: 1
---- !u!114 &8160190435500421159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6001969717425455796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.18431373, b: 0.1882353, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 390f1c7c5c2f9714d8458c01651acdcf, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6384579643782336131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,7 +2791,7 @@ GameObject:
   - component: {fileID: 3417831834116570539}
   - component: {fileID: 2153704125693734993}
   - component: {fileID: 8667606195874202750}
-  - component: {fileID: 186289519154251182}
+  - component: {fileID: 3059421601042652442}
   m_Layer: 0
   m_Name: Security Door
   m_TagString: Untagged
@@ -2896,7 +2820,6 @@ RectTransform:
   - {fileID: 8691407722659743516}
   - {fileID: 8265882251393066588}
   - {fileID: 1987672225931915186}
-  - {fileID: 3967424964298085746}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2933,7 +2856,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &186289519154251182
+--- !u!114 &3059421601042652442
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2942,7 +2865,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8144151262420359940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e950cd8d677d32b4fa3dfb5e9c5b0c9c, type: 3}
+  m_Script: {fileID: 11500000, guid: bffff0065b922bb4098c4ac739abd3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <collectedAt>k__BackingField: 2
@@ -2956,7 +2879,7 @@ MonoBehaviour:
   hintText: {fileID: 3891950492812510825}
   resultImage: {fileID: 8920436914531653647}
   questionImage: {fileID: 5141148237361593702}
-  scanButton: {fileID: 4347374047353848811}
+  punchButton: {fileID: 4347374047353848811}
 --- !u!1 &8540429073996050488
 GameObject:
   m_ObjectHideFlags: 0
