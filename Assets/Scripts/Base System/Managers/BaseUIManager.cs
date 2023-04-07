@@ -132,6 +132,12 @@ public class BaseUIManager : Singleton<BaseUIManager>
         inBasePuzzleBtns.Add(puzzleID, puzzleContent);
     }
 
+    public void RemovePuzzleBtns(string puzzleID)
+    {
+        inBasePuzzleBtns.Remove(puzzleID);
+        inScenePuzzles.Remove(puzzleID);
+    }
+
     public void BaseNewPuzzleEffectsCheck()
     {
         openPuzzleMenuBtnText.GetComponent<Animator>().enabled = false;

@@ -97,6 +97,7 @@ public class PuzzleInfo : MonoBehaviour
     {
         BaseUIManager.Instance.SpawnNotificationPanel("Transfer Completed", "The puzzle is transferred to " + playerJob, 1, -1f);
         BaseUIManager.Instance.HidePuzzleUI();
+        BaseUIManager.Instance.RemovePuzzleBtns(puzzleID);
         Destroy(gameObject);
         InvestigationManager.Instance.TransferPuzzleSynchronize(puzzleID, playerJob, collectedAt);
         // Inform receiver get a puzzle

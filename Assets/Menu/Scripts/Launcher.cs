@@ -73,17 +73,9 @@ public class Launcher : MonoBehaviourPunCallbacks {
 
   public void CreateRoom() {
         string roomName = "Room " + Random.Range(0, 1000).ToString();
-        PhotonNetwork.CreateRoom(roomName);
+        PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = 7 });
         MenuManager.Instance.OpenMenu("loading");
 
-/*    if (!string.IsNullOrEmpty(roomNameInputField.text)) {
-      PhotonNetwork.CreateRoom(roomNameInputField.text);
-      MenuManager.Instance.OpenMenu("loading");
-      roomNameInputField.text = "";
-    } else {
-      Debug.Log("No room name entered");
-      // TODO: Display an error to the user
-    }*/
   }
 
   public override void OnJoinedRoom() {

@@ -263,7 +263,7 @@ public class UIManager : MonoBehaviour
                 continue;
             }
         }
-        pv.RPC(nameof(updateallplayerName), RpcTarget.All, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.skilltext, job.alibitext, job.secret, job.playerImage);
+        pv.RPC(nameof(updateallplayerName), RpcTarget.AllBuffered, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.skilltext, job.alibitext, job.secret, job.playerImage);
         //playerController.Instance.jobSelect(name);
 
         Debug.Log(playerController.Instance.playerJob);
@@ -351,7 +351,7 @@ public class UIManager : MonoBehaviour
 
                     //gameObjectNow = listofgameObjectwithtag[i];
 
-                    pv.RPC(nameof(setbuttonActivation), RpcTarget.All, oldJob, jobname);
+                    pv.RPC(nameof(setbuttonActivation), RpcTarget.AllBuffered, oldJob, jobname);
                 // }
                 
             }
@@ -381,7 +381,7 @@ public class UIManager : MonoBehaviour
         {
             
             ifintroend = true;
-            pv.RPC(nameof(closeintro), RpcTarget.All);
+            pv.RPC(nameof(closeintro), RpcTarget.AllBuffered);
            
         }
         
