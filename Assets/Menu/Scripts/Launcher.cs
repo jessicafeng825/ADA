@@ -73,7 +73,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
 
   public void CreateRoom() {
         string roomName = "Room " + Random.Range(0, 1000).ToString();
-        PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = 7, PlayerTtl = -1, EmptyRoomTtl = 300000 });
+        PhotonNetwork.CreateRoom(roomName, new RoomOptions { MaxPlayers = 7 });
         MenuManager.Instance.OpenMenu("loading");
 
   }
