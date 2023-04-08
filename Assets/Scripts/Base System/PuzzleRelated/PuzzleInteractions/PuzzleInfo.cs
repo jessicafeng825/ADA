@@ -88,9 +88,15 @@ public class PuzzleInfo : MonoBehaviour
 
     private void TransferThisPuzzle(string playerJob)
     {
-        NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel("Transfer Puzzles", "Are you sure you want to transfer this puzzle?", 2, -1f);
-        tempNoti.AddFunctiontoYesButton(() => ExecutePuzzleTransfer(playerJob), true);
-        
+        if (isSolved)
+        {
+            BaseUIManager.Instance.SpawnNotificationPanel("Puzzle Already Solved", "This puzzle is already solved!", 1, -1f);
+        }
+        else
+        {
+            NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel("Transfer Puzzles", "Are you sure you want to transfer this puzzle?", 2, -1f);
+            tempNoti.AddFunctiontoYesButton(() => ExecutePuzzleTransfer(playerJob), true);
+        }
     }
 
     private void ExecutePuzzleTransfer(string playerJob)

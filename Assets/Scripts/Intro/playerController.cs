@@ -157,4 +157,8 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     //     }
     // }
 
+    public bool IsMasterClient()
+    {
+        return PhotonNetwork.IsMasterClient;
+    }
 }

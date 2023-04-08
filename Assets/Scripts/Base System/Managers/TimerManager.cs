@@ -160,6 +160,7 @@ public class TimerManager : MonoBehaviour
     }
     public void SwitchStage(PlayerManagerForAll.gamestage nextStage)
     {
+        SoundManager.Instance.PlayBGM(nextStage.ToString());
         playerController.Instance.currentClueSharedNum = 0;
         timeout = true;
         pv.RPC(nameof(SwitchStageVisualRPC), RpcTarget.All, 2f, nextStage);

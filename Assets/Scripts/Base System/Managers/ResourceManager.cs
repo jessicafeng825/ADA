@@ -16,6 +16,9 @@ public class ResourceManager : Singleton<ResourceManager>
 
     private Dictionary<string, GameObject> uiElements = new Dictionary<string, GameObject>();
 
+    private Dictionary<string, AudioClip> SFX_Dic = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> BGM_Dic = new Dictionary<string, AudioClip>();
+
     void Start()
     {
         LoadClueBtnTemplate();
@@ -26,7 +29,11 @@ public class ResourceManager : Singleton<ResourceManager>
         LoadAllPuzzleInteractions();
 
         LoadUIElements();
+
+        LoadAllBGM();
     }
+
+    #region Clue Related Resources
 
     private void LoadClueBtnTemplate()
     {
@@ -69,7 +76,9 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         return clueInfoDic[clueID].transform.Find("txt_ClueName").GetComponent<TextMeshProUGUI>().text;
     }
+    #endregion
 
+    #region Puzzle Related Resources
     private void LoadAllPuzzleBtns()
     {
         foreach (GameObject puzzlePrefab in Resources.LoadAll("PuzzlesRelated/PuzzleBtns/"))
@@ -95,6 +104,9 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         return puzzleInteractionDic[puzzleName];
     }
+    #endregion
+
+    #region UI Related Resources
     //For instantiating UI elements
     private void LoadUIElements()
     {
@@ -107,4 +119,34 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         return uiElements[uiName];
     }
+    #endregion
+
+    #region Sound Related Resources
+    public void LoadAllBGM()
+    {
+        if (playerController.Instance.IsMasterClient())
+        {
+            foreach (AudioClip bgm in Resources.LoadAll("BGM/"))
+            {
+                BGM_Dic.Add(bgm.name, bgm);
+            }
+        }
+    }
+
+    public AudioClip GetBGM(string bgmName)
+    {
+        Debug.Log(bgmName);
+        return BGM_Dic[bgmName];
+    }
+
+
+    public void LoadAllSFX()
+    {
+        foreach (AudioClip soundEffect in Resources.LoadAll("SFX/"))
+        {
+
+        }
+    }
+
+    #endregion
 }
