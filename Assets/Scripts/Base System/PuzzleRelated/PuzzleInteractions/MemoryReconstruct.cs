@@ -65,7 +65,27 @@ public class MemoryReconstruct : PuzzleInfo
     public bool CheckAnswer()
     {
         check = true;
-        if(neededJob.Contains(playerController.Instance.playerJob))
+        bool hasCharacter = false;
+        foreach(string s in neededJob)
+        {
+            if(CheckCharacter(s))
+                hasCharacter = true;
+            else
+                continue;
+        }
+        if(!hasCharacter)
+        {
+            loadingScreen.transform.GetChild(0).Find("LoadingLabel").GetComponent<TextMeshProUGUI>().text = "Success";
+            loadingScreen.transform.GetChild(0).Find("LoadingBar").gameObject.SetActive(false);
+            resultImage.SetActive(true);
+            descriptionText.SetActive(false);
+            fingerButton.GetComponent<Image>().color = correctColor;
+            fingerButton.GetComponent<Button>().enabled = false;
+            isSolved = true;
+            PuzzleSolveEffect();
+            return true;
+        }
+        else if(neededJob.Contains(playerController.Instance.playerJob))
         {
             loadingScreen.transform.GetChild(0).Find("LoadingLabel").GetComponent<TextMeshProUGUI>().text = "Success";
             loadingScreen.transform.GetChild(0).Find("LoadingBar").gameObject.SetActive(false);

@@ -4815,7 +4815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00024414062}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -88.024, y: -171.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &115037354
@@ -21524,7 +21524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50.000004}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: -279.5182, y: -1601.071}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &519713013
@@ -52127,6 +52127,7 @@ MonoBehaviour:
   - {fileID: 863999078}
   - {fileID: 1372965911}
   - {fileID: 560583887}
+  - {fileID: 1587747228}
   playerTutorialAP: 2
   playerNormalAP: 3
 --- !u!4 &1278040466
@@ -78091,7 +78092,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.00018310547}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -88.024, y: -171.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1868054596
@@ -83956,12 +83957,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   memory: 5
   collectableList:
-  - id: NC-4
-    type: 0
-  - id: NC-5
-    type: 0
-  - id: NC-6
-    type: 0
+  - id: Cybernetic Brawler Phone
+    type: 1
   cnt_current: 0
 --- !u!114 &1997650402
 MonoBehaviour:

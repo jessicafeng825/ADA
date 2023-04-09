@@ -27,7 +27,6 @@ public class PuzzleInfo : MonoBehaviour
     // Transfer Puzzles Part
     [SerializeField]
     private GameObject TransferMenu;
-
     public enum PuzzleEffect
     {
         provideClue, unlockRoom, unlockMemory
@@ -71,18 +70,24 @@ public class PuzzleInfo : MonoBehaviour
     {
         TransferMenu.gameObject.SetActive(true);
 
+        GameObject buttons = TransferMenu.transform.Find("TransferSelection").gameObject;
+
         GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
-        int cnt = 1;
+        int cnt = 0;
 
         foreach (var player in playerList)
         {
             // If the player job is not current player's job or the host's job
             if (player.GetComponent<playerController>().playerJob != playerController.Instance.playerJob && player.GetComponent<playerController>().playerJob != "None")
             {
-                TransferMenu.GetComponentsInChildren<Button>()[cnt].GetComponentInChildren<TMPro.TMP_Text>().text = player.GetComponent<playerController>().playerJob;
-                TransferMenu.GetComponentsInChildren<Button>()[cnt].onClick.AddListener(() => TransferThisPuzzle(player.GetComponent<playerController>().playerJob));
+                buttons.GetComponentsInChildren<Button>()[cnt].GetComponentInChildren<TMPro.TMP_Text>().text = player.GetComponent<playerController>().playerJob;
+                buttons.GetComponentsInChildren<Button>()[cnt].onClick.AddListener(() => TransferThisPuzzle(player.GetComponent<playerController>().playerJob));
                 cnt++;
             }
+        }
+        for(int i = cnt; i < buttons.transform.childCount; i++)
+        {
+            buttons.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
@@ -107,6 +112,19 @@ public class PuzzleInfo : MonoBehaviour
         Destroy(gameObject);
         InvestigationManager.Instance.TransferPuzzleSynchronize(puzzleID, playerJob, collectedAt);
         // Inform receiver get a puzzle
+    }
+    //Check if characcter exists
+    protected virtual bool CheckCharacter(string playerJob)
+    {
+        GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+        foreach (var player in playerList)
+        {
+            if (player.GetComponent<playerController>().playerJob == playerJob)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     protected void HideThisUI()

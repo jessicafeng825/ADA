@@ -34,11 +34,15 @@ public class EmotionScan : PuzzleInfo
     void Update()
     {
         if(!enable)
-        {            
-            if(playerController.Instance.playerJob != "Nightclub Owner")
+        {
+            //Check if characcter exists
+            if(!CheckCharacter("Nightclub Owner"))
+            {
+                scanButton.SetActive(true);
+            }            
+            else if(playerController.Instance.playerJob != "Nightclub Owner")
             {
                 scanButton.SetActive(false);
-                return;
             }
             else
             {

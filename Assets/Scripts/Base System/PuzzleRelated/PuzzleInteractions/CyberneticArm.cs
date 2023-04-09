@@ -33,11 +33,15 @@ public class CyberneticArm : PuzzleInfo
     void Update()
     {
         if(!enable)
-        {            
-            if(playerController.Instance.playerJob != "Cybernetic Brawler")
+        {
+            //Check if characcter exists
+            if(!CheckCharacter("Biohacker"))
+            {
+                punchButton.SetActive(true);
+            }   
+            else if(playerController.Instance.playerJob != "Cybernetic Brawler")
             {
                 punchButton.SetActive(false);
-                return;
             }
             else
             {

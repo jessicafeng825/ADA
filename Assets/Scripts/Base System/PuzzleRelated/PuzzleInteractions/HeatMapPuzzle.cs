@@ -69,12 +69,17 @@ public class HeatMapPuzzle : PuzzleInfo
     void Update()
     {
         if(!enable)
-        {            
-            if(playerController.Instance.playerJob != "Lawyer")
+        {   
+            //Check if characcter exists
+            if(!CheckCharacter("Lawyer"))
+            {
+                hintText.SetActive(false);
+                scanButton.SetActive(true);
+            }  
+            else if(playerController.Instance.playerJob != "Lawyer")
             {
                 hintText.SetActive(true);
                 scanButton.SetActive(false);
-                return;
             }
             else
             {
@@ -129,6 +134,7 @@ public class HeatMapPuzzle : PuzzleInfo
     {
         if (!isSolved)
         {
+            
             if (CheckAnswer())
             {
                 // Hide UI, Mark this puzzle with "solved";
