@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 {
     //====Panel Objects====//
     public static UIManager Instance;
+    [SerializeField] private VideoPlay videoPlay;
     public GameObject pcPanel;
     public GameObject playerPanel;
     public Menu[] pcPanelList;
@@ -30,7 +31,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject characterBrief;
     [SerializeField] private GameObject PCBrief;
     [SerializeField] private GameObject otherCharacterInfo;
-    public bool ifintroend = false;
+    private bool ifintroend = false;
+    public bool ifMemVideoStart = false;
+    private bool ifMemVideoEnd = false;
     private bool ifselected = false;
     private GameObject[] listofgameObjectwithtag;
     private GameObject gameObjectNow;
@@ -63,6 +66,7 @@ public class UIManager : MonoBehaviour
     {
         
         introToSelect();
+        MemTechVideoEndPlay();
         
     }
     void OnPrepareVideo(VideoPlayer vp)
@@ -360,14 +364,12 @@ public class UIManager : MonoBehaviour
     //===movescene====//
     public void changenextSceneTest()
     {
-
         pv.RPC(nameof(changenextScene), RpcTarget.All);
     }
 
     [PunRPC]
     private void changenextScene()
     {
-        UIManager.Instance.CloseMenu("InfoPC");
         //Synchronize stage between players
         playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Investigate);
         PhotonNetwork.LoadLevel(2);
@@ -387,6 +389,29 @@ public class UIManager : MonoBehaviour
         
     }
 
+    public void MemTechVideoStartPlay()
+    {
+        UIManager.Instance.CloseMenu("InfoPC");
+        UIManager.Instance.OpenMenu("IntroBackground");
+        pv.RPC(nameof(PlayerWaitMemVideo), RpcTarget.AllBufferedViaServer);
+        videoPlay.PlayMemVid();
+    }
+
+    private void MemTechVideoEndPlay()
+    {
+        if(video.isPaused && ifMemVideoStart && !ifMemVideoEnd)
+        {
+            ifMemVideoEnd = true;
+            pv.RPC(nameof(changenextScene), RpcTarget.All);
+        }
+    }
+    [PunRPC]
+    private void PlayerWaitMemVideo()
+    {
+        UIManager.Instance.OpenMenu("BgLoad");
+        UIManager.Instance.CloseMenu("Info");
+    }
+
     [PunRPC]
     private void closeintro()
     {
@@ -399,6 +424,7 @@ public class UIManager : MonoBehaviour
     //Coroutine for loading screen for work around of the video error
     IEnumerator KeepLoading(float sec)
     {
+        //UIManager.Instance.OpenMenu("BgLoad");
         yield return new WaitForSeconds(sec);
         UIManager.Instance.CloseMenu("BgLoad");
         UIManager.Instance.OpenMenu("CharacterSelect");

@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 863724858524877943}
   - component: {fileID: 863724858524877941}
   - component: {fileID: 863724858524877942}
+  - component: {fileID: 3908932763864114600}
   m_Layer: 0
   m_Name: pic_CluePicture
   m_TagString: Untagged
@@ -171,7 +172,7 @@ RectTransform:
   m_AnchorMin: {x: 0.05, y: 0.2}
   m_AnchorMax: {x: 0.95, y: 0.8}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0.000031885465}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &863724858524877941
 CanvasRenderer:
@@ -211,6 +212,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3908932763864114600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863724858524877936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 2
+  m_AspectRatio: 0.622725
 --- !u!1 &863724858591048514
 GameObject:
   m_ObjectHideFlags: 0

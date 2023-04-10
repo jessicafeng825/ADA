@@ -305,11 +305,31 @@ public class InvestigationManager : Singleton<InvestigationManager>
         {
             if(room.roomName == targetRoom)
             {
-                room.gameObject.SetActive(true);
+                //room.gameObject.SetActive(true);
+                pv.RPC(nameof(ShowHiddenRoomPC), RpcTarget.MasterClient, memory, targetRoom);
                 room.isHidden  = false;
             }
         }
     }
+
+    [PunRPC]
+    public void ShowHiddenRoomPC(Memory memory, string room)
+    {
+        foreach(Transform child in PCMap.transform)
+        {
+            if(child.name == memory.ToString())
+            {
+                foreach(Transform r in child)
+                {          
+                    if(r.name == room)
+                    {
+                        r.gameObject.GetComponent<CanvasGroup>().alpha = 1f;
+                    }
+                }
+            }
+        }
+    }
+
 
     public void TransferPuzzleSynchronize(string puzzleID, string playerJob, Memory memory)
     {
@@ -350,14 +370,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void UnlockMemoryInOverview(Memory memory)
     {
-        foreach(Transform child in PCMap.transform)
-        {
-            if(child.name == memory.ToString())
-            {
-                child.gameObject.SetActive(true);
-                break;
-            }
-        }
         pv.RPC(nameof(UnlockMemorySynchronize), RpcTarget.All, memory);
     }
 
@@ -397,6 +409,33 @@ public class InvestigationManager : Singleton<InvestigationManager>
             }
         }
 
+    }
+
+    public void UnlockAllTeleport()
+    {
+        pv.RPC(nameof(UnlockAllTeleportRPC), RpcTarget.All);
+    }
+    [PunRPC]
+    private void UnlockAllTeleportRPC()
+    {
+        if(PhotonNetwork.IsMasterClient)
+        {
+            foreach(Transform child in PCMap.transform)
+            {
+                if(child.name == "BishopMemory")
+                {
+                    child.gameObject.SetActive(false);
+                    continue;
+                }
+                else
+                    child.gameObject.SetActive(true);
+            }
+        }
+        foreach (Button teleportBtn in teleportBtnList)
+        {
+            teleportBtn.gameObject.SetActive(true);
+        }
+    
     }
 /*    [PunRPC]
     private void UnlockTeleportSynchronize(Memory fromMemory, Memory toMemory)

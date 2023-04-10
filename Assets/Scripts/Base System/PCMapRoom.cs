@@ -34,6 +34,10 @@ public class PCMapRoom : MonoBehaviour
                 this.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = PlayerCount.ToString();
             }
         }
+        if(secretRoom)
+        {
+            this.GetComponent<CanvasGroup>().alpha = 0;
+        }
     }
 
 }

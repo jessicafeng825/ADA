@@ -270,7 +270,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
                     continue;
 
                 CloseRoom(room.GetComponent<Rooms>());
-                if(room.GetComponent<Rooms>().roomName == playerController.Instance.currentRoom.roomName && !room.GetComponent<Rooms>().isHidden)
+                if(room.GetComponent<Rooms>().roomName == playerController.Instance.currentRoom.roomName)
                 {
                     room.gameObject.SetActive(true);
                     room.GetComponent<CanvasGroup>().alpha = 1;
@@ -302,6 +302,8 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     private void OpenRoom(Rooms room)
     {
+        if(room.isHidden)
+            return;
         room.gameObject.SetActive(true);
         room.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         room.gameObject.transform.GetChild(2).gameObject.SetActive(false);
@@ -364,5 +366,9 @@ public class BaseUIManager : Singleton<BaseUIManager>
         panel.SetActive(true);
         yield return new WaitForSeconds(0.05f);
         panel.SetActive(true);
+    }
+    public void UnLockAllTP()
+    {
+
     }
 }

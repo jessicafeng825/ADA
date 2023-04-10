@@ -163,8 +163,8 @@ public class TimerManager : MonoBehaviour
         SoundManager.Instance.PlayBGM(nextStage.ToString());
         playerController.Instance.currentClueSharedNum = 0;
         timeout = true;
-        pv.RPC(nameof(SwitchStageVisualRPC), RpcTarget.All, 2f, nextStage);
-        StartCoroutine(TimerPauseCoroutine(2f, nextStage));
+        pv.RPC(nameof(SwitchStageVisualRPC), RpcTarget.All, 3f, nextStage);
+        StartCoroutine(TimerPauseCoroutine(3f, nextStage));
     }
     
     private void CloseAllMenuonSwitch()
@@ -241,20 +241,31 @@ public class TimerManager : MonoBehaviour
                 transtitionPanel.transform.Find("Round").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Round " + roundCount;
                 TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
                 if(!PhotonNetwork.IsMasterClient)
-                    transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Investigation\r\n-\r\n" + playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory;
+                {
+                    string tempTitle;
+                    if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
+                    {
+                        tempTitle = "<b>Investigation</b>\r\n-\r\n" + "<u>Bishop's Memory\r\n</u>" + "\"Moment of Discovery\"";
+                    }
+                    else
+                    {
+                        tempTitle = "<b>Investigation</b>\r\n-\r\n" + "<u>Ava's Memory\r\n</u>" + "\"" + playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory.ToString()+ "\"";
+                    }
+                    transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = tempTitle;
+                } 
                 else
                     transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Investigation";
                 break;
             case PlayerManagerForAll.gamestage.Discussion:
                 BaseUIManager.Instance.CloseCollectedUI();
                 TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
-                transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Discussion";
+                transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "<b>Discussion</b>";
                 break;
             case PlayerManagerForAll.gamestage.Accusation:
                 BaseUIManager.Instance.CloseCollectedUI();
                 transtitionPanel.transform.Find("Round").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Final Round";
                 TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Accusation";
-                transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Accusation";
+                transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "<b>Accusation</b>";
                 break;
         }
         yield return new WaitForSeconds(sec);

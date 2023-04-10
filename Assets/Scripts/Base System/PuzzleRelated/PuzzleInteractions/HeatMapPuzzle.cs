@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class HeatMapPuzzle : PuzzleInfo
 {
+    
+    [SerializeField]
+    private GameObject lockedScreen;
+
+    [SerializeField]
+    private GameObject unlockedScreen;
 
     [SerializeField]
     private GameObject hintText;
@@ -32,12 +38,13 @@ public class HeatMapPuzzle : PuzzleInfo
     private GameObject scanButton;
     private Animator heatMapAnim;
 
+    [SerializeField]
+    private int collectableClueNum;
+    private Dictionary<string, bool> collectedClues = new Dictionary<string, bool>();
 
     private string enteredNum = "";
 
     private bool denying;
-
-    private bool buttonPressed;
     private float scanTime;
 
     private bool show;
@@ -115,12 +122,12 @@ public class HeatMapPuzzle : PuzzleInfo
             answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = enteredNum;
         }
     }
-    public bool CheckAnswer()
+    public bool CheckAnswer(string title, string content)
     {
         if(enteredNum == answer)
         {
             answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "ACCESS GRANTED";
-            BaseUIManager.Instance.SpawnNotificationPanel("Unlocked", "A sound of a door unlocking", 1, 3f);
+            BaseUIManager.Instance.SpawnNotificationPanel(title, content, 1, 3f);
             isSolved = true;
             return true;
         }
@@ -135,7 +142,7 @@ public class HeatMapPuzzle : PuzzleInfo
         if (!isSolved)
         {
             
-            if (CheckAnswer())
+            if (CheckAnswer("Unlocked", "A sound of a door unlocking"))
             {
                 // Hide UI, Mark this puzzle with "solved";
                 InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
@@ -147,6 +154,41 @@ public class HeatMapPuzzle : PuzzleInfo
                 // entered answer incorrect
                 Debug.Log("entered answer is wrong");
             }
+        }
+    }
+
+    public void OpenScreen()
+    {
+        if (!isSolved)
+        {
+            
+            if (CheckAnswer("Unlocked", "The phone has been unlocked"))
+            {
+                lockedScreen.SetActive(false);
+                unlockedScreen.SetActive(true);
+            }
+            else
+            {
+            }
+        }
+    }
+    public void collectClue(string clue)
+    {
+        if(!collectedClues.ContainsKey(clue))
+        {
+            collectedClues.Add(clue, true);
+            InvestigationManager.Instance.AddCluePrefab(clue, collectedAt);
+            BaseUIManager.Instance.SpawnNotificationPanel("New Clue!", "You got 1 new clue!", 1, -1f);
+        }
+        else
+        {
+            return;
+        }
+        if(collectedClues.Count >= collectableClueNum)
+        {
+            // Hide UI, Mark this puzzle with "solved";
+            InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
+            isSolved = true;
         }
     }
     public void ScanStart()

@@ -7,15 +7,34 @@ public class VideoPlay : MonoBehaviour
 {
     // Start is called before the first frame update
     public VideoPlayer myVideoPlayer;
-    public string videoname;
+    [SerializeField]
+    private string worldVideoname;
+
+    [SerializeField]
+    private string memVideoname;
+
+    
     void Awake()
     {
         if(MenuManager.Instance.speedUpVid)
         {
-            videoname = "Bruh";
+            worldVideoname = "Bruh";
             myVideoPlayer.playbackSpeed = 10;
         }
-        string videoUrl = Application.streamingAssetsPath + "/" + videoname + ".mp4";
+        string videoUrl = Application.streamingAssetsPath + "/" + worldVideoname + ".mp4";
+        myVideoPlayer.url = videoUrl;
+        myVideoPlayer.Play();
+    }
+
+    public void PlayMemVid()
+    {
+        if(MenuManager.Instance.speedUpVid)
+        {
+            memVideoname = "Bruh";
+            myVideoPlayer.playbackSpeed = 10;
+        }
+        UIManager.Instance.ifMemVideoStart = true;
+        string videoUrl = Application.streamingAssetsPath + "/" + memVideoname + ".mp4";
         myVideoPlayer.url = videoUrl;
         myVideoPlayer.Play();
     }
