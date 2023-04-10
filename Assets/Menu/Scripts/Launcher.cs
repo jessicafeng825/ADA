@@ -37,6 +37,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
             }
         }
         //SetName();
+        PhotonNetwork.KeepAliveInBackground = 60;
   }
 
   public override void OnConnectedToMaster() {
@@ -74,7 +75,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
 
   public void CreateRoom() {
         string roomName = "Room " + Random.Range(0, 1000).ToString();
-        var options = new RoomOptions() { MaxPlayers = 7 };
+        var options = new RoomOptions() { MaxPlayers = 7, PlayerTtl = -1 };
         options.CustomRoomPropertiesForLobby = new string[1] { "gameRunning" };
         options.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable();
         options.CustomRoomProperties.Add("gameRunning", false);
