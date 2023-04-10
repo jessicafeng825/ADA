@@ -185,6 +185,7 @@ public class UIManager : MonoBehaviour
         {
             if(jobList[i].isselected == false)//have not yet select a job
             {
+                Debug.Log(jobList[i].jobName + " have not yet selected");
                 return false;
             }
 
@@ -260,6 +261,10 @@ public class UIManager : MonoBehaviour
                     characterBrief.transform.Find("ReturnButton").gameObject.SetActive(true);
                     characterBrief.transform.Find("ReturnPanel").gameObject.SetActive(true);
                     return;
+                }
+                else
+                {
+                    j.select();
                 }
             }
             else
