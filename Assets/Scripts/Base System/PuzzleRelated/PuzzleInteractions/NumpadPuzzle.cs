@@ -40,6 +40,13 @@ public class NumpadPuzzle : PuzzleInfo
         answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = new string('0', answer.Length);
         
     }
+    void OnEnable()
+    {        
+        denying = false;
+        numpad.GetComponent<Image>().color = normalNumpadColor;
+        answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = new string('0', answer.Length);
+        enteredNum = enteredNum.Remove(0, enteredNum.Length);
+    }
 
 
     public void NumEnter(int num)

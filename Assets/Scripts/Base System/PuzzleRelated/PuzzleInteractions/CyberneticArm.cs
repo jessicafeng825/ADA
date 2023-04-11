@@ -23,37 +23,27 @@ public class CyberneticArm : PuzzleInfo
 
     private float punchTime;
     private bool show;
-    private bool enable;
     private void Start()
     {
         
         this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
-        this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(delegate{ScriptEnableSwitch(false);});
     }
-    void Update()
+    void OnEnable()
     {
-        if(!enable)
+        if(!CheckCharacter("Biohacker"))
         {
-            //Check if characcter exists
-            if(!CheckCharacter("Biohacker"))
-            {
-                punchButton.SetActive(true);
-            }   
-            else if(playerController.Instance.playerJob != "Cybernetic Brawler")
-            {
-                punchButton.SetActive(false);
-            }
-            else
-            {
-                punchButton.SetActive(true);
-            }
-            enable = true;
+            punchButton.SetActive(true);
+        }   
+        else if(playerController.Instance.playerJob != "Cybernetic Brawler")
+        {
+            punchButton.SetActive(false);
+        }
+        else
+        {
+            punchButton.SetActive(true);
         }
     }
-    public void ScriptEnableSwitch(bool b)
-    {
-        enable = b;
-    }  
+    
     
     public void PunchStart()
     {

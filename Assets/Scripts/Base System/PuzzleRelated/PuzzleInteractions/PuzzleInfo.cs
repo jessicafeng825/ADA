@@ -64,7 +64,7 @@ public class PuzzleInfo : MonoBehaviour
                     InvestigationManager.Instance.UnlockMemoryInOverview(unlockedMemory);
                     // TODO: A small bug to fix: right now the teleport is from 1 -> unlocked memory
                     InvestigationManager.Instance.UnlockTeleport(collectedAt, unlockedMemory);
-                    BaseUIManager.Instance.SpawnNotificationPanel("New Area Unlocked", "You are now able to navigate to <b>" + unlockedMemory.ToString() + "</b> in investigation phase!", 1, -1f);
+                    BaseUIManager.Instance.SpawnNotificationPanel("New Memory Found", "You are now able to navigate to <b>" + unlockedMemory.ToString() + "</b> in investigation phase!", 1, -1f);
                     break;
                     
                 case PuzzleEffect.providePuzzle:
@@ -79,6 +79,10 @@ public class PuzzleInfo : MonoBehaviour
                 default:
                     break;
             }
+        }
+        if(puzzleEffects.Contains(PuzzleEffect.provideClue) && puzzleEffects.Contains(PuzzleEffect.unlockMemory))
+        {
+            BaseUIManager.Instance.SpawnNotificationPanel("Clues & Memory", "<b>" + unlockedMemory.ToString() + "</b> discovered!<br>&<br>" + "You got " + clueProvided.Count + " new clues!", 1, -1f);
         }
         
     }

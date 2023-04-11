@@ -37,6 +37,18 @@ public class MemoryReconstruct : PuzzleInfo
     {
         this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
     }
+
+    void OnEnable()
+    {
+        if(!isSolved)
+        {
+            descriptionText.SetActive(true);
+            loadingScreen.transform.GetChild(0).Find("LoadingLabel").GetComponent<TextMeshProUGUI>().text = "Loading...";
+            loadingScreen.transform.GetChild(0).Find("LoadingBar").gameObject.SetActive(true);
+            loadingScreen.SetActive(false);
+            fingerButton.GetComponent<Image>().color = nromalColor;
+        }
+    }
  
     public void btnDown(float time)
     {

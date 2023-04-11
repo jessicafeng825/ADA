@@ -42,19 +42,18 @@ public class HeatMapPuzzle : PuzzleInfo
     private int collectableClueNum;
     private Dictionary<string, bool> collectedClues = new Dictionary<string, bool>();
 
+    [SerializeField]
+
     private string enteredNum = "";
 
     private bool denying;
     private float scanTime;
 
     private bool show;
-
-    private bool enable;
     private void Start()
     {
         heatMapAnim = GetComponent<Animator>();
         this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
-        this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(delegate{ScriptEnableSwitch(false);});
         answerText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = new string('0', answer.Length);
         if(fingerPrints != null)
         {
@@ -73,34 +72,27 @@ public class HeatMapPuzzle : PuzzleInfo
             }
         }
     }
-    void Update()
+    void OnEnable()
     {
-        if(!enable)
-        {   
-            //Check if characcter exists
-            if(!CheckCharacter("Lawyer"))
-            {
-                hintText.SetActive(false);
-                scanButton.SetActive(true);
-            }  
-            else if(playerController.Instance.playerJob != "Lawyer")
-            {
-                hintText.SetActive(true);
-                scanButton.SetActive(false);
-            }
-            else
-            {
-                hintText.SetActive(false);
-                scanButton.SetActive(true);
-            }
-            enable = true;
+        denying = false;
+        enteredNum = enteredNum.Remove(0, enteredNum.Length);
+         //Check if characcter exists
+        if(!CheckCharacter("Lawyer"))
+        {
+            hintText.SetActive(false);
+            scanButton.SetActive(true);
+        }  
+        else if(playerController.Instance.playerJob != "Lawyer")
+        {
+            hintText.SetActive(true);
+            scanButton.SetActive(false);
+        }
+        else
+        {
+            hintText.SetActive(false);
+            scanButton.SetActive(true);
         }
     }
-    public void ScriptEnableSwitch(bool b)
-    {
-        enable = b;
-    }  
-    
 
     public void NumEnter(int num)
     {
@@ -160,15 +152,11 @@ public class HeatMapPuzzle : PuzzleInfo
     public void OpenScreen()
     {
         if (!isSolved)
-        {
-            
+        {            
             if (CheckAnswer("Unlocked", "The phone has been unlocked"))
             {
                 lockedScreen.SetActive(false);
                 unlockedScreen.SetActive(true);
-            }
-            else
-            {
             }
         }
     }
@@ -195,7 +183,6 @@ public class HeatMapPuzzle : PuzzleInfo
     {
         if(!show)
         {
-            show = true;
             StartCoroutine(ScanTimer(3f));
         }
         
@@ -230,6 +217,7 @@ public class HeatMapPuzzle : PuzzleInfo
         {
             fingerPrints[i].GetComponent<CanvasGroup>().alpha = 1;
         }
+        show = true;
         enterbtnFinger.GetComponent<CanvasGroup>().alpha = 1;
         heatMapAnim.SetBool("ScanBool", false);
     }

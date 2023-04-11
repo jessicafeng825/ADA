@@ -24,43 +24,32 @@ public class EmotionScan : PuzzleInfo
 
     private float scanTime;
     private bool show;
-    private bool enable;
     private void Start()
     {
         emotionCanAnim = GetComponent<Animator>();
         this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
-        this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(delegate{ScriptEnableSwitch(false);});
     }
-    void Update()
+    void OnEnable()
     {
-        if(!enable)
+        //Check if characcter exists
+        if(!CheckCharacter("Nightclub Owner"))
         {
-            //Check if characcter exists
-            if(!CheckCharacter("Nightclub Owner"))
-            {
-                scanButton.SetActive(true);
-            }            
-            else if(playerController.Instance.playerJob != "Nightclub Owner")
-            {
-                scanButton.SetActive(false);
-            }
-            else
-            {
-                scanButton.SetActive(true);
-            }
-            enable = true;
+            scanButton.SetActive(true);
+        }            
+        else if(playerController.Instance.playerJob != "Nightclub Owner")
+        {
+            scanButton.SetActive(false);
+        }
+        else
+        {
+            scanButton.SetActive(true);
         }
     }
-    public void ScriptEnableSwitch(bool b)
-    {
-        enable = b;
-    }  
     
     public void ScanStart()
     {
         if(!show)
         {
-            show = true;
             StartCoroutine(ScanTimer(3f));
         }
         
@@ -75,6 +64,7 @@ public class EmotionScan : PuzzleInfo
             scanTime += Time.deltaTime;
             yield return null;
         }
+        show = true;
         resultImage.SetActive(true);
         questionImage.SetActive(false);
         hintText.GetComponent<TextMeshProUGUI>().text = "Scan Complete";

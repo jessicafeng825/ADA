@@ -31,10 +31,6 @@ public class BiohackerHack : PuzzleInfo
 
     [SerializeField]
     private Animator hackAnim;
-
-    private float hackTime;
-    private bool show;
-    private bool enable;
     private bool hacked;
 
     [SerializeField]
@@ -48,32 +44,24 @@ public class BiohackerHack : PuzzleInfo
     private void Start()
     {
         this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
-        this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(delegate{ScriptEnableSwitch(false);});
     }
-    void Update()
+    void OnEnable()
     {
-        if(!enable)
-        {    
-            //Check if characcter exists
-            if(!CheckCharacter("Biohacker"))
-            {
-                hackButton.SetActive(true);
-            }    
-            else if(playerController.Instance.playerJob != "Biohacker")
-            {
-                hackButton.SetActive(false);
-            }
-            else
-            {
-                hackButton.SetActive(true);
-            }
-            enable = true;
+        failedText.SetActive(false);
+        unlockButton.SetActive(true);
+        if(!CheckCharacter("Biohacker"))
+        {
+            hackButton.SetActive(true);
+        }    
+        else if(playerController.Instance.playerJob != "Biohacker")
+        {
+            hackButton.SetActive(false);
+        }
+        else
+        {
+            hackButton.SetActive(true);
         }
     }
-    public void ScriptEnableSwitch(bool b)
-    {
-        enable = b;
-    }  
     
     public void HackStart()
     {
@@ -89,7 +77,7 @@ public class BiohackerHack : PuzzleInfo
             StartCoroutine(DisableUnlcokButtonTimer(2f));
             hackAnim.SetTrigger("FailTrigger");
         }
-        else if(result <= 10f || result >= 180f)
+        else if(result <= 10f || result >= 170f)
         {
             hackAnim.SetTrigger("OpenTrigger");
             hintText.SetActive(false);

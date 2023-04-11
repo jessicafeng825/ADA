@@ -21,8 +21,6 @@ public class DecoderCombine : PuzzleInfo
     [SerializeField]
     private GameObject combineButton;
     private Animator combineAnim;
-
-    private float scanTime;
     private bool combining;
     private bool enable;
     private void Start()
@@ -50,6 +48,11 @@ public class DecoderCombine : PuzzleInfo
             }
             enable = true;
         }
+    }
+    void OnEnable()
+    {
+        hintText.GetComponent<TextMeshProUGUI>().text = "A part of some sort of device. It seems to be incomplete. Maybe someone who knows better about these small gadgets can figure it out...";
+        enable = false;
     }
     public void ScriptEnableSwitch(bool b)
     {

@@ -41,6 +41,12 @@ public class DynamicPasscode : PuzzleInfo
             
         
     }
+    void OnEnable()
+    {
+        decodeButton.GetComponent<Image>().color = normalColor;
+        hintText.GetComponent<TextMeshProUGUI>().text = "A dynamic passcode on the wall that has a socket for something to plug in...";
+
+    }
 
     IEnumerator DecodeTimer(float time)
     {
@@ -73,7 +79,8 @@ public class DynamicPasscode : PuzzleInfo
             decodeTimer += Time.deltaTime;
             yield return null;
         }
-        hintText.GetComponent<TextMeshProUGUI>().text = "Access Granted";
+        decodeAnim.SetTrigger("DecodeTrigger");
+        hintText.GetComponent<TextMeshProUGUI>().text = "ACTIVATED";
         PuzzleSolveEffect();
         isSolved = true;
         
