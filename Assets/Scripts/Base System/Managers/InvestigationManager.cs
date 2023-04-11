@@ -398,6 +398,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [PunRPC]
     private void UnlockRelatedTeleport(Memory fromMemory, Memory toMemory)
     {
+        SoundManager.Instance.PlaySoundEffect("VOE_NewAreaUnlocked");
         TeleportInfo info;
         foreach (Button teleportBtn in teleportBtnList)
         {
@@ -484,7 +485,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         //Change current memory
         playerController.Instance.currentMemory = MemoryUI_Dic[toMemory.ToString()].GetComponent<Transform>();
 
-        //Change current room
+        //Change current
+        //
         Component[] tempRooms = playerController.Instance.currentMemory.GetComponentsInChildren<Rooms>();
         foreach(Rooms room in tempRooms)
         {

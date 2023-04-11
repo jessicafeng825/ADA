@@ -21,4 +21,10 @@ public class SoundManager : Singleton<SoundManager>
             BGM_Source.Play();
         }
     }
+
+    public void PlaySoundEffect(string sfxName)
+    {
+
+        SFX_Source.PlayOneShot(ResourceManager.Instance.GetSFX(sfxName));
+    }
 }

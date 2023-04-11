@@ -31,6 +31,7 @@ public class ResourceManager : Singleton<ResourceManager>
         LoadUIElements();
 
         LoadAllBGM();
+        LoadAllSFX();
     }
 
     #region Clue Related Resources
@@ -135,7 +136,6 @@ public class ResourceManager : Singleton<ResourceManager>
 
     public AudioClip GetBGM(string bgmName)
     {
-        Debug.Log(bgmName);
         return BGM_Dic[bgmName];
     }
 
@@ -144,8 +144,13 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         foreach (AudioClip soundEffect in Resources.LoadAll("SFX/"))
         {
-
+            SFX_Dic.Add(soundEffect.name, soundEffect);
         }
+    }
+
+    public AudioClip GetSFX(string sfxName)
+    {
+        return SFX_Dic[sfxName];
     }
 
     #endregion
