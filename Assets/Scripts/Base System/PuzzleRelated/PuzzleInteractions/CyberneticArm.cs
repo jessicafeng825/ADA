@@ -55,17 +55,17 @@ public class CyberneticArm : PuzzleInfo
         enable = b;
     }  
     
-    public void ScanStart()
+    public void PunchStart()
     {
         if(!show)
         {
             show = true;
-            StartCoroutine(ScanTimer(3f));
+            StartCoroutine(PunchTimer(0.05f));
         }
         
     }
 
-    IEnumerator ScanTimer(float time)
+    IEnumerator PunchTimer(float time)
     {
         
 

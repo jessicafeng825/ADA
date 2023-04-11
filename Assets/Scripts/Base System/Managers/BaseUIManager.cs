@@ -134,8 +134,40 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
     public void RemovePuzzleBtns(string puzzleID)
     {
-        inBasePuzzleBtns.Remove(puzzleID);
-        inScenePuzzles.Remove(puzzleID);
+        if(inBasePuzzleBtns.ContainsKey(puzzleID))
+        {
+            Destroy(inBasePuzzleBtns[puzzleID]);            
+            inBasePuzzleBtns.Remove(puzzleID);
+        }
+        if(inScenePuzzles.ContainsKey(puzzleID))
+        {
+            Destroy(inScenePuzzles[puzzleID]);
+            inScenePuzzles.Remove(puzzleID);
+        }
+            
+    }
+
+    public bool CheckHavePuzzle(string puzzleID)
+    {
+        if (inBasePuzzleBtns.ContainsKey(puzzleID))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool CheckDecoderUnlocked(string puzzleID)
+    {
+        if (inScenePuzzles[puzzleID].GetComponent<NumpadPuzzle>().decoderActivated)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void BaseNewPuzzleEffectsCheck()

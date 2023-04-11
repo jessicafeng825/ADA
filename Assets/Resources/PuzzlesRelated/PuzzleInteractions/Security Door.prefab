@@ -720,6 +720,7 @@ GameObject:
   - component: {fileID: 7998200435397299908}
   - component: {fileID: 3624700812264753596}
   - component: {fileID: 4066817381565421624}
+  - component: {fileID: 7289655122893017917}
   m_Layer: 0
   m_Name: BreakDoorButton
   m_TagString: Untagged
@@ -746,7 +747,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.065}
   m_AnchorMax: {x: 0.5, y: 0.195}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 140.39996, y: 0}
+  m_SizeDelta: {x: 279.24243, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7998200435397299908
 CanvasRenderer:
@@ -830,9 +831,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EmotionScan, Assembly-CSharp
-        m_MethodName: ScanStart
+      - m_Target: {fileID: 3059421601042652442}
+        m_TargetAssemblyTypeName: CyberneticArm, Assembly-CSharp
+        m_MethodName: PunchStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -842,6 +843,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7289655122893017917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347374047353848811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 2
+  m_AspectRatio: 1
 --- !u!1 &5141148237361593702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1117,7 @@ MonoBehaviour:
   isSolved: 0
   puzzleEffects: 01000000
   clueProvided: []
+  puzzleProvided: []
   unlockedRoom: SecurityRoom
   unlockedMemory: 0
   TransferMenu: {fileID: 7455192518743928346}

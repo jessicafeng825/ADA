@@ -16,8 +16,13 @@ public class PuzzleInfo : MonoBehaviour
     protected bool isSolved;
     [SerializeField]
     protected List<PuzzleEffect> puzzleEffects = new List<PuzzleEffect>();
+
     [SerializeField]
     protected List<string> clueProvided = new List<string>();
+
+    [SerializeField]
+    protected List<string> puzzleProvided = new List<string>();
+
     [SerializeField]
     protected string unlockedRoom;
 
@@ -29,7 +34,7 @@ public class PuzzleInfo : MonoBehaviour
     private GameObject TransferMenu;
     public enum PuzzleEffect
     {
-        provideClue, unlockRoom, unlockMemory
+        provideClue, unlockRoom, unlockMemory, providePuzzle
     }
 
     protected virtual void PuzzleSolveEffect()
@@ -60,6 +65,18 @@ public class PuzzleInfo : MonoBehaviour
                     // TODO: A small bug to fix: right now the teleport is from 1 -> unlocked memory
                     InvestigationManager.Instance.UnlockTeleport(collectedAt, unlockedMemory);
                     BaseUIManager.Instance.SpawnNotificationPanel("New Area Unlocked", "You are now able to navigate to <b>" + unlockedMemory.ToString() + "</b> in investigation phase!", 1, -1f);
+                    break;
+                    
+                case PuzzleEffect.providePuzzle:
+                    // give puzzle
+                    foreach(string puzzle in puzzleProvided)
+                    {
+                        InvestigationManager.Instance.AddPuzzlePrefab(puzzle, collectedAt);
+                    }
+
+                    BaseUIManager.Instance.SpawnNotificationPanel("New Puzzle!", "You got " + puzzleProvided.Count + " new puzzle!", 1, -1f);
+                    break;
+                default:
                     break;
             }
         }

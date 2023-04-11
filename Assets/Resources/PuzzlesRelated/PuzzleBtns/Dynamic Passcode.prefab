@@ -145,8 +145,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
-  m_sharedMaterial: {fileID: -3964463578110011312, guid: 4dc411976f6ebdc49bfe3c064fa71230, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 4247218790102093947}
   - component: {fileID: 3617773391672739815}
   m_Layer: 0
-  m_Name: Secret Door Passcode
+  m_Name: Dynamic Passcode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cb3d5f9bc4de71245aa238f3ca684f6f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 330c0ae4ec0f1ee44be96514331222b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -368,6 +368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e6970faac24f74e85eed2f1fc13eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleID: Secret Door Passcode
+  puzzleID: Dynamic Passcode
   isViewed: 0
   newClueMark: {fileID: 5586047021194560689}
