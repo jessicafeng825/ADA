@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class Launcher : MonoBehaviourPunCallbacks {
   public static Launcher Instance;
+  private string playerNickname;
 
   [SerializeField] TMP_InputField playerNameInputField;
   [SerializeField] TMP_Text titleWelcomeText;
@@ -27,6 +28,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
     }
 
   private void Start() {
+    SetName();
     Debug.Log("Connecting to master...");
     PhotonNetwork.ConnectUsingSettings();
         for (int i = 0; i < unableMenuList.Length; i++)
@@ -37,26 +39,42 @@ public class Launcher : MonoBehaviourPunCallbacks {
             }
         }
         //SetName();
-        PhotonNetwork.KeepAliveInBackground = 300;
+    MenuManager.Instance.OpenMenu("title");
+    PhotonNetwork.KeepAliveInBackground = 300;
   }
 
   public override void OnConnectedToMaster() {
     Debug.Log("Connected to master!");
-    PhotonNetwork.JoinLobby();
+    // PhotonNetwork.JoinLobby();
     // Automatically load scene for all clients when the host loads a scene
     PhotonNetwork.AutomaticallySyncScene = true;
-  }
+    }
 
-  public override void OnJoinedLobby() {
-    // if (PhotonNetwork.NickName == "") {
-    //   PhotonNetwork.NickName = "Player " + Random.Range(0, 1000).ToString(); // Set a default nickname, just as a backup
-    //   MenuManager.Instance.OpenMenu("name");
-    // } else 
-    // {
-      MenuManager.Instance.OpenMenu("title");
-    // }
-    Debug.Log("Joined lobby");
-    SetName();
+    public void JoinLobby()
+    {
+        PhotonNetwork.JoinLobby();
+    }
+
+    public override void OnJoinedLobby()
+    {
+        // if (PhotonNetwork.NickName == "") {
+        //   PhotonNetwork.NickName = "Player " + Random.Range(0, 1000).ToString(); // Set a default nickname, just as a backup
+        //   MenuManager.Instance.OpenMenu("name");
+        // } else 
+        // {
+        //MenuManager.Instance.OpenMenu("title");
+        // }
+        Debug.Log("Joined lobby");
+    }
+
+    public void LeaveLobby()
+    {
+        PhotonNetwork.LeaveLobby();
+    }
+
+    public override void OnLeftLobby()
+    {
+        Debug.Log("Left Lobby");   
     }
 
   public void SetName() {
@@ -64,6 +82,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
     string name = "Detective " + Random.Range(0, 1000).ToString();
         if (!string.IsNullOrEmpty(name)) {
       PhotonNetwork.NickName = name;
+      playerNickname = name;
       titleWelcomeText.text = $"Welcome, {name}!";
       //playerNameInputField.text = "";
     } else {
@@ -83,7 +102,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
         MenuManager.Instance.OpenMenu("loading");
 
   }
-
+   
   public override void OnJoinedRoom() {
     // Called whenever you create or join a room
     MenuManager.Instance.OpenMenu("room");
@@ -128,15 +147,17 @@ public class Launcher : MonoBehaviourPunCallbacks {
   }
 
   public override void OnLeftRoom() {
+    PhotonNetwork.NickName = playerNickname;
     MenuManager.Instance.OpenMenu("title");
   }
 
   public override void OnRoomListUpdate(List<RoomInfo> roomList) {
-    foreach (Transform trans in roomListContent) {
-      Destroy(trans.gameObject);
-    }
-    
-    for (int i = 0; i < roomList.Count; i++) {
+        foreach (Transform trans in roomListContent)
+        {
+            Destroy(trans.gameObject);
+        }
+
+        for (int i = 0; i < roomList.Count; i++) {
             //if (roomList[i].RemovedFromList) {
             // Don't instantiate stale rooms
             //  continue;
