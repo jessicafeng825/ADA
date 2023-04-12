@@ -21,6 +21,7 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField]
     private bool mouseOver, isDragging;
     private bool isDrag = false;
+    private bool isClick = false;
     [SerializeField]
     private float pressedTimeRequired;
     [SerializeField]
@@ -61,10 +62,12 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
             progressBar.SetActive(false);
         }
 
-        if(timer > pressedTimeRequired)
+        if(timer > pressedTimeRequired || isClick)
         {
             ResetLoading();
             DetectiveBoardManager.Instance.OpenClueInfoOnBoard(clueID, this.GetComponent<RectTransform>().localPosition);
+            Debug.Log("draw clue");
+            isClick = false;
         }
     }
 
@@ -92,6 +95,13 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (!isDragging)
         {
             DetectiveBoardManager.Instance.ClueSelected(clueID);
+            
+        }
+
+        if (!isDrag)
+        {
+            Debug.Log("ClickEvent");
+            isClick = true;
         }
     }
 
@@ -108,10 +118,13 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
             DetectiveBoardManager.Instance.addOnlyTwoPoints(this.gameObject);
         }
+        //isClick = false;
+
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("OnPointerDown");
+        //Debug.Log("OnPointerDown");
+        //isClick = true;
     }
     #region Dragging Related Functions
     // Function to move clue on board
@@ -124,8 +137,12 @@ public class ClueOnBoardDrag : MonoBehaviour, IPointerEnterHandler, IPointerExit
     //use this draging function instead
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-        Debug.Log("OnDrag");
+        if (isDrag)
+        {
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+            Debug.Log("OnDrag");
+        }
+        
     }
     public void DragHandler(BaseEventData eventData)
     {
