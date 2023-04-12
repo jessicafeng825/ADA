@@ -26,6 +26,8 @@ public class JOb : MonoBehaviour
     [TextArea(5, 20)]
     public string secret;
     public bool isselected = false;
+    
+    [SerializeField]
     private Button button;
     // Start is called before the first frame update
     void Start()

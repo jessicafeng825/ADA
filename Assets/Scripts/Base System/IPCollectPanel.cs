@@ -9,6 +9,7 @@ public class IPCollectPanel : MonoBehaviour
 {
     private UnityEvent[] choiceEvent =  new UnityEvent[5];
     private Button[] choiceButtons = new Button[5];
+    public string ipName;
     static public IPCollectPanel Instance;
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class IPCollectPanel : MonoBehaviour
 
     public void ClosePanel()
     {
+        InvestigationManager.Instance.SwitchInterestPointActive(ipName, true);
         ResetButtons();
         Destroy(this.gameObject);
     }

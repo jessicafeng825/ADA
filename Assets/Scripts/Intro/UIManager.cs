@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        
         pv = GetComponent<PhotonView>();
         //video.prepareCompleted += OnPrepareVideo;
         Instance = this;
@@ -51,6 +52,13 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PhotonNetwork.AutomaticallySyncScene = false;
+        if(PhotonNetwork.CurrentRoom.CustomProperties["gameRunning"].Equals(true))
+        { 
+            PhotonNetwork.IsMessageQueueRunning = false;
+            UIManager.Instance.CloseMenu("BgLoad");
+            UIManager.Instance.OpenMenu("JoinAfter");
+        }
         //DontDestroyOnLoad(this);
         //===set up pc and player depend on whether it is master or not===//
         pcPanel.SetActive(PhotonNetwork.IsMasterClient);
@@ -272,7 +280,7 @@ public class UIManager : MonoBehaviour
                 continue;
             }
         }
-        pv.RPC(nameof(updateallplayerName), RpcTarget.AllBuffered, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.skilltext, job.alibitext, job.secret, job.playerImage);
+        pv.RPC(nameof(updateallplayerName), RpcTarget.AllViaServer, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.skilltext, job.alibitext, job.secret, job.playerImage);
         //playerController.Instance.jobSelect(name);
 
         Debug.Log(playerController.Instance.playerJob);
@@ -301,7 +309,7 @@ public class UIManager : MonoBehaviour
         if (checkIfAllhaveSelectJob())//if all the player have select job
         {
            
-            pv.RPC(nameof(jobSelecttobackgroundintro), RpcTarget.All);
+            pv.RPC(nameof(jobSelecttobackgroundintro), RpcTarget.AllViaServer);
         }
         
 
@@ -360,7 +368,7 @@ public class UIManager : MonoBehaviour
 
                     //gameObjectNow = listofgameObjectwithtag[i];
 
-                    pv.RPC(nameof(setbuttonActivation), RpcTarget.AllBufferedViaServer, oldJob, jobname);
+                    pv.RPC(nameof(setbuttonActivation), RpcTarget.AllViaServer, oldJob, jobname);
                 // }
                 
             }
@@ -369,7 +377,7 @@ public class UIManager : MonoBehaviour
     //===movescene====//
     public void changenextSceneTest()
     {
-        pv.RPC(nameof(changenextScene), RpcTarget.All);
+        pv.RPC(nameof(changenextScene), RpcTarget.AllViaServer);
     }
 
     [PunRPC]
@@ -377,8 +385,18 @@ public class UIManager : MonoBehaviour
     {
         //Synchronize stage between players
         playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Investigate);
+        
+        if(PhotonNetwork.IsMasterClient && this.GetComponent<PhotonView>().IsMine)
+        {
+            playerController.Instance.AccusePlayer("Host");
+        }
         PhotonNetwork.LoadLevel(2);
         
+    }
+    public void ChangeNextSceneAfter()
+    {
+        playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Investigate);
+        PhotonNetwork.LoadLevel(2);
     }
 
     //====Panel stage change====//
@@ -388,7 +406,7 @@ public class UIManager : MonoBehaviour
         {
             
             ifintroend = true;
-            pv.RPC(nameof(closeintro), RpcTarget.AllBufferedViaServer);
+            pv.RPC(nameof(closeintro), RpcTarget.AllViaServer);
            
         }
         
@@ -398,7 +416,7 @@ public class UIManager : MonoBehaviour
     {
         UIManager.Instance.CloseMenu("InfoPC");
         UIManager.Instance.OpenMenu("IntroBackground");
-        pv.RPC(nameof(PlayerWaitMemVideo), RpcTarget.AllBufferedViaServer);
+        pv.RPC(nameof(PlayerWaitMemVideo), RpcTarget.AllViaServer);
         videoPlay.PlayMemVid();
     }
 

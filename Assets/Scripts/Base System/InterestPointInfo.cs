@@ -43,8 +43,9 @@ public class InterestPointInfo : MonoBehaviour
     }
     public void SpawnPopup()
     {
-        
+        InvestigationManager.Instance.SwitchInterestPointActive(name, false);
         IPCollectPanel tempIPPanel = BaseUIManager.Instance.SpawnInterestPointPanel(this.gameObject.name, collectableBool);
+        tempIPPanel.ipName = this.gameObject.name;
         for(int i = 0; i < collectableList.Count; i++)
         {
             int temp = i;
@@ -66,6 +67,7 @@ public class InterestPointInfo : MonoBehaviour
                 continue;
             
         }
+
         // NotificationScript tempNoti = BaseUIManager.Instance.SpawnNotificationPanel("Use Action Points?", "Use the action point for investigate the interest point?", 2, -1f);
         // tempNoti.AddFunctiontoYesButton(AddCollectable, false);
     }

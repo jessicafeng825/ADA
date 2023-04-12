@@ -601,6 +601,19 @@ public class InvestigationManager : Singleton<InvestigationManager>
         interestPoints[ipName].GetComponent<InterestPointInfo>().itemCollected(itemNum);
     }
 
+    //Temporary disable or enable interest point when someone is collecting items
+    public void SwitchInterestPointActive(string ipName, bool active)
+    {
+        pv.RPC(nameof(witchInterestPointActiveRPC), RpcTarget.All, ipName, active);
+    }
+
+    [PunRPC]
+    private void witchInterestPointActiveRPC(string ipName, bool active)
+    {
+        interestPoints[ipName].transform.Find("PB Loop - Radial Material").gameObject.SetActive(!active);
+        interestPoints[ipName].GetComponent<Button>().interactable = active;
+    }
+
     // functions to synchronize whether interest points are active or not depends on if there are items left
     public void SynchronizeInterestPointStatus(string ipName, Memory memory)
     {

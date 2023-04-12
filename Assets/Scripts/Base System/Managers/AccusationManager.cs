@@ -9,6 +9,8 @@ using Photon.Realtime;
 public class AccusationManager : MonoBehaviour
 {
     private PhotonView pv;
+
+    private GameObject titleText;
     
     [SerializeField]
     private GameObject playerAccusationPanel;
@@ -24,10 +26,14 @@ public class AccusationManager : MonoBehaviour
     private GameObject accuseButton;
 
     private GameObject verifyButton;
+    private GameObject clueButton;
+    private GameObject puzzleButton;
     static private Button selectedPlayer;
     
     private GameObject playerBackground;
     private GameObject PCBackground;
+
+    private List<string> highestVotedPlayers = new List<string>();
 
     private string publicSelectedPlayer;
 
@@ -42,7 +48,16 @@ public class AccusationManager : MonoBehaviour
     private Color comfirmedColor;
 
     [SerializeField]
+    private Color normalBackgroundColor;
+
+    [SerializeField]
     private Color comfirmedBackgroundColor;
+
+    [SerializeField]
+    private Color correctBackgroundColor;
+
+    [SerializeField]
+    private Color wrongBackgroundColor;
 
     private int[] allVotes = new int[6] { 0, 0, 0, 0, 0, 0 };
 
@@ -53,6 +68,9 @@ public class AccusationManager : MonoBehaviour
         playerBackground = this.playerAccusationPanel.transform.Find("Background").gameObject;
         PCBackground = this.PCAccusationPanel.transform.Find("Background").gameObject;
         accuseButton = this.playerAccusationPanel.transform.Find("AccuseButton").gameObject;
+        clueButton = this.playerAccusationPanel.transform.Find("ClueButton").GetChild(0).gameObject;
+        puzzleButton = this.playerAccusationPanel.transform.Find("PuzzleButton").GetChild(0).gameObject;
+        titleText = this.playerAccusationPanel.transform.Find("Title").transform.GetChild(0).gameObject;
         accuseButton.GetComponent<Button>().onClick.AddListener(AccusePlayer);
         verifyButton = this.PCAccusationPanel.transform.Find("VerifyButton").gameObject;
         verifyButton.GetComponent<Button>().onClick.AddListener(() => VerifyResult(publicSelectedPlayer));
@@ -97,6 +115,8 @@ public class AccusationManager : MonoBehaviour
         }
         else
         {
+            clueButton.GetComponent<Button>().interactable = false;
+            puzzleButton.GetComponent<Button>().interactable = false;
             foreach(Button button in playerButtons)
             {
                 button.enabled = false;
@@ -111,7 +131,7 @@ public class AccusationManager : MonoBehaviour
         }
         foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
-            if(player.GetComponent<playerController>().accusedPalyer != "")
+            if(player.GetComponent<playerController>().accusedPlayer != "None")
             {
                 continue;
             }
@@ -123,16 +143,73 @@ public class AccusationManager : MonoBehaviour
         pv.RPC(nameof(VoteConclusionMaster), RpcTarget.MasterClient);
         
     }
+
+    [PunRPC]
+    public void ResetAccuseRPC(string player01, string player02, string player03, string player04, string player05, string player06)
+    {
+        clueButton.GetComponent<Button>().interactable = true;
+        puzzleButton.GetComponent<Button>().interactable = true;
+        List<string> players = new List<string>();
+        players.Add(player01);
+        players.Add(player02);
+        players.Add(player03);
+        players.Add(player04);
+        players.Add(player05);
+        players.Add(player06);
+        foreach(Button button in playerButtons)
+        {
+            if(players.Contains(button.name))
+            {
+                button.enabled = true;
+                button.transform.Find("Mask").gameObject.SetActive(false);
+                button.GetComponent<Image>().color = unselectedColor;
+            }
+            else
+            {
+                button.gameObject.SetActive(false);
+            }
+        }
+        foreach(GameObject icon in PCIcons)
+        {
+            if(players.Contains(icon.name))
+            {
+                icon.SetActive(true);
+            }
+            else
+            {
+                icon.SetActive(false);
+            }
+        }
+        selectedPlayer = null;
+        titleText.GetComponent<TextMeshProUGUI>().text = "There was a Tie!";
+        if(PhotonNetwork.IsMasterClient)
+        {
+            playerController.Instance.AccusePlayer("Host");
+        }
+        else
+        {
+            playerController.Instance.AccusePlayer("None");
+        }
+        playerBackground.GetComponent<Image>().color = normalBackgroundColor;
+        accuseButton.SetActive(true);
+    }
     public void VerifyResult(string name)
     {
         if(name == "SecurityGuard")
         {
+            PCBackground.GetComponent<Image>().color = correctBackgroundColor;
+            playerBackground.GetComponent<Image>().color = correctBackgroundColor;
+            PCAccusationPanel.transform.Find("Title").Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = "The Security Guard is the murderer!";
             Debug.Log("Correct");
         }
         else
         {
+            PCBackground.GetComponent<Image>().color = wrongBackgroundColor;
+            playerBackground.GetComponent<Image>().color = wrongBackgroundColor;
+            PCAccusationPanel.transform.Find("Title").Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = name + " was not the murderer!";
             Debug.Log("Wrong");
         }
+        verifyButton.SetActive(false);
     }
 
 
@@ -142,7 +219,7 @@ public class AccusationManager : MonoBehaviour
         PCAccusationPanel.SetActive(true);
         foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
-            switch(player.GetComponent<playerController>().accusedPalyer)
+            switch(player.GetComponent<playerController>().accusedPlayer)
             {
                 case "CyberneticBrawler":
                     allVotes[0]++;
@@ -171,46 +248,74 @@ public class AccusationManager : MonoBehaviour
         {
             if(allVotes[i] > max)
             {
-                Debug.Log(i + ": " + allVotes[i]);
                 max = allVotes[i];
-                publicSelectedPlayer = playerButtons[i].name;
+                highestVotedPlayers.Clear();
+                highestVotedPlayers.Add(playerButtons[i].name);
+            }
+            else if(allVotes[i] == max)
+            {
+                highestVotedPlayers.Add(playerButtons[i].name);
             }
         }
-        VoteConclusionVisualPC(allVotes, publicSelectedPlayer);
-        
-        pv.RPC(nameof(VoteConclusionVisualPlayer), RpcTarget.Others, allVotes, publicSelectedPlayer);
-        Debug.Log(publicSelectedPlayer);
+        Debug.Log(highestVotedPlayers);
+        if(highestVotedPlayers.Count == 1)
+        {
+            publicSelectedPlayer = highestVotedPlayers[0];
+            VoteConclusionVisualPC(allVotes, publicSelectedPlayer);
+            pv.RPC(nameof(VoteConclusionVisualPlayer), RpcTarget.Others, allVotes, publicSelectedPlayer);
+        }
+        else
+        {
+            string[] players = new string[6];
+            for(int i = 0; i < highestVotedPlayers.Count; i++)
+            {
+                players[i] = highestVotedPlayers[i];
+            }
+            
+            pv.RPC(nameof(ResetAccuseRPC), RpcTarget.All, players[0], players[1], players[2], players[3], players[4], players[5]);
+            for(int i = 0; i < allVotes.Length; i++)
+            {
+                allVotes[i] = 0;
+            }
+        }
     }
     [PunRPC]
     public void VoteConclusionVisualPlayer(int[] votes, string name)
     {
-        int i = 0;
-        foreach(Button playerButton in playerButtons)
-        {
-            playerButton.transform.Find("VoteNumber").gameObject.SetActive(true);
-            Debug.Log(playerButton.name + " got " + votes[i].ToString() + " votes");
-            playerButton.transform.Find("VoteNumber").Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = votes[i].ToString();
-            i++;            
-        }
-        StartCoroutine(ConclusionVisualPlayer(name));
+        StartCoroutine(ConclusionVisualPlayer(votes, name));
     }
 
     public void VoteConclusionVisualPC(int[] votes, string name)
     {
-        int i = 0;
-        foreach(GameObject icon in PCIcons)
-        {
-            icon.transform.Find("VoteNumber").gameObject.SetActive(true);
-            Debug.Log(icon.name + " got " + votes[i].ToString() + " votes");
-            icon.transform.Find("VoteNumber").Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = votes[i].ToString();
-            i++;            
-        }
-        StartCoroutine(ConclusionVisualPC(name));
+        
+        StartCoroutine(ConclusionVisualPC(votes, name));
     }
 
-    IEnumerator ConclusionVisualPlayer(string name)
+    IEnumerator ConclusionVisualPlayer(int[] votes, string name)
     {
-        yield return new WaitForSeconds(3f);
+        TextMeshProUGUI[] voteText = new TextMeshProUGUI[playerButtons.Count];
+        for(int i = 0; i < playerButtons.Count; i++)
+        {
+            playerButtons[i].transform.Find("VoteNumber").gameObject.SetActive(true);
+            voteText[i] = playerButtons[i].transform.Find("VoteNumber").Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+
+        }
+        float timer = 0;
+        while(timer < 3f)
+        {
+            foreach(TextMeshProUGUI text in voteText)
+            {
+                text.text = Random.Range(0, 6).ToString();
+            }
+            timer+=Time.deltaTime;
+            yield return null;
+        }
+        for(int i = 0; i < PCIcons.Count; i++)
+        {
+            voteText[i].text = votes[i].ToString();
+
+        }
+        
         foreach(Button playerButton in playerButtons)
         {
             if(playerButton.name == name)
@@ -225,9 +330,30 @@ public class AccusationManager : MonoBehaviour
         }
         playerAccusationPanel.transform.Find("Title").Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = name + " was voted the murderer!";
     }
-    IEnumerator ConclusionVisualPC(string name)
+    IEnumerator ConclusionVisualPC(int[] votes, string name)
     {
-        yield return new WaitForSeconds(3f);
+        TextMeshProUGUI[] voteText = new TextMeshProUGUI[PCIcons.Count];
+        for(int i = 0; i < PCIcons.Count; i++)
+        {
+            PCIcons[i].transform.Find("VoteNumber").gameObject.SetActive(true);
+            voteText[i] = PCIcons[i].transform.Find("VoteNumber").Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+
+        }
+        float timer = 0;
+        while(timer < 3f)
+        {
+            foreach(TextMeshProUGUI text in voteText)
+            {
+                text.text = Random.Range(0, 6).ToString();
+            }
+            timer+=Time.deltaTime;
+            yield return null;
+        }
+        for(int i = 0; i < PCIcons.Count; i++)
+        {
+            voteText[i].text = votes[i].ToString();
+
+        }
         foreach(GameObject icon in PCIcons)
         {
             if(icon.name == name)

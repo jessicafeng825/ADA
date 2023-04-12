@@ -8,7 +8,7 @@ using System.Linq;
 using UnityEngine.UI;
 
 
-public class playerController : MonoBehaviour /*, IPunObservable*/
+public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
 {
     public static playerController Instance;
 
@@ -24,7 +24,7 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     [SerializeField] public Sprite playerRoundImage;//player Image
     [SerializeField] public bool isselected = false;
 
-    public string accusedPalyer;
+    public string accusedPlayer;
     public int maxAP;
     public int currentAP;
     public Rooms currentRoom;
@@ -45,8 +45,13 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
     {
         pv = GetComponent<PhotonView>();
         DontDestroyOnLoad(this);
-        accusedPalyer = "None";
+        accusedPlayer = "None";
+        Debug.Log("start");
 
+    }
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        pv.RPC(nameof(JoinAfterJobSelectRPC), RpcTarget.All, playerJob, playerName, playerBackground, skillText, alibiText, secretText, playerJob);
     }
 
     // Update is called once per frame
@@ -82,7 +87,16 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
        // }
        
     }
+    public void JoinAfterJobSelect(JOb job)
+    {
+        pv.RPC(nameof(JoinAfterJobSelectRPC), RpcTarget.All, job.jobName, job.playername, job.backgroundstory, job.skilltext, job.alibitext, job.secret, job.playerImage);
+    }
 
+    [PunRPC]
+    public void JoinAfterJobSelectRPC(string job,string playername,string playerbackground, string playerskill, string playerAlibi, string playerSecret, string playerimage)
+    {
+        jobSelect(job,playername,playerbackground,playerskill,playerAlibi,playerSecret,playerimage);
+    }
     public void discusstoInvest()
     {
         
@@ -120,10 +134,10 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
         pv.RPC(nameof(SynchronizeMaxAP), RpcTarget.All, maxAP);
     }
 
-    public void AccusePlayer(string accusedPlayer)
+    public void AccusePlayer(string ac)
     {
-        this.accusedPalyer = accusedPlayer;
-        pv.RPC(nameof(AccusePlayerRPC), RpcTarget.All, accusedPlayer);
+        accusedPlayer = ac;
+        pv.RPC(nameof(AccusePlayerRPC), RpcTarget.All, ac);
     }
     [PunRPC]
     public void SynchronizeCurrentAP(int currentAP)
@@ -136,9 +150,9 @@ public class playerController : MonoBehaviour /*, IPunObservable*/
         this.maxAP = maxAP;
     }
     [PunRPC]
-    public void AccusePlayerRPC(string accusedPlayer)
+    public void AccusePlayerRPC(string ac)
     {
-        this.accusedPalyer = accusedPlayer;
+        accusedPlayer = ac;
     }
     //This commented part is a way of synchronizing the stageNow variable across all players, but I have decided to use RPC instead
 

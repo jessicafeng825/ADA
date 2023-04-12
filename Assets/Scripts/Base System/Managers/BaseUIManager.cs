@@ -17,6 +17,12 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private GameObject playerTimerPanel;
 
     [SerializeField]
+    private GameObject joinAfterSelectPanel;
+
+    [SerializeField]
+    private GameObject transitionPanel;
+
+    [SerializeField]
     private GameObject clueInfoMenu;
     private GameObject tempClue;
     private Dictionary<string, GameObject> inSceneClueInfos = new Dictionary<string, GameObject>();
@@ -52,7 +58,18 @@ public class BaseUIManager : Singleton<BaseUIManager>
     {
         pcPanel.SetActive(PhotonNetwork.IsMasterClient);
         playerPanel.SetActive(!PhotonNetwork.IsMasterClient);
+        if(PhotonNetwork.CurrentRoom.CustomProperties["gameRunning"].Equals(true))
+        {            
+            transitionPanel.SetActive(false);
+            PhotonNetwork.IsMessageQueueRunning = true;
+            joinAfterSelectPanel.SetActive(true);
+        }
+        else
+        {
+            joinAfterSelectPanel.SetActive(false);
+        }
         InitializeCharacterUI();
+        
     }
 
     #region Clue UI Related Functions
@@ -337,7 +354,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
         if(room.isHidden)
             return;
         room.gameObject.SetActive(true);
-        room.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        //room.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         room.gameObject.transform.GetChild(2).gameObject.SetActive(false);
         room.GetComponent<CanvasGroup>().alpha = 1;
         room.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -346,7 +363,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     private void CloseRoom(Rooms room)
     {
-        room.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        //room.gameObject.transform.GetChild(0).gameObject.SetActive(true);
         room.gameObject.transform.GetChild(2).gameObject.SetActive(true);
         room.gameObject.SetActive(false);
         room.GetComponent<CanvasGroup>().alpha = 0;
