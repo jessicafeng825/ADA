@@ -7,6 +7,7 @@ public class PuzzleBtn : MonoBehaviour
 {
     [SerializeField]
     private string puzzleID;
+    public Memory collectedAt;
     public bool isViewed;
     private GameObject solvedMark;
     [SerializeField]

@@ -8,6 +8,8 @@ public class ClueInfo : MonoBehaviour
     [SerializeField]
     private string clueID;
     [SerializeField]
+    public Memory collectedAt;
+    [SerializeField]
     private Button closeBtn, shareBtn;
     private bool isShared;
 

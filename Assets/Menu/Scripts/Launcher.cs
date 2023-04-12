@@ -95,7 +95,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
 
   public void CreateRoom() {
         string roomName = "Room " + Random.Range(0, 1000).ToString();
-        var options = new RoomOptions() { MaxPlayers = 7, PlayerTtl = 10 };
+        var options = new RoomOptions() { MaxPlayers = 7, PlayerTtl = 1 };
         options.CustomRoomPropertiesForLobby = new string[1] { "gameRunning" };
         options.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable();
         options.CustomRoomProperties.Add("gameRunning", false);
@@ -179,6 +179,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
   public override void OnPlayerEnteredRoom(Player newPlayer) {
     Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
   }
+
 
   public void StartGame() {
     // 1 is used as the build index of the game scene, defined in the build settings

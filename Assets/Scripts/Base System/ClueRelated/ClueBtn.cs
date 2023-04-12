@@ -8,6 +8,8 @@ public class ClueBtn : MonoBehaviour
     // Clue Information that would be shown in UI
     [SerializeField]
     private string clueID;
+
+    public Memory collectedAt;
     public bool isViewed;
     [SerializeField]
     private GameObject newClueMark, clueSharedMark;

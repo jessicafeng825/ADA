@@ -46,7 +46,6 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
         pv = GetComponent<PhotonView>();
         DontDestroyOnLoad(this);
         accusedPlayer = "None";
-        Debug.Log("start");
 
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -65,7 +64,6 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
     public void introtoInvest()
     {
         stageNow = PlayerManagerForAll.gamestage.Investigate;
-        Debug.Log("Investigate");
     }
     public void investtoDicuss()
     {

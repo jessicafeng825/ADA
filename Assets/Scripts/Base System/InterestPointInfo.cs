@@ -31,7 +31,7 @@ public class InterestPointInfo : MonoBehaviour
         public ipType type;
     }
 
-    private void Start()
+    private void Awake()
     {
         GetComponent<Button>().onClick.AddListener(SpawnPopup);
         cnt_current = collectableList.Count;
@@ -39,6 +39,8 @@ public class InterestPointInfo : MonoBehaviour
         {
             collectableBool.Add(false);
         }
+        
+        // Debug.Log("Initialize IP count " + name + ": " + cnt_current);
         GetComponentInChildren<TMP_Text>().text = cnt_current.ToString();
     }
     public void SpawnPopup()
@@ -77,6 +79,8 @@ public class InterestPointInfo : MonoBehaviour
         if(playerController.Instance.currentAP <= 0)
         {
             BaseUIManager.Instance.SpawnNotificationPanel("No Action Point!", "You don't have any action point left!", 1, 3f);
+            
+            InvestigationManager.Instance.SwitchInterestPointActive(name, true);
             return;
         }
         else if (cnt_current > 0)
@@ -102,6 +106,8 @@ public class InterestPointInfo : MonoBehaviour
 
             // Tell im to synchronize
             InvestigationManager.Instance.SynchronizeInterestPoint(name, i);
+            
+            InvestigationManager.Instance.SwitchInterestPointActive(name, true);
         }
     }
 
@@ -142,11 +148,13 @@ public class InterestPointInfo : MonoBehaviour
     public void changeIP_Current(int change)
     {
         cnt_current -= change;
+        // Debug.Log(name + ": " + cnt_current);
         GetComponentInChildren<TMP_Text>().text = cnt_current.ToString();
     }
     public void itemCollected(int i)
     {
         if(collectableBool.Count > i)
             collectableBool[i] = true;
+        // Debug.Log("Item Collected");
     }
 }

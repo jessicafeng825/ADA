@@ -50,13 +50,13 @@ public class MemoryInfo : MonoBehaviour
             }
         }
         interestPointCount = totalInterestPoints;
-        if(memory != InvestigationManager.Instance.startMemory.GetComponent<MemoryInfo>().memory)
-            this.gameObject.SetActive(false);
     }
 
     private void Start() 
     {
         pv = GetComponent<PhotonView>();
+        if(memory != InvestigationManager.Instance.startMemory.GetComponent<MemoryInfo>().memory)
+            this.gameObject.SetActive(false);
     }
 
     public bool UpdateInterestPointCount(int n)

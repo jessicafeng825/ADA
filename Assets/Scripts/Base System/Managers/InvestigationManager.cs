@@ -130,8 +130,6 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
         //Update player's current room
         playerController.Instance.currentRoom = room;
-        Debug.Log("Current Room: " + playerController.Instance.currentRoom);
-        Debug.Log("Current Memory: " + playerController.Instance.currentMemory);
         StartCoroutine(RoomCoroutine(oldRoom, room, 0.5f));
     }
     private void ActivateRoom(Rooms room)
@@ -229,6 +227,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void AddCluePrefab(string clueID, Memory memory)
     {
         tempClue = Instantiate(ResourceManager.Instance.GetClueBtn(clueID));
+        tempClue.GetComponent<ClueBtn>().collectedAt = memory;
         string m = memory.ToString();
         foreach(Transform child in ClueBases.transform)
         {
@@ -261,6 +260,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     public void AddPuzzlePrefab(string puzzleName, Memory memory)
     {
         tempPuzzle = Instantiate(ResourceManager.Instance.GetPuzzleBtn(puzzleName));
+        tempPuzzle.GetComponent<PuzzleBtn>().collectedAt = memory;
         string m = memory.ToString();
         foreach(Transform child in PuzzleBases.transform)
         {
@@ -282,12 +282,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
     // Call when puzzle solved, update sprite
     public void UpdatePuzzleBtnSolved(string puzzleName)
     {
-        Debug.Log(puzzleName);
         inBasePuzzleBtns[puzzleName].GetComponent<PuzzleBtn>().ShowSolvedMark();
     }
     public void UnlockDoor(Memory memory, string targetRoom)
     {
-        pv.RPC(nameof(UnlockDoorSynchronize), RpcTarget.All, memory, targetRoom);
+        pv.RPC(nameof(UnlockDoorSynchronize), RpcTarget.AllBufferedViaServer, memory, targetRoom);
     }
     [PunRPC]
     public void UnlockDoorSynchronize(Memory memory, string targetRoom)
@@ -312,6 +311,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         }
     }
 
+    //Show hidden room on PC map
     [PunRPC]
     public void ShowHiddenRoomPC(Memory memory, string room)
     {
@@ -370,7 +370,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void UnlockMemoryInOverview(Memory memory)
     {
-        pv.RPC(nameof(UnlockMemorySynchronize), RpcTarget.All, memory);
+        pv.RPC(nameof(UnlockMemorySynchronize), RpcTarget.AllBufferedViaServer, memory);
     }
 
     [PunRPC]
@@ -392,7 +392,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void UnlockTeleport(Memory fromMemory, Memory toMemory)
     {
-        pv.RPC(nameof(UnlockRelatedTeleport), RpcTarget.All, fromMemory, toMemory);
+        pv.RPC(nameof(UnlockRelatedTeleport), RpcTarget.AllBufferedViaServer, fromMemory, toMemory);
     }
 
     [PunRPC]
@@ -477,7 +477,10 @@ public class InvestigationManager : Singleton<InvestigationManager>
             BaseUIManager.Instance.SpawnNotificationPanel("No Action Point!", "You don't have any action point left!", 1, 3f);
             return;
         }
-        playerController.Instance.Change_currentAP(-1);
+        if(!force)
+        {
+            playerController.Instance.Change_currentAP(-1);
+        }        
         MemoryUI_Dic[fromMemory.ToString()].SetActive(false);
         MemoryUI_Dic[toMemory.ToString()].SetActive(true);
         memoryTitleText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = toMemory.ToString();
@@ -516,13 +519,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
         yield return new WaitForSeconds(sec);
         PCMap.transform.GetChild(0).gameObject.SetActive(false);
         PCMap.transform.GetChild(1).gameObject.SetActive(true);
-        Debug.Log("Change Map");
-        pv.RPC(nameof(TeleportEveryone), RpcTarget.All, Memory.BishopMemory, Memory.LawyerOffice);
+        pv.RPC(nameof(TeleportEveryone), RpcTarget.OthersBuffered, Memory.BishopMemory, Memory.LawyerOffice);
     }
     [PunRPC]
     public void TeleportEveryone(Memory fromMemory, Memory toMemory)
     {
-        Debug.Log("Teleport everyone from " + fromMemory + " to " + toMemory);
         TeleportToFrom(fromMemory, toMemory, true);
     }
     [PunRPC]
@@ -591,7 +592,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     // functions to synchronize the item count of one interest points
     public void SynchronizeInterestPoint(string ipName, int itemNum)
     {
-        pv.RPC(nameof(UpdateGivenIPCNT), RpcTarget.All, ipName, itemNum);
+        pv.RPC(nameof(UpdateGivenIPCNT), RpcTarget.AllBufferedViaServer, ipName, itemNum);
     }
 
     [PunRPC]
@@ -604,11 +605,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
     //Temporary disable or enable interest point when someone is collecting items
     public void SwitchInterestPointActive(string ipName, bool active)
     {
-        pv.RPC(nameof(witchInterestPointActiveRPC), RpcTarget.All, ipName, active);
+        pv.RPC(nameof(switchInterestPointActiveRPC), RpcTarget.AllBufferedViaServer, ipName, active);
     }
 
     [PunRPC]
-    private void witchInterestPointActiveRPC(string ipName, bool active)
+    private void switchInterestPointActiveRPC(string ipName, bool active)
     {
         interestPoints[ipName].transform.Find("PB Loop - Radial Material").gameObject.SetActive(!active);
         interestPoints[ipName].GetComponent<Button>().interactable = active;
@@ -617,7 +618,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     // functions to synchronize whether interest points are active or not depends on if there are items left
     public void SynchronizeInterestPointStatus(string ipName, Memory memory)
     {
-        pv.RPC(nameof(UpdateIPFullyCollected), RpcTarget.All, ipName, memory);
+        pv.RPC(nameof(UpdateIPFullyCollected), RpcTarget.AllBufferedViaServer, ipName, memory);
     }
 
     [PunRPC]
@@ -640,7 +641,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void SynchronizeActivateInterestPoint(string ipName)
     {
-        pv.RPC(nameof(ActivateInterestPoint), RpcTarget.All, ipName);
+        pv.RPC(nameof(ActivateInterestPoint), RpcTarget.AllBufferedViaServer, ipName);
     }
 
     [PunRPC]

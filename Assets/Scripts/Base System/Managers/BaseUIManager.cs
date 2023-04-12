@@ -26,14 +26,14 @@ public class BaseUIManager : Singleton<BaseUIManager>
     private GameObject clueInfoMenu;
     private GameObject tempClue;
     private Dictionary<string, GameObject> inSceneClueInfos = new Dictionary<string, GameObject>();
-    private Dictionary<string, GameObject> inBaseClueBtns = new Dictionary<string, GameObject>();
+    public Dictionary<string, GameObject> inBaseClueBtns = new Dictionary<string, GameObject>();
 
 
     [SerializeField]
     private GameObject puzzleInfoMenu;
     private GameObject tempPuzzle;
     private Dictionary<string, GameObject> inScenePuzzles = new Dictionary<string, GameObject>();
-    private Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
+    public Dictionary<string, GameObject> inBasePuzzleBtns = new Dictionary<string, GameObject>();
 
     [SerializeField]
     private GameObject MemoryOverview;
@@ -416,8 +416,5 @@ public class BaseUIManager : Singleton<BaseUIManager>
         yield return new WaitForSeconds(0.05f);
         panel.SetActive(true);
     }
-    public void UnLockAllTP()
-    {
-
-    }
+    
 }
