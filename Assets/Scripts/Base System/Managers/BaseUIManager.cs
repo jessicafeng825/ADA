@@ -49,7 +49,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
     // UI Effects for new clues and puzzles
     [SerializeField]
-    private TMP_Text openClueMenuBtnText, openPuzzleMenuBtnText;
+    private TMP_Text openClueMenuNewText, openPuzzleMenuNewText;
 
     [SerializeField]
     private GameObject otherCharacterInfo;
@@ -107,14 +107,14 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
     public void BaseNewClueEffectsCheck()
     {
-        openClueMenuBtnText.GetComponent<Animator>().enabled = false;
-        openClueMenuBtnText.GetComponent<TMP_Text>().alpha = 1;
+        openClueMenuNewText.gameObject.SetActive(false);
+        //openClueMenuNewText.GetComponent<TMP_Text>().alpha = 1;
 
         foreach (GameObject clueBtn in inBaseClueBtns.Values.ToList())
         {
             if (!clueBtn.GetComponent<ClueBtn>().isViewed)
             {
-                openClueMenuBtnText.GetComponent<Animator>().enabled = true;
+                openClueMenuNewText.gameObject.SetActive(true);
             }
         }
     }
@@ -189,8 +189,8 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
     public void BaseNewPuzzleEffectsCheck()
     {
-        openPuzzleMenuBtnText.GetComponent<Animator>().enabled = false;
-        openPuzzleMenuBtnText.GetComponent<TMP_Text>().alpha = 1;
+        openPuzzleMenuNewText.gameObject.SetActive(false);
+        //openPuzzleMenuNewText.GetComponent<TMP_Text>().alpha = 1;
 
         if (inBasePuzzleBtns.Count != 0)
         {
@@ -198,7 +198,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
             {
                 if (!puzzleBtn.GetComponent<PuzzleBtn>().isViewed)
                 {
-                    openPuzzleMenuBtnText.GetComponent<Animator>().enabled = true;
+                    openPuzzleMenuNewText.gameObject.SetActive(true);
                 }
             }
         }
