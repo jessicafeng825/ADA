@@ -180,7 +180,6 @@ public class Launcher : MonoBehaviourPunCallbacks {
     Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
   }
 
-
   public void StartGame() {
     // 1 is used as the build index of the game scene, defined in the build settings
     // Use this instead of scene management so that *everyone* in the lobby goes into this scene

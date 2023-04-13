@@ -57,7 +57,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
     public void Start()
     {
         pcPanel.SetActive(PhotonNetwork.IsMasterClient);
-        playerPanel.SetActive(!PhotonNetwork.IsMasterClient);
+        //playerPanel.SetActive(!PhotonNetwork.IsMasterClient);
         if(PhotonNetwork.CurrentRoom.CustomProperties["gameRunning"].Equals(true))
         {            
             transitionPanel.SetActive(false);

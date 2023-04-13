@@ -26,8 +26,10 @@ public class JoinAfterChooseCharacter : MonoBehaviour
                 return;
             }
         }
+        DisconnectHandler.Instance.RequestDisconnectedPlayerStatus(job.jobName);
         playerController.Instance.JoinAfterJobSelect(job);
-        DisconnectHandler.Instance.RefreshDisconnectedPlayer(job.jobName);
+        BaseUIManager.Instance.InitializeCharacterUI();
+        InvestigationManager.Instance.GetPlayerInitialAP();
         gameObject.SetActive(false);
 
     }

@@ -1,26 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public struct DisconnectedPlayer
 {
     public string character { get; set; }
-    public Dictionary<string, GameObject> clues { get; set; }
-    public Dictionary<string, GameObject> puzzles { get; set; }
-    public DisconnectedPlayer(string character, Dictionary<string, GameObject> clues, Dictionary<string, GameObject> puzzles)
+    public string[] clues { get; set; }
+    public string[] clueLocation { get; set; }
+    public string[] puzzles { get; set; }
+    public string[] puzzleLocation { get; set; }
+    public DisconnectedPlayer(string character, string[] clues, string[] clueLocation, string[] puzzles, string[] puzzleLocation)
     {
         this.character = character;
         this.clues = clues;
+        this.clueLocation = clueLocation;
         this.puzzles = puzzles;
+        this.puzzleLocation = puzzleLocation;
     }
 }
 
 
-public class DisconnectHandler : MonoBehaviour
+public class DisconnectHandler : MonoBehaviourPun
 {
     public List<DisconnectedPlayer> disconnectedPlayers = new List<DisconnectedPlayer>();
+    
+    public DisconnectedPlayer myDisconnectedPlayer;
+
+    public const byte SaveDisconnectedPlayerStatusEvent = 1;
+    public const byte SendDisconnectedPlayerStatusEvent = 2;
     public static DisconnectHandler Instance;
 
     private PhotonView pv;
@@ -40,48 +52,171 @@ public class DisconnectHandler : MonoBehaviour
     {
         pv = GetComponent<PhotonView>();
     }
-
-    public void AddDisconnectedPlayer(string character, Dictionary<string, GameObject> clues, Dictionary<string, GameObject> puzzles)
+    private void OnEnable()
     {
-        disconnectedPlayers.Add(new DisconnectedPlayer(character, clues, puzzles));
+        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
     }
-    public void RemoveDisconnectedPlayer(string character)
+
+    private void OnDisable()
     {
-        for(int i = 0; i < disconnectedPlayers.Count; i++)
+        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
+    }
+    
+    void OnApplicationPause(bool pauseStatus)
+    {
+        Debug.Log("Application Pause Status: " + pauseStatus);
+        SaveDisconnectedPlayerStatus();
+    }
+    public void OnEvent(EventData photonEvent)
+    {
+        byte eventCode = photonEvent.Code;
+        if(eventCode == SaveDisconnectedPlayerStatusEvent)
         {
-            if(disconnectedPlayers[i].character == character)
+            object[] data = (object[])photonEvent.CustomData;
+            DisconnectedPlayer dp = new DisconnectedPlayer((string)data[0], (string[])data[1], (string[])data[2], (string[])data[3], (string[])data[4]);
+            foreach(DisconnectedPlayer d in disconnectedPlayers)
             {
-                disconnectedPlayers.RemoveAt(i);
+                if(d.character == dp.character)
+                {
+                    disconnectedPlayers.Remove(d);
+                    break;
+                }
             }
+            disconnectedPlayers.Add(dp);
+            Debug.Log(dp.character + "Disconnected Player Status Saved");
+            Debug.Log(dp.clues.Length + "Clues Saved");
+            Debug.Log(dp.puzzles.Length + "Puzzles Saved");
+        }
+        else if (eventCode == SendDisconnectedPlayerStatusEvent)
+        {
+            object[] data = (object[])photonEvent.CustomData;
+            myDisconnectedPlayer = new DisconnectedPlayer((string)data[0], (string[])data[1], (string[])data[2], (string[])data[3], (string[])data[4]);
+            foreach(string clue in myDisconnectedPlayer.clues)
+            {
+                Debug.Log("Clue: " + clue);
+            }
+            foreach(string clueLocation in myDisconnectedPlayer.clueLocation)
+            {
+                Debug.Log("Clue location: " + clueLocation);
+            }
+            foreach(string puzzle in myDisconnectedPlayer.puzzles)
+            {
+                Debug.Log("Puzzle: " + puzzle);
+            }
+            foreach(string puzzleLocation in myDisconnectedPlayer.puzzleLocation)
+            {
+                Debug.Log("Puzzle location: " + puzzleLocation);
+            }
+            for(int i = 0; i < myDisconnectedPlayer.clueLocation.Length; i++)
+            {
+                Memory location;
+                switch(myDisconnectedPlayer.clueLocation[i])
+                {
+                    case "BishopMemory":
+                        location = Memory.BishopMemory;
+                        break;
+                    case "Mansion":
+                        location = Memory.Mansion;
+                        break;
+                    case "StreetCorner":
+                        location = Memory.StreetCorner;
+                        break;
+                    case "LawyerOffice":
+                        location = Memory.LawyerOffice;
+                        break;
+                    case "Nightclub":
+                        location = Memory.Nightclub;
+                        break;
+                    case "VoidBase":
+                        location = Memory.VoidBase;
+                        break;
+                    case "SecretLaboratory":
+                        location = Memory.SecretLaboratory;
+                        break;
+                    default:
+                        location = Memory.None;
+                        break;
+                }
+                InvestigationManager.Instance.AddCluePrefab(myDisconnectedPlayer.clues[i], location);
+            }
+            for(int i = 0; i < myDisconnectedPlayer.puzzleLocation.Length; i++)
+            {
+                Memory location;
+                switch(myDisconnectedPlayer.puzzleLocation[i])
+                {
+                    case "BishopMemory":
+                        location = Memory.BishopMemory;
+                        break;
+                    case "Mansion":
+                        location = Memory.Mansion;
+                        break;
+                    case "StreetCorner":
+                        location = Memory.StreetCorner;
+                        break;
+                    case "LawyerOffice":
+                        location = Memory.LawyerOffice;
+                        break;
+                    case "Nightclub":
+                        location = Memory.Nightclub;
+                        break;
+                    case "VoidBase":
+                        location = Memory.VoidBase;
+                        break;
+                    case "SecretLaboratory":
+                        location = Memory.SecretLaboratory;
+                        break;
+                    default:
+                        location = Memory.None;
+                        break;
+                }
+                InvestigationManager.Instance.AddPuzzlePrefab(myDisconnectedPlayer.puzzles[i], location);
+            }
+            Debug.Log(myDisconnectedPlayer.character + "Disconnected Player Status Revised");
+            Debug.Log(myDisconnectedPlayer.clues.Length + "Clues Revised");
+            Debug.Log(myDisconnectedPlayer.puzzles.Length + "Puzzles Revised");
+            myDisconnectedPlayer = new DisconnectedPlayer();
         }
     }
     
     public void SaveDisconnectedPlayerStatus()
     {
-        pv.RPC("RPCSaveDisconnectedPlayerStatus", RpcTarget.MasterClient);
+        string[] clueNames = BaseUIManager.Instance.inBaseClueBtns.Keys.ToArray();
+        string[] clueLocations = new string[clueNames.Length];
+        for(int i = 0; i < clueNames.Length; i++)
+        {
+            clueLocations[i] = BaseUIManager.Instance.inBaseClueBtns[clueNames[i]].GetComponent<ClueBtn>().collectedAt.ToString();
+        }
+        string[] puzzleNames = BaseUIManager.Instance.inBasePuzzleBtns.Keys.ToArray();
+        string[] puzzleLocations = new string[puzzleNames.Length];
+        for(int i = 0; i < puzzleNames.Length; i++)
+        {
+            puzzleLocations[i] = BaseUIManager.Instance.inBasePuzzleBtns[puzzleNames[i]].GetComponent<PuzzleBtn>().collectedAt.ToString();
+        }
+        clueNames = clueNames.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+        clueLocations = clueLocations.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+        puzzleNames = puzzleNames.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+        puzzleLocations = puzzleLocations.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+        object[] data = new object[] { playerController.Instance.playerJob, clueNames, clueLocations, puzzleNames, puzzleLocations};
+        PhotonNetwork.RaiseEvent(SaveDisconnectedPlayerStatusEvent, data, new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient }, SendOptions.SendUnreliable);
+        
+    }
+
+    public void RequestDisconnectedPlayerStatus(string character)
+    {
+        int actorNumber = PhotonNetwork.LocalPlayer.ActorNumber;
+        pv.RPC(nameof(RequestDisconnectedPlayerStatusRPC), RpcTarget.MasterClient, character, actorNumber);
     }
     [PunRPC]
-    private void RPCSaveDisconnectedPlayerStatus()
-    {
-        if(!PhotonNetwork.IsMasterClient)
-            return;
-        Debug.Log(playerController.Instance.playerJob + " is saved");
-        DisconnectHandler.Instance.AddDisconnectedPlayer(playerController.Instance.playerJob, BaseUIManager.Instance.inBaseClueBtns, BaseUIManager.Instance.inBasePuzzleBtns);
-    }
-    public void RefreshDisconnectedPlayer(string character)
+    private void RequestDisconnectedPlayerStatusRPC(string character, int actorNumber)
     {
         foreach(DisconnectedPlayer dp in disconnectedPlayers)
         {
-            if(character == dp.character)
+            if(dp.character == character)
             {
-                foreach(KeyValuePair<string, GameObject> clue in dp.clues)
-                {
-                    InvestigationManager.Instance.AddCluePrefab(clue.Key, clue.Value.GetComponent<ClueBtn>().collectedAt);
-                }
-                foreach(KeyValuePair<string, GameObject> puzzle in dp.puzzles)
-                {
-                    InvestigationManager.Instance.AddPuzzlePrefab(puzzle.Key, puzzle.Value.GetComponent<PuzzleBtn>().collectedAt);
-                }
+                object[] data = new object[] { dp.character, dp.clues, dp.clueLocation, dp.puzzles, dp.puzzleLocation };
+                PhotonNetwork.RaiseEvent(SendDisconnectedPlayerStatusEvent, data, new RaiseEventOptions { TargetActors = new int[] {actorNumber} }, SendOptions.SendUnreliable);
+                disconnectedPlayers.Remove(dp);
+                return;
             }
         }
     }

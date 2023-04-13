@@ -15,7 +15,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [SerializeField]
     private GameObject PCMap;
 
-    private List<PCMapRoom> PCMapRooms = new List<PCMapRoom>();
+    public List<PCMapRoom> PCMapRooms = new List<PCMapRoom>();
 
     //New map movement
     [SerializeField]
@@ -74,7 +74,10 @@ public class InvestigationManager : Singleton<InvestigationManager>
         setScene.Add("gameRunning", true);
         PhotonNetwork.CurrentRoom.SetCustomProperties(setScene);
         playerController.Instance.currentRoom = startRoom;
+        playerController.Instance.currentRoomName = startRoom.roomName;
         playerController.Instance.currentMemory = startMemory;
+        playerController.Instance.currentMemoryName = startMemory.GetComponent<MemoryInfo>().memory.ToString();
+        playerController.Instance.SyncRoomMemory(startRoom.roomName, startMemory.GetComponent<MemoryInfo>().memory.ToString());
     }
     private void Start()
     {
@@ -124,10 +127,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
     {
         
         Rooms oldRoom = playerController.Instance.currentRoom;
+        playerController.Instance.SyncRoomMemory(room.name, playerController.Instance.currentMemoryName);
         //Update PC Map room player count
         Memory tempMemory = playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory;
-        pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, tempMemory, oldRoom.name, tempMemory, room.name);
-
+        // pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, tempMemory, oldRoom.name, tempMemory, room.name);
+        pv.RPC(nameof(MasterPCMapPLayerCount), RpcTarget.MasterClient);
         //Update player's current room
         playerController.Instance.currentRoom = room;
         StartCoroutine(RoomCoroutine(oldRoom, room, 0.5f));
@@ -208,6 +212,31 @@ public class InvestigationManager : Singleton<InvestigationManager>
             }
         }
     }
+    [PunRPC]
+    public void MasterPCMapPLayerCount()
+    {
+        playerController[] players = new playerController[6];
+        players = GameObject.FindObjectsOfType<playerController>();
+        foreach(PCMapRoom r in PCMapRooms)
+        {
+            r.PlayerCount = 0;
+            foreach(playerController p in players)
+            {
+                if(p.playerJob == "Host")
+                    continue;
+                if(p.currentMemoryName == r.memory.ToString() && p.currentRoomName == r.roomName)
+                {
+                    r.PlayerCount ++;
+                    Debug.Log(r.roomName + " has "+ r.PlayerCount);
+                }
+            }
+            r.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
+            if(r.PlayerCount > 0)
+                r.transform.Find("Number").gameObject.SetActive(true);
+            else
+                r.transform.Find("Number").gameObject.SetActive(false);
+        }
+    }
 
     public void PCMapInitialize()
     {
@@ -242,10 +271,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
         tempClue.transform.localScale = new Vector3(1f, 1f, 1f);
         BaseUIManager.Instance.AddClueBtn(clueID, tempClue);
 
-        playerController.Instance.Change_currentAP(-1);
         ResourceManager.Instance.allClueCount --;
         pv.RPC(nameof(SyncClueCount), RpcTarget.All, ResourceManager.Instance.allClueCount);
-
+        DisconnectHandler.Instance.SaveDisconnectedPlayerStatus();
         tempClue = null;
     }
     [PunRPC]
@@ -275,7 +303,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
         inBasePuzzleBtns.Add(puzzleName, tempPuzzle);
         BaseUIManager.Instance.AddPuzzleBtns(puzzleName, tempPuzzle);
 
-        playerController.Instance.Change_currentAP(-1);
+        
+        DisconnectHandler.Instance.SaveDisconnectedPlayerStatus();
         tempPuzzle = null;
     }
 
@@ -285,6 +314,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
         inBasePuzzleBtns[puzzleName].GetComponent<PuzzleBtn>().ShowSolvedMark();
     }
     public void UnlockDoor(Memory memory, string targetRoom)
+    {
+        pv.RPC(nameof(MasterUnlockDoor), RpcTarget.MasterClient, memory, targetRoom);
+    }
+    [PunRPC]
+    public void MasterUnlockDoor(Memory memory, string targetRoom)
     {
         pv.RPC(nameof(UnlockDoorSynchronize), RpcTarget.AllBufferedViaServer, memory, targetRoom);
     }
@@ -392,6 +426,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     public void UnlockTeleport(Memory fromMemory, Memory toMemory)
     {
+        pv.RPC(nameof(MasterUnlockRelatedTeleport), RpcTarget.MasterClient, fromMemory, toMemory);
+    }
+    [PunRPC]
+    public void MasterUnlockRelatedTeleport(Memory fromMemory, Memory toMemory)
+    {
         pv.RPC(nameof(UnlockRelatedTeleport), RpcTarget.AllBufferedViaServer, fromMemory, toMemory);
     }
 
@@ -497,7 +536,10 @@ public class InvestigationManager : Singleton<InvestigationManager>
             {
                 Rooms originalRoom = playerController.Instance.currentRoom;
                 playerController.Instance.currentRoom = room;
-                pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, fromMemory, originalRoom.name, toMemory, room.name);
+                playerController.Instance.SyncRoomMemory(room.name, toMemory.ToString());
+                // pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, fromMemory, originalRoom.name, toMemory, room.name);
+                pv.RPC(nameof(MasterPCMapPLayerCount), RpcTarget.MasterClient);
+                
                 break;
             }
         }
@@ -592,6 +634,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
     // functions to synchronize the item count of one interest points
     public void SynchronizeInterestPoint(string ipName, int itemNum)
     {
+        pv.RPC(nameof(MasterUpdateGivenIPCNT), RpcTarget.MasterClient, ipName, itemNum);
+    }
+    [PunRPC]
+    private void MasterUpdateGivenIPCNT(string ipName, int itemNum)
+    {
         pv.RPC(nameof(UpdateGivenIPCNT), RpcTarget.AllBufferedViaServer, ipName, itemNum);
     }
 
@@ -617,6 +664,11 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     // functions to synchronize whether interest points are active or not depends on if there are items left
     public void SynchronizeInterestPointStatus(string ipName, Memory memory)
+    {
+        pv.RPC(nameof(MasterUpdateIPFullyCollected), RpcTarget.MasterClient, ipName, memory);
+    }
+    [PunRPC]
+    private void MasterUpdateIPFullyCollected(string ipName, Memory memory)
     {
         pv.RPC(nameof(UpdateIPFullyCollected), RpcTarget.AllBufferedViaServer, ipName, memory);
     }

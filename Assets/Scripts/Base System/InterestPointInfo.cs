@@ -89,12 +89,14 @@ public class InterestPointInfo : MonoBehaviour
             {
                 BaseUIManager.Instance.SpawnNotificationPanel("Clue Found!", "You have found a clue!", 1, 3f);
                 InvestigationManager.Instance.AddCluePrefab(collectableList[i].id, memory);
+                playerController.Instance.Change_currentAP(-1);
                 BaseUIManager.Instance.CollectedThisRoundUI(collectableList[i].type, ResourceManager.Instance.GetClueInfoTitle(collectableList[i].id));
             }
             else if (collectableList[i].type == ipType.Puzzle)
             {
                 BaseUIManager.Instance.SpawnNotificationPanel("Puzzle Found!", "You have found a puzzle!", 1, 3f);
                 InvestigationManager.Instance.AddPuzzlePrefab(collectableList[i].id, memory);
+                playerController.Instance.Change_currentAP(-1);
                 BaseUIManager.Instance.CollectedThisRoundUI(collectableList[i].type, collectableList[i].id);
             }
                 

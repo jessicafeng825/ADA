@@ -28,12 +28,13 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
     public int maxAP;
     public int currentAP;
     public Rooms currentRoom;
+    public string currentRoomName;
     public Transform currentMemory;
+    public string currentMemoryName;
     private PhotonView pv;
 
     // Share Clue Part
     public int currentClueSharedNum = 0;
-
     private void Awake()
     {
         //Only the local player will be the instance instead of the last player entering the scene
@@ -44,6 +45,10 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
     void Start()
     {
         pv = GetComponent<PhotonView>();
+        if(PhotonNetwork.IsMasterClient)
+        {
+            playerJob = "Host";
+        }
         DontDestroyOnLoad(this);
         accusedPlayer = "None";
 
@@ -52,7 +57,7 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
     {
         pv.RPC(nameof(JoinAfterJobSelectRPC), RpcTarget.All, playerJob, playerName, playerBackground, skillText, alibiText, secretText, playerJob);
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -173,4 +178,16 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
     {
         return PhotonNetwork.IsMasterClient;
     }
+    public void SyncRoomMemory(string roomName, string memoryName)
+    {
+        pv.RPC(nameof(SyncRoomMemoryRPC), RpcTarget.All, roomName, memoryName);
+    }
+
+    [PunRPC]
+    public void SyncRoomMemoryRPC(string roomName, string memoryName)
+    {
+        currentRoomName = roomName;
+        currentMemoryName = memoryName;
+    }
+
 }
