@@ -29,8 +29,14 @@ public class Launcher : MonoBehaviourPunCallbacks {
 
   private void Start() {
     SetName();
-    Debug.Log("Connecting to master...");
-    PhotonNetwork.ConnectUsingSettings();
+        //MenuManager.Instance.OpenMenu("start");
+        ConnectToServer();
+  }
+
+    public void ConnectToServer()
+    {
+        Debug.Log("Connecting to master...");
+        PhotonNetwork.ConnectUsingSettings();
         for (int i = 0; i < unableMenuList.Length; i++)
         {
             if (unableMenuList[i].open)
@@ -39,9 +45,9 @@ public class Launcher : MonoBehaviourPunCallbacks {
             }
         }
         //SetName();
-    MenuManager.Instance.OpenMenu("loading");
-    PhotonNetwork.KeepAliveInBackground = 300;
-  }
+        MenuManager.Instance.OpenMenu("loading");
+        PhotonNetwork.KeepAliveInBackground = 300;
+    }
 
   public override void OnConnectedToMaster() {
     Debug.Log("Connected to master!");
