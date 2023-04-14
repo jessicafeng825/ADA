@@ -30,8 +30,19 @@ public class Launcher : MonoBehaviourPunCallbacks {
   private void Start() {
         SetName();
         MenuManager.Instance.OpenMenu("start");
+        ConnectToServer();
         //MenuManager.Instance.OpenMenu("start");
   }
+
+    public void StartGameWithPhone()
+    {
+        MenuManager.Instance.OpenMenu("phone_authorize");
+    }
+
+    public void StartGameWithPC()
+    {
+        MenuManager.Instance.OpenMenu("pc_host");
+    }
 
     public void ConnectToServer()
     {
@@ -51,7 +62,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
 
   public override void OnConnectedToMaster() {
     Debug.Log("Connected to master!");
-    MenuManager.Instance.OpenMenu("title");
+    MenuManager.Instance.OpenMenu("start");
     // PhotonNetwork.JoinLobby();
     // Automatically load scene for all clients when the host loads a scene
     PhotonNetwork.AutomaticallySyncScene = true;

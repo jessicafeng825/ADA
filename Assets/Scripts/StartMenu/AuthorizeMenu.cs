@@ -39,7 +39,8 @@ public class AuthorizeMenu : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GetComponent<Animator>().Play("FadeOut");
         yield return new WaitForSeconds(1f);
-        launcher.ConnectToServer();
+        //launcher.ConnectToServer();
+        // show room availability
     }
 
     private void ShowPlayerWelcome()
