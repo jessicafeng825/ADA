@@ -7,9 +7,13 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour {
   public static MenuManager Instance;
   public bool speedUpVid;
-  [SerializeField] Menu[] menus;
+
+  [SerializeField] 
+  Menu[] menus;
+
   [SerializeField]
   private TextMeshProUGUI versionText;
+
 
   private void Awake() {
     Instance = this;
@@ -45,4 +49,5 @@ public class MenuManager : MonoBehaviour {
       speedUpVid = !speedUpVid;
       check.gameObject.SetActive(speedUpVid);
   }
+
 }

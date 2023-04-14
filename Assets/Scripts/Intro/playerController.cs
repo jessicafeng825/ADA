@@ -12,7 +12,7 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
 {
     public static playerController Instance;
 
-    public PlayerManagerForAll.gamestage stageNow = PlayerManagerForAll.gamestage.Intro;//playerstage now
+    public gamestage stageNow = gamestage.Intro;//playerstage now
     [SerializeField] public float playerSpeed = 2.0f;//player icon
     [SerializeField] public string playerJob = "None";//player job
     [SerializeField] public string playerName = "None";//player job
@@ -68,11 +68,11 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
     #region Change Phase
     public void introtoInvest()
     {
-        stageNow = PlayerManagerForAll.gamestage.Investigate;
+        stageNow = gamestage.Investigate;
     }
     public void investtoDicuss()
     {
-        stageNow = PlayerManagerForAll.gamestage.Discussion;
+        stageNow = gamestage.Discussion;
     }
     public void jobSelect(string job,string playername,string playerbackground, string playerskill, string playerAlibi, string playerSecret, string playerimage)
     {
@@ -104,21 +104,21 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
     {
         
     }
-    public void ChangeStage(PlayerManagerForAll.gamestage stage)
+    public void ChangeStage(gamestage stage)
     {
         pv.RPC("SynchronizeStageNow", RpcTarget.All, stage);
     }
-    public void ChangeAllStage(PlayerManagerForAll.gamestage stage)
+    public void ChangeAllStage(gamestage stage)
     {
         pv.RPC("SyncAllStageNow", RpcTarget.All, stage);
     }
     [PunRPC]
-    public void SynchronizeStageNow(PlayerManagerForAll.gamestage stage)
+    public void SynchronizeStageNow(gamestage stage)
     {
         stageNow = stage;
     }
     [PunRPC]
-    public void SyncAllStageNow(PlayerManagerForAll.gamestage stage)
+    public void SyncAllStageNow(gamestage stage)
     {
         Instance.stageNow = stage;
     }

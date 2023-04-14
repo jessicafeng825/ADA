@@ -1411,7 +1411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 27236818}
   m_Layer: 0
-  m_Name: TimerPanel
+  m_Name: PCTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9385,13 +9385,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PCMapPanel: {fileID: 1772707165}
   DetectiveBoardPanel: {fileID: 70480850}
-  timerPanel: {fileID: 27236817}
+  PCTimerPanel: {fileID: 27236817}
   playerTimerPanel: {fileID: 919474488}
   playerPanel: {fileID: 1335382521}
   transtitionPanel: {fileID: 1149933312}
   investigateTime: 600
   discussTime: 600
   accuseTime: 600
+  publicStageNow: 0
 --- !u!4 &169679915
 Transform:
   m_ObjectHideFlags: 0
@@ -25790,7 +25791,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 66.45
+  m_fontSize: 66.5
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -45530,7 +45531,7 @@ GameObject:
   - component: {fileID: 919474489}
   - component: {fileID: 919474490}
   m_Layer: 0
-  m_Name: Timer
+  m_Name: PlayerTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

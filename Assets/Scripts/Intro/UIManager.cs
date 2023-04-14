@@ -384,7 +384,7 @@ public class UIManager : MonoBehaviour
     private void changenextScene()
     {
         //Synchronize stage between players
-        playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Investigate);
+        playerController.Instance.ChangeStage(gamestage.Investigate);
         
         if(PhotonNetwork.IsMasterClient && this.GetComponent<PhotonView>().IsMine)
         {
@@ -395,7 +395,7 @@ public class UIManager : MonoBehaviour
     }
     public void ChangeNextSceneAfter()
     {
-        playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Investigate);
+        playerController.Instance.ChangeStage(gamestage.Investigate);
         PhotonNetwork.LoadLevel(2);
     }
 

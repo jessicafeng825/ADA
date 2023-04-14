@@ -14,8 +14,8 @@ public class TimerManager : MonoBehaviour
     private GameObject DetectiveBoardPanel;
     
     [SerializeField]
-    private GameObject timerPanel;
-    private GameObject TimerTitle;
+    private GameObject PCTimerPanel;
+    private GameObject PCTimerTitle;
     private GameObject EndButton;
     
     [SerializeField]
@@ -41,7 +41,7 @@ public class TimerManager : MonoBehaviour
     private float accuseTime;
     private float currentStageTimer;
     private float gamePhaseTimer;
-    private PlayerManagerForAll.gamestage publicStageNow;
+    public gamestage publicStageNow;
     private bool timeout;
     private PhotonView pv;
     private string time;
@@ -56,7 +56,7 @@ public class TimerManager : MonoBehaviour
     private void Start()
     {
         pv = GetComponent<PhotonView>();
-        publicStageNow = PlayerManagerForAll.gamestage.Investigate;
+        publicStageNow = gamestage.Investigate;
         gamePhaseTimer = investigateTime;
 
         investigationPanel = playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").gameObject;
@@ -67,11 +67,13 @@ public class TimerManager : MonoBehaviour
         cluePanel = playerPanel.transform.Find("ClueMenu").gameObject;
         puzzlePanel = playerPanel.transform.Find("PuzzleMenu").gameObject;
 
-        TimerTitle = timerPanel.transform.Find("TimerTitle").gameObject;
-        EndButton = timerPanel.transform.Find("EndButton").gameObject;
+        PCTimerTitle = PCTimerPanel.transform.Find("TimerTitle").gameObject;
+        EndButton = PCTimerPanel.transform.Find("EndButton").gameObject;
 
         if(PhotonNetwork.IsMasterClient)
-            SwitchStage(PlayerManagerForAll.gamestage.Investigate);
+            SwitchStage(gamestage.Investigate);
+
+        
     }
     
 
@@ -83,15 +85,15 @@ public class TimerManager : MonoBehaviour
         }
         if(gamePhaseTimer <= 0 && !timeout)
         {
-            if(publicStageNow == PlayerManagerForAll.gamestage.Investigate)
+            if(publicStageNow == gamestage.Investigate)
             {
-                SwitchStage(PlayerManagerForAll.gamestage.Discussion);
+                SwitchStage(gamestage.Discussion);
             }
-            else if(publicStageNow == PlayerManagerForAll.gamestage.Discussion)
+            else if(publicStageNow == gamestage.Discussion)
             {
-                SwitchStage(PlayerManagerForAll.gamestage.Investigate);
+                SwitchStage(gamestage.Investigate);
             }
-            else if(publicStageNow == PlayerManagerForAll.gamestage.Accusation)
+            else if(publicStageNow == gamestage.Accusation)
             {
                 Debug.Log("Accusation Time Up");
             }
@@ -99,7 +101,7 @@ public class TimerManager : MonoBehaviour
         else if(gamePhaseTimer > 0 && !timeout)
         {
             time = Mathf.Floor(gamePhaseTimer/60).ToString("00") + ":" + Mathf.Floor(gamePhaseTimer%60).ToString("00");
-            timerPanel.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = time;
+            PCTimerPanel.transform.Find("TimerTitle").Find("TimeText (TMP)").GetComponent<TextMeshProUGUI>().text = time;
             gamePhaseTimer -= Time.deltaTime;
             if(time != lastUpdateTime)
             {
@@ -109,56 +111,75 @@ public class TimerManager : MonoBehaviour
             }
         }
     }
-    private void PublicStageChange(PlayerManagerForAll.gamestage nextStage)
+    private void PublicStageChange(gamestage nextStage)
     {
         switch(nextStage)
         {
-            case PlayerManagerForAll.gamestage.Investigate:
+            case gamestage.Investigate:
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, true);
                 pv.RPC(nameof(ResetClueSharedLimitSynchronize), RpcTarget.All);
-                TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
-                //Open and close Map and detective board
-                PCMapPanel.SetActive(true);
-                DetectiveBoardPanel.SetActive(false);
                 currentStageTimer = investigateTime;
                 break;
-            case PlayerManagerForAll.gamestage.Discussion:
+            case gamestage.Discussion:
                 pv.RPC(nameof(InvestigationManagerSwitch), RpcTarget.All, false);
-                TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
-                //Open and close Map and detective board
-                PCMapPanel.SetActive(false);
-                DetectiveBoardPanel.SetActive(true);
                 currentStageTimer = discussTime;
                 break;
-            case PlayerManagerForAll.gamestage.Accusation:
+            case gamestage.Accusation:
                 pv.RPC(nameof(AccusationSwitch), RpcTarget.All);
-                TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Accusation";
-                //Open and close Map and detective board
-                PCMapPanel.SetActive(false);
-                DetectiveBoardPanel.SetActive(true);
                 currentStageTimer = accuseTime;
                 break;
         }
-        pv.RPC(nameof(ChangeAllPlayerStage), RpcTarget.All, nextStage);
+        pv.RPC(nameof(ChangeAllPlayerStage), RpcTarget.AllBufferedViaServer, nextStage);
         publicStageNow = nextStage;
         
         gamePhaseTimer = currentStageTimer;
     }
-    public void SkipStageButton()
+    public void LateJoinSwitchStage(gamestage nextStage)
     {
-        timeout = true;
-        TimerTitle.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
-        switch (publicStageNow)
+        switch(nextStage)
         {
-            case PlayerManagerForAll.gamestage.Investigate:
-                SwitchStage(PlayerManagerForAll.gamestage.Discussion);
+            case gamestage.Investigate:
+                InvestigationManager.Instance.gameObject.SetActive(true);
+                playerPanel.transform.Find("MainMenu").gameObject.SetActive(true);
+                investigationPanel.gameObject.SetActive(true);
+                discussionPanel.gameObject.SetActive(false);
+                playerController.Instance.currentClueSharedNum = 0;
+                playerController.Instance.ChangeStage(gamestage.Investigate);
+                CloseAllMenuonSwitch();
                 break;
-            case PlayerManagerForAll.gamestage.Discussion:
-                SwitchStage(PlayerManagerForAll.gamestage.Investigate);
+            case gamestage.Discussion:
+                InvestigationManager.Instance.gameObject.SetActive(false);
+                playerPanel.transform.Find("MainMenu").gameObject.SetActive(true);
+                investigationPanel.gameObject.SetActive(false);
+                discussionPanel.gameObject.SetActive(true);
+                playerController.Instance.ChangeStage(gamestage.Discussion);
+                CloseAllMenuonSwitch();
+                break;
+            case gamestage.Accusation:
+                InvestigationManager.Instance.gameObject.SetActive(false);
+                playerPanel.transform.Find("MainMenu").gameObject.SetActive(true);
+                investigationPanel.gameObject.SetActive(false);
+                discussionPanel.gameObject.SetActive(false);
+                playerController.Instance.ChangeStage(gamestage.Accusation);
+                accusationPanel.SetActive(true);
                 break;
         }
     }
-    public void SwitchStage(PlayerManagerForAll.gamestage nextStage)
+    public void SkipStageButton()
+    {
+        timeout = true;
+        PCTimerTitle.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
+        switch (publicStageNow)
+        {
+            case gamestage.Investigate:
+                SwitchStage(gamestage.Discussion);
+                break;
+            case gamestage.Discussion:
+                SwitchStage(gamestage.Investigate);
+                break;
+        }
+    }
+    public void SwitchStage(gamestage nextStage)
     {
         SoundManager.Instance.PlayBGM(nextStage.ToString());
         //SoundManager.Instance.PlaySoundEffect("SFX_EnterMemory");
@@ -205,10 +226,10 @@ public class TimerManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void ChangeAllPlayerStage(PlayerManagerForAll.gamestage stage)
+    private void ChangeAllPlayerStage(gamestage stage)
     {
         GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
-
+        publicStageNow = stage;
         foreach(var player in playerList)
         {
             player.GetComponent<playerController>().stageNow = stage;
@@ -216,7 +237,7 @@ public class TimerManager : MonoBehaviour
     }
 
     [PunRPC]
-    public void SwitchStageVisualRPC(float sec, PlayerManagerForAll.gamestage nextStage)
+    public void SwitchStageVisualRPC(float sec, gamestage nextStage)
     {
         if(NotificationScript.Instance != null)
             Destroy(NotificationScript.Instance.gameObject);
@@ -232,15 +253,16 @@ public class TimerManager : MonoBehaviour
     #endregion
 
     
-    IEnumerator SwitchStageVisualCoroutine(float sec, PlayerManagerForAll.gamestage nextStage)
+    IEnumerator SwitchStageVisualCoroutine(float sec, gamestage nextStage)
     {
+        PCTimerTitle.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
         transtitionPanel.gameObject.SetActive(true);
         switch(nextStage)
         {
-            case PlayerManagerForAll.gamestage.Investigate:
+            case gamestage.Investigate:
                 roundCount++;
                 transtitionPanel.transform.Find("Round").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Round " + roundCount;
-                TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
+                PCTimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
                 if(!PhotonNetwork.IsMasterClient)
                 {
                     string tempTitle;
@@ -256,45 +278,48 @@ public class TimerManager : MonoBehaviour
                 } 
                 else
                     transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Investigation";
+                
+                //Open and close Map and detective board
+                PCMapPanel.SetActive(true);
+                DetectiveBoardPanel.SetActive(false);
+
+                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Investigation";
                 break;
-            case PlayerManagerForAll.gamestage.Discussion:
+            case gamestage.Discussion:
                 BaseUIManager.Instance.CloseCollectedUI();
-                TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
+                PCTimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
                 transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "<b>Discussion</b>";
+
+                //Open and close Map and detective board
+                PCMapPanel.SetActive(false);
+                DetectiveBoardPanel.SetActive(true);
+
+                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Discussion";
                 break;
-            case PlayerManagerForAll.gamestage.Accusation:
+            case gamestage.Accusation:
                 BaseUIManager.Instance.CloseCollectedUI();
                 transtitionPanel.transform.Find("Round").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Final Round";
-                TimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Accusation";
+                PCTimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Accusation";
                 transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "<b>Accusation</b>";
+                
+                //Open and close Map and detective board
+                PCMapPanel.SetActive(false);
+                DetectiveBoardPanel.SetActive(true);
+                
+                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Accusation";
                 break;
         }
         yield return new WaitForSeconds(sec);
         transtitionPanel.gameObject.SetActive(false);
 
     }
-    IEnumerator TimerPauseCoroutine(float sec, PlayerManagerForAll.gamestage nextStage)
+    IEnumerator TimerPauseCoroutine(float sec, gamestage nextStage)
     {
         timeout = true;
-        //Change button text on PC
-        switch(nextStage)
-        {
-            case PlayerManagerForAll.gamestage.Investigate:
-                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Investigation";
-                break;
-            case PlayerManagerForAll.gamestage.Discussion:
-                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Discussion";
-                break;
-            case PlayerManagerForAll.gamestage.Accusation:
-                EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Accusation";
-                break;
-            default:
-                break;
-        }
-        TimerTitle.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
+        PCTimerTitle.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
         EndButton.gameObject.SetActive(false);
         yield return new WaitForSeconds(sec);
-        if(nextStage != PlayerManagerForAll.gamestage.Accusation)
+        if(nextStage != gamestage.Accusation)
             EndButton.gameObject.SetActive(true);
         PublicStageChange(nextStage);
         timeout = false;

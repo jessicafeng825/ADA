@@ -30,6 +30,7 @@ public class JoinAfterChooseCharacter : MonoBehaviour
         playerController.Instance.JoinAfterJobSelect(job);
         BaseUIManager.Instance.InitializeCharacterUI();
         InvestigationManager.Instance.GetPlayerInitialAP();
+        TimerManager.Instance.LateJoinSwitchStage(TimerManager.Instance.publicStageNow);
         gameObject.SetActive(false);
 
     }

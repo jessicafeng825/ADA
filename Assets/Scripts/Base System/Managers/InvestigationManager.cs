@@ -106,9 +106,9 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     private void Update()
     {
-        if (playerController.Instance.currentAP == 0 && playerController.Instance.stageNow == PlayerManagerForAll.gamestage.Investigate)
+        if (playerController.Instance.currentAP == 0 && playerController.Instance.stageNow == gamestage.Investigate)
         {
-            playerController.Instance.ChangeStage(PlayerManagerForAll.gamestage.Discussion);
+            playerController.Instance.ChangeStage(gamestage.Discussion);
             if(PhotonNetwork.IsMasterClient)
                 return;
             BaseUIManager.Instance.SpawnNotificationPanel("0AP Remained", "Waiting for others to finish investigation...", 1, 2f);
@@ -554,7 +554,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         StartCoroutine(WaitSecondForTeleport(1f));
         teleportBtnList[0].gameObject.SetActive(true);
         if(PhotonNetwork.IsMasterClient)
-            TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Discussion);
+            TimerManager.Instance.SwitchStage(gamestage.Discussion);
     }
     IEnumerator WaitSecondForTeleport(float sec)
     {
@@ -612,7 +612,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
         foreach(var player in playerList)
         {
-            if (player.GetComponent<playerController>().stageNow != PlayerManagerForAll.gamestage.Discussion)
+            if (player.GetComponent<playerController>().stageNow != gamestage.Discussion)
             {
                 return false;
             }
@@ -687,7 +687,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         else if(allInterestPointCount == 0 && PhotonNetwork.IsMasterClient)
         {
             Debug.Log("All interest points are collected");
-            TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Accusation);
+            TimerManager.Instance.SwitchStage(gamestage.Accusation);
         }
     }
 
@@ -715,7 +715,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [PunRPC]
     public void MasterChangeStage()
     {
-        TimerManager.Instance.SwitchStage(PlayerManagerForAll.gamestage.Discussion);
+        TimerManager.Instance.SwitchStage(gamestage.Discussion);
     }
 
     IEnumerator WaitSecondForChangeStage(float sec)

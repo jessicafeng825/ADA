@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+public enum gamestage
+{
+    Intro,
+    Investigate,
+    Discussion,
+    Accusation
+};
+
 public class PlayerManagerForAll : MonoBehaviour
 {
-    public enum gamestage
-    {
-        Intro,
-        Investigate,
-        Discussion,
-        Accusation
-    };
+    
     
     private PhotonView pv;
 
