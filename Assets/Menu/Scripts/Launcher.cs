@@ -28,9 +28,9 @@ public class Launcher : MonoBehaviourPunCallbacks {
     }
 
   private void Start() {
-    SetName();
+        SetName();
+        MenuManager.Instance.OpenMenu("start");
         //MenuManager.Instance.OpenMenu("start");
-        ConnectToServer();
   }
 
     public void ConnectToServer()
@@ -45,7 +45,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
             }
         }
         //SetName();
-        MenuManager.Instance.OpenMenu("loading");
+        //MenuManager.Instance.OpenMenu("loading");
         PhotonNetwork.KeepAliveInBackground = 300;
     }
 
@@ -196,4 +196,9 @@ public class Launcher : MonoBehaviourPunCallbacks {
   public void QuitGame() {
     Application.Quit();
   }
+
+    public string GetPlayerNickname()
+    {
+        return PhotonNetwork.NickName;
+    }
 }
