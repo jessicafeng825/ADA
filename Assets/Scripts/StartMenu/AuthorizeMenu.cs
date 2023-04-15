@@ -10,7 +10,7 @@ public class AuthorizeMenu : MonoBehaviour
     [SerializeField]
     private TMP_Text loadingText, welcomeText;
     [SerializeField]
-    private GameObject dataFlowPanel, welcomePanel, loadingEffect;
+    private GameObject dataFlowEffect;
     [SerializeField]
     private Launcher launcher;
 
@@ -24,7 +24,7 @@ public class AuthorizeMenu : MonoBehaviour
         if (!effectPlayed)
         {
             effectPlayed = true;
-            loadingEffect.SetActive(true);
+            dataFlowEffect.SetActive(true);
             StartCoroutine(AuthorizeCheck());
         }
     }
@@ -37,22 +37,16 @@ public class AuthorizeMenu : MonoBehaviour
         yield return StartCoroutine(TypingSentence("User Authenticated", loadingText));
         yield return StartCoroutine(TypingSentence("Authorized", loadingText));
         yield return new WaitForSeconds(0.5f);
-        //LoadingTXTFadeOut();
-        dataFlowPanel.GetComponent<Animator>().Play("FadeOut");
+        loadingText.GetComponent<Animator>().Play("FadeOut");
         yield return new WaitForSeconds(1f);
-        ShowPlayerWelcome();
+        welcomeText.GetComponent<Animator>().Play("FadeIn");
+        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(WelcomeMessage());
         yield return new WaitForSeconds(2f);
         GetComponent<Animator>().Play("FadeOut");
         yield return new WaitForSeconds(1f);
         MenuManager.Instance.OpenMenu("find_room");
         // show room availability
-    }
-
-    private void ShowPlayerWelcome()
-    {
-        welcomePanel.SetActive(true);
-        welcomePanel.GetComponent<Animator>().Play("FadeIn");
-        StartCoroutine(WelcomeMessage());
     }
 
     private IEnumerator WelcomeMessage()
