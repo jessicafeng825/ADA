@@ -8332,9 +8332,12 @@ MonoBehaviour:
     never act on it, but you want to keep it to yourself just the same. Try to keep
     the other players from discovering this.\r<br>\nDo not reveal your alibi unless
     confronted.\r"
-  secret: "Your darkest impulses want <b>Bishop Kaine to suffer for taking away your
-    family.>/b> You\u2019d never act on it, but you want to keep it to yourself just
-    the same. Try to keep the other players from discovering this."
+  secret: "<b>Bishop Kaine took away your family.</b> It\u2019s public knowledge
+    you were fired, but you\u2019re deeply ashamed of <b>Leila\u2019s affair with
+    Bishop and your divorce.</b> Your darkest impulses want Bishop to suffer for
+    taking away your family. You\u2019d never act on them, but they certainly don\u2019t
+    make you look good. <b>Try to keep others from discovering anything about your
+    romantic life. </b>"
   isselected: 0
   button: {fileID: 5760854174476639260}
 --- !u!1 &2380736430029716686
@@ -11042,8 +11045,11 @@ MonoBehaviour:
     to keep the others from figuring out that you\u2019re a blackmailer. Your livelihood
     relies on your good reputation, after all. \r\n\r<br>\nDo not reveal your alibi
     unless confronted. \r"
-  secret: "Try to keep the others from figuring out that you\u2019re a <b>blackmailer.</b>
-    Your livelihood relies on your good reputation, after all. "
+  secret: "You deal in secrets that could get you killed all the time. But every
+    so often, a secret comes by that could take away your livelihood, or even send
+    you to prison. <b>You blackmailed Bishop Kaine</b>, and unfortunately, that doesn\u2019t
+    look good for the murder investigation. <b>Try to keep the others from discovering
+    you\u2019re a blackmailer</b>. "
   isselected: 0
   button: {fileID: 7803661138046236283}
 --- !u!1 &3170304738158386779
@@ -12175,8 +12181,12 @@ MonoBehaviour:
     Secret</u></b><br>\nTry to keep the others from discovering your breaking and
     entering. If you go to jail, who will take care of the dogs?\r\n\r\nDo not reveal
     your alibi unless confronted.\r"
-  secret: Try to keep the others from discovering your <b>breaking and entering.</b>
-    If you go to jail, who will take care of the dogs?
+  secret: "<b>Nobody\u2019s ever found out when you sneak into houses</b>. People
+    go to a lot of trouble to lock up their stuff, and they care way more about that
+    than the stuff you borrow from your pockets. Since you\u2019ve broken into that
+    big house before, the one where Ava was, this could look bad. If you go to jail,
+    who will take care of the dogs? <b>Try to keep others from discovering your breaking
+    and entering. </b>"
   isselected: 0
   button: {fileID: 3574057149520424826}
 --- !u!1 &3457002577847508245
@@ -15448,52 +15458,53 @@ MonoBehaviour:
   skilltext: "<b><u>Subterfuge</u></b> <br><br> \n\u201CThere are all kinds of rules
     around lying in law enforcement. No such rules for private security. <b>You\u2019re
     have one extra action points to gather more information and hide them \r</b>.\u201D"
-  alibitext: "<b>Do not reveal this to your fellow investigators</b>.\r\n<br>\nYou
-    were working a double that night. It was all quiet until you were nearly at the
-    shift change, when you saw Ava Kaine coming in through the front gates. She hadn\u2019t
-    been there in years, so you had to confront her. She said she was there for some
-    old data chips in her childhood bedroom. She looked worried, but earnest, so
-    you let her through. \r\n\r<br>\nAt the shift change, you got re-stationed inside,
-    in the security room watching the monitors. You noticed one of the security cameras
-    was malfunctioning. It was just looping the same video over and over again, with
-    the same dust particle traveling continuously across the screen. It was in the
-    R&D lab that held all the MemTech\r\n\r<br>\r\nOn that fateful night, you were
-    monitoring the Kaine Manor which had a laboratory underneath for Kaine Industries
-    top secret R&D department. It had been all quiet until you saw Bishop Kaine\u2019s
-    estranged daughter coming through the front gates. She said she was there for
-    some old data chips she had in her childhood bedroom. She looked earnest, so
-    you let her through. A little while later your shift rotated, placing you in
-    the security room. You noticed something amiss about one of the security cameras,
-    it seemed to be looping the same video, as the same dust particle continuously
-    traversed across the screen. You hit the button to stop all the recording and
-    decided to head down to the location of the buggy camera. You heard a crash down
-    the hall. Running you found Ava plugged into the MemTech seemingly trying to
+  alibitext: "<b>Do not reveal this to your fellow investigators</b>.\r\n<br>\n<b>You
+    were working a double at the Kaine Mansion that night.</b> You spoke to Ava briefly
+    at the gate when she came in to get some stuff from her childhood bedroom. For
+    your second shift, you were inside in the security room, and nothing seemed amiss.
+    You didn\u2019t see her leave but thought that was due to a malfunctioning camera
+    you had to go fix. \r\n\r\nWhen the shifts rotated, you think <b>a group of the
+    Void slipped by</b>, undetected. Ava had let her Void friends in, and they started
+    causing trouble. Now that they had Kaine Industries access, Ava was useless to
+    them. <b>The Void got rid of her.</b> Simple as that. "
+  secret: "<b>YOU ARE THE MURDERER!</b>\n\n<b>Here's how it happened.\r</b>\n\r\nYou
+    were working a double that night at the mansion. It was all quiet until you were
+    nearly at the shift change, when you saw Ava Kaine coming in through the front
+    gates. She hadn\u2019t been there in years, so you had to confront her. She said
+    she was there for some old data chips in her childhood bedroom. She looked worried,
+    but earnest, <b>so you let her through. \r</b>\n\r\nAt the shift change, you
+    got re-stationed inside, in the security room watching the monitors. You noticed
+    <b>one of the security cameras was malfunctioning</b>. It was just looping the
+    same video over and over again, with the same dust particle traveling continuously
+    across the screen. It was in the <b>secret lab </b>that held all the MemTech
+    development archives\u2013 including the only working prototype. So, you had
+    to go investigate. \r\n\r\nYou heard a crash on your way down. Running into the
+    lab,<b> you found Ava plugged into the MemTech prototype, seemingly trying to
     take down the whole system internally whilst pushing computers and research crashing
-    to the ground. You needed to stop Ava, but there was nothing you could do that
-    wouldn't hurt the tech. \r\n\r\r<br>\nExcept. If the user was dead. \r\n\r\r<br>\nYou\u2019d
-    been trained to shoot to kill, and to protect the technology at all costs. You
-    decided to use the emergency line to contact the Board, the real puppeteers.
-    You used the private line, announcing a Code Red. It was approved, and you shot
-    to kill. \r\n\r<br>\r\nShe went down quickly. You were told to disguise and move
-    the body to cover your tracks. A disfiguring wound would do the trick. You dumped
-    the body in an alley, the same alley where Kaine Industries picked up vagrants
-    for testing. Nobody cared what happened to people there, after all.\r\n\r\r<br>\nYou
-    felt bad for Dr. Kaine, her father, but the Board\u2019s power usurped even his.
-    You weren\u2019t to speak about this, the Board commanded. All your trouble would
-    be in vain if Dr. Kaine figured out what happened. If you could pull this off,
-    you\u2019d get to keep your job, get a nice promotion, maybe even be recognized
-    for helping get MemTech out in the world. All of this was for the best, they
-    said. \r\n\r\r<br>\n<b>The Board told you your alternate alibi. You may share
-    this when confronted by other players.</b>\r\n\r<br>\r\nYou were working a double
-    at the Kaine Mansion that night. You spoke to Ava briefly at the gate when she
-    came in to get some stuff from her childhood bedroom. For your second shift,
-    you were inside in the security room, and nothing seemed amiss. You didn\u2019t
-    see her leave, but thought that was due to a malfunctioning camera you had to
-    go fix. \r\n\r\r<br>\nWhen the shifts rotated, you think a group of the Void
-    slipped by, undetected. Ava had let her Void friends in, and they started causing
-    trouble. Now that they had Kaine Industries access, Ava was useless to them.
-    The Void got rid of her. Simple as that. \r"
-  secret: <b>YOU ARE THE MURDERER!</b>
+    to the ground. </b>You needed to stop Ava, but there was nothing you could do
+    that wouldn't hurt the tech. \r\n\r\n<b>Except. If the user was dead.</b> \r\n\r\nYou\u2019d
+    been trained to shoot to kill, and to protect the technology at all costs. <b>You
+    decided to use the emergency line to contact the Board</b>, the real puppeteers.
+    You made sure the malfunctioning camera wasn\u2019t actually recording, and called
+    the Board, announcing a Code Red. <b>It was approved, and you shot to kill.</b>\r\n\nShe
+    went down quickly. You were told to <b>disguise and move the body to cover your
+    tracks</b>. A disfiguring wound would do the trick. <b>You dumped the body in
+    an alley</b>, the same alley where Kaine Industries picked up vagrants for testing.
+    Nobody cared what happened to people there, after all.\r\n\r\nYou felt bad for
+    Dr. Kaine, her father, but the Board\u2019s power usurped even his. <b>You weren\u2019t
+    to speak about this, the Board commanded.</b> All your trouble would be in vain
+    if Dr. Kaine figured out what happened. If you could pull this off, you\u2019d
+    get to keep your job, get a nice promotion, and maybe even be recognized for
+    helping get MemTech out in the world. All of this was for the best, they said.
+    \n\n\r\nShe went down quickly. You were told to disguise and move the body to
+    cover your tracks. A disfiguring wound would do the trick. You dumped the body
+    in an alley, the same alley where Kaine Industries picked up vagrants for testing.
+    Nobody cared what happened to people there, after all.\r\n\r\nYou felt bad for
+    Dr. Kaine, her father, but the Board\u2019s power usurped even his. You weren\u2019t
+    to speak about this, the Board commanded. All your trouble would be in vain if
+    Dr. Kaine figured out what happened. If you could pull this off, you\u2019d get
+    to keep your job, get a nice promotion, maybe even be recognized for helping
+    get MemTech out in the world. All of this was for the best, they said. "
   isselected: 0
   button: {fileID: 5473770169737741311}
 --- !u!1 &4589547829366828707
@@ -20518,9 +20529,11 @@ MonoBehaviour:
     Secret</u></b><br>\nYou never stop thinking about Evie, but you never talk about
     her, either. Try to keep her case, and your desire for revenge, secret from the
     others. \r\n\r<br>\nDo not reveal your alibi unless confronted.\r"
-  secret: 'You never stop thinking about <b>Evie,</b> but you never talk about her,
-    either. Try to <b>keep her case, and your desire for revenge, secret</b> from
-    the others. '
+  secret: "<b>You never stop thinking about Evie</b>, but you never talk about her,
+    either. Your sister\u2019s case against Kaine Industries and the murky circumstances
+    of her death make you desperately sad on the best of days. And under these circumstances,
+    your desire for revenge just makes you look like a suspect. <b>Try to keep your
+    sister\u2019s story secret from the others. </b>"
   isselected: 0
   button: {fileID: 8950113616821638539}
 --- !u!1 &6133300655259077039
@@ -26566,8 +26579,9 @@ MonoBehaviour:
     later this week. Try to keep the others from finding out about it.\r\n\r<br>\nDo
     not reveal your alibi unless confronted.\r"
   secret: Only the inner circle of the Void knows of <b>the plans to set off a bomb
-    at the protest of Kaine Industries later this week.</b> Try to keep the others
-    from finding out about it.
+    at the protest of Kaine Industries later this week.</b> When Ava found out, she
+    was dead within six hours. Who knows if that's related, but the possibility terrifies
+    you. <b>Try to keep the others from finding out about it.</b>
   isselected: 0
   button: {fileID: 1924501353259511029}
 --- !u!1 &8533094862549937080

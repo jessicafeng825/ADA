@@ -14,6 +14,10 @@ public class AuthorizeMenu : MonoBehaviour
     [SerializeField]
     private Launcher launcher;
 
+    private bool press;
+
+    private bool authorized;
+
     private void OnEnable()
     {
         GetComponent<Animator>().Play("FadeIn");
@@ -27,7 +31,26 @@ public class AuthorizeMenu : MonoBehaviour
             StartCoroutine(AuthorizeCheck());
         }
     }
-
+    public void OnButtonPress()
+    {
+        press = true;
+        if(!authorized)
+            StartCoroutine(AuthorizeCheck());
+    }
+        
+    public void OnButtonRelease()
+    {
+        if(!authorized)
+        {
+            press = false;
+            StopAllCoroutines();
+            loadingText.text = "";
+            loadingEffect.SetActive(false);
+        }
+        else{
+            press = true;
+        }
+    }
     private IEnumerator AuthorizeCheck()
     {
         loadingEffect.SetActive(true);
@@ -36,6 +59,8 @@ public class AuthorizeMenu : MonoBehaviour
         yield return StartCoroutine(TypingSentence("Authenticating user credentials...", loadingText));
         yield return StartCoroutine(TypingSentence("User Authenticated", loadingText));
         yield return StartCoroutine(TypingSentence("Authorized", loadingText));
+
+        authorized = true;
         yield return new WaitForSeconds(0.5f);
         loadingText.GetComponent<Animator>().Play("FadeOut");
         yield return new WaitForSeconds(1f);
@@ -62,6 +87,10 @@ public class AuthorizeMenu : MonoBehaviour
         {
             textHolder.text += letter;
             yield return new WaitForSeconds(0.03f);
+            if(!press)
+            {
+                yield break;
+            }
         }
 
         yield return new WaitForSeconds(0.03f);

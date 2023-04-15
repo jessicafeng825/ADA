@@ -10,6 +10,8 @@ public class AccusationManager : MonoBehaviour
 {
     private PhotonView pv;
 
+    public static AccusationManager Instance;
+
     private GameObject titleText;
     
     [SerializeField]
@@ -61,9 +63,19 @@ public class AccusationManager : MonoBehaviour
 
     private int[] allVotes = new int[6] { 0, 0, 0, 0, 0, 0 };
 
+    public bool solvedTheCase;
+
 
     private void Start() 
     {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         pv = GetComponent<PhotonView>();
         playerBackground = this.playerAccusationPanel.transform.Find("Background").gameObject;
         PCBackground = this.PCAccusationPanel.transform.Find("Background").gameObject;
@@ -195,21 +207,55 @@ public class AccusationManager : MonoBehaviour
     }
     public void VerifyResult(string name)
     {
+        pv.RPC(nameof(VerifyResultRPC), RpcTarget.All, name);
+    }
+    [PunRPC]
+    private void VerifyResultRPC(string name)
+    {
         if(name == "SecurityGuard")
         {
-            PCBackground.GetComponent<Image>().color = correctBackgroundColor;
-            playerBackground.GetComponent<Image>().color = correctBackgroundColor;
+            solvedTheCase = true;
+            StartCoroutine(FadeColor(PCBackground.GetComponent<Image>(), correctBackgroundColor, 1));
+            StartCoroutine(FadeColor(playerBackground.GetComponent<Image>(), correctBackgroundColor, 1));
+            // PCBackground.GetComponent<Image>().color = correctBackgroundColor;
+            // playerBackground.GetComponent<Image>().color = correctBackgroundColor;
+            playerAccusationPanel.transform.Find("Title").Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = "The Security Guard is the murderer!";
             PCAccusationPanel.transform.Find("Title").Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = "The Security Guard is the murderer!";
             Debug.Log("Correct");
         }
         else
         {
-            PCBackground.GetComponent<Image>().color = wrongBackgroundColor;
-            playerBackground.GetComponent<Image>().color = wrongBackgroundColor;
+            solvedTheCase = false;
+            StartCoroutine(FadeColor(PCBackground.GetComponent<Image>(), wrongBackgroundColor, 1));
+            StartCoroutine(FadeColor(playerBackground.GetComponent<Image>(), wrongBackgroundColor, 1));
+            // PCBackground.GetComponent<Image>().color = wrongBackgroundColor;
+            // playerBackground.GetComponent<Image>().color = wrongBackgroundColor;
+            playerAccusationPanel.transform.Find("Title").Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = name + " was not the murderer!";
             PCAccusationPanel.transform.Find("Title").Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = name + " was not the murderer!";
             Debug.Log("Wrong");
         }
+        StartCoroutine(ChangetoOutroScene(6f));
         verifyButton.SetActive(false);
+    }
+    private IEnumerator FadeColor(Image image, Color newColor, float sec)
+    {
+
+        float time = 0;
+        Color originColor = image.color;
+        while(time < sec)
+        {
+            image.color = Color.Lerp(originColor, newColor, time/sec);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        image.color = newColor;
+    }
+    IEnumerator ChangetoOutroScene(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.LoadLevel(3);
+
     }
 
 
