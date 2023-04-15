@@ -17,6 +17,7 @@ public class AuthorizeMenu : MonoBehaviour
     private void OnEnable()
     {
         GetComponent<Animator>().Play("FadeIn");
+        StartCoroutine(AuthorizeCheck());
     }
 
     public void OnClick()
