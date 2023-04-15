@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AuthorizeMenu : MonoBehaviour
 {
-    private bool startCheck;
+    private bool effectPlayed;
     [SerializeField]
     private TMP_Text loadingText, welcomeText;
     [SerializeField]
@@ -14,11 +14,16 @@ public class AuthorizeMenu : MonoBehaviour
     [SerializeField]
     private Launcher launcher;
 
+    private void OnEnable()
+    {
+        GetComponent<Animator>().Play("FadeIn");
+    }
+
     public void OnClick()
     {
-        if (!startCheck)
+        if (!effectPlayed)
         {
-            startCheck = true;
+            effectPlayed = true;
             loadingEffect.SetActive(true);
             StartCoroutine(AuthorizeCheck());
         }
@@ -39,7 +44,7 @@ public class AuthorizeMenu : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GetComponent<Animator>().Play("FadeOut");
         yield return new WaitForSeconds(1f);
-        //launcher.ConnectToServer();
+        MenuManager.Instance.OpenMenu("find_room");
         // show room availability
     }
 

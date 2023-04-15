@@ -15,6 +15,7 @@ public class HostMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        GetComponent<Animator>().Play("FadeIn");
         StartCoroutine(SettingServer());
     }
 

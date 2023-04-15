@@ -11,9 +11,9 @@ public class Launcher : MonoBehaviourPunCallbacks {
   public static Launcher Instance;
   private string playerNickname;
 
-  [SerializeField] TMP_InputField playerNameInputField;
+  //[SerializeField] TMP_InputField playerNameInputField;
   [SerializeField] TMP_Text titleWelcomeText;
-  [SerializeField] TMP_InputField roomNameInputField;
+  //[SerializeField] TMP_InputField roomNameInputField;
   [SerializeField] Transform roomListContent;
   [SerializeField] GameObject roomListItemPrefab;
   [SerializeField] TMP_Text roomNameText;
@@ -23,25 +23,46 @@ public class Launcher : MonoBehaviourPunCallbacks {
   [SerializeField] TMP_Text errorText;
   [SerializeField] public Menu[] unableMenuList;
 
+    private bool phoneWelcomeEffectPlayed;
+    private bool pcWelcomeEffectPlayed;
+
     private void Awake() {
     Instance = this;
     }
 
   private void Start() {
         SetName();
-        MenuManager.Instance.OpenMenu("start");
+        MenuManager.Instance.OpenMenu("loading");
         ConnectToServer();
         //MenuManager.Instance.OpenMenu("start");
   }
 
     public void StartGameWithPhone()
     {
-        MenuManager.Instance.OpenMenu("phone_authorize");
+        if (phoneWelcomeEffectPlayed)
+        {
+            MenuManager.Instance.OpenMenu("find_room");
+        }
+        else
+        {
+            phoneWelcomeEffectPlayed = true;
+            MenuManager.Instance.OpenMenu("phone");
+        }
+        JoinLobby();
     }
 
     public void StartGameWithPC()
     {
-        MenuManager.Instance.OpenMenu("pc_host");
+        if (pcWelcomeEffectPlayed)
+        {
+            CreateRoom();
+        }
+        else
+        {
+            pcWelcomeEffectPlayed = true;
+            MenuManager.Instance.OpenMenu("pc");
+        }
+        
     }
 
     public void ConnectToServer()
@@ -62,7 +83,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
 
   public override void OnConnectedToMaster() {
     Debug.Log("Connected to master!");
-    MenuManager.Instance.OpenMenu("start");
+    MenuManager.Instance.OpenMenu("title");
     // PhotonNetwork.JoinLobby();
     // Automatically load scene for all clients when the host loads a scene
     PhotonNetwork.AutomaticallySyncScene = true;
@@ -118,7 +139,6 @@ public class Launcher : MonoBehaviourPunCallbacks {
         options.CustomRoomProperties.Add("gameRunning", false);
         PhotonNetwork.CreateRoom(roomName, roomOptions:options);
         MenuManager.Instance.OpenMenu("loading");
-
   }
    
   public override void OnJoinedRoom() {

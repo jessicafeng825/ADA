@@ -17,6 +17,12 @@ public class TitleMenu : MonoBehaviour
     {
         titleAnimator = GetComponent<Animator>();
     }
+
+    private void OnEnable()
+    {
+        GetComponent<Animator>().Play("FadeIn");
+    }
+
     private void OnDisable()
     {
         titleHostDescription.SetActive(false);
