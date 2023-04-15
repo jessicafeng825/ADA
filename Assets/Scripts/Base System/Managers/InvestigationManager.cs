@@ -713,15 +713,18 @@ public class InvestigationManager : Singleton<InvestigationManager>
     }
 
     [PunRPC]
-    public void MasterChangeStage()
+    public void MasterChangeStage(gamestage stage)
     {
-        TimerManager.Instance.SwitchStage(gamestage.Discussion);
+        TimerManager.Instance.SwitchStage(stage);
     }
-
+    public void AskMasterChangeStage(gamestage stage)
+    {
+        pv.RPC(nameof(MasterChangeStage), RpcTarget.MasterClient, stage);
+    }
     IEnumerator WaitSecondForChangeStage(float sec)
     {
         yield return new WaitForSeconds(sec);
-        pv.RPC(nameof(MasterChangeStage), RpcTarget.MasterClient);
+        pv.RPC(nameof(MasterChangeStage), RpcTarget.MasterClient, gamestage.Discussion);
     }
     #endregion
 }

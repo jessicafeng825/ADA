@@ -10,8 +10,12 @@ public class TimerManager : MonoBehaviour
     public static TimerManager Instance;
     [SerializeField]
     private GameObject PCMapPanel;
+
     [SerializeField]
     private GameObject DetectiveBoardPanel;
+
+    [SerializeField]
+    private GameObject PCaccusationPanel;
     
     [SerializeField]
     private GameObject PCTimerPanel;
@@ -25,7 +29,7 @@ public class TimerManager : MonoBehaviour
     private GameObject playerPanel;
     private GameObject investigationPanel;
     private GameObject discussionPanel;
-    private GameObject accusationPanel;
+    private GameObject playerAccusationPanel;
     private GameObject characterPanel;
     private GameObject cluePanel;
     private GameObject puzzlePanel;
@@ -61,7 +65,7 @@ public class TimerManager : MonoBehaviour
 
         investigationPanel = playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").gameObject;
         discussionPanel = playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").gameObject;
-        accusationPanel = playerPanel.transform.Find("MainMenu").Find("PlayerAccusationPanel").gameObject;
+        playerAccusationPanel = playerPanel.transform.Find("MainMenu").Find("PlayerAccusationPanel").gameObject;
 
         characterPanel = playerPanel.transform.Find("CharacterMenu").gameObject;
         cluePanel = playerPanel.transform.Find("ClueMenu").gameObject;
@@ -161,7 +165,7 @@ public class TimerManager : MonoBehaviour
                 investigationPanel.gameObject.SetActive(false);
                 discussionPanel.gameObject.SetActive(false);
                 playerController.Instance.ChangeStage(gamestage.Accusation);
-                accusationPanel.SetActive(true);
+                playerAccusationPanel.SetActive(true);
                 break;
         }
     }
@@ -214,7 +218,8 @@ public class TimerManager : MonoBehaviour
         playerPanel.transform.Find("MainMenu").gameObject.SetActive(true);
         investigationPanel.gameObject.SetActive(false);
         discussionPanel.gameObject.SetActive(false);
-        accusationPanel.SetActive(true);
+        playerAccusationPanel.SetActive(true);
+        PCaccusationPanel.SetActive(true);
         CloseAllMenuonSwitch();
     }
 

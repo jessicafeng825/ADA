@@ -24,6 +24,8 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
     [SerializeField] public Sprite playerRoundImage;//player Image
     [SerializeField] public bool isselected = false;
 
+    [SerializeField] public bool voteForAccused = false;
+
     public string accusedPlayer;
     public int maxAP;
     public int currentAP;
@@ -48,10 +50,16 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
         if(PhotonNetwork.IsMasterClient)
         {
             playerJob = "Host";
+            pv.RPC(nameof(SetMasterAsHostJob), RpcTarget.All);
         }
         DontDestroyOnLoad(this);
         accusedPlayer = "None";
 
+    }
+    [PunRPC]
+    public void SetMasterAsHostJob()
+    {
+        playerJob = "Host";
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
@@ -190,4 +198,15 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
         currentMemoryName = memoryName;
     }
 
+    public void SyncVoteForAccusationPhase()
+    {
+        voteForAccused = !voteForAccused;
+        pv.RPC(nameof(VoteForAccusationPhaseRPC), RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void VoteForAccusationPhaseRPC()
+    {
+        voteForAccused = !voteForAccused;
+    }
 }

@@ -415,4 +415,29 @@ public class AccusationManager : MonoBehaviour
         verifyButton.gameObject.SetActive(true);
         PCAccusationPanel.transform.Find("Title").Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = name + "was voted the murderer!";
     }
+
+    public void VoteForAccusationPhase(GameObject button)
+    {
+        if(button.GetComponent<Image>().color == Color.white)
+        {
+            button.GetComponent<Image>().color = Color.black;
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
+        }
+        else
+        {
+            button.GetComponent<Image>().color = Color.white;            
+            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.black;
+        }
+        playerController.Instance.voteForAccused = !playerController.Instance.voteForAccused;
+        playerController.Instance.SyncVoteForAccusationPhase();
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject player in players)
+        {
+            if(player.GetComponent<playerController>().voteForAccused == false && player.GetComponent<playerController>().playerJob != "Host")
+                return;
+        }
+        InvestigationManager.Instance.AskMasterChangeStage(gamestage.Accusation);
+    }
+    
+
 }
