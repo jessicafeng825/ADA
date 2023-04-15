@@ -10,14 +10,13 @@ public class AuthorizeMenu : MonoBehaviour
     [SerializeField]
     private TMP_Text loadingText, welcomeText;
     [SerializeField]
-    private GameObject dataFlowEffect;
+    private GameObject loadingEffect;
     [SerializeField]
     private Launcher launcher;
 
     private void OnEnable()
     {
         GetComponent<Animator>().Play("FadeIn");
-        StartCoroutine(AuthorizeCheck());
     }
 
     public void OnClick()
@@ -25,13 +24,13 @@ public class AuthorizeMenu : MonoBehaviour
         if (!effectPlayed)
         {
             effectPlayed = true;
-            dataFlowEffect.SetActive(true);
             StartCoroutine(AuthorizeCheck());
         }
     }
 
     private IEnumerator AuthorizeCheck()
     {
+        loadingEffect.SetActive(true);
         yield return StartCoroutine(TypingSentence("Connecting to MemTech Server...", loadingText));
         yield return StartCoroutine(TypingSentence("Connection Established", loadingText));
         yield return StartCoroutine(TypingSentence("Authenticating user credentials...", loadingText));
@@ -43,7 +42,7 @@ public class AuthorizeMenu : MonoBehaviour
         welcomeText.GetComponent<Animator>().Play("FadeIn");
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(WelcomeMessage());
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         GetComponent<Animator>().Play("FadeOut");
         yield return new WaitForSeconds(1f);
         MenuManager.Instance.OpenMenu("find_room");
