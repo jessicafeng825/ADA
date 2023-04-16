@@ -28,7 +28,6 @@ public class MemoryInfo : MonoBehaviour
     public int interestPointCount
     { get; set; }
 
-    private PhotonView pv;
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,6 +40,7 @@ public class MemoryInfo : MonoBehaviour
                 {
                     totalInterestPoints++;
                     
+                    Debug.Log("Interest Point: " + point.name + " added");
                     InvestigationManager.Instance.AddInterestPoint(point.name, point.gameObject);
                 }
                 foreach(Transform door in child.Find("Doors"))
@@ -54,7 +54,6 @@ public class MemoryInfo : MonoBehaviour
 
     private void Start() 
     {
-        pv = GetComponent<PhotonView>();
         if(memory != InvestigationManager.Instance.startMemory.GetComponent<MemoryInfo>().memory)
             this.gameObject.SetActive(false);
     }

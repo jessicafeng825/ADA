@@ -777,7 +777,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7039187}
   - component: {fileID: 7039188}
-  - component: {fileID: 7039189}
   - component: {fileID: 7039190}
   m_Layer: 0
   m_Name: VoidBase
@@ -812,7 +811,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 840, y: 840}
+  m_SizeDelta: {x: 0, y: 840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7039188
 MonoBehaviour:
@@ -830,28 +829,6 @@ MonoBehaviour:
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
---- !u!114 &7039189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7039186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 7
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &7039190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4589,7 +4566,6 @@ GameObject:
   m_Component:
   - component: {fileID: 75965308}
   - component: {fileID: 75965309}
-  - component: {fileID: 75965310}
   - component: {fileID: 75965311}
   m_Layer: 0
   m_Name: BishopMemory
@@ -4619,7 +4595,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 840, y: 840}
+  m_SizeDelta: {x: 0, y: 840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &75965309
 MonoBehaviour:
@@ -4637,28 +4613,6 @@ MonoBehaviour:
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
---- !u!114 &75965310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75965307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 6
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &75965311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11046,7 +11000,6 @@ GameObject:
   m_Component:
   - component: {fileID: 203650865}
   - component: {fileID: 203650866}
-  - component: {fileID: 203650867}
   - component: {fileID: 203650868}
   m_Layer: 0
   m_Name: Nightclub
@@ -11080,7 +11033,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 840, y: 840}
+  m_SizeDelta: {x: 0, y: 840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &203650866
 MonoBehaviour:
@@ -11098,28 +11051,6 @@ MonoBehaviour:
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
---- !u!114 &203650867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203650864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 5
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &203650868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13198,7 +13129,7 @@ RectTransform:
   m_AnchorMin: {x: 0.1, y: 0.3}
   m_AnchorMax: {x: 0.9, y: 0.65}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1294.6833, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &280658542
 MonoBehaviour:
@@ -28202,7 +28133,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.835}
   m_AnchoredPosition: {x: 50, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 438.49417, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &553222453
 MonoBehaviour:
@@ -28604,7 +28535,6 @@ GameObject:
   m_Component:
   - component: {fileID: 555338199}
   - component: {fileID: 555338201}
-  - component: {fileID: 555338202}
   - component: {fileID: 555338203}
   m_Layer: 0
   m_Name: SecretLaboratory
@@ -28635,7 +28565,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 840, y: 840}
+  m_SizeDelta: {x: 0, y: 840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &555338201
 MonoBehaviour:
@@ -28653,28 +28583,6 @@ MonoBehaviour:
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
---- !u!114 &555338202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555338198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 4
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &555338203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39485,7 +39393,6 @@ RectTransform:
   m_LocalScale: {x: 0.45000002, y: 0.45000002, z: 0.45000002}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 1507834795}
   - {fileID: 422397792}
   m_Father: {fileID: 19238254}
   m_RootOrder: -1
@@ -46524,7 +46431,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.835}
   m_AnchoredPosition: {x: -50, y: -2}
-  m_SizeDelta: {x: 0, y: -4}
+  m_SizeDelta: {x: 436.31415, y: -4}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &938009575
 MonoBehaviour:
@@ -51071,7 +50978,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1026094730}
   - component: {fileID: 1026094731}
-  - component: {fileID: 1026094732}
   - component: {fileID: 1026094733}
   m_Layer: 0
   m_Name: StreetCorner
@@ -51102,7 +51008,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 840, y: 840}
+  m_SizeDelta: {x: 0, y: 840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1026094731
 MonoBehaviour:
@@ -51120,28 +51026,6 @@ MonoBehaviour:
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
---- !u!114 &1026094732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026094729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 3
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &1026094733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55612,7 +55496,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.745}
   m_AnchorMax: {x: 0.5, y: 0.958}
   m_AnchoredPosition: {x: -283, y: -0.5}
-  m_SizeDelta: {x: 147.21576, y: -3}
+  m_SizeDelta: {x: 0, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1141227348
 MonoBehaviour:
@@ -56616,7 +56500,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.000091552734, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1157501424
 MonoBehaviour:
@@ -60711,7 +60595,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.25
+  m_fontSize: 60
   m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -67617,82 +67501,6 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 4
   <roomName>k__BackingField: LO_Mid
---- !u!1 &1364098126
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1364098127}
-  - component: {fileID: 1364098129}
-  - component: {fileID: 1364098128}
-  m_Layer: 0
-  m_Name: DeadBody
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1364098127
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364098126}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1507834795}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 185, y: 92}
-  m_SizeDelta: {x: 300, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1364098128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364098126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c9f1df50b9c45d443b288b1a420bb70d, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1364098129
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364098126}
-  m_CullTransparentMesh: 1
 --- !u!1 &1364232333
 GameObject:
   m_ObjectHideFlags: 0
@@ -76590,56 +76398,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507602608}
   m_CullTransparentMesh: 1
---- !u!1 &1507834794
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1507834795}
-  - component: {fileID: 1507834796}
-  m_Layer: 0
-  m_Name: SceneObjects
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1507834795
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507834794}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1364098127}
-  m_Father: {fileID: 781351716}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &1507834796
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507834794}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!1 &1508855682
 GameObject:
   m_ObjectHideFlags: 0
@@ -81951,7 +81709,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1626383016}
   - component: {fileID: 1626383017}
-  - component: {fileID: 1626383018}
   - component: {fileID: 1626383019}
   m_Layer: 0
   m_Name: Mansion
@@ -81991,7 +81748,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 840, y: 840}
+  m_SizeDelta: {x: 0, y: 840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1626383017
 MonoBehaviour:
@@ -82009,28 +81766,6 @@ MonoBehaviour:
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
---- !u!114 &1626383018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626383015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 2
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &1626383019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88658,7 +88393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1753852244
 RectTransform:
   m_ObjectHideFlags: 0
@@ -94890,7 +94625,7 @@ RectTransform:
   m_AnchorMin: {x: 0.225, y: 0.095}
   m_AnchorMax: {x: 0.775, y: 0.35}
   m_AnchoredPosition: {x: -2.5, y: -4}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 18.864326, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1913930132
 MonoBehaviour:
@@ -97636,7 +97371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1967271766
 RectTransform:
   m_ObjectHideFlags: 0
@@ -98562,7 +98297,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.725}
   m_AnchorMax: {x: 0.8, y: 0.875}
   m_AnchoredPosition: {x: 0, y: 3}
-  m_SizeDelta: {x: -489.46866, y: -6}
+  m_SizeDelta: {x: 0, y: -6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1980330149
 MonoBehaviour:
@@ -104927,7 +104662,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2095878459}
   - component: {fileID: 2095878460}
-  - component: {fileID: 2095878461}
   - component: {fileID: 2095878462}
   m_Layer: 0
   m_Name: LawyerOffice
@@ -104961,7 +104695,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 840, y: 840}
+  m_SizeDelta: {x: 0, y: 840}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2095878460
 MonoBehaviour:
@@ -104979,28 +104713,6 @@ MonoBehaviour:
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
   <interestPointCount>k__BackingField: 0
---- !u!114 &2095878461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095878458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 1
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &2095878462
 MonoBehaviour:
   m_ObjectHideFlags: 0

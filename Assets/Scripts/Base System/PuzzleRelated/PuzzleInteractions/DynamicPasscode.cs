@@ -36,7 +36,7 @@ public class DynamicPasscode : PuzzleInfo
     {
         if(!isSolved && !decoding)
         {
-            StartCoroutine(DecodeTimer(3f));
+            StartCoroutine(DecodeTimer(1.5f));
         }
             
         
@@ -71,6 +71,7 @@ public class DynamicPasscode : PuzzleInfo
             yield break;
         }
         decodeAnim.SetTrigger("DecodeTrigger");
+        yield return new WaitForSeconds(0.5f);
         float decodeTimer = 0f;
         decoding = true;
         while(decodeTimer < time)
@@ -79,7 +80,6 @@ public class DynamicPasscode : PuzzleInfo
             decodeTimer += Time.deltaTime;
             yield return null;
         }
-        decodeAnim.SetTrigger("DecodeTrigger");
         hintText.GetComponent<TextMeshProUGUI>().text = "ACTIVATED";
         PuzzleSolveEffect();
         isSolved = true;
