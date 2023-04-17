@@ -101,7 +101,7 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     private void SynchronizeShareClue(string clueID)
     {
         Debug.Log("share");
-        tempClueOnBoardBtn = Instantiate(clueOnBoardTemplate, new Vector3(Random.Range(-150, 150), Random.Range(-150, 150), 0), Quaternion.identity);
+        tempClueOnBoardBtn = Instantiate(clueOnBoardTemplate, new Vector3(Random.Range(120, 970), Random.Range(120, 285), 0), Quaternion.identity);
         tempClueOnBoardBtn.GetComponent<Image>().sprite = ResourceManager.Instance.GetCluePic(clueID);
         tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetClueID(clueID);
         tempClueOnBoardBtn.GetComponent<ClueOnBoardDrag>().SetCanvas(mainCanvas);
