@@ -92,8 +92,8 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
             skillText = playerskill;
             alibiText = playerAlibi;
             secretText = playerSecret;
-            playerUpperImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Upper_" + playerimage);
-            playerRoundImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + playerimage);
+            playerUpperImage = UIManager.Instance.GetPlayerSprite("Upper_" + playerimage);
+            playerRoundImage = UIManager.Instance.GetPlayerSprite("Round_" + playerimage);
             isselected = true;
        // }
        

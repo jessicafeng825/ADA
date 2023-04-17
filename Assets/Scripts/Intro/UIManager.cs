@@ -31,6 +31,8 @@ public class UIManager : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject characterBrief;
     [SerializeField] private GameObject PCBrief;
     [SerializeField] private GameObject otherCharacterInfo;
+    [SerializeField] private GameObject playerLoadLabel;
+    public Dictionary<string, Sprite> playerImageList = new Dictionary<string, Sprite>();
     private bool ifintroend = false;
     public bool ifMemVideoStart = false;
     private bool ifMemVideoEnd = false;
@@ -66,7 +68,8 @@ public class UIManager : MonoBehaviourPunCallbacks
         listofgameObjectwithtag = GameObject.FindGameObjectsWithTag("Player");
 
         playerName.text = PhotonNetwork.NickName;
-
+        
+        LoadAllPlayerSprite();
     }
     // Update is called once per frame
     void Update()
@@ -75,6 +78,18 @@ public class UIManager : MonoBehaviourPunCallbacks
         introToSelect();
         MemTechVideoEndPlay();
         
+    }
+    private void LoadAllPlayerSprite()
+    {
+        foreach (Sprite playerPic in Resources.LoadAll<Sprite>("CharacterUI/Characters/"))
+        {
+            playerImageList.Add(playerPic.name, playerPic);
+        }
+    }
+
+    public Sprite GetPlayerSprite(string name)
+    {
+        return playerImageList[name];
     }
     
     public override void OnPlayerLeftRoom(Player leftPlayer)
@@ -481,6 +496,8 @@ public class UIManager : MonoBehaviourPunCallbacks
     {
         ifMemVideoStart = true;
         UIManager.Instance.OpenMenu("BgLoad");
+        playerLoadLabel.GetComponent<TextMeshProUGUI>().text = "Video playing on PC...";
+
         UIManager.Instance.CloseMenu("Info");
     }
 

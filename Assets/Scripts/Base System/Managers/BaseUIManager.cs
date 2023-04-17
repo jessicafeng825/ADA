@@ -285,6 +285,11 @@ public class BaseUIManager : Singleton<BaseUIManager>
     #endregion
     public void InitializeCharacterUI()
     {
+        // if(playerController.Instance.playerUpperImage == null || playerController.Instance.playerRoundImage)
+        // {            
+        //     playerController.Instance.playerUpperImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Upper_" + playerController.Instance.playerName);
+        //     playerController.Instance.playerRoundImage = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + playerController.Instance.playerName);
+        // }
         playerPanel.transform.Find("MainMenu").Find("InvestigationPanel").Find("CharacterButton").GetChild(0).GetComponent<Image>().sprite = playerController.Instance.playerUpperImage;
         playerPanel.transform.Find("MainMenu").Find("DiscussionPanel").Find("CharacterButton").GetChild(0).GetComponent<Image>().sprite = playerController.Instance.playerRoundImage;
         
