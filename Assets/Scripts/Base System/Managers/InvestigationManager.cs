@@ -588,7 +588,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         {
             return 20;
         }
-        else if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
+        else if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory && PhotonNetwork.CurrentRoom.CustomProperties["gameRunning"].Equals(false))
         {
             if(playerController.Instance.playerJob == "Security Guard")
             {

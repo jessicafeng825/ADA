@@ -51,7 +51,7 @@ public class TimerManager : MonoBehaviour
     private PhotonView pv;
     private string time;
     private string lastUpdateTime;
-    private bool accusationTimeUp;
+    public bool accusationTimeUp;
 
     private int roundCount;
 
@@ -105,11 +105,14 @@ public class TimerManager : MonoBehaviour
             else if(publicStageNow == gamestage.Accusation && !accusationTimeUp)
             {
                 accusationTimeUp = true;
+                timeout = true;
+                PCTimerPanel.transform.Find("TimerTitle").Find("TimeText (TMP)").GetComponent<TextMeshProUGUI>().text = "00:00";
+                pv.RPC(nameof(SyncTimer), RpcTarget.Others, publicStageNow.ToString(), "00:00");
                 AccusationManager.Instance.ForceConclusion();
                 Debug.Log("Accusation Time Up");
             }
         }
-        else if(gamePhaseTimer > 0 && !timeout)
+        else if(gamePhaseTimer > 0 && !timeout && !accusationTimeUp)
         {
             time = Mathf.Floor(gamePhaseTimer/60).ToString("00") + ":" + Mathf.Floor(gamePhaseTimer%60).ToString("00");
             PCTimerPanel.transform.Find("TimerTitle").Find("TimeText (TMP)").GetComponent<TextMeshProUGUI>().text = time;
@@ -298,7 +301,8 @@ public class TimerManager : MonoBehaviour
                 EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Investigation";
                 break;
             case gamestage.Discussion:
-                BaseUIManager.Instance.CloseCollectedUI();
+                BaseUIManager.Instance.CloseCollectedUI();                
+                transtitionPanel.transform.Find("Round").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Round " + roundCount;
                 PCTimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
                 transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "<b>Discussion</b>";
 
@@ -340,7 +344,6 @@ public class TimerManager : MonoBehaviour
     public void RequestRoundCount()
     {
         pv.RPC(nameof(MasterSendRoundCount), RpcTarget.MasterClient);
-        Debug.Log("Round Count Updated to: " + roundCount);
     }
     [PunRPC]
     private void MasterSendRoundCount()

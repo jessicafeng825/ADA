@@ -267,6 +267,7 @@ public class AccusationManager : MonoBehaviour
     [PunRPC]
     public void VoteConclusionMaster()
     {
+        TimerManager.Instance.accusationTimeUp = true;
         detectiveBoardButton.SetActive(false);
         PCAccusationPanel.SetActive(true);
         foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
