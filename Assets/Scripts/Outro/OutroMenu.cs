@@ -179,7 +179,7 @@ public class OutroMenu : MonoBehaviour
     public void OnYesButton()
     {
         correctCount ++;
-        if(correctCount < 6)
+        if(characterCount < 6)
         {            
             outroSlideAnimator.SetTrigger("ShowSlide");
             LoadNextSlide();
@@ -194,7 +194,7 @@ public class OutroMenu : MonoBehaviour
 
     public void OnNoButton()
     {
-        if(correctCount < 6)
+        if(characterCount < 6)
         {
             outroSlideAnimator.SetTrigger("ShowSlide");
             LoadNextSlide();
