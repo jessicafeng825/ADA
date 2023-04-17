@@ -27,6 +27,7 @@ public class JoinAfterChooseCharacter : MonoBehaviour
             }
         }
         DisconnectHandler.Instance.RequestDisconnectedPlayerStatus(job.jobName);
+        TimerManager.Instance.RequestRoundCount();
         playerController.Instance.JoinAfterJobSelect(job);
         BaseUIManager.Instance.InitializeCharacterUI();
         InvestigationManager.Instance.GetPlayerInitialAP();

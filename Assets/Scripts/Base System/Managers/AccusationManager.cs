@@ -28,6 +28,7 @@ public class AccusationManager : MonoBehaviour
     private GameObject accuseButton;
 
     private GameObject verifyButton;
+    private GameObject detectiveBoardButton;
     private GameObject clueButton;
     private GameObject puzzleButton;
     static private Button selectedPlayer;
@@ -85,6 +86,7 @@ public class AccusationManager : MonoBehaviour
         titleText = this.playerAccusationPanel.transform.Find("Title").transform.GetChild(0).gameObject;
         accuseButton.GetComponent<Button>().onClick.AddListener(AccusePlayer);
         verifyButton = this.PCAccusationPanel.transform.Find("VerifyButton").gameObject;
+        detectiveBoardButton = this.PCAccusationPanel.transform.Find("DetectiveBoardButton").gameObject;
         verifyButton.GetComponent<Button>().onClick.AddListener(() => VerifyResult(publicSelectedPlayer));
         foreach(Transform button in this.playerAccusationPanel.transform.Find("PlayerButtons"))
         {
@@ -257,11 +259,15 @@ public class AccusationManager : MonoBehaviour
         PhotonNetwork.LoadLevel(3);
 
     }
-
-
+    //For Accusation Time up
+    public void ForceConclusion()
+    {
+        pv.RPC(nameof(VoteConclusionMaster), RpcTarget.MasterClient);
+    }
     [PunRPC]
     public void VoteConclusionMaster()
     {
+        detectiveBoardButton.SetActive(false);
         PCAccusationPanel.SetActive(true);
         foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {
@@ -328,6 +334,17 @@ public class AccusationManager : MonoBehaviour
     [PunRPC]
     public void VoteConclusionVisualPlayer(int[] votes, string name)
     {
+        clueButton.GetComponent<Button>().interactable = false;
+        puzzleButton.GetComponent<Button>().interactable = false;
+        foreach(Button button in playerButtons)
+        {
+            button.enabled = false;
+            if(button != selectedPlayer)
+                button.transform.Find("Mask").gameObject.SetActive(true);
+        }
+        
+        playerBackground.GetComponent<Image>().color = comfirmedBackgroundColor;
+        accuseButton.SetActive(false);
         StartCoroutine(ConclusionVisualPlayer(votes, name));
     }
 
@@ -397,6 +414,7 @@ public class AccusationManager : MonoBehaviour
         }
         for(int i = 0; i < PCIcons.Count; i++)
         {
+            Debug.Log(i + ": " + votes[i].ToString());
             voteText[i].text = votes[i].ToString();
 
         }

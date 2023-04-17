@@ -70,6 +70,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     #endregion
     private void Awake() 
     {
+        
         ExitGames.Client.Photon.Hashtable setScene = new ExitGames.Client.Photon.Hashtable();
         setScene.Add("gameRunning", true);
         PhotonNetwork.CurrentRoom.SetCustomProperties(setScene);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -50,6 +51,7 @@ public class TimerManager : MonoBehaviour
     private PhotonView pv;
     private string time;
     private string lastUpdateTime;
+    private bool accusationTimeUp;
 
     private int roundCount;
 
@@ -80,6 +82,9 @@ public class TimerManager : MonoBehaviour
         
     }
     
+            
+        
+    
 
     private void Update()
     { 
@@ -97,8 +102,10 @@ public class TimerManager : MonoBehaviour
             {
                 SwitchStage(gamestage.Investigate);
             }
-            else if(publicStageNow == gamestage.Accusation)
+            else if(publicStageNow == gamestage.Accusation && !accusationTimeUp)
             {
+                accusationTimeUp = true;
+                AccusationManager.Instance.ForceConclusion();
                 Debug.Log("Accusation Time Up");
             }
         }
@@ -328,6 +335,23 @@ public class TimerManager : MonoBehaviour
             EndButton.gameObject.SetActive(true);
         PublicStageChange(nextStage);
         timeout = false;
+    }
+
+    public void RequestRoundCount()
+    {
+        pv.RPC(nameof(MasterSendRoundCount), RpcTarget.MasterClient);
+        Debug.Log("Round Count Updated to: " + roundCount);
+    }
+    [PunRPC]
+    private void MasterSendRoundCount()
+    {
+        pv.RPC(nameof(RecieveRoundCount), RpcTarget.Others, roundCount);
+    }
+    [PunRPC]
+    private void RecieveRoundCount(int round)
+    {
+        roundCount = round;
+        Debug.Log("Round Count Updated to: " + roundCount);
     }
 
 }

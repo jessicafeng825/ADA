@@ -41,7 +41,9 @@ public class UIManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        
+        ExitGames.Client.Photon.Hashtable setScene = new ExitGames.Client.Photon.Hashtable();
+        setScene.Add("gameRunning", false);
+        PhotonNetwork.CurrentRoom.SetCustomProperties(setScene);
         pv = GetComponent<PhotonView>();
         //video.prepareCompleted += OnPrepareVideo;
         Instance = this;
@@ -77,13 +79,15 @@ public class UIManager : MonoBehaviourPunCallbacks
     
     public override void OnPlayerLeftRoom(Player leftPlayer)
     {
+        if(!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         
         pv.RPC(nameof(AllJobButtonActivation), RpcTarget.AllBufferedViaServer);
         
-        if (checkIfAllhaveSelectJob())//if all the player have select job
-        {
-            Debug.Log("all player have select job");
-           
+        if (checkIfAllhaveSelectJob() && !ifMemVideoStart)
+        {           
             pv.RPC(nameof(MasterJobSelectToBackroundIntro), RpcTarget.MasterClient);
         }
         Debug.Log("player left"); // seen when other disconnects
@@ -377,6 +381,10 @@ public class UIManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void jobSelecttobackgroundintro()
     {
+        if(ifMemVideoStart)
+        {
+            return;
+        }
         Debug.Log("jobSelecttobackgroundintro");
         UIManager.Instance.OpenMenu("Info");
         UIManager.Instance.OpenMenu("InfoPC");
@@ -455,6 +463,7 @@ public class UIManager : MonoBehaviourPunCallbacks
     {
         UIManager.Instance.CloseMenu("InfoPC");
         UIManager.Instance.OpenMenu("IntroBackground");
+        ifMemVideoStart = true;
         pv.RPC(nameof(PlayerWaitMemVideo), RpcTarget.AllViaServer);
         videoPlay.PlayMemVid();
     }
@@ -470,6 +479,7 @@ public class UIManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void PlayerWaitMemVideo()
     {
+        ifMemVideoStart = true;
         UIManager.Instance.OpenMenu("BgLoad");
         UIManager.Instance.CloseMenu("Info");
     }
