@@ -40,7 +40,6 @@ public class MemoryInfo : MonoBehaviour
                 {
                     totalInterestPoints++;
                     
-                    Debug.Log("Interest Point: " + point.name + " added");
                     InvestigationManager.Instance.AddInterestPoint(point.name, point.gameObject);
                 }
                 foreach(Transform door in child.Find("Doors"))

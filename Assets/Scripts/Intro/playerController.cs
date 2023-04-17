@@ -65,7 +65,7 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
     {
         pv.RPC(nameof(JoinAfterJobSelectRPC), RpcTarget.All, playerJob, playerName, playerBackground, skillText, alibiText, secretText, playerJob);
     }
-    
+
     // Update is called once per frame
     void Update()
     {

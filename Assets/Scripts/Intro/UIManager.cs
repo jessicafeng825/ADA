@@ -7,7 +7,7 @@ using Photon.Realtime;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.Video;
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviourPunCallbacks
 {
     //====Panel Objects====//
     public static UIManager Instance;
@@ -74,6 +74,44 @@ public class UIManager : MonoBehaviour
         MemTechVideoEndPlay();
         
     }
+    
+    public override void OnPlayerLeftRoom(Player leftPlayer)
+    {
+        
+        pv.RPC(nameof(AllJobButtonActivation), RpcTarget.AllBufferedViaServer);
+        
+        if (checkIfAllhaveSelectJob())//if all the player have select job
+        {
+            Debug.Log("all player have select job");
+           
+            pv.RPC(nameof(MasterJobSelectToBackroundIntro), RpcTarget.MasterClient);
+        }
+        Debug.Log("player left"); // seen when other disconnects
+    }
+    [PunRPC]
+    private void AllJobButtonActivation()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        
+        for (int i = 0; i < jobList.Length; i++)
+        {
+            foreach(GameObject player in players)
+            {
+                if (jobList[i].jobName == player.GetComponent<playerController>().playerJob)
+                {
+                    jobList[i].select();
+                    break;             
+                }
+                else
+                {
+                    jobList[i].unSelect();//set this to be active                                      
+                }
+            }
+            
+
+        }
+    }
+
     void OnPrepareVideo(VideoPlayer vp)
     {
         video.Play();
@@ -368,7 +406,8 @@ public class UIManager : MonoBehaviour
 
                     //gameObjectNow = listofgameObjectwithtag[i];
 
-                    pv.RPC(nameof(setbuttonActivation), RpcTarget.AllBufferedViaServer, oldJob, jobname);
+                    // 
+                    pv.RPC(nameof(AllJobButtonActivation), RpcTarget.AllBufferedViaServer);
                 // }
                 
             }
