@@ -49,7 +49,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
 
     // UI Effects for new clues and puzzles
     [SerializeField]
-    private TMP_Text openClueMenuNewText, openPuzzleMenuNewText;
+    private TMP_Text openClueMenuNewText, openPuzzleMenuNewText, roomText;
 
     [SerializeField]
     private GameObject otherCharacterInfo;
@@ -69,7 +69,8 @@ public class BaseUIManager : Singleton<BaseUIManager>
             joinAfterSelectPanel.SetActive(false);
         }
         InitializeCharacterUI();
-        
+
+        roomText.text = PhotonNetwork.CurrentRoom.Name;
     }
 
     #region Clue UI Related Functions
@@ -413,13 +414,4 @@ public class BaseUIManager : Singleton<BaseUIManager>
             Destroy(thisRoundCollectPanel.transform.GetChild(i).gameObject);
         }
     }
-
-    // Just for temporary use to solve the UI bug
-    IEnumerator showshowway(GameObject panel)
-    {
-        panel.SetActive(true);
-        yield return new WaitForSeconds(0.05f);
-        panel.SetActive(true);
-    }
-    
 }
