@@ -37,9 +37,6 @@ public class UIManager : MonoBehaviour
     private bool ifselected = false;
     private GameObject[] listofgameObjectwithtag;
     private GameObject gameObjectNow;
-
-    //One player for development
-    private bool isSinglePlayer;
     public bool superAP;
 
     private void Awake()
@@ -90,14 +87,8 @@ public class UIManager : MonoBehaviour
             {
                 if (pcPanelList[i].menuName == menuName)
                 {
-                    if (pcPanelList[i].open)
-                    {
-                        pcPanelList[i].Close();
-                    }
-                    else
-                    {
-                        pcPanelList[i].Open();
-                    }
+                    pcPanelList[i].Open();
+                    
                 }
                 
             }
@@ -108,14 +99,8 @@ public class UIManager : MonoBehaviour
             {
                 if (playerPanelList[i].menuName == menuName)
                 {
-                    if (playerPanelList[i].open)
-                    {
-                        playerPanelList[i].Close();
-                    }
-                    else
-                    {
-                        playerPanelList[i].Open();
-                    }
+                    playerPanelList[i].Open();
+                    
                     
                 }
                 
@@ -185,19 +170,27 @@ public class UIManager : MonoBehaviour
     //===Check Overall Functions===//
     private bool checkIfAllhaveSelectJob()
     {
-        if(isSinglePlayer)
+        // if(isSinglePlayer)
+        // {
+        //     return true;
+        // }
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject player in players)
         {
-            return true;
-        }
-        for (int i = 0; i < jobList.Length; i++) 
-        {
-            if(jobList[i].isselected == false)//have not yet select a job
+            if(player.GetComponent<playerController>().playerJob == "None" && player.GetComponent<playerController>() != playerController.Instance)
             {
-                Debug.Log(jobList[i].jobName + " have not yet selected");
                 return false;
             }
-
         }
+        // for (int i = 0; i < jobList.Length; i++) 
+        // {
+        //     if(jobList[i].isselected == false)//have not yet select a job
+        //     {
+        //         Debug.Log(jobList[i].jobName + " have not yet selected");
+        //         return false;
+        //     }
+
+        // }
         return true;
     }
 
@@ -280,7 +273,7 @@ public class UIManager : MonoBehaviour
                 continue;
             }
         }
-        pv.RPC(nameof(updateallplayerName), RpcTarget.AllViaServer, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.skilltext, job.alibitext, job.secret, job.playerImage);
+        pv.RPC(nameof(updateallplayerName), RpcTarget.AllBufferedViaServer, playerController.Instance.GetComponent<PhotonView>().ViewID ,job.jobName, job.playername,job.backgroundstory, job.skilltext, job.alibitext, job.secret, job.playerImage);
         //playerController.Instance.jobSelect(name);
 
         Debug.Log(playerController.Instance.playerJob);
@@ -308,8 +301,9 @@ public class UIManager : MonoBehaviour
 
         if (checkIfAllhaveSelectJob())//if all the player have select job
         {
+            Debug.Log("all player have select job");
            
-            pv.RPC(nameof(jobSelecttobackgroundintro), RpcTarget.AllViaServer);
+            pv.RPC(nameof(MasterJobSelectToBackroundIntro), RpcTarget.MasterClient);
         }
         
 
@@ -338,8 +332,14 @@ public class UIManager : MonoBehaviour
         }
     }
     [PunRPC]
+    public void MasterJobSelectToBackroundIntro()
+    {
+        pv.RPC(nameof(jobSelecttobackgroundintro), RpcTarget.AllViaServer);
+    }
+    [PunRPC]
     private void jobSelecttobackgroundintro()
     {
+        Debug.Log("jobSelecttobackgroundintro");
         UIManager.Instance.OpenMenu("Info");
         UIManager.Instance.OpenMenu("InfoPC");
         UIManager.Instance.CloseMenu("CharacterBrief");
@@ -368,7 +368,7 @@ public class UIManager : MonoBehaviour
 
                     //gameObjectNow = listofgameObjectwithtag[i];
 
-                    pv.RPC(nameof(setbuttonActivation), RpcTarget.AllViaServer, oldJob, jobname);
+                    pv.RPC(nameof(setbuttonActivation), RpcTarget.AllBufferedViaServer, oldJob, jobname);
                 // }
                 
             }
@@ -406,7 +406,7 @@ public class UIManager : MonoBehaviour
         {
             
             ifintroend = true;
-            pv.RPC(nameof(closeintro), RpcTarget.AllViaServer);
+            pv.RPC(nameof(closeintro), RpcTarget.AllBufferedViaServer);
            
         }
         
@@ -425,7 +425,7 @@ public class UIManager : MonoBehaviour
         if(video.isPaused && ifMemVideoStart && !ifMemVideoEnd)
         {
             ifMemVideoEnd = true;
-            pv.RPC(nameof(changenextScene), RpcTarget.All);
+            pv.RPC(nameof(changenextScene), RpcTarget.AllBufferedViaServer);
         }
     }
     [PunRPC]
@@ -453,11 +453,6 @@ public class UIManager : MonoBehaviour
         UIManager.Instance.OpenMenu("CharacterSelect");
     }
 
-    public void isSinglePlayerMode(GameObject check)
-    {
-        isSinglePlayer = !isSinglePlayer;
-        check.gameObject.SetActive(isSinglePlayer);
-    }
     public void SuperAPMode(GameObject check)
     {
         superAP = !superAP;

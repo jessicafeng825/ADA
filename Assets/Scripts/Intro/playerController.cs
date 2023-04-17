@@ -47,7 +47,7 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
     void Start()
     {
         pv = GetComponent<PhotonView>();
-        if(PhotonNetwork.IsMasterClient)
+        if(PhotonNetwork.IsMasterClient && pv.IsMine)
         {
             playerJob = "Host";
             pv.RPC(nameof(SetMasterAsHostJob), RpcTarget.All);
