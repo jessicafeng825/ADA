@@ -272,6 +272,7 @@ public class TimerManager : MonoBehaviour
     {
         PCTimerTitle.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
         transtitionPanel.gameObject.SetActive(true);
+
         switch(nextStage)
         {
             case gamestage.Investigate:
@@ -326,6 +327,8 @@ public class TimerManager : MonoBehaviour
                 break;
         }
         yield return new WaitForSeconds(sec);
+        transtitionPanel.GetComponent<Animator>().Play("FadeOut");
+        yield return new WaitForSeconds(1f);
         transtitionPanel.gameObject.SetActive(false);
 
     }

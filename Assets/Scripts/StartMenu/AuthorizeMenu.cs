@@ -98,4 +98,9 @@ public class AuthorizeMenu : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
     }
 
+    public void SkipPhoneAnimation()
+    {
+        MenuManager.Instance.OpenMenu("find_room");
+    }
+
 }

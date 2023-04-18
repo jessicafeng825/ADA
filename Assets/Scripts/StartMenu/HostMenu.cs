@@ -51,4 +51,9 @@ public class HostMenu : MonoBehaviour
         textHolder.text += "<br><br>";
         yield return new WaitForSeconds(0.2f);
     }
+
+    public void SkipHostAnimation()
+    {
+        launcher.CreateRoom();
+    }
 }
