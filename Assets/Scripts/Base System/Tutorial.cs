@@ -20,11 +20,14 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private int currentStep = 0;
 
     private void Start()
+    {       
+        OpenTutorial();
+    }
+    private void OnEnable() 
     {
         LeftButton.SetActive(false);
         currentSteps = page00Steps;
     }
-
     public void NextStep()
     {
         LeftButton.SetActive(true);
@@ -63,7 +66,7 @@ public class Tutorial : MonoBehaviour
         GetCurrentSteps();
         if(currentPage == 0)
         {
-            if(currentStep == 0)
+            if(currentStep == 1)
             {
                 LeftButton.SetActive(false);
             }
@@ -175,5 +178,6 @@ public class Tutorial : MonoBehaviour
     public void OpenTutorial()
     {
         gameObject.SetActive(true);
+        Debug.Log("Tutorial Opened");
     }
 }
