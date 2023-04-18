@@ -199,8 +199,8 @@ public class TimerManager : MonoBehaviour
         //SoundManager.Instance.PlaySoundEffect("SFX_EnterMemory");
         playerController.Instance.currentClueSharedNum = 0;
         timeout = true;
-        pv.RPC(nameof(SwitchStageVisualRPC), RpcTarget.All, 3f, nextStage);
-        StartCoroutine(TimerPauseCoroutine(3f, nextStage));
+        pv.RPC(nameof(SwitchStageVisualRPC), RpcTarget.All, 2f, nextStage);
+        StartCoroutine(TimerPauseCoroutine(2f, nextStage));
     }
     
     private void CloseAllMenuonSwitch()
