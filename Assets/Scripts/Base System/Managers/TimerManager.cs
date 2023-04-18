@@ -277,7 +277,7 @@ public class TimerManager : MonoBehaviour
         {
             case gamestage.Investigate:
                 roundCount++;
-                transtitionPanel.transform.Find("Round").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Round " + roundCount;
+                transtitionPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Round " + roundCount;
                 PCTimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
                 if(!PhotonNetwork.IsMasterClient)
                 {
@@ -290,10 +290,10 @@ public class TimerManager : MonoBehaviour
                     {
                         tempTitle = "<b>Investigation</b>\r\n-\r\n" + "<u>Ava's Memory\r\n</u>" + "\"" + playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory.ToString()+ "\"";
                     }
-                    transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = tempTitle;
+                    transtitionPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = tempTitle;
                 } 
                 else
-                    transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Investigation";
+                    transtitionPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Investigation";
                 
                 //Open and close Map and detective board
                 PCMapPanel.SetActive(true);
@@ -303,9 +303,9 @@ public class TimerManager : MonoBehaviour
                 break;
             case gamestage.Discussion:
                 BaseUIManager.Instance.CloseCollectedUI();                
-                transtitionPanel.transform.Find("Round").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Round " + roundCount;
+                transtitionPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Round " + roundCount;
                 PCTimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
-                transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "<b>Discussion</b>";
+                transtitionPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "<b>Discussion</b>";
 
                 //Open and close Map and detective board
                 PCMapPanel.SetActive(false);
@@ -315,9 +315,9 @@ public class TimerManager : MonoBehaviour
                 break;
             case gamestage.Accusation:
                 BaseUIManager.Instance.CloseCollectedUI();
-                transtitionPanel.transform.Find("Round").GetChild(0).GetComponent<TextMeshProUGUI>().text = "Final Round";
+                transtitionPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Final Round";
                 PCTimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Accusation";
-                transtitionPanel.transform.Find("Title").GetChild(0).GetComponent<TextMeshProUGUI>().text = "<b>Accusation</b>";
+                transtitionPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "<b>Accusation</b>";
                 
                 //Open and close Map and detective board
                 PCMapPanel.SetActive(false);
@@ -327,7 +327,7 @@ public class TimerManager : MonoBehaviour
                 break;
         }
         yield return new WaitForSeconds(sec);
-        transtitionPanel.GetComponent<Animator>().Play("FadeOut");
+        transtitionPanel.transform.GetChild(1).GetComponent<Animator>().Play("FadeOut");
         yield return new WaitForSeconds(1f);
         transtitionPanel.gameObject.SetActive(false);
 
