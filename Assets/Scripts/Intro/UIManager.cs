@@ -276,7 +276,7 @@ public class UIManager : MonoBehaviourPunCallbacks
         characterBrief.transform.Find("Title").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.jobName;
         characterBrief.transform.Find("Brief").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.brief;
         characterBrief.transform.Find("Brief").Find("Title").Find("Text (TMP)").GetComponent<TMP_Text>().text = job.playername;
-        characterBrief.transform.Find("CharacterImage").GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + job.playerImage);
+        characterBrief.transform.Find("CharacterImage").GetComponent<Image>().sprite = GetPlayerSprite(job.playerImage);
         characterBrief.transform.Find("YesButton").GetComponent<Button>().onClick.AddListener(() => { jobSelect(job); });
     }
     public void CloseCharacterBrief()
