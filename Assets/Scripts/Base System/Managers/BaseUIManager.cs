@@ -68,6 +68,7 @@ public class BaseUIManager : Singleton<BaseUIManager>
         {
             joinAfterSelectPanel.SetActive(false);
         }
+
         InitializeCharacterUI();
 
         roomText.text = PhotonNetwork.CurrentRoom.Name;

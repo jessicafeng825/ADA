@@ -92,8 +92,11 @@ public class playerController : MonoBehaviourPunCallbacks /*, IPunObservable*/
             skillText = playerskill;
             alibiText = playerAlibi;
             secretText = playerSecret;
-            playerUpperImage = UIManager.Instance.GetPlayerSprite("Upper_" + playerimage);
-            playerRoundImage = UIManager.Instance.GetPlayerSprite("Round_" + playerimage);
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                playerUpperImage = UIManager.Instance.GetPlayerSprite("Upper_" + playerimage);
+                playerRoundImage = UIManager.Instance.GetPlayerSprite("Round_" + playerimage);
+            }
             isselected = true;
        // }
        

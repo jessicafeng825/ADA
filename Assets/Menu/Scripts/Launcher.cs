@@ -78,7 +78,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
         }
         //SetName();
         //MenuManager.Instance.OpenMenu("loading");
-        PhotonNetwork.KeepAliveInBackground = 300;
+        PhotonNetwork.KeepAliveInBackground = 600;
     }
 
   public override void OnConnectedToMaster() {
