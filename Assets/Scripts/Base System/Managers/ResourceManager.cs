@@ -15,6 +15,7 @@ public class ResourceManager : Singleton<ResourceManager>
     private Dictionary<string, GameObject> puzzleInteractionDic = new Dictionary<string, GameObject>();
 
     private Dictionary<string, GameObject> uiElements = new Dictionary<string, GameObject>();
+    private Dictionary<string, Sprite> TransitionPanel_Dic = new Dictionary<string, Sprite>();
 
     private Dictionary<string, AudioClip> SFX_Dic = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> BGM_Dic = new Dictionary<string, AudioClip>();
@@ -29,6 +30,7 @@ public class ResourceManager : Singleton<ResourceManager>
         LoadAllPuzzleInteractions();
 
         LoadUIElements();
+        LoadAllTransitionPanel();
 
         LoadAllBGM();
         LoadAllSFX();
@@ -154,4 +156,17 @@ public class ResourceManager : Singleton<ResourceManager>
     }
 
     #endregion
+
+    private void LoadAllTransitionPanel()
+    {
+        foreach (Sprite transitionPanel in Resources.LoadAll<Sprite>("TransitionPanel/"))
+        {
+            TransitionPanel_Dic.Add(transitionPanel.name, transitionPanel);
+        }
+    }
+
+    public Sprite GetTransitionPanel(string transitionPanelName)
+    {
+        return TransitionPanel_Dic[transitionPanelName];
+    }
 }

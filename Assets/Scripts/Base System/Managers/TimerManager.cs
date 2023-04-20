@@ -37,7 +37,8 @@ public class TimerManager : MonoBehaviour
     
     [SerializeField]
     private GameObject transtitionPanel;
-    
+    private CanvasGroup TransitionPC, TransitionPhone;
+
     [SerializeField]
     private float investigateTime;
     [SerializeField]
@@ -272,29 +273,39 @@ public class TimerManager : MonoBehaviour
     {
         PCTimerTitle.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "00:00";
         transtitionPanel.gameObject.SetActive(true);
+        TransitionPC = transtitionPanel.GetComponentsInChildren<CanvasGroup>()[2];
+        TransitionPhone = transtitionPanel.GetComponentsInChildren<CanvasGroup>()[1];
 
-        switch(nextStage)
+        switch (nextStage)
         {
             case gamestage.Investigate:
                 roundCount++;
                 transtitionPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Round " + roundCount;
                 PCTimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Investigation";
-                if(!PhotonNetwork.IsMasterClient)
+
+                if (!PhotonNetwork.IsMasterClient)
                 {
-                    string tempTitle;
-                    if(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
-                    {
-                        tempTitle = "<b>Investigation</b>\r\n-\r\n" + "<u>Bishop's Memory\r\n</u>" + "\"Moment of Discovery\"";
-                    }
-                    else
-                    {
-                        tempTitle = "<b>Investigation</b>\r\n-\r\n" + "<u>Ava's Memory\r\n</u>" + "\"" + playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory.ToString()+ "\"";
-                    }
-                    transtitionPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = tempTitle;
-                } 
+                    /*                    string tempTitle;
+                                        if (playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory == Memory.BishopMemory)
+                                        {
+                                            tempTitle = "<b>Investigation</b>\r\n-\r\n" + "<u>Bishop's Memory\r\n</u>" + "\"Moment of Discovery\"";
+                                        }
+                                        else
+                                        {
+                                            tempTitle = "<b>Investigation</b>\r\n-\r\n" + "<u>Ava's Memory\r\n</u>" + "\"" + playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory.ToString() + "\"";
+                                        }
+                                        transtitionPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = tempTitle;*/
+                    TransitionPhone.alpha = 1;
+                    TransitionPC.alpha = 0;
+                    transtitionPanel.GetComponentsInChildren<Image>()[3].sprite = ResourceManager.Instance.GetTransitionPanel(playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory.ToString());
+                }
                 else
+                {
+                    TransitionPC.alpha = 1;
+                    TransitionPhone.alpha = 0;
                     transtitionPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "Investigation";
-                
+                }
+
                 //Open and close Map and detective board
                 PCMapPanel.SetActive(true);
                 DetectiveBoardPanel.SetActive(false);
@@ -302,7 +313,9 @@ public class TimerManager : MonoBehaviour
                 EndButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "End Investigation";
                 break;
             case gamestage.Discussion:
-                BaseUIManager.Instance.CloseCollectedUI();                
+                BaseUIManager.Instance.CloseCollectedUI();
+                TransitionPC.alpha = 1;
+                TransitionPhone.alpha = 0;
                 transtitionPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Round " + roundCount;
                 PCTimerTitle.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Discussion";
                 transtitionPanel.GetComponentsInChildren<TextMeshProUGUI>()[1].text = "<b>Discussion</b>";
