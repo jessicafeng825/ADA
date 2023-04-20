@@ -117,6 +117,7 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
     {
         tempClueInfo = Instantiate(ResourceManager.Instance.GetClueInfo(clueID));
         tempClueOnBoardInfoTemplate = Instantiate(onBoardClueInfoTemplate, clueBtnPosition, Quaternion.identity);
+        //tempClueOnBoardInfoTemplate.GetComponentInChildren<Button>().onClick.AddListener(() => CloseLastClueInfo());
         Vector2 spawnPos = new Vector2(clueBtnPosition.x, clueBtnPosition.y);
         if(clueBtnPosition.x < -830)
         {
@@ -136,7 +137,8 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         }
         tempClueOnBoardInfoTemplate.GetComponent<RectTransform>().localPosition = spawnPos;
         tempClueInfo.GetComponent<Transform>().SetParent(tempClueOnBoardInfoTemplate.GetComponent<Transform>(), false);
-        tempClueInfo.transform.Find("Btn_close").gameObject.SetActive(false);
+        //tempClueInfo.transform.Find("Btn_close").gameObject.SetActive(false);
+        tempClueInfo.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(() => CloseLastClueInfo());
         tempClueInfo.transform.Find("Btn_share").gameObject.SetActive(false);
 /*        // Title
         tempClueOnBoardInfo.GetComponentsInChildren<TMP_Text>()[0].text = tempClueInfo.GetComponentsInChildren<TMP_Text>()[0].text;
