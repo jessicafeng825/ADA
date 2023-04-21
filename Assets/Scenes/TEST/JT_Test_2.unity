@@ -3433,7 +3433,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.025}
   m_AnchorMax: {x: 0.5, y: 0.115}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 216.08337, y: 0}
+  m_SizeDelta: {x: 215.81995, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &64941438
 MonoBehaviour:
@@ -4524,6 +4524,7 @@ GameObject:
   - component: {fileID: 73172552}
   - component: {fileID: 73172551}
   - component: {fileID: 73172550}
+  - component: {fileID: 73172554}
   m_Layer: 0
   m_Name: MasterLightswitch
   m_TagString: InterestPoint
@@ -4652,6 +4653,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73172548}
   m_CullTransparentMesh: 1
+--- !u!225 &73172554
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73172548}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &74082648
 GameObject:
   m_ObjectHideFlags: 0
@@ -5381,6 +5394,7 @@ GameObject:
   - component: {fileID: 81229633}
   - component: {fileID: 81229632}
   - component: {fileID: 81229631}
+  - component: {fileID: 81229635}
   m_Layer: 0
   m_Name: BookShelves
   m_TagString: InterestPoint
@@ -5509,6 +5523,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81229629}
   m_CullTransparentMesh: 1
+--- !u!225 &81229635
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81229629}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &81389074
 GameObject:
   m_ObjectHideFlags: 0
@@ -5522,6 +5548,7 @@ GameObject:
   - component: {fileID: 81389078}
   - component: {fileID: 81389077}
   - component: {fileID: 81389076}
+  - component: {fileID: 81389080}
   m_Layer: 0
   m_Name: FrontHallLightswitch
   m_TagString: InterestPoint
@@ -5650,6 +5677,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81389074}
   m_CullTransparentMesh: 1
+--- !u!225 &81389080
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81389074}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &82305630
 GameObject:
   m_ObjectHideFlags: 0
@@ -5802,6 +5841,7 @@ GameObject:
   - component: {fileID: 83998938}
   - component: {fileID: 83998937}
   - component: {fileID: 83998936}
+  - component: {fileID: 83998940}
   m_Layer: 0
   m_Name: ReckedComputers
   m_TagString: InterestPoint
@@ -5930,6 +5970,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83998934}
   m_CullTransparentMesh: 1
+--- !u!225 &83998940
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83998934}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &93068838
 GameObject:
   m_ObjectHideFlags: 0
@@ -6506,6 +6558,7 @@ GameObject:
   - component: {fileID: 100773847}
   - component: {fileID: 100773846}
   - component: {fileID: 100773845}
+  - component: {fileID: 100773849}
   m_Layer: 0
   m_Name: MemoFragment03
   m_TagString: InterestPoint
@@ -6634,6 +6687,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100773843}
   m_CullTransparentMesh: 1
+--- !u!225 &100773849
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100773843}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &106103720
 GameObject:
   m_ObjectHideFlags: 0
@@ -7943,6 +8008,7 @@ GameObject:
   - component: {fileID: 136089597}
   - component: {fileID: 136089596}
   - component: {fileID: 136089595}
+  - component: {fileID: 136089599}
   m_Layer: 0
   m_Name: Desk
   m_TagString: InterestPoint
@@ -8075,6 +8141,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136089593}
   m_CullTransparentMesh: 1
+--- !u!225 &136089599
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136089593}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &136601936
 GameObject:
   m_ObjectHideFlags: 0
@@ -12329,6 +12407,7 @@ GameObject:
   - component: {fileID: 203271347}
   - component: {fileID: 203271346}
   - component: {fileID: 203271345}
+  - component: {fileID: 203271349}
   m_Layer: 0
   m_Name: Hideout
   m_TagString: InterestPoint
@@ -12459,6 +12538,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203271343}
   m_CullTransparentMesh: 1
+--- !u!225 &203271349
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203271343}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &203650864
 GameObject:
   m_ObjectHideFlags: 0
@@ -13181,7 +13272,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.8}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -884.2074, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &221684328
 MonoBehaviour:
@@ -13398,7 +13489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &223328859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15845,6 +15936,7 @@ GameObject:
   - component: {fileID: 287393130}
   - component: {fileID: 287393129}
   - component: {fileID: 287393128}
+  - component: {fileID: 287393132}
   m_Layer: 0
   m_Name: StudyWall
   m_TagString: InterestPoint
@@ -15973,6 +16065,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287393126}
   m_CullTransparentMesh: 1
+--- !u!225 &287393132
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287393126}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &288337291
 GameObject:
   m_ObjectHideFlags: 0
@@ -16024,6 +16128,7 @@ GameObject:
   - component: {fileID: 288958506}
   - component: {fileID: 288958505}
   - component: {fileID: 288958504}
+  - component: {fileID: 288958508}
   m_Layer: 0
   m_Name: ElevatorPasscode
   m_TagString: InterestPoint
@@ -16152,6 +16257,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288958502}
   m_CullTransparentMesh: 1
+--- !u!225 &288958508
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288958502}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &290401301
 GameObject:
   m_ObjectHideFlags: 0
@@ -16300,6 +16417,7 @@ GameObject:
   - component: {fileID: 290847111}
   - component: {fileID: 290847110}
   - component: {fileID: 290847109}
+  - component: {fileID: 290847113}
   m_Layer: 0
   m_Name: Memo01
   m_TagString: InterestPoint
@@ -16428,6 +16546,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290847107}
   m_CullTransparentMesh: 1
+--- !u!225 &290847113
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290847107}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &292506114
 GameObject:
   m_ObjectHideFlags: 0
@@ -17930,6 +18060,7 @@ GameObject:
   - component: {fileID: 312101040}
   - component: {fileID: 312101039}
   - component: {fileID: 312101038}
+  - component: {fileID: 312101042}
   m_Layer: 0
   m_Name: ChildhoodData
   m_TagString: InterestPoint
@@ -18058,6 +18189,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312101036}
   m_CullTransparentMesh: 1
+--- !u!225 &312101042
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312101036}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &312702978
 GameObject:
   m_ObjectHideFlags: 0
@@ -19695,7 +19838,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.15}
   m_AnchorMax: {x: 1, y: 0.825}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -270.01477, y: 0}
+  m_SizeDelta: {x: -301.1977, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &339704556
 MonoBehaviour:
@@ -23501,6 +23644,7 @@ GameObject:
   - component: {fileID: 410385147}
   - component: {fileID: 410385146}
   - component: {fileID: 410385145}
+  - component: {fileID: 410385149}
   m_Layer: 0
   m_Name: SecurityFootage
   m_TagString: InterestPoint
@@ -23629,6 +23773,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410385143}
   m_CullTransparentMesh: 1
+--- !u!225 &410385149
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410385143}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &414694056
 GameObject:
   m_ObjectHideFlags: 0
@@ -24479,6 +24635,7 @@ GameObject:
   - component: {fileID: 422974512}
   - component: {fileID: 422974511}
   - component: {fileID: 422974510}
+  - component: {fileID: 422974514}
   m_Layer: 0
   m_Name: MansionEntrance
   m_TagString: InterestPoint
@@ -24607,6 +24764,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422974508}
   m_CullTransparentMesh: 1
+--- !u!225 &422974514
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422974508}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &427946849
 GameObject:
   m_ObjectHideFlags: 0
@@ -27653,6 +27822,7 @@ GameObject:
   - component: {fileID: 477910004}
   - component: {fileID: 477910003}
   - component: {fileID: 477910002}
+  - component: {fileID: 477910006}
   m_Layer: 0
   m_Name: Notice
   m_TagString: InterestPoint
@@ -27781,6 +27951,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477910000}
   m_CullTransparentMesh: 1
+--- !u!225 &477910006
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477910000}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &479270473
 GameObject:
   m_ObjectHideFlags: 0
@@ -28615,6 +28797,7 @@ GameObject:
   - component: {fileID: 486092233}
   - component: {fileID: 486092232}
   - component: {fileID: 486092231}
+  - component: {fileID: 486092235}
   m_Layer: 0
   m_Name: StudyLightswitch
   m_TagString: InterestPoint
@@ -28743,6 +28926,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486092229}
   m_CullTransparentMesh: 1
+--- !u!225 &486092235
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486092229}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &487696946
 GameObject:
   m_ObjectHideFlags: 0
@@ -29306,7 +29501,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.55
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -29592,7 +29787,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.25
+  m_fontSize: 66.45
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -32080,7 +32275,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.835}
   m_AnchoredPosition: {x: 50, y: 0}
-  m_SizeDelta: {x: 438.34912, y: 0}
+  m_SizeDelta: {x: 437.8147, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &553222453
 MonoBehaviour:
@@ -33086,6 +33281,7 @@ GameObject:
   - component: {fileID: 561701991}
   - component: {fileID: 561701990}
   - component: {fileID: 561701989}
+  - component: {fileID: 561701993}
   m_Layer: 0
   m_Name: Scratch on Wall
   m_TagString: InterestPoint
@@ -33214,6 +33410,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561701987}
   m_CullTransparentMesh: 1
+--- !u!225 &561701993
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561701987}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &561959060
 GameObject:
   m_ObjectHideFlags: 0
@@ -34717,6 +34925,7 @@ GameObject:
   - component: {fileID: 589003606}
   - component: {fileID: 589003605}
   - component: {fileID: 589003604}
+  - component: {fileID: 589003608}
   m_Layer: 0
   m_Name: CCTV01
   m_TagString: InterestPoint
@@ -34849,6 +35058,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589003602}
   m_CullTransparentMesh: 1
+--- !u!225 &589003608
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589003602}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &589820380
 GameObject:
   m_ObjectHideFlags: 0
@@ -35015,6 +35236,7 @@ GameObject:
   - component: {fileID: 599392735}
   - component: {fileID: 599392734}
   - component: {fileID: 599392733}
+  - component: {fileID: 599392737}
   m_Layer: 0
   m_Name: DeadAvaHead
   m_TagString: InterestPoint
@@ -35147,6 +35369,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599392731}
   m_CullTransparentMesh: 1
+--- !u!225 &599392737
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599392731}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &604278831
 GameObject:
   m_ObjectHideFlags: 0
@@ -35480,7 +35714,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.25
+  m_fontSize: 80
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -39022,6 +39256,7 @@ GameObject:
   - component: {fileID: 685856408}
   - component: {fileID: 685856407}
   - component: {fileID: 685856406}
+  - component: {fileID: 685856410}
   m_Layer: 0
   m_Name: DeadAvaClothes
   m_TagString: InterestPoint
@@ -39150,6 +39385,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685856404}
   m_CullTransparentMesh: 1
+--- !u!225 &685856410
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685856404}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &686365788
 GameObject:
   m_ObjectHideFlags: 0
@@ -41458,6 +41705,7 @@ GameObject:
   - component: {fileID: 737007074}
   - component: {fileID: 737007073}
   - component: {fileID: 737007072}
+  - component: {fileID: 737007076}
   m_Layer: 0
   m_Name: KatanaCollection
   m_TagString: InterestPoint
@@ -41586,6 +41834,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737007070}
   m_CullTransparentMesh: 1
+--- !u!225 &737007076
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737007070}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &737555204
 GameObject:
   m_ObjectHideFlags: 0
@@ -42777,6 +43037,7 @@ GameObject:
   - component: {fileID: 757649519}
   - component: {fileID: 757649518}
   - component: {fileID: 757649517}
+  - component: {fileID: 757649521}
   m_Layer: 0
   m_Name: CyberneticLungs
   m_TagString: InterestPoint
@@ -42905,6 +43166,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757649515}
   m_CullTransparentMesh: 1
+--- !u!225 &757649521
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757649515}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &758988626
 GameObject:
   m_ObjectHideFlags: 0
@@ -44005,6 +44278,7 @@ GameObject:
   - component: {fileID: 764090823}
   - component: {fileID: 764090822}
   - component: {fileID: 764090821}
+  - component: {fileID: 764090825}
   m_Layer: 0
   m_Name: Poster
   m_TagString: InterestPoint
@@ -44133,6 +44407,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764090819}
   m_CullTransparentMesh: 1
+--- !u!225 &764090825
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764090819}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &766834731
 GameObject:
   m_ObjectHideFlags: 0
@@ -44223,6 +44509,7 @@ GameObject:
   - component: {fileID: 770021390}
   - component: {fileID: 770021389}
   - component: {fileID: 770021388}
+  - component: {fileID: 770021392}
   m_Layer: 0
   m_Name: Conversation
   m_TagString: InterestPoint
@@ -44351,6 +44638,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770021386}
   m_CullTransparentMesh: 1
+--- !u!225 &770021392
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770021386}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &770656532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47946,6 +48245,7 @@ GameObject:
   - component: {fileID: 840886168}
   - component: {fileID: 840886167}
   - component: {fileID: 840886166}
+  - component: {fileID: 840886170}
   m_Layer: 0
   m_Name: AvaHands
   m_TagString: InterestPoint
@@ -48078,6 +48378,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840886164}
   m_CullTransparentMesh: 1
+--- !u!225 &840886170
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840886164}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &846701274
 GameObject:
   m_ObjectHideFlags: 0
@@ -49400,6 +49712,7 @@ GameObject:
   - component: {fileID: 865216496}
   - component: {fileID: 865216495}
   - component: {fileID: 865216494}
+  - component: {fileID: 865216498}
   m_Layer: 0
   m_Name: Bartender&NightClubOwner
   m_TagString: InterestPoint
@@ -49528,6 +49841,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865216492}
   m_CullTransparentMesh: 1
+--- !u!225 &865216498
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865216492}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &866406892
 GameObject:
   m_ObjectHideFlags: 0
@@ -49957,6 +50282,7 @@ GameObject:
   - component: {fileID: 881766826}
   - component: {fileID: 881766825}
   - component: {fileID: 881766824}
+  - component: {fileID: 881766828}
   m_Layer: 0
   m_Name: MuttsEmotion
   m_TagString: InterestPoint
@@ -50085,6 +50411,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881766822}
   m_CullTransparentMesh: 1
+--- !u!225 &881766828
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881766822}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &882285834
 GameObject:
   m_ObjectHideFlags: 0
@@ -51748,6 +52086,7 @@ GameObject:
   - component: {fileID: 914698903}
   - component: {fileID: 914698902}
   - component: {fileID: 914698901}
+  - component: {fileID: 914698905}
   m_Layer: 0
   m_Name: DiningTable
   m_TagString: InterestPoint
@@ -51876,6 +52215,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914698899}
   m_CullTransparentMesh: 1
+--- !u!225 &914698905
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914698899}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &914717064
 GameObject:
   m_ObjectHideFlags: 0
@@ -53194,7 +53545,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.835}
   m_AnchoredPosition: {x: -50, y: -2}
-  m_SizeDelta: {x: 436.16913, y: -4}
+  m_SizeDelta: {x: 435.6347, y: -4}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &938009575
 MonoBehaviour:
@@ -53406,7 +53757,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.5
+  m_fontSize: 32.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -53660,6 +54011,7 @@ GameObject:
   - component: {fileID: 950612599}
   - component: {fileID: 950612598}
   - component: {fileID: 950612597}
+  - component: {fileID: 950612601}
   m_Layer: 0
   m_Name: Ava & Caden Conversation
   m_TagString: InterestPoint
@@ -53788,6 +54140,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950612595}
   m_CullTransparentMesh: 1
+--- !u!225 &950612601
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950612595}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &952321048
 GameObject:
   m_ObjectHideFlags: 0
@@ -54599,6 +54963,7 @@ GameObject:
   - component: {fileID: 966767079}
   - component: {fileID: 966767078}
   - component: {fileID: 966767077}
+  - component: {fileID: 966767081}
   m_Layer: 0
   m_Name: UnderBed
   m_TagString: InterestPoint
@@ -54727,6 +55092,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966767075}
   m_CullTransparentMesh: 1
+--- !u!225 &966767081
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966767075}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &967452366
 GameObject:
   m_ObjectHideFlags: 0
@@ -55999,6 +56376,7 @@ GameObject:
   - component: {fileID: 985366856}
   - component: {fileID: 985366855}
   - component: {fileID: 985366854}
+  - component: {fileID: 985366858}
   m_Layer: 0
   m_Name: Camera
   m_TagString: InterestPoint
@@ -56127,6 +56505,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985366852}
   m_CullTransparentMesh: 1
+--- !u!225 &985366858
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985366852}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &987271387
 GameObject:
   m_ObjectHideFlags: 0
@@ -56288,7 +56678,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.3
+  m_fontSize: 20
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -57393,6 +57783,7 @@ GameObject:
   - component: {fileID: 1009015331}
   - component: {fileID: 1009015330}
   - component: {fileID: 1009015329}
+  - component: {fileID: 1009015333}
   m_Layer: 0
   m_Name: Memo02
   m_TagString: InterestPoint
@@ -57521,6 +57912,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009015327}
   m_CullTransparentMesh: 1
+--- !u!225 &1009015333
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009015327}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1009301533
 GameObject:
   m_ObjectHideFlags: 0
@@ -58889,6 +59292,7 @@ GameObject:
   - component: {fileID: 1037687102}
   - component: {fileID: 1037687101}
   - component: {fileID: 1037687100}
+  - component: {fileID: 1037687104}
   m_Layer: 0
   m_Name: DeadAvaBody
   m_TagString: InterestPoint
@@ -59021,6 +59425,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037687098}
   m_CullTransparentMesh: 1
+--- !u!225 &1037687104
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037687098}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1039122594
 GameObject:
   m_ObjectHideFlags: 0
@@ -60933,6 +61349,7 @@ GameObject:
   - component: {fileID: 1077854371}
   - component: {fileID: 1077854370}
   - component: {fileID: 1077854369}
+  - component: {fileID: 1077854373}
   m_Layer: 0
   m_Name: Blueprint
   m_TagString: InterestPoint
@@ -61061,6 +61478,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077854367}
   m_CullTransparentMesh: 1
+--- !u!225 &1077854373
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077854367}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1080444454
 GameObject:
   m_ObjectHideFlags: 0
@@ -61461,6 +61890,7 @@ GameObject:
   - component: {fileID: 1093095789}
   - component: {fileID: 1093095788}
   - component: {fileID: 1093095787}
+  - component: {fileID: 1093095791}
   m_Layer: 0
   m_Name: BishopEmotion
   m_TagString: InterestPoint
@@ -61589,6 +62019,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093095785}
   m_CullTransparentMesh: 1
+--- !u!225 &1093095791
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093095785}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1094839024
 GameObject:
   m_ObjectHideFlags: 0
@@ -62727,6 +63169,7 @@ GameObject:
   - component: {fileID: 1113066619}
   - component: {fileID: 1113066618}
   - component: {fileID: 1113066617}
+  - component: {fileID: 1113066621}
   m_Layer: 0
   m_Name: BehindBar
   m_TagString: InterestPoint
@@ -62855,6 +63298,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113066615}
   m_CullTransparentMesh: 1
+--- !u!225 &1113066621
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113066615}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1114326092
 GameObject:
   m_ObjectHideFlags: 0
@@ -65880,6 +66335,7 @@ GameObject:
   - component: {fileID: 1172923771}
   - component: {fileID: 1172923770}
   - component: {fileID: 1172923769}
+  - component: {fileID: 1172923773}
   m_Layer: 0
   m_Name: Bishop'sDesk
   m_TagString: InterestPoint
@@ -66008,6 +66464,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172923767}
   m_CullTransparentMesh: 1
+--- !u!225 &1172923773
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172923767}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1173090413
 GameObject:
   m_ObjectHideFlags: 0
@@ -66786,6 +67254,7 @@ GameObject:
   - component: {fileID: 1183571015}
   - component: {fileID: 1183571014}
   - component: {fileID: 1183571013}
+  - component: {fileID: 1183571017}
   m_Layer: 0
   m_Name: UnlockRecords
   m_TagString: InterestPoint
@@ -66916,6 +67385,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183571011}
   m_CullTransparentMesh: 1
+--- !u!225 &1183571017
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183571011}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1184287366
 GameObject:
   m_ObjectHideFlags: 0
@@ -69531,7 +70012,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.25
+  m_fontSize: 60
   m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -69765,6 +70246,7 @@ GameObject:
   - component: {fileID: 1246001438}
   - component: {fileID: 1246001437}
   - component: {fileID: 1246001436}
+  - component: {fileID: 1246001440}
   m_Layer: 0
   m_Name: TrashCan
   m_TagString: InterestPoint
@@ -69893,6 +70375,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246001434}
   m_CullTransparentMesh: 1
+--- !u!225 &1246001440
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246001434}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1246044383
 GameObject:
   m_ObjectHideFlags: 0
@@ -71406,6 +71900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ec40ab8e0674c46ad780be733102a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapScanner: {fileID: 4469636190665257727, guid: 3d6ea40f84ab2eb4faa33e4b1c25f100, type: 3}
   PCMap: {fileID: 1772707165}
   PCMapRooms: []
   startMemory: {fileID: 75965308}
@@ -73089,6 +73584,7 @@ GameObject:
   - component: {fileID: 1303481933}
   - component: {fileID: 1303481932}
   - component: {fileID: 1303481931}
+  - component: {fileID: 1303481935}
   m_Layer: 0
   m_Name: HumanExperiment
   m_TagString: InterestPoint
@@ -73217,6 +73713,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303481929}
   m_CullTransparentMesh: 1
+--- !u!225 &1303481935
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303481929}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1308704182
 GameObject:
   m_ObjectHideFlags: 0
@@ -74045,7 +74553,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.8}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -884.20746, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324335876
 MonoBehaviour:
@@ -75335,6 +75843,7 @@ GameObject:
   - component: {fileID: 1346978567}
   - component: {fileID: 1346978566}
   - component: {fileID: 1346978565}
+  - component: {fileID: 1346978569}
   m_Layer: 0
   m_Name: Sign
   m_TagString: InterestPoint
@@ -75463,6 +75972,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346978563}
   m_CullTransparentMesh: 1
+--- !u!225 &1346978569
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346978563}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1347074701
 GameObject:
   m_ObjectHideFlags: 0
@@ -78457,6 +78978,7 @@ GameObject:
   - component: {fileID: 1385374135}
   - component: {fileID: 1385374134}
   - component: {fileID: 1385374133}
+  - component: {fileID: 1385374137}
   m_Layer: 0
   m_Name: DeadAvaHands
   m_TagString: InterestPoint
@@ -78589,6 +79111,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385374131}
   m_CullTransparentMesh: 1
+--- !u!225 &1385374137
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385374131}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1386603405
 GameObject:
   m_ObjectHideFlags: 0
@@ -78602,6 +79136,7 @@ GameObject:
   - component: {fileID: 1386603409}
   - component: {fileID: 1386603408}
   - component: {fileID: 1386603407}
+  - component: {fileID: 1386603411}
   m_Layer: 0
   m_Name: Weapons
   m_TagString: InterestPoint
@@ -78730,6 +79265,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1386603405}
   m_CullTransparentMesh: 1
+--- !u!225 &1386603411
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386603405}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1387227798
 GameObject:
   m_ObjectHideFlags: 0
@@ -80207,6 +80754,7 @@ GameObject:
   - component: {fileID: 1409160352}
   - component: {fileID: 1409160351}
   - component: {fileID: 1409160350}
+  - component: {fileID: 1409160354}
   m_Layer: 0
   m_Name: MaxsDesk
   m_TagString: InterestPoint
@@ -80341,6 +80889,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409160348}
   m_CullTransparentMesh: 1
+--- !u!225 &1409160354
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409160348}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1409837881
 GameObject:
   m_ObjectHideFlags: 0
@@ -82068,6 +82628,7 @@ GameObject:
   - component: {fileID: 1445879033}
   - component: {fileID: 1445879032}
   - component: {fileID: 1445879031}
+  - component: {fileID: 1445879035}
   m_Layer: 0
   m_Name: MemoFragment02
   m_TagString: InterestPoint
@@ -82196,6 +82757,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445879029}
   m_CullTransparentMesh: 1
+--- !u!225 &1445879035
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445879029}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1447952243
 GameObject:
   m_ObjectHideFlags: 0
@@ -83840,6 +84413,7 @@ GameObject:
   - component: {fileID: 1457105878}
   - component: {fileID: 1457105877}
   - component: {fileID: 1457105876}
+  - component: {fileID: 1457105880}
   m_Layer: 0
   m_Name: Painting
   m_TagString: InterestPoint
@@ -83968,6 +84542,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457105874}
   m_CullTransparentMesh: 1
+--- !u!225 &1457105880
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457105874}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1457998308
 GameObject:
   m_ObjectHideFlags: 0
@@ -83981,6 +84567,7 @@ GameObject:
   - component: {fileID: 1457998312}
   - component: {fileID: 1457998311}
   - component: {fileID: 1457998310}
+  - component: {fileID: 1457998314}
   m_Layer: 0
   m_Name: BarTable
   m_TagString: InterestPoint
@@ -84111,6 +84698,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457998308}
   m_CullTransparentMesh: 1
+--- !u!225 &1457998314
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457998308}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1462801310
 GameObject:
   m_ObjectHideFlags: 0
@@ -87281,6 +87880,7 @@ GameObject:
   - component: {fileID: 1508855686}
   - component: {fileID: 1508855685}
   - component: {fileID: 1508855684}
+  - component: {fileID: 1508855688}
   m_Layer: 0
   m_Name: PrivateConversation
   m_TagString: InterestPoint
@@ -87409,6 +88009,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508855682}
   m_CullTransparentMesh: 1
+--- !u!225 &1508855688
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508855682}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1508872065
 GameObject:
   m_ObjectHideFlags: 0
@@ -87765,6 +88377,7 @@ GameObject:
   - component: {fileID: 1522553294}
   - component: {fileID: 1522553293}
   - component: {fileID: 1522553292}
+  - component: {fileID: 1522553296}
   m_Layer: 0
   m_Name: Shelves
   m_TagString: InterestPoint
@@ -87893,6 +88506,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522553290}
   m_CullTransparentMesh: 1
+--- !u!225 &1522553296
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522553290}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1526457253
 GameObject:
   m_ObjectHideFlags: 0
@@ -89694,6 +90319,7 @@ GameObject:
   - component: {fileID: 1566748629}
   - component: {fileID: 1566748628}
   - component: {fileID: 1566748627}
+  - component: {fileID: 1566748631}
   m_Layer: 0
   m_Name: StreetSign01
   m_TagString: InterestPoint
@@ -89822,6 +90448,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1566748625}
   m_CullTransparentMesh: 1
+--- !u!225 &1566748631
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566748625}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1570096112
 GameObject:
   m_ObjectHideFlags: 0
@@ -89970,6 +90608,7 @@ GameObject:
   - component: {fileID: 1570537175}
   - component: {fileID: 1570537174}
   - component: {fileID: 1570537173}
+  - component: {fileID: 1570537177}
   m_Layer: 0
   m_Name: Safe
   m_TagString: InterestPoint
@@ -90098,6 +90737,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570537171}
   m_CullTransparentMesh: 1
+--- !u!225 &1570537177
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570537171}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1570840478
 GameObject:
   m_ObjectHideFlags: 0
@@ -93244,6 +93895,7 @@ GameObject:
   - component: {fileID: 1627142283}
   - component: {fileID: 1627142282}
   - component: {fileID: 1627142281}
+  - component: {fileID: 1627142285}
   m_Layer: 0
   m_Name: MeetingNotes
   m_TagString: InterestPoint
@@ -93372,6 +94024,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1627142279}
   m_CullTransparentMesh: 1
+--- !u!225 &1627142285
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627142279}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1627982199
 GameObject:
   m_ObjectHideFlags: 0
@@ -96309,7 +96973,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.025}
   m_AnchorMax: {x: 0.5, y: 0.115}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 215.81995, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1673266213
 MonoBehaviour:
@@ -97048,6 +97712,7 @@ GameObject:
   - component: {fileID: 1696664567}
   - component: {fileID: 1696664566}
   - component: {fileID: 1696664565}
+  - component: {fileID: 1696664569}
   m_Layer: 0
   m_Name: Memo
   m_TagString: InterestPoint
@@ -97176,6 +97841,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696664563}
   m_CullTransparentMesh: 1
+--- !u!225 &1696664569
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696664563}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1696768555
 GameObject:
   m_ObjectHideFlags: 0
@@ -99250,6 +99927,7 @@ GameObject:
   - component: {fileID: 1722625930}
   - component: {fileID: 1722625929}
   - component: {fileID: 1722625928}
+  - component: {fileID: 1722625932}
   m_Layer: 0
   m_Name: StudyDesk
   m_TagString: InterestPoint
@@ -99380,6 +100058,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722625926}
   m_CullTransparentMesh: 1
+--- !u!225 &1722625932
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722625926}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1728697826
 GameObject:
   m_ObjectHideFlags: 0
@@ -100345,6 +101035,7 @@ GameObject:
   - component: {fileID: 1744453247}
   - component: {fileID: 1744453246}
   - component: {fileID: 1744453245}
+  - component: {fileID: 1744453249}
   m_Layer: 0
   m_Name: MemoFragment04
   m_TagString: InterestPoint
@@ -100473,6 +101164,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744453243}
   m_CullTransparentMesh: 1
+--- !u!225 &1744453249
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744453243}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1744465383
 GameObject:
   m_ObjectHideFlags: 0
@@ -101146,6 +101849,7 @@ GameObject:
   - component: {fileID: 1755470393}
   - component: {fileID: 1755470392}
   - component: {fileID: 1755470391}
+  - component: {fileID: 1755470395}
   m_Layer: 0
   m_Name: CCTV02
   m_TagString: InterestPoint
@@ -101274,6 +101978,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755470389}
   m_CullTransparentMesh: 1
+--- !u!225 &1755470395
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755470389}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1757108503
 GameObject:
   m_ObjectHideFlags: 0
@@ -103456,7 +104172,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.15}
   m_AnchorMax: {x: 1, y: 0.85}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -2.6341553, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1791309826
 MonoBehaviour:
@@ -103966,6 +104682,7 @@ GameObject:
   - component: {fileID: 1816401771}
   - component: {fileID: 1816401770}
   - component: {fileID: 1816401769}
+  - component: {fileID: 1816401773}
   m_Layer: 0
   m_Name: VoiceLine
   m_TagString: InterestPoint
@@ -104094,6 +104811,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816401767}
   m_CullTransparentMesh: 1
+--- !u!225 &1816401773
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816401767}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1819812581
 GameObject:
   m_ObjectHideFlags: 0
@@ -104402,7 +105131,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.8
+  m_fontSize: 80
   m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -107960,7 +108689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1905381519
 RectTransform:
   m_ObjectHideFlags: 0
@@ -108840,7 +109569,7 @@ RectTransform:
   m_AnchorMin: {x: 0.225, y: 0.095}
   m_AnchorMax: {x: 0.775, y: 0.35}
   m_AnchoredPosition: {x: -2.5, y: -3.9997559}
-  m_SizeDelta: {x: 18.465498, y: 0}
+  m_SizeDelta: {x: 16.99421, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1913930132
 MonoBehaviour:
@@ -109260,6 +109989,7 @@ GameObject:
   - component: {fileID: 1920438594}
   - component: {fileID: 1920438593}
   - component: {fileID: 1920438592}
+  - component: {fileID: 1920438596}
   m_Layer: 0
   m_Name: AvaShoes
   m_TagString: InterestPoint
@@ -109388,6 +110118,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920438590}
   m_CullTransparentMesh: 1
+--- !u!225 &1920438596
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920438590}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1923568588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110442,6 +111184,7 @@ GameObject:
   - component: {fileID: 1944812770}
   - component: {fileID: 1944812769}
   - component: {fileID: 1944812768}
+  - component: {fileID: 1944812772}
   m_Layer: 0
   m_Name: UnderDesk
   m_TagString: InterestPoint
@@ -110572,6 +111315,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944812766}
   m_CullTransparentMesh: 1
+--- !u!225 &1944812772
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944812766}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1947512080
 GameObject:
   m_ObjectHideFlags: 0
@@ -112061,6 +112816,7 @@ GameObject:
   - component: {fileID: 1969218233}
   - component: {fileID: 1969218232}
   - component: {fileID: 1969218231}
+  - component: {fileID: 1969218235}
   m_Layer: 0
   m_Name: SecurityDoor
   m_TagString: InterestPoint
@@ -112189,6 +112945,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969218229}
   m_CullTransparentMesh: 1
+--- !u!225 &1969218235
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969218229}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1969998942
 GameObject:
   m_ObjectHideFlags: 0
@@ -112986,6 +113754,7 @@ GameObject:
   - component: {fileID: 1983142774}
   - component: {fileID: 1983142773}
   - component: {fileID: 1983142772}
+  - component: {fileID: 1983142776}
   m_Layer: 0
   m_Name: AdSign
   m_TagString: InterestPoint
@@ -113114,6 +113883,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983142770}
   m_CullTransparentMesh: 1
+--- !u!225 &1983142776
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983142770}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1985796149
 GameObject:
   m_ObjectHideFlags: 0
@@ -113221,6 +114002,7 @@ GameObject:
   - component: {fileID: 1990001408}
   - component: {fileID: 1990001407}
   - component: {fileID: 1990001406}
+  - component: {fileID: 1990001410}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: InterestPoint
@@ -113349,6 +114131,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990001404}
   m_CullTransparentMesh: 1
+--- !u!225 &1990001410
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990001404}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1992205277
 GameObject:
   m_ObjectHideFlags: 0
@@ -113706,6 +114500,7 @@ GameObject:
   - component: {fileID: 1996413226}
   - component: {fileID: 1996413225}
   - component: {fileID: 1996413224}
+  - component: {fileID: 1996413228}
   m_Layer: 0
   m_Name: Ava'sDesk
   m_TagString: InterestPoint
@@ -113834,6 +114629,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996413222}
   m_CullTransparentMesh: 1
+--- !u!225 &1996413228
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996413222}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1997650399
 GameObject:
   m_ObjectHideFlags: 0
@@ -113847,6 +114654,7 @@ GameObject:
   - component: {fileID: 1997650403}
   - component: {fileID: 1997650402}
   - component: {fileID: 1997650401}
+  - component: {fileID: 1997650405}
   m_Layer: 0
   m_Name: Entrance
   m_TagString: InterestPoint
@@ -113975,6 +114783,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997650399}
   m_CullTransparentMesh: 1
+--- !u!225 &1997650405
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997650399}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1999452388
 GameObject:
   m_ObjectHideFlags: 0
@@ -116763,6 +117583,7 @@ GameObject:
   - component: {fileID: 2045480163}
   - component: {fileID: 2045480162}
   - component: {fileID: 2045480161}
+  - component: {fileID: 2045480165}
   m_Layer: 0
   m_Name: InterviewFootage
   m_TagString: InterestPoint
@@ -116891,6 +117712,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045480159}
   m_CullTransparentMesh: 1
+--- !u!225 &2045480165
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045480159}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2047155950
 GameObject:
   m_ObjectHideFlags: 0
@@ -117365,6 +118198,7 @@ GameObject:
   - component: {fileID: 2055783091}
   - component: {fileID: 2055783090}
   - component: {fileID: 2055783089}
+  - component: {fileID: 2055783093}
   m_Layer: 0
   m_Name: Financial
   m_TagString: InterestPoint
@@ -117493,6 +118327,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055783087}
   m_CullTransparentMesh: 1
+--- !u!225 &2055783093
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055783087}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2058293280
 GameObject:
   m_ObjectHideFlags: 0
@@ -117982,6 +118828,7 @@ GameObject:
   - component: {fileID: 2075635408}
   - component: {fileID: 2075635407}
   - component: {fileID: 2075635406}
+  - component: {fileID: 2075635410}
   m_Layer: 0
   m_Name: Trash
   m_TagString: InterestPoint
@@ -118110,6 +118957,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075635404}
   m_CullTransparentMesh: 1
+--- !u!225 &2075635410
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075635404}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2075979721
 GameObject:
   m_ObjectHideFlags: 0
@@ -118559,6 +119418,7 @@ GameObject:
   - component: {fileID: 2084432950}
   - component: {fileID: 2084432949}
   - component: {fileID: 2084432948}
+  - component: {fileID: 2084432952}
   m_Layer: 0
   m_Name: AvaLightswitch
   m_TagString: InterestPoint
@@ -118687,6 +119547,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084432946}
   m_CullTransparentMesh: 1
+--- !u!225 &2084432952
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084432946}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2086193254
 GameObject:
   m_ObjectHideFlags: 0
@@ -121089,6 +121961,7 @@ GameObject:
   - component: {fileID: 2116723042}
   - component: {fileID: 2116723041}
   - component: {fileID: 2116723040}
+  - component: {fileID: 2116723044}
   m_Layer: 0
   m_Name: Wall
   m_TagString: InterestPoint
@@ -121217,6 +122090,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116723038}
   m_CullTransparentMesh: 1
+--- !u!225 &2116723044
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116723038}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2117957495
 GameObject:
   m_ObjectHideFlags: 0
@@ -122409,6 +123294,7 @@ GameObject:
   - component: {fileID: 2145707618}
   - component: {fileID: 2145707617}
   - component: {fileID: 2145707616}
+  - component: {fileID: 2145707620}
   m_Layer: 0
   m_Name: Photographs
   m_TagString: InterestPoint
@@ -122539,3 +123425,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145707614}
   m_CullTransparentMesh: 1
+--- !u!225 &2145707620
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145707614}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

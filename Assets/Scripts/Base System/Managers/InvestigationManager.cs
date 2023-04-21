@@ -9,8 +9,19 @@ using UnityEngine;
 
 public class InvestigationManager : Singleton<InvestigationManager>
 {
-    #region Parameters: Movement
+    #region Parameters: InterestPoint Scan
 
+    [SerializeField]
+    private GameObject mapScanner;
+    [SerializeField]
+    private float scanDistance = 30;
+    
+    [SerializeField]
+    private GameObject playerMapArea;
+    private bool isScanning;
+
+    #endregion
+    #region Parameters: Movement
     
     [SerializeField]
     private GameObject PCMap;
@@ -68,6 +79,8 @@ public class InvestigationManager : Singleton<InvestigationManager>
     [SerializeField]
     private int playerNormalAP;
     #endregion
+
+
     private void Awake() 
     {
         
@@ -97,6 +110,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
         //Initialize PC Map
         PCMapInitialize();
+
     }
     private void OnEnable() 
     {
@@ -107,6 +121,34 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     private void Update()
     {
+        if(!PhotonNetwork.IsMasterClient)
+        {
+            //For scanning interest point
+            if(Input.touchCount > 0 && !isScanning)
+            {
+                foreach(Touch touch in Input.touches)
+                {
+                    if(touch.fingerId == 0)
+                    {
+                        if(touch.phase == TouchPhase.Began)
+                        {
+                            StartCoroutine(StartScanWaitSecond(touch.position, 1f));
+                        }
+                    }
+                }
+            }
+            //For scanning interest point to test on PC
+            else if(Input.touchCount == 0 && !isScanning)
+            {
+                if(Input.GetMouseButtonDown(0))
+                {
+                    StartCoroutine(StartScanWaitSecond(Input.mousePosition, 1f));
+                }
+            }
+        }
+        
+
+
         if (playerController.Instance.currentAP == 0 && playerController.Instance.stageNow == gamestage.Investigate)
         {
             playerController.Instance.ChangeStage(gamestage.Discussion);
@@ -120,7 +162,35 @@ public class InvestigationManager : Singleton<InvestigationManager>
             }
         }
     }
-
+    IEnumerator StartScanWaitSecond(Vector3 scanPos, float second)
+    {
+        isScanning = true;
+        GameObject scanTemp = Instantiate(mapScanner, scanPos, Quaternion.identity);
+        scanTemp.transform.SetParent(playerController.Instance.currentRoom.transform);
+        scanTemp.transform.localScale = new Vector3(1, 1, 1);
+        foreach(InterestPointInfo IP in playerController.Instance.currentMemory.GetComponent<MemoryInfo>().interestPoints)
+        {
+            Debug.Log("IP: " + IP.name + " is in room");
+            if(IP.locatedRoom == playerController.Instance.currentRoom)
+            {
+                if(Vector3.Distance(IP.transform.position, scanPos) <= scanDistance)
+                {
+                    IP.GetComponent<CanvasGroup>().alpha = 1;
+                    IP.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    IP.GetComponent<CanvasGroup>().interactable = true;
+                    Debug.Log("IP: " + IP.name + " is in range " + "Distance: " + Vector3.Distance(IP.transform.position, scanPos) + " Scan Distance: " + scanDistance);
+                }
+                else
+                {
+                    Debug.Log("IP: " + IP.name + " is not in range " + "Distance: " + Vector3.Distance(IP.transform.position, scanPos) + " Scan Distance: " + scanDistance);
+                }
+            }
+        }
+        Debug.Log("Touch Position: " + scanPos);
+        yield return new WaitForSeconds(second);
+        Destroy(scanTemp);
+        isScanning = false;
+    }
     //Move related functions
     #region Movement Related Functions
 

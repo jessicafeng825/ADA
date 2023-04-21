@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class Rooms : MonoBehaviour
+public class Rooms : MonoBehaviour, IPointerDownHandler
 {    
     //These are the properties of the rooms
 
@@ -56,5 +58,10 @@ public class Rooms : MonoBehaviour
             this.GetComponent<CanvasGroup>().blocksRaycasts = false;
             this.gameObject.SetActive(false);
         }
+    }
+
+    public void OnPointerDown(PointerEventData data)
+    {
+        Debug.Log("OnPointerClick called.");
     }
 }

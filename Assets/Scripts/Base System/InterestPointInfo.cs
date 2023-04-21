@@ -15,6 +15,9 @@ public class InterestPointInfo : MonoBehaviour
     
     [SerializeField]
     public Memory memory;
+    
+    [SerializeField]
+    public Rooms locatedRoom;
 
     [SerializeField]
     private List<InterestPoint> collectableList;
@@ -39,6 +42,7 @@ public class InterestPointInfo : MonoBehaviour
         {
             collectableBool.Add(false);
         }
+        locatedRoom = this.transform.parent.parent.GetComponent<Rooms>();
         
         // Debug.Log("Initialize IP count " + name + ": " + cnt_current);
         GetComponentInChildren<TMP_Text>().text = cnt_current.ToString();
@@ -113,7 +117,10 @@ public class InterestPointInfo : MonoBehaviour
         }
     }
 
+    public void ShowInterestPointOnScan()
+    {
 
+    }
 
     // private void AddCollectable()
     // {
