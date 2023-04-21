@@ -74,8 +74,8 @@ public class OutroMenu : MonoBehaviour
 
     private void OpenMenu(string menuName)
     {
-        // if(PhotonNetwork.IsMasterClient)
-        // {
+        if(PhotonNetwork.IsMasterClient)
+        {
             foreach(Menu menu in pcPanelList)
             {
                 if(menu.name == menuName)
@@ -87,10 +87,10 @@ public class OutroMenu : MonoBehaviour
                     menu.Close();
                 }
             }
-        //}
-        // else
-        // {
-            foreach(Menu menu in playerPanelList)
+        }
+        else
+        {
+        foreach (Menu menu in playerPanelList)
             {
                 if(menu.name == menuName)
                 {
@@ -101,7 +101,7 @@ public class OutroMenu : MonoBehaviour
                     menu.Close();
                 }
             }
-        //}
+        }
         
     }
 
@@ -136,7 +136,7 @@ public class OutroMenu : MonoBehaviour
 
     public void OnVideoEnd()
     {
-        if(video.isPlaying == false && outroVidEnded == false)
+        if(video.isPlaying == false && outroVidEnded == false && PhotonNetwork.IsMasterClient)
         {
             outroVidEnded = true;
             OpenMenu("OutroSlide");
