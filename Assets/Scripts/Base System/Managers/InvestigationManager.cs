@@ -9,18 +9,7 @@ using UnityEngine;
 
 public class InvestigationManager : Singleton<InvestigationManager>
 {
-    #region Parameters: InterestPoint Scan
-
-    [SerializeField]
-    private GameObject mapScanner;
-    [SerializeField]
-    private float scanDistance = 30;
     
-    [SerializeField]
-    private GameObject playerMapArea;
-    private bool isScanning;
-
-    #endregion
     #region Parameters: Movement
     
     [SerializeField]
@@ -121,31 +110,31 @@ public class InvestigationManager : Singleton<InvestigationManager>
 
     private void Update()
     {
-        if(!PhotonNetwork.IsMasterClient)
-        {
-            //For scanning interest point
-            if(Input.touchCount > 0 && !isScanning)
-            {
-                foreach(Touch touch in Input.touches)
-                {
-                    if(touch.fingerId == 0)
-                    {
-                        if(touch.phase == TouchPhase.Began)
-                        {
-                            StartCoroutine(StartScanWaitSecond(touch.position, 1f));
-                        }
-                    }
-                }
-            }
-            //For scanning interest point to test on PC
-            else if(Input.touchCount == 0 && !isScanning)
-            {
-                if(Input.GetMouseButtonDown(0))
-                {
-                    StartCoroutine(StartScanWaitSecond(Input.mousePosition, 1f));
-                }
-            }
-        }
+        // if(!PhotonNetwork.IsMasterClient)
+        // {
+        //     //For scanning interest point
+        //     if(Input.touchCount > 0 && !isScanning)
+        //     {
+        //         foreach(Touch touch in Input.touches)
+        //         {
+        //             if(touch.fingerId == 0)
+        //             {
+        //                 if(touch.phase == TouchPhase.Began)
+        //                 {
+        //                     StartCoroutine(StartScanWaitSecond(touch.position, 1f));
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     //For scanning interest point to test on PC
+        //     else if(Input.touchCount == 0 && !isScanning)
+        //     {
+        //         if(Input.GetMouseButtonDown(0))
+        //         {
+        //             StartCoroutine(StartScanWaitSecond(Input.mousePosition, 1f));
+        //         }
+        //     }
+        // }
         
 
 
@@ -162,35 +151,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
             }
         }
     }
-    IEnumerator StartScanWaitSecond(Vector3 scanPos, float second)
-    {
-        isScanning = true;
-        GameObject scanTemp = Instantiate(mapScanner, scanPos, Quaternion.identity);
-        scanTemp.transform.SetParent(playerController.Instance.currentRoom.transform);
-        scanTemp.transform.localScale = new Vector3(1, 1, 1);
-        foreach(InterestPointInfo IP in playerController.Instance.currentMemory.GetComponent<MemoryInfo>().interestPoints)
-        {
-            Debug.Log("IP: " + IP.name + " is in room");
-            if(IP.locatedRoom == playerController.Instance.currentRoom)
-            {
-                if(Vector3.Distance(IP.transform.position, scanPos) <= scanDistance)
-                {
-                    IP.GetComponent<CanvasGroup>().alpha = 1;
-                    IP.GetComponent<CanvasGroup>().blocksRaycasts = true;
-                    IP.GetComponent<CanvasGroup>().interactable = true;
-                    Debug.Log("IP: " + IP.name + " is in range " + "Distance: " + Vector3.Distance(IP.transform.position, scanPos) + " Scan Distance: " + scanDistance);
-                }
-                else
-                {
-                    Debug.Log("IP: " + IP.name + " is not in range " + "Distance: " + Vector3.Distance(IP.transform.position, scanPos) + " Scan Distance: " + scanDistance);
-                }
-            }
-        }
-        Debug.Log("Touch Position: " + scanPos);
-        yield return new WaitForSeconds(second);
-        Destroy(scanTemp);
-        isScanning = false;
-    }
+    
     //Move related functions
     #region Movement Related Functions
 
@@ -252,37 +213,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         newroom.transform.localScale = new Vector3(newroom.roomScale, newroom.roomScale, newroom.roomScale);
         newroom.GetComponent<CanvasGroup>().alpha = 1f;
     }
-    [PunRPC]
-    public void PCMapUpdatePlayerCount(Memory oldMemory, string oldRoom, Memory newMemory, string newRoom)
-    {
-        foreach(PCMapRoom r in PCMapRooms)
-        {
-            if(r.memory == oldMemory)
-            {
-                if(r.roomName == oldRoom)
-                {
-                    r.PlayerCount --;
-                    if(r.PlayerCount == 0)
-                        r.transform.Find("Number").gameObject.SetActive(false);
-                    
-                    r.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
-                                         
-                }
-            }
-            if(r.memory == newMemory)
-            {
-                if(r.roomName == newRoom)
-                {
-                    r.PlayerCount ++;
-                    if(r.PlayerCount > 0)
-                        r.transform.Find("Number").gameObject.SetActive(true);
-
-                    r.transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = r.GetComponent<PCMapRoom>().PlayerCount.ToString();
-                                        
-                }
-            }
-        }
-    }
+    
     [PunRPC]
     public void MasterPCMapPLayerCount()
     {
@@ -319,6 +250,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
             }
         }
     }
+
 
     #endregion
 
@@ -742,12 +674,14 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void MasterUpdateIPFullyCollected(string ipName, Memory memory)
     {
         pv.RPC(nameof(UpdateIPFullyCollected), RpcTarget.AllBufferedViaServer, ipName, memory);
+        
     }
 
     [PunRPC]
     private void UpdateIPFullyCollected(string ipName, Memory memory)
     {
         interestPoints[ipName].SetActive(false);
+        
         allInterestPointCount --;
         // minus interest point count from memory
         if(MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().UpdateInterestPointCount(-1) && PhotonNetwork.IsMasterClient)

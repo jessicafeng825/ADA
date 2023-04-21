@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1957272010496923950}
   - component: {fileID: 5940935700456284793}
   m_Layer: 0
-  m_Name: IntererstPointScanVisual
+  m_Name: IntererstPointLargeScan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 200}
+  m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4074640413905688826
 CanvasRenderer:
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5372549, g: 0.8509804, b: 0.8666667, a: 1}
+  m_Color: {r: 1, g: 0.43137255, b: 0.37254903, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -115,7 +115,7 @@ Animator:
   m_GameObject: {fileID: 4469636190665257727}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d17b0e20887beba418062b40b648a34b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5d99b6b824edeef44b1113aa84c3c551, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

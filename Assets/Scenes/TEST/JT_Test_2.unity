@@ -543,6 +543,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &4976176
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +829,7 @@ MonoBehaviour:
   <memory>k__BackingField: 6
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
+  <interestPoints>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!114 &7039190
 MonoBehaviour:
@@ -1291,7 +1293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1733.3126, y: -873.73834}
+  m_AnchoredPosition: {x: 539.508, y: -3631.0945}
   m_SizeDelta: {x: 600, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &19238255
@@ -1834,6 +1836,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 7
   <roomName>k__BackingField: Experiment Room
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &40195015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1848,7 +1851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2600,6 +2603,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Gallery
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &56340103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2614,7 +2618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2915,6 +2919,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1001 &62188462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3958,7 +3963,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &70480851
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4567,6 +4572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-12
     type: 0
@@ -5157,6 +5163,7 @@ MonoBehaviour:
   <memory>k__BackingField: 1
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
+  <interestPoints>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!114 &75965311
 MonoBehaviour:
@@ -5437,6 +5444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Device Part - 3
     type: 1
@@ -5591,6 +5599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-9
     type: 0
@@ -5884,6 +5893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-11
     type: 0
@@ -6545,6 +6555,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 1
   <roomName>k__BackingField: BM_Mid
+  <interestPointCount>k__BackingField: 0
 --- !u!1 &100773843
 GameObject:
   m_ObjectHideFlags: 0
@@ -6601,6 +6612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-3
     type: 0
@@ -6798,6 +6810,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 5
   <roomName>k__BackingField: Storage
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &106142550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6812,7 +6825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8051,6 +8064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-1
     type: 0
@@ -11794,6 +11808,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Security Room
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &193122216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11808,7 +11823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11976,6 +11991,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &199347410
 GameObject:
   m_ObjectHideFlags: 0
@@ -12344,6 +12360,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 5
   <roomName>k__BackingField: Private Room02
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &202812258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12358,7 +12375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -12450,6 +12467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 3
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SC-14
     type: 0
@@ -12610,6 +12628,7 @@ MonoBehaviour:
   <memory>k__BackingField: 5
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
+  <interestPoints>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!114 &203650868
 MonoBehaviour:
@@ -15274,6 +15293,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 5
   <roomName>k__BackingField: ' Private Room01'
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &276116302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15288,7 +15308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -15979,6 +15999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Dynamic Passcode
     type: 1
@@ -16171,6 +16192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 4
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Elevator Passcode
     type: 1
@@ -16460,6 +16482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 6
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: VB-1
     type: 0
@@ -17416,6 +17439,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &299087793
 GameObject:
   m_ObjectHideFlags: 0
@@ -17836,6 +17860,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &308022768
 GameObject:
   m_ObjectHideFlags: 0
@@ -18103,6 +18128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-2
     type: 0
@@ -18295,6 +18321,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &313096847
 GameObject:
   m_ObjectHideFlags: 0
@@ -19475,6 +19502,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1001 &333122530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19748,6 +19776,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &338945950
 GameObject:
   m_ObjectHideFlags: 0
@@ -21163,6 +21192,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 4
   <roomName>k__BackingField: ParalegalsOffice
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &362741423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21177,7 +21207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -21699,6 +21729,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 7
   <roomName>k__BackingField: Secret Laboratory
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &375552329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21713,7 +21744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -22776,7 +22807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1073.3126, y: -603.73834}
+  m_AnchoredPosition: {x: 539.508, y: -931.0945}
   m_SizeDelta: {x: 600, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &395288125
@@ -23687,6 +23718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-4
     type: 0
@@ -24678,6 +24710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-1
     type: 0
@@ -25451,6 +25484,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 4
   <roomName>k__BackingField: Max's Office
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &443260645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25465,7 +25499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -25800,6 +25834,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: KM_Mid
+  <interestPointCount>k__BackingField: 0
 --- !u!1 &445135691
 GameObject:
   m_ObjectHideFlags: 0
@@ -27759,6 +27794,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Hall
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &474234554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27773,7 +27809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -27865,6 +27901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 4
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: LO-11
     type: 0
@@ -28840,6 +28877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-10
     type: 0
@@ -29076,6 +29114,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 4
   <roomName>k__BackingField: Open Area
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &488602292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29090,7 +29129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -30227,6 +30266,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Study
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &517877591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30241,7 +30281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -30665,6 +30705,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 6
   <roomName>k__BackingField: Commander Room
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &524124978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30679,7 +30720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -32082,6 +32123,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &547544352
 GameObject:
   m_ObjectHideFlags: 0
@@ -32724,6 +32766,7 @@ MonoBehaviour:
   <memory>k__BackingField: 7
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
+  <interestPoints>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!114 &555338203
 MonoBehaviour:
@@ -33324,6 +33367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 6
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Void Base Secret
     type: 1
@@ -34968,6 +35012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 3
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SC-10
     type: 0
@@ -35279,6 +35324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: BM-4
     type: 0
@@ -35934,6 +35980,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &613353532
 GameObject:
   m_ObjectHideFlags: 0
@@ -35972,6 +36019,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 6
   <roomName>k__BackingField: Open Area
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &613353534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35986,7 +36034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -37565,6 +37613,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &646518675
 GameObject:
   m_ObjectHideFlags: 0
@@ -39299,6 +39348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: BM-9
     type: 0
@@ -40668,6 +40718,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 6
   <roomName>k__BackingField: Storage
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &722783339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40682,7 +40733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -41748,6 +41799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-25
     type: 0
@@ -42154,6 +42206,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 4
   <roomName>k__BackingField: Data Room
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &739142917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42168,7 +42221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -42288,6 +42341,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 6
   <roomName>k__BackingField: Kitchen
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &747015718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42302,7 +42356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -43080,6 +43134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 6
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: VB-6
     type: 0
@@ -44321,6 +44376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-6
     type: 0
@@ -44552,6 +44608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 4
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: LO-13
     type: 0
@@ -45134,6 +45191,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1001 &782934385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45560,6 +45618,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &786270489
 GameObject:
   m_ObjectHideFlags: 0
@@ -46230,6 +46289,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &796466571
 GameObject:
   m_ObjectHideFlags: 0
@@ -46324,6 +46384,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1001 &803409688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47081,6 +47142,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &819051164
 GameObject:
   m_ObjectHideFlags: 0
@@ -47252,6 +47314,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &822731182
 GameObject:
   m_ObjectHideFlags: 0
@@ -47493,6 +47556,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &826089976
 GameObject:
   m_ObjectHideFlags: 0
@@ -48288,6 +48352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 3
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SC-1
     type: 0
@@ -48700,6 +48765,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 6
   <roomName>k__BackingField: Operation Room
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &853211326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48714,7 +48780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -49143,6 +49209,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 1
   <roomName>k__BackingField: Dumptser
+  <interestPointCount>k__BackingField: 0
 --- !u!225 &854776257
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -49169,7 +49236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -49364,6 +49431,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &860849320
 GameObject:
   m_ObjectHideFlags: 0
@@ -49755,6 +49823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 5
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: NC-7
     type: 0
@@ -50325,6 +50394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 3
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Emotion Scan-Mutts
     type: 1
@@ -50611,7 +50681,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1733.3126, y: -333.73834}
+  m_AnchoredPosition: {x: 539.508, y: -2011.0945}
   m_SizeDelta: {x: 600, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &882691286
@@ -52129,6 +52199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Device Part - 1
     type: 1
@@ -53217,6 +53288,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &931961524
 GameObject:
   m_ObjectHideFlags: 0
@@ -54054,6 +54126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 6
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Corrupted Memory-Ava & Caiden Conversation
     type: 1
@@ -55006,6 +55079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Device Part - 2
     type: 1
@@ -55159,6 +55233,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 6
   <roomName>k__BackingField: VB_Mid
+  <interestPointCount>k__BackingField: 0
 --- !u!1 &968294208
 GameObject:
   m_ObjectHideFlags: 0
@@ -55490,6 +55565,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 5
   <roomName>k__BackingField: Owner's Office
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &971626531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55504,7 +55580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -55780,6 +55856,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Front Hall
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &974915643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55794,7 +55871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -56419,6 +56496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-10
     type: 0
@@ -57826,6 +57904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 6
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: VB-3
     type: 0
@@ -58551,6 +58630,7 @@ MonoBehaviour:
   <memory>k__BackingField: 3
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
+  <interestPoints>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!114 &1026094733
 MonoBehaviour:
@@ -59335,6 +59415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: BM-1
     type: 0
@@ -59969,6 +60050,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1051381990
 GameObject:
   m_ObjectHideFlags: 0
@@ -61392,6 +61474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-8
     type: 0
@@ -61933,6 +62016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Emotion Scan-Bishop
     type: 1
@@ -63212,6 +63296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 5
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: NC-3
     type: 0
@@ -64671,6 +64756,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1147467285
 GameObject:
   m_ObjectHideFlags: 0
@@ -64962,7 +65048,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 413.31262, y: -873.73834}
+  m_AnchoredPosition: {x: 539.508, y: -2551.0945}
   m_SizeDelta: {x: 600, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1148816395
@@ -65153,6 +65239,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 3
+  <InterestPoinCount>k__BackingField: 0
 --- !u!114 &1151949434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65201,6 +65288,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1157501423}
   - component: {fileID: 1157501424}
+  - component: {fileID: 1157501426}
+  - component: {fileID: 1157501425}
+  - component: {fileID: 1157501427}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -65249,6 +65339,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 1
+--- !u!114 &1157501425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157501422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1157501426
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157501422}
+  m_CullTransparentMesh: 1
+--- !u!114 &1157501427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157501422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5993a57650e835408f8c0cd6f442b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMapScanner: {fileID: 4469636190665257727, guid: 3d6ea40f84ab2eb4faa33e4b1c25f100, type: 3}
+  largeMapScanner: {fileID: 4469636190665257727, guid: d4246664fa861224ca5a4b2e9be863df, type: 3}
+  scanDistance: 40
 --- !u!1 &1161260837
 GameObject:
   m_ObjectHideFlags: 0
@@ -66378,6 +66521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Bishop's Phone
     type: 1
@@ -66636,6 +66780,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 4
   <roomName>k__BackingField: WaitingRoom
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1173682823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66650,7 +66795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -67297,6 +67442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-3
     type: 0
@@ -68529,7 +68675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1073.3126, y: -333.73834}
+  m_AnchoredPosition: {x: 539.508, y: -1471.0945}
   m_SizeDelta: {x: 600, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1204629596
@@ -69408,7 +69554,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 200
+  m_fontSize: 68.15
   m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -69532,6 +69678,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 3
   <roomName>k__BackingField: Dumptser
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1232443643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69546,7 +69693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -70289,6 +70436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 4
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: LO-4
     type: 0
@@ -71735,6 +71883,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1276022564
 GameObject:
   m_ObjectHideFlags: 0
@@ -71900,7 +72049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ec40ab8e0674c46ad780be733102a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapScanner: {fileID: 4469636190665257727, guid: 3d6ea40f84ab2eb4faa33e4b1c25f100, type: 3}
   PCMap: {fileID: 1772707165}
   PCMapRooms: []
   startMemory: {fileID: 75965308}
@@ -72666,6 +72814,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Living Room
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1283366930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72680,7 +72829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -72933,6 +73082,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 1
   <roomName>k__BackingField: Alley
+  <interestPointCount>k__BackingField: 0
 --- !u!225 &1289937166
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -72959,7 +73109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -73627,6 +73777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-12
     type: 0
@@ -73819,6 +73970,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1309365521
 GameObject:
   m_ObjectHideFlags: 0
@@ -73950,6 +74102,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 5
   <roomName>k__BackingField: NC_Mid
+  <interestPointCount>k__BackingField: 0
 --- !u!1 &1313542123
 GameObject:
   m_ObjectHideFlags: 0
@@ -75581,6 +75734,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1343996952
 GameObject:
   m_ObjectHideFlags: 0
@@ -75886,6 +76040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 3
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Corrupted Memory-Sign
     type: 1
@@ -77335,6 +77490,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1001 &1361343107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77704,6 +77860,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 4
   <roomName>k__BackingField: LO_Mid
+  <interestPointCount>k__BackingField: 0
 --- !u!1 &1364232333
 GameObject:
   m_ObjectHideFlags: 0
@@ -78965,6 +79122,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1385374131
 GameObject:
   m_ObjectHideFlags: 0
@@ -79021,6 +79179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: BM-6
     type: 0
@@ -79179,6 +79338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 6
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: VB-4
     type: 0
@@ -80797,6 +80957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 4
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: LO-1
     type: 0
@@ -80962,6 +81123,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Storage
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1409837884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80976,7 +81138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -81938,6 +82100,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1425779603
 GameObject:
   m_ObjectHideFlags: 0
@@ -82671,6 +82834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-2
     type: 0
@@ -82863,6 +83027,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1448373729
 GameObject:
   m_ObjectHideFlags: 0
@@ -84274,6 +84439,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Ava's Room
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1455976508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84288,7 +84454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -84456,6 +84622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-5
     type: 0
@@ -84610,6 +84777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 5
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: NC-1
     type: 0
@@ -86946,6 +87114,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 5
   <roomName>k__BackingField: Restroom
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1486675022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86960,7 +87129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -87583,6 +87752,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 4
   <roomName>k__BackingField: Meeting Room
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1495556686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87597,7 +87767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -87923,6 +88093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 5
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Corrupted Memory-Nightclub Conversation
     type: 1
@@ -88420,6 +88591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-7
     type: 0
@@ -90362,6 +90534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 3
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SC-6
     type: 0
@@ -90651,6 +90824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 4
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Safe Passcode
     type: 1
@@ -93187,6 +93361,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Entrance
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1610518223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93201,7 +93376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -93867,6 +94042,7 @@ MonoBehaviour:
   <memory>k__BackingField: 2
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
+  <interestPoints>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!114 &1626383019
 MonoBehaviour:
@@ -93938,6 +94114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 6
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: VB-5
     type: 0
@@ -95208,7 +95385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1073.3126, y: -873.73834}
+  m_AnchoredPosition: {x: 539.508, y: -3091.0945}
   m_SizeDelta: {x: 600, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1647742893
@@ -95460,6 +95637,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1652856289
 GameObject:
   m_ObjectHideFlags: 0
@@ -97755,6 +97933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-8
     type: 0
@@ -99970,6 +100149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-19
     type: 0
@@ -101078,6 +101258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-4
     type: 0
@@ -101892,6 +102073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 3
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SC-12
     type: 0
@@ -103300,6 +103482,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 1
   <locatedMemory>k__BackingField: 6
   <roomName>k__BackingField: ???
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1783409919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103314,7 +103497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -104725,6 +104908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-14
     type: 0
@@ -104960,6 +105144,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Dining Room
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1821411536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104974,7 +105159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -106410,7 +106595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1865124836
 RectTransform:
   m_ObjectHideFlags: 0
@@ -107490,6 +107675,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 5
   <roomName>k__BackingField: Dance Floor
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1887467274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107504,7 +107690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -108090,6 +108276,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 1
   <roomName>k__BackingField: BM_Mid
+  <interestPointCount>k__BackingField: 0
 --- !u!1 &1895452117
 GameObject:
   m_ObjectHideFlags: 0
@@ -109240,6 +109427,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Kitchen
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &1911721652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109254,7 +109442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -109530,6 +109718,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1913930130
 GameObject:
   m_ObjectHideFlags: 0
@@ -109759,6 +109948,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!114 &1915327124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110032,6 +110222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 3
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SC-2
     type: 0
@@ -111171,6 +111362,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1944812766
 GameObject:
   m_ObjectHideFlags: 0
@@ -111227,6 +111419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 7
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SL-9
     type: 0
@@ -111879,6 +112072,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 1
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!225 &1950428776
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -112859,6 +113053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Security Door
     type: 1
@@ -113797,6 +113992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 3
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: SC-9
     type: 0
@@ -113989,6 +114185,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &1990001404
 GameObject:
   m_ObjectHideFlags: 0
@@ -114045,6 +114242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 4
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: LO-15
     type: 0
@@ -114543,6 +114741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-14
     type: 0
@@ -114697,6 +114896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 5
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: Cybernetic Brawler Phone
     type: 1
@@ -114932,6 +115132,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 6
   <roomName>k__BackingField: Meeting Area
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &2000731129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114946,7 +115147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -115712,6 +115913,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 7
   <roomName>k__BackingField: Server Room
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &2013308616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115726,7 +115928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -116927,6 +117129,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &2037140185
 GameObject:
   m_ObjectHideFlags: 0
@@ -117626,6 +117829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 4
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: LO-16
     type: 0
@@ -117785,6 +117989,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 2
   <roomName>k__BackingField: Master Bedroom
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &2047155953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117799,7 +118004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -118241,6 +118446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 5
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: NC-8
     type: 0
@@ -118471,6 +118677,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 3
   <roomName>k__BackingField: SC_Mid
+  <interestPointCount>k__BackingField: 0
 --- !u!1 &2070148070
 GameObject:
   m_ObjectHideFlags: 0
@@ -118871,6 +119078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 6
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: VB-2
     type: 0
@@ -119461,6 +119669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 2
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: KM-11
     type: 0
@@ -119877,7 +120086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1073.3126, y: -603.73834}
+  m_AnchoredPosition: {x: 539.508, y: -391.09448}
   m_SizeDelta: {x: 600, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2086470723
@@ -119926,6 +120135,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 3
   <roomName>k__BackingField: Alley
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &2086706319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119940,7 +120150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -120731,6 +120941,7 @@ MonoBehaviour:
   <memory>k__BackingField: 4
   <Rooms>k__BackingField: []
   <Doors>k__BackingField: []
+  <interestPoints>k__BackingField: []
   <interestPointCount>k__BackingField: 0
 --- !u!114 &2095878462
 MonoBehaviour:
@@ -121223,6 +121434,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &2104833319
 GameObject:
   m_ObjectHideFlags: 0
@@ -121566,6 +121778,7 @@ MonoBehaviour:
   <roomName>k__BackingField: 
   <secretRoom>k__BackingField: 0
   <PlayerCount>k__BackingField: 0
+  <InterestPoinCount>k__BackingField: 0
 --- !u!1 &2108438962
 GameObject:
   m_ObjectHideFlags: 0
@@ -121726,6 +121939,7 @@ MonoBehaviour:
   <isHidden>k__BackingField: 0
   <locatedMemory>k__BackingField: 3
   <roomName>k__BackingField: MainStreet
+  <interestPointCount>k__BackingField: 0
 --- !u!114 &2110861978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121740,7 +121954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -122004,6 +122218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 4
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: LO-12
     type: 0
@@ -123337,6 +123552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 5
+  locatedRoom: {fileID: 0}
   collectableList:
   - id: NC-9
     type: 0

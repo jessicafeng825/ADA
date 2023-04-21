@@ -119,7 +119,23 @@ public class InterestPointInfo : MonoBehaviour
 
     public void ShowInterestPointOnScan()
     {
-
+        if(this.GetComponent<CanvasGroup>().alpha == 1)
+            return;
+        StartCoroutine(ShowInterestPointOnScanCoroutine(1.7f));
+    }
+    IEnumerator ShowInterestPointOnScanCoroutine(float sec)
+    {
+        float timer = 0;
+        this.GetComponent<CanvasGroup>().interactable = true;
+        while(timer < sec)
+        {
+            this.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, timer/sec);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        this.GetComponent<CanvasGroup>().alpha = 1;
+        this.GetComponent<CanvasGroup>().interactable = true;
+        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
     // private void AddCollectable()

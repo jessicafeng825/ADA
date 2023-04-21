@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Rooms : MonoBehaviour, IPointerDownHandler
+public class Rooms : MonoBehaviour
 {    
     //These are the properties of the rooms
 
@@ -34,16 +34,20 @@ public class Rooms : MonoBehaviour, IPointerDownHandler
     public string roomName 
     { get; private set;}
 
+    [field: SerializeField]
     public int interestPointCount 
-    { get; private set;}
+    { get; set;}
 
-    public bool allInterestPointsCollected 
-    { get; private set; }
+
 
 
 
     void Awake()
     {
+        
+        
+    }
+    private void Start() {
         roomName = this.gameObject.name;
         if(midRoom)
             return;
@@ -58,10 +62,5 @@ public class Rooms : MonoBehaviour, IPointerDownHandler
             this.GetComponent<CanvasGroup>().blocksRaycasts = false;
             this.gameObject.SetActive(false);
         }
-    }
-
-    public void OnPointerDown(PointerEventData data)
-    {
-        Debug.Log("OnPointerClick called.");
     }
 }
