@@ -94,6 +94,7 @@ public class MemoryReconstruct : PuzzleInfo
             fingerButton.GetComponent<Image>().color = correctColor;
             fingerButton.GetComponent<Button>().enabled = false;
             isSolved = true;
+            InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
             PuzzleSolveEffect();
             return true;
         }
@@ -106,6 +107,7 @@ public class MemoryReconstruct : PuzzleInfo
             fingerButton.GetComponent<Image>().color = correctColor;
             fingerButton.GetComponent<Button>().enabled = false;
             isSolved = true;
+            InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
             PuzzleSolveEffect();
             return true;
         }

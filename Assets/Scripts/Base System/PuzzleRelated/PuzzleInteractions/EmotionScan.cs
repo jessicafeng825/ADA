@@ -68,6 +68,7 @@ public class EmotionScan : PuzzleInfo
         resultImage.SetActive(true);
         questionImage.SetActive(false);
         hintText.GetComponent<TextMeshProUGUI>().text = "Scan Complete";
+        InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
         PuzzleSolveEffect();
         emotionCanAnim.SetBool("ScanBool", false);
     }

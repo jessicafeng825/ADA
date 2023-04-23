@@ -50,6 +50,7 @@ public class DynamicPasscode : PuzzleInfo
 
     IEnumerator DecodeTimer(float time)
     {
+        decoding = true;
         if(!BaseUIManager.Instance.CheckHavePuzzle("Decoder"))
         {
             hintText.GetComponent<TextMeshProUGUI>().text = "Some kind of device may be needed to solve this...";
@@ -58,6 +59,7 @@ public class DynamicPasscode : PuzzleInfo
             yield return new WaitForSeconds(2f);
             decodeButton.GetComponent<Image>().color = normalColor;
             hintText.GetComponent<TextMeshProUGUI>().text = "A dynamic passcode on the wall that has a socket for something to plug in...";
+            decoding = false;
             yield break;
         }
         else if(!BaseUIManager.Instance.CheckDecoderUnlocked("Decoder"))
@@ -68,12 +70,12 @@ public class DynamicPasscode : PuzzleInfo
             yield return new WaitForSeconds(2f);
             decodeButton.GetComponent<Image>().color = normalColor;
             hintText.GetComponent<TextMeshProUGUI>().text = "A dynamic passcode on the wall that has a socket for something to plug in...";
+            decoding = false;
             yield break;
         }
         decodeAnim.SetTrigger("DecodeTrigger");
         yield return new WaitForSeconds(0.5f);
         float decodeTimer = 0f;
-        decoding = true;
         while(decodeTimer < time)
         {
             dynamicNumber.GetComponent<TextMeshProUGUI>().text = Random.Range(0, 999999999).ToString("000000000");
@@ -81,6 +83,8 @@ public class DynamicPasscode : PuzzleInfo
             yield return null;
         }
         hintText.GetComponent<TextMeshProUGUI>().text = "ACTIVATED";
+        
+        InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
         PuzzleSolveEffect();
         isSolved = true;
         

@@ -178,6 +178,5 @@ public class Tutorial : MonoBehaviour
     public void OpenTutorial()
     {
         gameObject.SetActive(true);
-        Debug.Log("Tutorial Opened");
     }
 }

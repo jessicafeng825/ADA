@@ -103,10 +103,11 @@ public class DecoderCombine : PuzzleInfo
         resultImage.SetActive(true);
         questionImage.SetActive(false);
         hintText.GetComponent<TextMeshProUGUI>().text = "Parts Combined! It's a decoder!";
+        InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
         PuzzleSolveEffect();
 
         
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         BaseUIManager.Instance.RemovePuzzleBtns("Device Part - 1");
         BaseUIManager.Instance.RemovePuzzleBtns("Device Part - 2");
         BaseUIManager.Instance.RemovePuzzleBtns("Device Part - 3");

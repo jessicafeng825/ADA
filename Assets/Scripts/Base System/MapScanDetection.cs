@@ -60,7 +60,7 @@ public class MapScanDetection : MonoBehaviour,  IPointerClickHandler
         {
             if(IP.locatedRoom == playerController.Instance.currentRoom)
             {
-                if(Vector3.Distance(IP.transform.position, scanPos) <= scanDistance)
+                if(Vector3.Distance(IP.transform.position, scanPos) <= scanDistance && IP.gameObject.activeSelf)
                 {
                     IP.GetComponent<InterestPointInfo>().ShowInterestPointOnScan();
                 }

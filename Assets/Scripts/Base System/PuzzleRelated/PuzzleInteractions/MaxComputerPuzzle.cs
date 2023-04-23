@@ -8,6 +8,7 @@ public class MaxComputerPuzzle : PuzzleInfo
 {
     private bool email01Collected;
     private bool email02Collected;
+    private bool avaCollected;
     private bool codeCollected;
 
     [SerializeField]
@@ -15,6 +16,9 @@ public class MaxComputerPuzzle : PuzzleInfo
 
     [SerializeField]
     private GameObject email02Button;
+
+    [SerializeField]
+    private GameObject avaButton;
 
     [SerializeField]
     private GameObject codeButton;
@@ -26,6 +30,9 @@ public class MaxComputerPuzzle : PuzzleInfo
     private string email02ClueID;
 
     [SerializeField]
+    private string avaInfoClueID;
+
+    [SerializeField]
     private string codeClueID;
     
     private void Start()
@@ -34,6 +41,7 @@ public class MaxComputerPuzzle : PuzzleInfo
         this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
         email01Button.GetComponent<Button>().onClick.AddListener(delegate{collectClue(email01ClueID);});
         email02Button.GetComponent<Button>().onClick.AddListener(delegate{collectClue(email02ClueID);});
+        avaButton.GetComponent<Button>().onClick.AddListener(delegate{collectClue(avaInfoClueID);});
         codeButton.GetComponent<Button>().onClick.AddListener(delegate{collectClue(codeClueID);});
         
     }
@@ -54,6 +62,13 @@ public class MaxComputerPuzzle : PuzzleInfo
             BaseUIManager.Instance.SpawnNotificationPanel("New Clue!", "You got 1 new clues!", 1, -1f);
             email02Collected = true;
         }
+        else if(clue == avaInfoClueID && !avaCollected)
+        {
+            Debug.Log("ava info collected");
+            InvestigationManager.Instance.AddCluePrefab(clue, collectedAt);
+            BaseUIManager.Instance.SpawnNotificationPanel("New Clue!", "You got 1 new clues!", 1, -1f);
+            avaCollected = true;
+        }
         else if(clue == codeClueID && !codeCollected)
         {
             Debug.Log("code collected");
@@ -65,7 +80,7 @@ public class MaxComputerPuzzle : PuzzleInfo
         {
             Debug.Log("Nothing");
         }
-        if(email01Collected && email02Collected && codeCollected)
+        if(email01Collected && email02Collected && avaCollected && codeCollected)
         {
             // Hide UI, Mark this puzzle with "solved";
             InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);

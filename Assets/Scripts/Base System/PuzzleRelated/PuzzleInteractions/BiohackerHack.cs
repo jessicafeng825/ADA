@@ -78,7 +78,8 @@ public class BiohackerHack : PuzzleInfo
             hackAnim.SetTrigger("FailTrigger");
         }
         else if(result <= 10f || result >= 170f)
-        {
+        {            
+            InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
             hackAnim.SetTrigger("OpenTrigger");
             hintText.SetActive(false);
         }

@@ -865,7 +865,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.25
+  m_fontSize: 30
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1535,7 +1535,7 @@ RectTransform:
   m_AnchorMin: {x: 0.7528306, y: 0.8843765}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 3.265808, y: -14.375488}
-  m_SizeDelta: {x: -0.3542048, y: 28.7508}
+  m_SizeDelta: {x: -0.35438088, y: 28.7508}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1463102588890807831
 CanvasRenderer:
@@ -1848,10 +1848,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: OUT
+  m_text: Elevator Out
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1875,7 +1875,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.7
+  m_fontSize: 60
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2322,7 +2322,7 @@ RectTransform:
   m_AnchorMin: {x: 0.78970164, y: 0.8824642}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 1.84729, y: -13.167297}
-  m_SizeDelta: {x: -1.0300864, y: 26.3345}
+  m_SizeDelta: {x: -1.6805845, y: 26.3345}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5669861894645921490
 CanvasRenderer:
@@ -2757,7 +2757,7 @@ RectTransform:
   m_AnchorMin: {x: 0.875, y: 0.8}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -7.5402527, y: 0}
+  m_SizeDelta: {x: -7.539894, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5070064287426394879
 CanvasRenderer:
@@ -3213,7 +3213,7 @@ GameObject:
   - component: {fileID: 3894471029055438337}
   - component: {fileID: 8739612120000503034}
   m_Layer: 0
-  m_Name: Button
+  m_Name: CodeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3236,7 +3236,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.15}
+  m_AnchorMax: {x: 1, y: 0.175}
   m_AnchoredPosition: {x: 0, y: 10.256012}
   m_SizeDelta: {x: 0, y: 20.512}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3409,9 +3409,11 @@ MonoBehaviour:
   TransferMenu: {fileID: 6417693014746344959}
   email01Button: {fileID: 7760460129168569493}
   email02Button: {fileID: 3694822955303454461}
+  avaButton: {fileID: 8801714993145610391}
   codeButton: {fileID: 7922388987982860326}
   email01ClueID: LO-10
   email02ClueID: LO-9
+  avaInfoClueID: LO-18
   codeClueID: LO-17
 --- !u!1 &8336440360773050965
 GameObject:
@@ -3779,7 +3781,7 @@ GameObject:
   - component: {fileID: 9015765441062041093}
   - component: {fileID: 6990626876994955330}
   m_Layer: 0
-  m_Name: Button
+  m_Name: AvaButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
