@@ -161,7 +161,7 @@ public class OutroMenu : MonoBehaviour
                 characterSecret.GetComponent<TextMeshProUGUI>().text = "Izzy blacked mailed Bishop Kaine and a lot of other people";
                 break;
             case 3:
-                characterImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterUI/Characters/Round_Brawler");
+                characterImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("CharacterUI/Characters/Round_Cybernetic Brawler");
                 characterSecret.GetComponent<TextMeshProUGUI>().text = "Kian's sister Evie was murdered by the MemTech Industries";
                 break;
             case 4:
