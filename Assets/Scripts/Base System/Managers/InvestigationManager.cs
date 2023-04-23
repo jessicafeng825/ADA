@@ -163,7 +163,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
         //Update PC Map room player count
         Memory tempMemory = playerController.Instance.currentMemory.GetComponent<MemoryInfo>().memory;
         // pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, tempMemory, oldRoom.name, tempMemory, room.name);
-        pv.RPC(nameof(MasterPCMapPLayerCount), RpcTarget.MasterClient);
+        //pv.RPC(nameof(MasterPCMapPLayerCount), RpcTarget.MasterClient);
         //Update player's current room
         playerController.Instance.currentRoom = room;
         StartCoroutine(RoomCoroutine(oldRoom, room, 0.5f));
@@ -541,7 +541,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
                 playerController.Instance.currentRoom = room;
                 playerController.Instance.SyncRoomMemory(room.name, toMemory.ToString());
                 // pv.RPC(nameof(PCMapUpdatePlayerCount), RpcTarget.MasterClient, fromMemory, originalRoom.name, toMemory, room.name);
-                pv.RPC(nameof(MasterPCMapPLayerCount), RpcTarget.MasterClient);
+                //pv.RPC(nameof(MasterPCMapPLayerCount), RpcTarget.MasterClient);
                 
                 break;
             }
@@ -681,7 +681,7 @@ public class InvestigationManager : Singleton<InvestigationManager>
     private void UpdateIPFullyCollected(string ipName, Memory memory)
     {
         interestPoints[ipName].SetActive(false);
-        
+        interestPoints[ipName].GetComponent<InterestPointInfo>().locatedRoom.GetComponent<Rooms>().UpdateIPCount();
         allInterestPointCount --;
         // minus interest point count from memory
         if(MemoryUI_Dic[memory.ToString()].GetComponent<MemoryInfo>().UpdateInterestPointCount(-1) && PhotonNetwork.IsMasterClient)
@@ -693,6 +693,17 @@ public class InvestigationManager : Singleton<InvestigationManager>
         {
             Debug.Log("All interest points are collected");
             TimerManager.Instance.SwitchStage(gamestage.Accusation);
+        }
+    }
+    public void SyncPCMapIPCount(Memory memory, string roomName, int count)
+    {
+        foreach(PCMapRoom r in PCMapRooms)
+        {
+            if(r.memory == memory && r.roomName == roomName)
+            {
+                r.UpdateIPCount(count);
+                break;
+            }
         }
     }
 

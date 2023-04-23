@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class Rooms : MonoBehaviour
 {    
@@ -44,10 +45,6 @@ public class Rooms : MonoBehaviour
 
     void Awake()
     {
-        
-        
-    }
-    private void Start() {
         roomName = this.gameObject.name;
         if(midRoom)
             return;
@@ -55,12 +52,31 @@ public class Rooms : MonoBehaviour
         {
             interestPointCount++;
         }
+        
+    }
+    private void Start() {
+        
+        if(midRoom)
+            return;
         if(!firstRoominMemory)
         {   
             this.GetComponent<CanvasGroup>().alpha = 0;
             this.GetComponent<CanvasGroup>().interactable = false;
             this.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            if(PhotonNetwork.IsMasterClient)
+            {
+                
+                return;
+            }
+        
             this.gameObject.SetActive(false);
         }
+    }
+    public void UpdateIPCount()
+    {
+        interestPointCount--;
+        if(!PhotonNetwork.IsMasterClient)
+            return;
+        InvestigationManager.Instance.SyncPCMapIPCount(locatedMemory, roomName, interestPointCount);       
     }
 }

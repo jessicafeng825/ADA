@@ -46,7 +46,7 @@ public class MapScanDetection : MonoBehaviour,  IPointerClickHandler
         if(!isScanning)
         {
             
-            StartCoroutine(StartScanWaitSecond(data.position, 2f));
+            StartCoroutine(StartScanWaitSecond(data.position, 1.5f));
         }
     }
     IEnumerator StartScanWaitSecond(Vector3 scanPos, float second)

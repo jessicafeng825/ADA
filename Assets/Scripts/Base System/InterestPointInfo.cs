@@ -127,6 +127,7 @@ public class InterestPointInfo : MonoBehaviour
     {
         float timer = 0;
         this.GetComponent<CanvasGroup>().interactable = true;
+        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
         while(timer < sec)
         {
             this.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, timer/sec);
@@ -134,8 +135,6 @@ public class InterestPointInfo : MonoBehaviour
             yield return null;
         }
         this.GetComponent<CanvasGroup>().alpha = 1;
-        this.GetComponent<CanvasGroup>().interactable = true;
-        this.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
     // private void AddCollectable()

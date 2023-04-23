@@ -57,7 +57,7 @@ public class MemoryInfo : MonoBehaviour
 
     private void Start() 
     {
-        if(memory != InvestigationManager.Instance.startMemory.GetComponent<MemoryInfo>().memory)
+        if(memory != InvestigationManager.Instance.startMemory.GetComponent<MemoryInfo>().memory && !PhotonNetwork.IsMasterClient)
             this.gameObject.SetActive(false);
     }
 

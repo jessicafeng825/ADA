@@ -13,6 +13,9 @@ public class PCMapRoom : MonoBehaviour
     [field: SerializeField]
     public string roomName
     {get; private set;}
+    [field: SerializeField]
+    public Rooms correspondingRoom
+    {get; private set;}
 
     [field: SerializeField]
     public bool secretRoom
@@ -28,10 +31,15 @@ public class PCMapRoom : MonoBehaviour
 
     private void Awake() {
         roomName = this.gameObject.name;
+        InterestPoinCount = correspondingRoom.interestPointCount;
+        transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = InterestPoinCount.ToString();
+        if(InterestPoinCount == 0)
+        {
+            transform.Find("Number").gameObject.SetActive(false);
+        }
     }
     private void Start()
     {
-        
         // if(memory == InvestigationManager.Instance.startMemory.GetComponent<MemoryInfo>().memory)
         // {
         //     if(roomName == InvestigationManager.Instance.startRoom.roomName)
@@ -46,19 +54,14 @@ public class PCMapRoom : MonoBehaviour
             this.GetComponent<CanvasGroup>().alpha = 0;
         }
     }
-    public void InitializeIPCount(int count)
+    public void UpdateIPCount(int count)
     {
-        InterestPoinCount = count;
+        InterestPoinCount  = count;        
         transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = InterestPoinCount.ToString();
-        if(this.transform.parent.name != InvestigationManager.Instance.startMemory.GetComponent<MemoryInfo>().memory.ToString())
+        if(InterestPoinCount == 0)
         {
-            this.transform.parent.gameObject.SetActive(false);
+            transform.Find("Number").gameObject.SetActive(false);
         }
-    }
-    public void UpdateIPCount()
-    {
-        InterestPoinCount --;
-        transform.Find("Number").GetChild(0).GetComponent<TextMeshProUGUI>().text = InterestPoinCount.ToString();
     }
 
 }
