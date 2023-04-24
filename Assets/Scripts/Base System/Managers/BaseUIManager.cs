@@ -297,7 +297,6 @@ public class BaseUIManager : Singleton<BaseUIManager>
         
         charaterPanel.transform.Find("BackgroundPanel").GetComponentInChildren<TMP_Text>().text = playerController.Instance.playerBackground;
         charaterPanel.transform.Find("SkillPanel").GetComponentInChildren<TMP_Text>().text = playerController.Instance.skillText;
-        charaterPanel.transform.Find("AlibiPanel").GetComponentInChildren<TMP_Text>().text = playerController.Instance.alibiText;
         charaterPanel.transform.Find("SecretPanel").GetComponentInChildren<TMP_Text>().text = playerController.Instance.secretText;
     }
     public void UpdateAPUI(int num)

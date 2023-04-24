@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviourPunCallbacks
     [SerializeField] public TMP_Text playerJob;//player Job
     [SerializeField] public TMP_Text playerbk;//player background
     [SerializeField] public TMP_Text playersk;//player skills
-    [SerializeField] public TMP_Text playerAlibi;//player alibi
     [SerializeField] public TMP_Text playerSecret;//player secret
     [SerializeField] public Image playerImageUI;//player Image
     [SerializeField] public VideoPlayer video;
@@ -340,7 +339,6 @@ public class UIManager : MonoBehaviourPunCallbacks
             playerName.text = job.playername;
             playerbk.text = job.backgroundstory;
             playersk.text = job.skilltext;
-            playerAlibi.text = job.alibitext;
             playerSecret.text = job.secret;
             playerImageUI.sprite = Resources.Load<Sprite>("CharacterUI/Characters/" + "Round_" + job.playerImage);
             //ifselected = true;
