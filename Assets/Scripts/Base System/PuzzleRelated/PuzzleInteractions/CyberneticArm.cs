@@ -66,7 +66,7 @@ public class CyberneticArm : PuzzleInfo
         }
         resultImage.SetActive(true);
         questionImage.SetActive(false);
-        hintText.GetComponent<TextMeshProUGUI>().text = "Scan Complete";
+        hintText.GetComponent<TextMeshProUGUI>().text = "Door broken!";
         InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
         PuzzleSolveEffect();
     }

@@ -33,17 +33,18 @@ public class BiohackerHack : PuzzleInfo
     private Animator hackAnim;
     private bool hacked;
 
-    [SerializeField]
-    private string photoClueID;
 
     [SerializeField]
-    private string checkClueID;
+    private List<string> clueID = new List<string>();
+    private Dictionary<string, bool> clueIDCollected = new Dictionary<string, bool>();
 
-    private bool photoCollected;
-    private bool checkCollected;
     private void Start()
     {
         this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
+        foreach(string clue in clueID)
+        {
+            clueIDCollected.Add(clue, false);
+        }
     }
     void OnEnable()
     {
@@ -90,33 +91,29 @@ public class BiohackerHack : PuzzleInfo
         }
         
     }
-    public void collectClue(string clue)
+    
+
+    public void CollectClueButton(string clueID)
     {
-        if(clue == photoClueID && !photoCollected)
+        if(!clueIDCollected[clueID])
         {
-            Debug.Log("photo collected");
-            InvestigationManager.Instance.AddCluePrefab(clue, collectedAt);
             BaseUIManager.Instance.SpawnNotificationPanel("New Clue!", "You got 1 new clues!", 1, -1f);
-            photoCollected = true;
+            InvestigationManager.Instance.AddCluePrefab(clueID, collectedAt);
+            clueIDCollected[clueID] = true;
         }
-        else if(clue == checkClueID && !checkCollected)
+        foreach(KeyValuePair<string, bool> clue in clueIDCollected)
         {
-            Debug.Log("check collected");
-            InvestigationManager.Instance.AddCluePrefab(clue, collectedAt);
-            BaseUIManager.Instance.SpawnNotificationPanel("New Clue!", "You got 1 new clues!", 1, -1f);
-            checkCollected = true;
+            if(!clue.Value)
+            {
+                return;
+            }
         }
-        else
-        {
-            Debug.Log("Nothing");
-        }
-        if(photoCollected && checkCollected)
-        {
-            // Hide UI, Mark this puzzle with "solved";
-            InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
-            isSolved = true;
-        }
+        // Hide UI, Mark this puzzle with "solved";
+        InvestigationManager.Instance.UpdatePuzzleBtnSolved(puzzleID);
+        isSolved = true;
+        
     }
+
     IEnumerator DisableUnlcokButtonTimer(float time)
     {
         unlockButton.SetActive(false);
