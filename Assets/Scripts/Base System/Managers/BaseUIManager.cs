@@ -179,7 +179,11 @@ public class BaseUIManager : Singleton<BaseUIManager>
     }
     public bool CheckDecoderUnlocked(string puzzleID)
     {
-        if (inScenePuzzles[puzzleID].GetComponent<NumpadPuzzle>().decoderActivated)
+        if(!inScenePuzzles.ContainsKey(puzzleID))
+        {
+            return false;
+        }
+        else if (inScenePuzzles[puzzleID].GetComponent<NumpadPuzzle>().decoderActivated)
         {
             return true;
         }

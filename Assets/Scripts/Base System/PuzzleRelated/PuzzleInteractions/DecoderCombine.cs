@@ -16,6 +16,8 @@ public class DecoderCombine : PuzzleInfo
     [SerializeField]
     private GameObject questionImage;
 
+    private GameObject Btn_close;
+
     
 
     [SerializeField]
@@ -26,8 +28,9 @@ public class DecoderCombine : PuzzleInfo
     private void Start()
     {
         combineAnim = transform.Find("CombineImages").GetComponent<Animator>();
-        this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(HideThisUI);
-        this.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(delegate{ScriptEnableSwitch(false);});
+        Btn_close = transform.Find("Btn_close").gameObject;
+        Btn_close.GetComponent<Button>().onClick.AddListener(HideThisUI);
+        Btn_close.GetComponent<Button>().onClick.AddListener(delegate{ScriptEnableSwitch(false);});
     }
     void Update()
     {
@@ -54,6 +57,17 @@ public class DecoderCombine : PuzzleInfo
         hintText.GetComponent<TextMeshProUGUI>().text = "A part of some sort of device. It seems to be incomplete. Maybe someone who knows better about these small gadgets can figure it out...";
         enable = false;
     }
+    void OnDisable()
+    {
+        if(isSolved)
+        {
+            BaseUIManager.Instance.RemovePuzzleBtns("Device Part - 1");
+            BaseUIManager.Instance.RemovePuzzleBtns("Device Part - 2");
+            BaseUIManager.Instance.RemovePuzzleBtns("Device Part - 3");
+            BaseUIManager.Instance.HidePuzzleUI();
+        }
+    }
+    
     public void ScriptEnableSwitch(bool b)
     {
         enable = b;
@@ -86,6 +100,7 @@ public class DecoderCombine : PuzzleInfo
         return count;
     }
 
+
     IEnumerator CombineTimer(float time)
     {
         if(CheckDecoderPartCount() < 3)
@@ -95,6 +110,7 @@ public class DecoderCombine : PuzzleInfo
             hintText.GetComponent<TextMeshProUGUI>().text = "A part of some sort of device. It seems to be incomplete. Maybe someone who knows better about these small gadgets can figure it out...";
             yield break;
         }
+        Btn_close.GetComponent<Button>().interactable = false;
         combining = true;
         combineAnim.SetTrigger("CombineTrigger");
         yield return new WaitForSeconds(2f);
@@ -112,6 +128,7 @@ public class DecoderCombine : PuzzleInfo
         BaseUIManager.Instance.RemovePuzzleBtns("Device Part - 2");
         BaseUIManager.Instance.RemovePuzzleBtns("Device Part - 3");
         BaseUIManager.Instance.HidePuzzleUI();
+        Btn_close.GetComponent<Button>().interactable = true;
         
     }
     
