@@ -138,6 +138,8 @@ public class DetectiveBoardManager : Singleton<DetectiveBoardManager>
         tempClueOnBoardInfoTemplate.GetComponent<RectTransform>().localPosition = spawnPos;
         tempClueInfo.GetComponent<Transform>().SetParent(tempClueOnBoardInfoTemplate.GetComponent<Transform>(), false);
         //tempClueInfo.transform.Find("Btn_close").gameObject.SetActive(false);
+        tempClueInfo.GetComponentsInChildren<TMP_Text>()[1].fontSize *= 0.5f;
+        tempClueInfo.transform.Find("Btn_close").localScale *= 0.5f;
         tempClueInfo.transform.Find("Btn_close").GetComponent<Button>().onClick.AddListener(() => CloseLastClueInfo());
         tempClueInfo.transform.Find("Btn_share").gameObject.SetActive(false);
 /*        // Title
