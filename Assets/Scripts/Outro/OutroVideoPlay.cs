@@ -20,12 +20,12 @@ public class OutroVideoPlay : MonoBehaviour
         
         if(AccusationManager.Instance.solvedTheCase)
         {
-            outroVideoname = "SuccessNewsReportCaptioned";
+            outroVideoname = "SuccessEndVideo";
             myVideoPlayer.playbackSpeed = 1;
         }
         else
         {
-            outroVideoname = "Bruh";
+            outroVideoname = "FailEndVideo";
             myVideoPlayer.playbackSpeed = 1;
         }
         string videoUrl = Application.streamingAssetsPath + "/" + outroVideoname + ".mp4";
